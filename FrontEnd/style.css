@@ -1,0 +1,281 @@
+* {
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+
+}
+
+html, body { 
+
+  height:100%; 
+
+}
+
+.workspaceTab{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #d9d9d9;
+  margin: 0;
+  width: 20%;
+  height: 100%;
+  float: left;
+
+}
+
+.innerWorkspace {
+
+  width: 90%;
+  height: 95%;
+ 
+}
+
+.namesWorkspace {
+
+  text-align: left;
+  font-family: Calibri;
+  font-weight: bold;
+  color: #131313;
+  font-size: 1.8vw;
+
+}
+
+.headerText {
+
+  padding-top: 10%;
+  color: #6c7778;
+  font-weight: bold;
+  font-size: 1.6vw;
+  font-family: Calibri;
+
+}
+
+.toolBoxInterior {
+
+  padding-top: 5%;
+  padding-left: 8%;
+  color: #4e4e4e;
+  font-size: 1.2vw;
+
+}
+
+.barImg {
+
+  width: auto;
+  height: 100%;
+  max-height: 3vh;
+
+}
+
+.mainContentWindow {
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  margin: 0;
+  height: 100%;
+  width: 80%;
+  float: right;
+
+}
+
+.topCutOffWindow {
+
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  background-color: white;
+  width: 80%;
+  height: 15%;
+
+}
+
+.seperatingLine{
+
+  position: absolute;
+  bottom: 0;
+  background-color: #d9d9d9;
+  width: 100%;
+  height: 2%;
+
+}
+
+.documentName {
+
+  border: none;
+  padding-left: 2.5%;
+  width: 50%;
+  height: 40%;
+  font-size: 3vw;
+  outline: none;
+  font-family: Calibri;
+
+}
+
+.roundedButton {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #5a8a8e;
+  color: white;
+  width: 10%;
+  height: 20%;
+  border-radius: 20px;
+  font-size: 1vw;
+  font-family: Calibri;
+
+}
+
+.roundedButton#bOne {
+
+  position: relative;
+  left: 32%;
+
+}
+.roundedButton#bTwo {
+
+  position: relative;
+  left: 10%;
+
+}
+
+.bottomWindow {
+
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 0;
+  background-color: white;
+  width: 75%;
+  height: 85%;
+
+}
+
+.mainInput {
+
+  margin-top: 2vw;
+  padding-top: 1vw;
+  padding-left: 1vw;
+  width: 100%;
+  height: 30%;
+  background-color: #f1f1f1;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  font-size: 125%;
+  resize: none;
+  font-family: Calibri;
+
+}
+
+.outputBox{
+
+
+  padding-top: 1vw;
+  padding-left: 1vw;
+  width: 100%;
+  height: 58%;
+  background-color: #c9dbdd;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  font-size: 125%;
+  resize: none;
+  font-family: Calibri;
+
+}
+
+.fileUploadWindow {
+  margin-top: 3vw;
+  width: 75%;
+  height: 40%; 
+  border-style: dotted;
+  background-color: #c9dbdd;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  display: inline-grid;
+}
+
+.fileUploadWindow img {
+  max-width: 40%;
+  max-height: 40%;
+  display: block;
+  margin: auto;
+}
+
+.uploadText {
+
+  position: absolute;
+  bottom: 15%; 
+  left: 50%;
+  transform: translateX(-50%);
+  color: #131313; /* Adjust text color */
+  font-size: 40px; /* Adjust font size */
+  font-family: Calibri;
+
+}
+
+.uploadedDocWindow {
+
+  width: 75%;
+  height: 40%;
+  border-radius: 20px;
+  background-color: #c9dbdd;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.uploadedText {
+
+  padding-top: 1vw;
+  text-align: center; 
+  font-size: 150%;
+  font-weight: bold;
+  font-family: Calibri;
+
+}
+
+.uploadedDocs {
+
+  margin: 0;
+  padding-left: 2vw;
+  font-size: 150%;
+  font-family: Calibri;
+
+}
+
+.innerWindow {
+
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  bottom: 0;
+  background-color: white;
+  width: 75%;
+  height: 100%;
+
+}
+
+a:link, a:visited {
+
+  color: #4e4e4e;
+  text-decoration: none;
+
+}
+
+a:hover {
+
+  color: #819194;
+}
