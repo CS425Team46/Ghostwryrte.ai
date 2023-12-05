@@ -2,7 +2,7 @@ import openai
 from openai import OpenAI
 
 
-openai.api_key = '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'
+openai.api_key = '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'
 
 client = OpenAI()
 
@@ -13,7 +13,16 @@ client = OpenAI()
 # )
 
 # Using the OpenAI SDK and the training file ID from above, start a fine-tuning job
-client.fine_tuning.jobs.create(
-    training_file="file-ctReRu28iP8pAJdFZstb0Yk9", # Can find in OpenAI API interface
-    model="gpt-3.5-turbo" # chat/completeion format
-)
+# client.fine_tuning.jobs.create(
+#     training_file="file-tyxRPuwpCTaDcV3o5ETgz0Ie", # Can find in OpenAI API interface
+#     model="gpt-3.5-turbo" # chat/completeion format
+# )
+
+# List fine-tuning jobs
+print(client.fine_tuning.jobs.list(limit=1))
+
+# Retrieve the state of a fine-tune
+print(client.fine_tuning.jobs.retrieve("ftjob-4G1by3VoLtqMbkj2SMLtuNvW"))
+
+# List events from a fine-tuning job
+print(client.fine_tuning.jobs.list_events(fine_tuning_job_id="ftjob-4G1by3VoLtqMbkj2SMLtuNvW", limit=10))
