@@ -1,4 +1,4 @@
-# SOME OF THE CODE TAKEN AND EDITED FROM https://cookbook.openai.com/examples/chat_finetuning_data_prep
+# https://cookbook.openai.com/examples/chat_finetuning_data_prep
 import json
 import tiktoken # for token counting
 import numpy as np
