@@ -2,7 +2,7 @@ import openai
 from openai import OpenAI
 
 
-openai.api_key = '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'
+openai.api_key = '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'
 
 client = OpenAI()
 
@@ -18,11 +18,21 @@ client = OpenAI()
 #     model="gpt-3.5-turbo" # chat/completeion format
 # )
 
-# List fine-tuning jobs
-print(client.fine_tuning.jobs.list(limit=1))
+# # List fine-tuning jobs
+# print(client.fine_tuning.jobs.list(limit=1))
 
-# Retrieve the state of a fine-tune
-print(client.fine_tuning.jobs.retrieve("ftjob-4G1by3VoLtqMbkj2SMLtuNvW"))
+# # Retrieve the state of a fine-tune
+# print(client.fine_tuning.jobs.retrieve("ftjob-4G1by3VoLtqMbkj2SMLtuNvW"))
 
-# List events from a fine-tuning job
-print(client.fine_tuning.jobs.list_events(fine_tuning_job_id="ftjob-4G1by3VoLtqMbkj2SMLtuNvW", limit=10))
+# # List events from a fine-tuning job
+# print(client.fine_tuning.jobs.list_events(fine_tuning_job_id="ftjob-4G1by3VoLtqMbkj2SMLtuNvW", limit=10))
+
+
+response = client.chat.completions.create(
+    model="ft:gpt-3.5-turbo-0613:personal::8SUilMlH", 
+    messages=[{"role": "user", "content": "Write a social media post giving advice to computer science majors."}]
+)
+
+# Accessing the content of the message
+message_content = response.choices[0].message.content.strip()
+print(message_content)
