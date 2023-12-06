@@ -5,7 +5,7 @@ from openai import OpenAI
 # ft:gpt-3.5-turbo-0613:personal::8SUilMlH
 
 
-openai.api_key = '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'
+openai.api_key = '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'
 
 client = OpenAI()
 
@@ -16,10 +16,10 @@ client = OpenAI()
 # )
 
 # Using the OpenAI SDK and the training file ID from above, start a fine-tuning job
-client.fine_tuning.jobs.create(
-    training_file="file-hWIqc5yS0HYk3oWgHeCXAhUo", # Can find in OpenAI API interface
-    model="gpt-3.5-turbo" # chat/completeion format
-)
+# client.fine_tuning.jobs.create(
+#     training_file="file-hWIqc5yS0HYk3oWgHeCXAhUo", # Can find in OpenAI API interface
+#     model="gpt-3.5-turbo" # chat/completeion format
+# )
 
 # # List fine-tuning jobs
 # print(client.fine_tuning.jobs.list(limit=1))
@@ -31,10 +31,10 @@ client.fine_tuning.jobs.create(
 # print(client.fine_tuning.jobs.list_events(fine_tuning_job_id="ftjob-4G1by3VoLtqMbkj2SMLtuNvW", limit=10))
 
 
-# response = client.chat.completions.create(
-#     model="ft:gpt-3.5-turbo-0613:personal::8SUilMlH", 
-#     messages=[{"role": "user", "content": "Write a social media post giving advice to computer science majors."}]
-# )
+response = client.chat.completions.create(
+    model="ft:gpt-3.5-turbo-0613:personal::8Slov9kq", 
+    messages=[{"role": "user", "content": "Write a social media post announcing 5 new Product Managementinternships."}]
+)
 
 # Accessing the content of the message
 message_content = response.choices[0].message.content.strip()
