@@ -108,3 +108,24 @@ def create_new_content_draft(connection, cursor):
     connection.commit()
 
     print("Content draft created successfully.")
+
+
+def get_content_draft(connection, cursor):
+
+    content_id = input("Enter the contentID: ")
+
+    cursor.execute("SELECT * FROM contentDraft WHERE contentID = %s", (content_id,))
+    content_data = cursor.fetchone()
+
+    if content_data:
+
+        print("\nContent Draft Information:")
+        print(f"Content ID: {content_data[0]}")
+        print(f"User ID: {content_data[1]}")
+        print(f"Content Title: {content_data[2]}")
+        print(f"Content Body: {content_data[3]}")
+        print(f"Creation Date: {content_data[4]}")
+
+    else:
+
+        print("Content draft not found.")
