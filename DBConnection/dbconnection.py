@@ -4,7 +4,6 @@ import psycopg
 import uuid
 from datetime import datetime
 
-# Function to connect to the PostgreSQL database
 def connect_to_db():
 
     try:
@@ -170,3 +169,54 @@ def add_training_data(connection, cursor):
     connection.commit()
 
     print("Training data added to AI model successfully.")
+
+
+def feedback_submission(connection, cursor):
+
+    user_id = input("Enter your userID: ")
+
+    cursor.execute("SELECT * FROM useraccount WHERE userID = %s", (user_id,))
+    user_exists = cursor.fetchone()
+
+    if not user_exists:
+
+        print("User not found. Please enter a valid userID.")
+        return
+
+    content_id = input("Enter the contentID you want to leave feedback on: ")
+
+    cursor.execute("SELECT * FROM contentDraft WHERE contentID = %s", (content_id,))
+    content_exists = cursor.fetchone()
+
+    if not content_exists:
+
+        print("Content not found. Please enter a valid contentID.")
+        return
+
+    feedback_id = f"feedback_{user_id}_{content_id}"
+
+    comments = input("Enter your comments: ")
+    
+    while True:
+
+        try:
+
+            rating = int(input("Enter your rating (1-10): "))
+            break
+
+        except ValueError:
+
+            print("Please enter a valid integer for the rating.")
+
+    feedback_time = datetime.now()
+
+    cursor.execute(
+
+        "INSERT INTO feedbackManager (feedbackID, contentID, userID, comments, rating, feedbackTime) VALUES (%s, %s, %s, %s, %s, %s)",
+        (feedback_id[:10], content_id[:10], user_id, comments[:1048570], rating, feedback_time),
+
+    )
+
+    connection.commit()
+
+    print("Feedback submitted successfully.")
