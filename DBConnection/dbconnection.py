@@ -129,3 +129,44 @@ def get_content_draft(connection, cursor):
     else:
 
         print("Content draft not found.")
+
+
+def add_training_data(connection, cursor):
+
+    user_id = input("Enter your userID: ")
+
+    cursor.execute("SELECT * FROM useraccount WHERE userID = %s", (user_id,))
+    user_exists = cursor.fetchone()
+
+    if not user_exists:
+
+        print("User not found. Please enter a valid userID.")
+        return
+
+    model_id = f"model_{user_id}"
+
+    txt_file_path = input("Enter the path to your .txt file: ")
+
+    try:
+
+        with open(txt_file_path, "r") as file:
+
+            training_data = file.read()
+
+    except FileNotFoundError:
+
+        print("File not found. Please enter a valid file path.")
+        return
+
+    training_status = "data uploaded, model not updated"
+
+    cursor.execute(
+
+        "INSERT INTO aiModel (modelID, userID, trainingData, trainingStatus) VALUES (%s, %s, %s, %s)",
+        (model_id[:10], user_id, training_data[:10485760], training_status[:100]),
+
+    )
+
+    connection.commit()
+
+    print("Training data added to AI model successfully.")
