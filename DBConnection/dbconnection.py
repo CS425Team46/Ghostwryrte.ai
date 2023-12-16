@@ -49,7 +49,7 @@ def create_new_user_acc(connection, cursor):
 
     print("User account created successfully.")
 
-    
+
 def get_user_acc_info(connection, cursor):
 
     email = input("Enter your email address: ")
@@ -69,3 +69,42 @@ def get_user_acc_info(connection, cursor):
     else:
 
         print("User not found.")
+
+
+def create_new_content_draft(connection, cursor):
+
+    user_id = input("Enter your userID: ")
+
+    cursor.execute("SELECT * FROM useraccount WHERE userID = %s", (user_id,))
+    user_exists = cursor.fetchone()
+
+    if not user_exists:
+
+        print("User not found. Please enter a valid userID.")
+        return
+
+    content_id = input("Enter a unique contentID (max 10 characters): ")
+
+    cursor.execute("SELECT * FROM contentDraft WHERE contentID = %s", (content_id,))
+    content_exists = cursor.fetchone()
+
+    if content_exists:
+
+        print("ContentID already exists. Please choose a unique contentID.")
+        return
+
+    content_title = input("Enter the content title (max 100 characters): ")
+    content_body = input("Enter the content body (max 100,000 characters): ")
+
+    creation_date = datetime.now()
+
+    cursor.execute(
+
+        "INSERT INTO contentDraft (contentID, userID, contentTitle, contentBody, creationDate) VALUES (%s, %s, %s, %s, %s)",
+        (content_id[:10], user_id, content_title[:100], content_body[:100000], creation_date),
+
+    )
+
+    connection.commit()
+
+    print("Content draft created successfully.")
