@@ -220,3 +220,65 @@ def feedback_submission(connection, cursor):
     connection.commit()
 
     print("Feedback submitted successfully.")
+
+
+def main():
+
+    connection = connect_to_db()
+
+    if connection is None:
+
+        return
+
+    cursor = connection.cursor()
+
+    while True:
+
+        print("\n1. Create new user account")
+        print("2. Retrieve user account info")
+        print("3. Create a new content draft")
+        print("4. Retrieve content draft")
+        print("5. Add data to model training workspace")
+        print("6. Submit feedback")
+        print("7. Exit")
+
+        choice = input("Enter your choice (1-7): ")
+
+        if choice == "1":
+
+            create_new_user_acc(connection, cursor)
+
+        elif choice == "2":
+
+            get_user_acc_info(connection, cursor)
+
+        elif choice == "3":
+
+            create_new_content_draft(connection, cursor)
+        
+        elif choice == "4":
+
+            get_content_draft(connection, cursor)
+        
+        elif choice == "5":
+
+            add_training_data(connection, cursor)
+
+        elif choice == "6":
+
+            feedback_submission(connection, cursor)
+
+        elif choice == "7":
+
+            break
+
+        else:
+
+            print("Invalid choice. Please enter a valid option.")
+
+    cursor.close()
+    connection.close()
+
+if __name__ == "__main__":
+
+    main()
