@@ -27,20 +27,17 @@ def connect_to_db():
         return None
     
 
-# creating a new user account
+
 def create_new_user_acc(connection, cursor):
 
-    # Prompt user for information
     first_name = input("Enter your first name: ")
     last_name = input("Enter your last name: ")
     email = input("Enter your email address: ")
     password = input("Enter your password: ")
     user_preferences = input("Enter your user preferences: ")
 
-    # Generate a unique user ID
     user_id = str(uuid.uuid4())[:30]
 
-    # Insert user data into the database
     cursor.execute(
 
         'INSERT INTO useraccount (userID, passwordHash, email, userpreferences, lastname, firstname) VALUES (%s, %s, %s, %s, %s, %s)',
@@ -48,7 +45,27 @@ def create_new_user_acc(connection, cursor):
 
     )
 
-    # Commit the changes
     connection.commit()
 
     print("User account created successfully.")
+
+    
+def get_user_acc_info(connection, cursor):
+
+    email = input("Enter your email address: ")
+
+    cursor.execute("SELECT * FROM useraccount WHERE email = %s", (email,))
+    user_data = cursor.fetchone()
+
+    if user_data:
+
+        print("\nUser Account Information:")
+        print(f"User ID: {user_data[0]}")
+        print(f"Last Name: {user_data[4]}")
+        print(f"First Name: {user_data[5]}")
+        print(f"Email: {user_data[2]}")
+        print(f"User Preferences: {user_data[3]}")
+
+    else:
+
+        print("User not found.")
