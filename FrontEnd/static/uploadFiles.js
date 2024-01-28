@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (file.type === 'text/plain') {
                 fileUpload(file);
             } else {
-                alert('Only .txt files are allowed.');
+                alert('Only .txt files are accepted.');
             }
         }
     }
