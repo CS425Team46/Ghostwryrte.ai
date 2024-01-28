@@ -36,11 +36,16 @@ document.addEventListener('DOMContentLoaded', () => {
     function fileProcessing(files) {
         for (const file of files) {
             if (file.type === 'text/plain') {
+                fileUpload(file);
             } else {
                 alert('Only .txt files are allowed.');
             }
         }
     }
 
-
+    function fileUpload(file) {
+        const listItem = document.createElement('li');
+        listItem.textContent = file.name;
+        uploadedDocsList.appendChild(listItem);
+    }
 });
