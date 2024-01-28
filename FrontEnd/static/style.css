@@ -133,15 +133,16 @@ html, body {
 }
 
 .roundedButton#bOne {
-
-  position: relative;
-  left: 32%;
-
+  position: absolute;
+  bottom: 67.5%;
+  right: 1.5%;
+  height: 10%;
 }
 .roundedButton#bTwo {
 
   position: relative;
-  left: 10%;
+  left: 35.5%;
+  height: 50%;
 
 }
 
