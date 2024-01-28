@@ -1,44 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>GhostWryte.ai</title>
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>GhostWryte.ai</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-	<div class="workspaceTab">
-		<div class="innerWorkspace">
+    <div class="workspaceTab">
+        <div class="innerWorkspace">
 
-			<div class="namesWorkspace">User's Workspace ▼</div>
-			<div class="headerText">TOOLBOX
+            <div class="namesWorkspace">User's Workspace ▼</div>
+            <div class="headerText">TOOLBOX
 
-				<div class=toolBoxInterior><img style="vertical-align:middle" src="{{ url_for('static', filename='images/ContentGeneration.jpg') }}" class="barImg"><a href="templates\ContentGeneration.html"> Content Generation</a></div>
-				<div class=toolBoxInterior><img style="vertical-align:middle" src="{{ url_for('static', filename='images/StyleAndFormatting.jpg') }}" class="barImg"><a href="templates\StylingAndFormat.html"> Styling & Format</a></div>
-				<div class=toolBoxInterior><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AudienceInsights.jpg') }}" class="barImg"><a href="#"> Audience Insights</a></div>
-				<div class=toolBoxInterior><img style="vertical-align:middle" src="{{ url_for('static', filename='images/Templates.jpg') }}"" class="barImg"><a href="#"> Templates</a></div>
+                <div class=toolBoxInterior><img style="vertical-align:middle" src="{{ url_for('static', filename='images/ContentGeneration.jpg') }}" class="barImg"><a href="{{ url_for('home') }}"> Content Generation</a></div>
+                <div class=toolBoxInterior><img style="vertical-align:middle" src="{{ url_for('static', filename='images/StyleAndFormatting.jpg') }}" class="barImg"><a href="{{ url_for('styling_and_format') }}"> Styling & Format</a></div>
+                <div class=toolBoxInterior><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AudienceInsights.jpg') }}" class="barImg"><a href="#"> Audience Insights</a></div>
+                <div class=toolBoxInterior><img style="vertical-align:middle" src="{{ url_for('static', filename='images/Templates.jpg') }}" class="barImg"><a href="#"> Templates</a></div>
 
-			</div>
-			<div class="headerText">CUSTOMIZATION
-				
-				<div class=toolBoxInterior><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AITraining.jpg') }}" class="barImg"><a href="/ai-training">AI Training</a></div>
-			</div>
-		</div>
-	</div>
+            </div>
+            <div class="headerText">CUSTOMIZATION
+                
+                <div class=toolBoxInterior><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AITraining.jpg') }}" class="barImg"><a href="{{ url_for('ai_training') }}"> AI Training</a></div>
 
-	<div class="mainContentWindow">
-		
-		<div class="topCutOffWindow">
-			<input type="text" class="documentName" placeholder="New Content - Untitled">
-			<button class="roundedButton" id="bOne">Generate<img style="vertical-align:middle" src="images\Sparkle.jpg" class="barImg"></button>
-			<button class="roundedButton" id="bTwo">New Project</button>
-			<div class="seperatingLine"></div>
-		</div>
+            </div>
+        </div>
+    </div>
 
-		<div class="bottomWindow">
-			<textarea type="text" class="mainInput" placeholder="Enter prompt and/or bullet points, or outline."></textarea>
-			<div class="outputBox">This will be the resuling output</div>
-		</div>
+    <div class="mainContentWindow">
+        
+        <div class="topCutOffWindow">
+            <input type="text" class="documentName" placeholder="New Content - Untitled">
+            <button class="roundedButton" id="bOne">Generate<img style="vertical-align:middle" src="images\Sparkle.jpg" class="barImg"></button>
+            <button class="roundedButton" id="bTwo">New Project</button>
+            <div class="seperatingLine"></div>
+        </div>
 
-	</div>
+        <div class="bottomWindow">
+            <textarea type="text" class="mainInput" placeholder="Enter prompt and/or bullet points, or outline."></textarea>
+            <div class="outputBox">This will be the resuling output</div>
+        </div>
+
+    </div>
 
 </body>
 </html>

@@ -1,11 +1,10 @@
 from flask import Flask, render_template
+
 app = Flask(__name__)
- 
+
 @app.route('/')
 def home():
-   return render_template('ContentGeneration.html')
-if __name__ == '__main__':
-   app.run(debug=True)
+    return render_template('ContentGeneration.html')
 
 @app.route('/ai-training')
 def ai_training():
@@ -14,3 +13,6 @@ def ai_training():
 @app.route('/styling-and-format')
 def styling_and_format():
     return render_template('StylingAndFormat.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
