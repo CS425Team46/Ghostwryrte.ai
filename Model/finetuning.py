@@ -4,14 +4,13 @@ from openai import OpenAI
 # file-tyxRPuwpCTaDcV3o5ETgz0Ie
 # ft:gpt-3.5-turbo-0613:personal::8SUilMlH
 
-
-openai.api_key = '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'
+# NOTE: When using a new API key, assign to environment vairable first (export OPENAI_API_KEY="<OPENAI_API_KEY>")
 
 client = OpenAI()
 
 # # Training data needs to be uploaded using the Files API in order to be used with fine-tuning jobs
 # client.files.create(
-#     file=open("data.jsonl", "rb"),
+#     file=open("training_data.jsonl", "rb"),
 #     purpose="fine-tune"
 # )
 
