@@ -17,12 +17,13 @@
     <!-- Sign In Form -->
     <div>
         <h2>Sign In</h2>
-        <form id="signinForm">
-            Email: <input type="email" id="signinEmail" required><br>
-            Password: <input type="password" id="signinPassword" required><br>
+        <form method="post" action="/signin">
+            Email: <input type="email" name="email" required><br>
+            Password: <input type="password" name="password" required><br>
             <button type="submit">Sign In</button>
         </form>
     </div>
+
 
     <!-- Include Firebase SDK and JavaScript for handling Firebase logic -->
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>

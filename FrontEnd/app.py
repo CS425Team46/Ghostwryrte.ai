@@ -65,6 +65,20 @@ def signup():
     except Exception as e:
         return f'An error occurred: {str(e)}'
 
+@app.route('/signin', methods=['POST'])
+def signin():
+    email = request.form['email']
+    password = request.form['password']
+    try:
+        # Authenticate the user
+        user = auth.get_user_by_email(email)
+        # Check if the password is correct 
+        
+        # If authentication is successful, redirect or return a success message
+        return 'User signed in successfully.'
+    except Exception as e:
+        return f'An error occurred: {str(e)}'
+
 
 if __name__ == '__main__':
     app.run(debug=True)
