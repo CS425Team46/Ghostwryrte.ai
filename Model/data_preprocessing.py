@@ -3,7 +3,7 @@ import re
 import demoji
 
 def preprocess_jsonl(input_file, output_file):
-    demoji.download_codes()  # Download the emoji library data (only needs to be done once)
+    # demoji.download_codes()  # Download the emoji library data (only needs to be done once)
 
     with open(input_file, 'r') as infile, open(output_file, 'w') as outfile:
         for line in infile:
