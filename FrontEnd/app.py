@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 import openai
 from openai import OpenAI
 import firebase_admin
@@ -18,6 +18,10 @@ app = Flask(__name__)
 def home():
     return render_template('AccountCreation.html')
 
+@app.route('/content-generation')
+def content_generation():
+    return render_template('ContentGeneration.html')
+
 @app.route('/ai-training')
 def ai_training():
     return render_template('AITraining.html')
@@ -25,6 +29,15 @@ def ai_training():
 @app.route('/styling-and-format')
 def styling_and_format():
     return render_template('StylingAndFormat.html')
+
+
+
+
+
+
+
+
+
 
 @app.route('/generate-content', methods=['POST'])
 def generate_content():
@@ -74,8 +87,8 @@ def signin():
         user = auth.get_user_by_email(email)
         # Check if the password is correct 
         
-        # If authentication is successful, redirect or return a success message
-        return 'User signed in successfully.'
+        # If authentication is successful, redirect
+        return redirect('/content-generation')
     except Exception as e:
         return f'An error occurred: {str(e)}'
 
