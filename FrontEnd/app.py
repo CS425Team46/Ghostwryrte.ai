@@ -1,6 +1,14 @@
 from flask import Flask, render_template, request
 import openai
 from openai import OpenAI
+import firebase_admin
+from firebase_admin import credentials, firestore, auth
+
+cred = credentials.Certificate("/Users/jessicanam/Documents/ghostwryte/Ghostwryrte.ai/Model/ghostwryte-ai-firebase-adminsdk-uxybq-20881dd0dd.json")
+firebase_admin.initialize_app(cred)
+
+# Initialize Firestore
+db = firestore.client()
 
 client = OpenAI()
 
@@ -8,7 +16,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    return render_template('ContentGeneration.html')
+    return render_template('AccountCreation.html')
 
 @app.route('/ai-training')
 def ai_training():
@@ -28,6 +36,35 @@ def generate_content():
     )
     message_content = response.choices[0].message.content.strip()
     return render_template('ContentGeneration.html', ai_response=message_content)
+
+@app.route('/account-creation')
+def account_creation():
+    return render_template('AccountCreation.html')
+
+@app.route('/signup', methods=['POST'])
+def signup():
+    email = request.form['email']
+    password = request.form['password']
+    # Add user creation logic here using Firebase Admin SDK
+    try:
+        # Create user using Firebase Authentication
+        user = auth.create_user(email=email, password=password)
+
+        # Add user to Firestore
+        user_ref = db.collection('users').document(user.uid)
+        user_ref.set({
+            'email': email,
+            'password': password,
+            'training_data': '',
+            'model_id':'',
+            'generated_prompts':'',
+            'created_at': firestore.SERVER_TIMESTAMP
+        })
+
+        return 'User created successfully.'
+    except Exception as e:
+        return f'An error occurred: {str(e)}'
+
 
 if __name__ == '__main__':
     app.run(debug=True)
