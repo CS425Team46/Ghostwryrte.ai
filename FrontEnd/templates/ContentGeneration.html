@@ -27,11 +27,21 @@
             <div class="seperatingLine"></div>
         </div>
 
-        <div class="bottomWindow">
+        <!-- <div class="bottomWindow">
             <textarea type="text" class="mainInput" placeholder="Enter prompt and/or bullet points, or outline."></textarea>
             <button class="roundedButton" id="bOne">Generate<img style="vertical-align:middle" src="{{ url_for('static', filename='images/Sparkle.jpg') }}" class="barImg"></button>
             <div class="outputBox">This will be the resulting output</div>
+        </div> -->
+
+        <div class="bottomWindow">
+            <form method="post" action="{{ url_for('generate_content') }}">
+                <textarea name="user_prompt" type="text" class="mainInput" placeholder="Enter prompt and/or bullet points, or outline."></textarea>
+                <button type="submit" class="roundedButton" id="bOne">Generate<img style="vertical-align:middle" src="{{ url_for('static', filename='images/Sparkle.jpg') }}" class="barImg"></button>
+            </form>
+            <div class="outputBox">{{ ai_response }}</div>
         </div>
+
+
     </div>
 </body>
 </html>
