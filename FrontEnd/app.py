@@ -4,7 +4,7 @@ from openai import OpenAI
 import firebase_admin
 from firebase_admin import credentials, firestore, auth
 
-cred = credentials.Certificate("/Users/jessicanam/Documents/ghostwryte/Ghostwryrte.ai/Model/ghostwryte-ai-firebase-adminsdk-uxybq-20881dd0dd.json")
+cred = credentials.Certificate("ghostwryte-ai-firebase-adminsdk-uxybq-20881dd0dd.json")
 firebase_admin.initialize_app(cred)
 
 # Initialize Firestore
