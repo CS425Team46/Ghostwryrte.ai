@@ -1,3 +1,6 @@
+### SOME ENVIRONMENT VARIABLES YOU MIGHT NEED!!!
+#  When getting OpenAI finetuning api key error: export OPENAI_API_KEY="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" 
+
 import openai
 from openai import OpenAI
 import os
@@ -15,29 +18,34 @@ client = OpenAI()
 #     purpose="fine-tune"
 # )
 
-# # Using the OpenAI SDK and the training file ID from above, start a fine-tuning job
-# client.fine_tuning.jobs.create(
-#     training_file="file-hWIqc5yS0HYk3oWgHeCXAhUo", # Can find in OpenAI API interface
-#     model="gpt-3.5-turbo" # chat/completeion format
-# )
+# Using the OpenAI SDK and the training file ID from above, start a fine-tuning job
+response = client.fine_tuning.jobs.create(
+    training_file="file-f8MVqnhCNwMSgKjRUk4WXQEm", # Can find in OpenAI API interface
+    model="gpt-3.5-turbo", # chat/completeion format
+    hyperparameters={
+    "n_epochs": 15,
+	"batch_size": 3,
+	"learning_rate_multiplier": 0.3
+  }
+)
 
 # Define your hyperparameters and file paths
-model_engine = "gpt-3.5-turbo"
-n_epochs = 6
-batch_size = 8
-learning_rate = 0.1  
-max_tokens = 1024    
-training_file = "/Users/jessicanam/Documents/Ghostwyrte.ai/Ghostwryrte.ai/Model/training_data.jsonl"  
+# model_engine = "gpt-3.5-turbo"
+# n_epochs = 6
+# batch_size = 8
+# learning_rate = 0.1  
+# max_tokens = 1024    
+# training_file = "/Users/jessicanam/Documents/Ghostwyrte.ai/Ghostwryrte.ai/Model/training_data.jsonl"  
 
-# Create the fine-tuning job
-openai.FineTune.create(
-    model_engine=model_engine,
-    n_epochs=n_epochs,
-    batch_size=batch_size,
-    learning_rate=learning_rate,
-    max_tokens=max_tokens,
-    training_file=os.path.abspath(training_file),
-)
+# # Create the fine-tuning job
+# openai.FineTune.create(
+#     model_engine=model_engine,
+#     n_epochs=n_epochs,
+#     batch_size=batch_size,
+#     learning_rate=learning_rate,
+#     max_tokens=max_tokens,
+#     training_file=os.path.abspath(training_file),
+# )
 
 
 # # List fine-tuning jobs

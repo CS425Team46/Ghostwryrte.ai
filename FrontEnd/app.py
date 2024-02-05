@@ -32,13 +32,6 @@ def styling_and_format():
 
 
 
-
-
-
-
-
-
-
 @app.route('/generate-content', methods=['POST'])
 def generate_content():
     user_prompt = request.form['user_prompt']
