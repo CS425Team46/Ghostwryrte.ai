@@ -1,5 +1,5 @@
 ### SOME ENVIRONMENT VARIABLES YOU MIGHT NEED!!!
-#  When getting OpenAI finetuning api key error: export OPENAI_API_KEY="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" 
+#  When getting OpenAI finetuning api key error: export OPENAI_API_KEY="API_KEY" 
 
 import openai
 from openai import OpenAI
@@ -24,7 +24,7 @@ response = client.fine_tuning.jobs.create(
     model="gpt-3.5-turbo", # chat/completeion format
     hyperparameters={
     "n_epochs": 15,
-	"batch_size": 3,
+	"batch_size": 4,
 	"learning_rate_multiplier": 0.3
   }
 )
