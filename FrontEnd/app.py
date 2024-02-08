@@ -31,17 +31,17 @@ def styling_and_format():
     return render_template('StylingAndFormat.html')
 
 
-
 @app.route('/generate-content', methods=['POST'])
 def generate_content():
     user_prompt = request.form['user_prompt']
     # Call AI model with the user_prompt
     response = client.chat.completions.create(
-        model="ft:gpt-3.5-turbo-0613:personal::8Slov9kq", 
+        model="ft:gpt-3.5-turbo-0613:personal::8pvGEukp", 
         messages=[{"role": "user", "content": user_prompt}]
     )
     message_content = response.choices[0].message.content.strip()
     return render_template('ContentGeneration.html', ai_response=message_content)
+
 
 @app.route('/account-creation')
 def account_creation():
