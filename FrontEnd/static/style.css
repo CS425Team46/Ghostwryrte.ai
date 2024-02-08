@@ -150,7 +150,7 @@ html, body {
 
   flex-wrap: wrap;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   position: absolute;
   bottom: 0;
   background-color: white;
@@ -165,8 +165,8 @@ html, body {
   margin-top: 2vw;
   padding-top: 1vw;
   padding-left: 1vw;
-  width: 200%;
-  height: 50%;
+  width: 300%;
+  height: 150%;
   background-color: #f1f1f1;
   outline: none;
   border: none;
@@ -179,8 +179,6 @@ html, body {
 }
 
 .outputBox{
-
-
   padding-top: 1vw;
   padding-left: 1vw;
   width: 100%;
