@@ -1,45 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
+	    <style>
+         @font-face {
+            font-family: "Moon";
+            src: url("/static/fonts/MoonLight.otf");
+        }
+        </style>
 	<title>GhostWryte.ai</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 	<script type="module" src="{{ url_for('static', filename='uploadFiles.mjs') }}"></script>
 </head>
 <body>
-	<div class="workspaceTab">
-		<div class="innerWorkspace">
+    <div class="workspaceTab">
+        <div class="navigationWrapper">
+            <div class="logoAndName"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/Logo.png') }}" class="logoImg"></div>
+            <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/ContentGeneration.png') }}" class="barImg"><a href="{{ url_for('content_generation') }}"> Content Generation</a></button>
+            <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/StyleAndFormatting.png') }}" class="barImg"><a href="{{ url_for('styling_and_format') }}"> Styling & Format</a></button>
+            <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AudienceInsights.png') }}" class="barImg"><a href="#"> Audience Insights</a></button>
+            <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/Templates.png') }}" class="barImg"><a href="#"> Templates</a></button>
+            <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AITraining.png') }}" class="barImg"><a href="{{ url_for('ai_training') }}"> AI Training</a></button>
 
-			<div class="namesWorkspace">User's Workspace ▼</div>
-			<div class="headerText">TOOLBOX
+            
+        </div>
+        <div class="logOutWrapper">
+            <hr>
+            <button class="logOut">Log out<img style="vertical-align:middle" src="{{ url_for('static', filename='images/LogOut.png') }}" class="logOutImg"></button>
+        </div>
+    </div>
 
-				<div class=toolBoxInterior><img style="vertical-align:middle" src="{{ url_for('static', filename='images/ContentGeneration.jpg') }}" class="barImg"><a href="{{ url_for('content_generation') }}"> Content Generation</a></div>
-				<div class=toolBoxInterior><img style="vertical-align:middle" src="{{ url_for('static', filename='images/StyleAndFormatting.jpg') }}" class="barImg"><a href="{{ url_for('styling_and_format') }}"> Styling & Format</a></div>
-				<div class=toolBoxInterior><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AudienceInsights.jpg') }}" class="barImg"><a href="#"> Audience Insights</a></div>
-				<div class=toolBoxInterior><img style="vertical-align:middle" src="{{ url_for('static', filename='images/Templates.jpg') }}" class="barImg"><a href="#"> Templates</a></div>
+    <div class="mainContentWrapper">
 
-			</div>
-			<div class="headerText">CUSTOMIZATION
-				
-				<div class=toolBoxInterior><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AITraining.jpg') }}" class="barImg"><a href="{{ url_for('ai_training') }}"> AI Training</a></div>
-
-			</div>
+       
+		<div class="mainContentWindow">
+			<div class="innerWindow">
+				<button class="fileUploadWindow">
+			        <img style="vertical-align: middle" src="{{ url_for('static', filename='images/CloudImg.jpg') }}" class="barImg">
+			        <p class="uploadText">Drag and drop files here</p>
+			    </button>
+			    <div class="uploadedDocWindow">
+			    	<div class="uploadedText">Uploaded Files</div>
+			    	<ul class="uploadedDocs">
+			    	</ul>
+		    </div>
 		</div>
-	</div>
-
-	<div class="mainContentWindow">
-		<div class="innerWindow">
-			<button class="fileUploadWindow">
-		        <img style="vertical-align: middle" src="{{ url_for('static', filename='images/CloudImg.jpg') }}" class="barImg">
-		        <p class="uploadText">Drag and drop files here</p>
-		    </button>
-		    <div class="uploadedDocWindow">
-		    	<div class="uploadedText">Uploaded Files</div>
-		    	<ul class="uploadedDocs">
-		    	</ul>
-	    	</div>
-
 		</div>
-	    
+		    
 	</div>
 </body>
 </html>
