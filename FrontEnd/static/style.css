@@ -6,6 +6,7 @@
 
 }
 
+/* Rules */
 
 html, body { 
 
@@ -13,6 +14,23 @@ html, body {
   background: #33343e;
 
 }
+
+a:link, a:visited {
+
+  color: #C2C2CC;
+  text-decoration: none;
+
+}
+
+pre {
+  white-space: pre-wrap;
+  word-wrap: break-word; 
+  overflow-wrap: break-word; 
+}
+
+
+
+/* Includes toolbox section on the left */
 
 .workspaceTab{
 
@@ -28,42 +46,116 @@ html, body {
 
 }
 
-.innerWorkspace {
+.navigationWrapper {
 
-  width: 90%;
-  height: 95%;
- 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+  height: 60%;
+  margin-top: 8%;
+
+}
+.barImg {
+
+  width: auto;
+  height: 100%;
+  max-height: 3vh;
+  margin-right: 15px;
+
+}
+.logoImg {
+
+  width: auto;
+  height: 200%;
+  max-height: 20vh;
+
 }
 
-.namesWorkspace {
+/* 
+.logoAndName {
 
-  text-align: left;
-  font-family: Calibri;
+  display: flex;
+  justify-content: center;
+  height: 50%;
+  font-size: 350%;
   font-weight: bold;
-  color: #dda15e;
-  font-size: 1.8vw;
+  border: none;
+  color: #f7f7f7;
+
+} Got replaced by the Ghostwryte logo but I'm leaving this here just in case I end up wanting to change it.*/ 
+
+.navigationButton {
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 92%;
+  height: 15%;
+  border-radius: 15px;
+  background-color: #33343e;
+  
+  padding-left: 3%;
+  font-size: 2vh;
+  resize: none;
+  font-family: Moon;
+  overflow: hidden;
+  border: none;
+  color: #f7f7f7;
 
 }
 
-.headerText {
+.navigationButton:hover {
+  background: #474956;
+}
 
-  padding-top: 10%;
-  color: #dda15e;
-  font-weight: bold;
-  font-size: 1.6vw;
-  font-family: Calibri;
+.logOutWrapper {
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: 10%;
+  background: none;
 
 }
 
-.toolBoxInterior {
+.logOut {
 
-  padding-top: 5%;
-  padding-left: 8%;
-  color: #4e4e4e;
-  font-size: 1.2vw;
+  display: flex;
+  justify-content: space-between;
+  color: #C2C2CC;
+  height: 100%;
+  background: none;
+  border: none;
+  font-family: Moon;
+  font-size: 2.7vh;
+  margin-top: 5%;
+  margin-left: 8%;
 
 }
 
+.logOutImg{
+
+  width: auto;
+  height: 80%;
+  vertical-align: center;
+  max-height: 1.5vh;
+  margin-top: 1.7%;
+  margin-right: 5%;
+
+}
+
+.emptyClass {
+
+  display: flex;
+  height: 100%;
+  width: 100%;
+  justify-content: space-between;
+}
+
+/* Includes Main Content (AKA content to the right of the toolbox section). */
 
 .mainContentWrapper {
   display: flex;
@@ -102,7 +194,6 @@ html, body {
 
 }
 
-
 .contentGenWindow {
 
   display: flex;
@@ -111,12 +202,12 @@ html, body {
   margin-top: 2.5%;
   height: 100%;
   width: 100%;
-  font-size: 200%;
+  font-size: 1.6vh;
   resize: none;
   font-family: Calibri;
   margin: auto; 
-  padding-top: 1vw;
-  padding-left: 1vw;
+  padding-top: 2vw;
+  padding-left: 2vw;
   overflow: auto;
 
 }
@@ -140,7 +231,7 @@ html, body {
   border-radius: 20px;
   padding-top: .75vw;
   padding-left: 1vw;
-  font-size: 200%;
+  font-size: 1.7vh;
   resize: none;
   border: none;
   overflow: hidden;
@@ -180,151 +271,7 @@ html, body {
 
 }
 
-.navigationWrapper {
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100%;
-  height: 60%;
-  margin-top: 8%;
-
-}
-.barImg {
-
-  width: auto;
-  height: 100%;
-  max-height: 3vh;
-  margin-right: 15px;
-
-}
-.logoImg {
-
-  width: auto;
-  height: 200%;
-  max-height: 20vh;
-
-}
-.logoAndName {
-
-  display: flex;
-  justify-content: center;
-  height: 50%;
-  font-size: 350%;
-  font-weight: bold;
-  border: none;
-  color: #f7f7f7;
-
-}
-
-.navigationButton {
-
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  width: 92%;
-  height: 15%;
-  border-radius: 15px;
-  background-color: #33343e;
-  
-  padding-left: 3%;
-  font-size: 190%;
-  resize: none;
-  font-family: Moon;
-  overflow: hidden;
-  border: none;
-  color: #f7f7f7;
-
-}
-
-.navigationButton:hover {
-  background: #474956;
-}
-
-.logOutWrapper {
-
-  display: flex;
-  flex-direction: column;
-
-  width: 100%;
-  height: 10%;
-  background: none;
-
-}
-
-.logOut {
-
-  display: flex;
-  justify-content: space-between;
-  color: #C2C2CC;
-  height: 100%;
-  background: none;
-  border: none;
-  font-family: Moon;
-  font-size: 250%;
-  margin-top: 5%;
-  margin-left: 8%;
-
-}
-
-.logOutImg{
-
-  width: auto;
-  height: 80%;
-  vertical-align: center;
-  max-height: 1.5vh;
-  margin-top: 1.7%;
-  margin-right: 5%;
-
-}
-
-.emptyClass {
-
-  display: flex;
-  height: 100%;
-  width: 100%;
-  justify-content: space-between;
-}
-
-.topCutOffWindow {
-
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  background-color: white;
-  width: 80%;
-  height: 15%;
-
-}
-
-.documentName {
-
-  border: none;
-  padding-left: 2.5%;
-  width: 50%;
-  height: 40%;
-  font-size: 3vw;
-  outline: none;
-  font-family: Calibri;
-
-}
-
-.bottomWindow {
-
-  flex-wrap: wrap;
-  display: flex;
-  justify-content: left;
-  position: absolute;
-  bottom: 0;
-  background-color: white;
-  width: 75%;
-  height: 85%;
-  align-items: center; /* Center children horizontally, Moved generate button up? */
-
-}
-
+/* Includes Content related to AITraining Page */
 
 .fileUploadWindow {
   margin-top: 3vw;
@@ -351,8 +298,8 @@ html, body {
   bottom: 15%; 
   left: 50%;
   transform: translateX(-50%);
-  color: #131313; /* Adjust text color */
-  font-size: 40px; /* Adjust font size */
+  color: #131313; 
+  font-size: 40px; 
   font-family: Calibri;
 
 }
@@ -402,16 +349,5 @@ html, body {
 
 }
 
-a:link, a:visited {
-
-  color: #C2C2CC;
-  text-decoration: none;
-
-}
-
-pre {
-  white-space: pre-wrap;
-  word-wrap: break-word; 
-  overflow-wrap: break-word; 
-}
+/* Other */
 
