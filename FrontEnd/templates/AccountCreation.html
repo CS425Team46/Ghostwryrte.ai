@@ -1,33 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Sign Up / Sign In</title>
+        <style>
+         @font-face {
+            font-family: "Moon";
+            src: url("/static/fonts/MoonLight.otf");
+        }
+        </style>
+    <title>GhostWryte.ai</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script type="module" src="{{ url_for('static', filename='uploadFiles.mjs') }}"></script>
 </head>
 <body>
-    <!-- Sign Up Form -->
-    <div>
-        <h2>Sign Up</h2>
-        <form method="post" action="/signup">
-            Email: <input type="email" name="email" required><br>
-            Password: <input type="password" name="password" required><br>
-            <button type="submit">Sign Up</button>
-        </form>
+
+    <div class="AccCP">
+        <div class="accountCreationWrapper">
+            <div class="actionSelector">
+                <button class="signInButton">Sign In</button> or <button class="signUpButton" id="signUp">Sign Up</button>
+            </div>
+            <div>
+                <h2>Sign Up</h2>
+                <form id="signupForm" method="post" action="/signup">
+                    Email: <input type="email" id="signupEmail" name="email" required><br>
+                    Password: <input type="password" id="signupPassword" name="password" required><br>
+                    <button type="submit">Sign Up</button>
+                </form>
+            </div>
+            <div>
+                <h2>Sign In</h2>
+                <form id="signinForm" method="post" action="/signin">
+                    Email: <input type="email" id="signinEmail" name="email" required><br>
+                    Password: <input type="password" id="signinPassword" name="password" required><br>
+                    <button type="submit">Sign In</button>
+                </form>
+            </div>
+        </div>
     </div>
 
-    <!-- Sign In Form -->
-    <div>
-        <h2>Sign In</h2>
-        <form method="post" action="/signin">
-            Email: <input type="email" name="email" required><br>
-            Password: <input type="password" name="password" required><br>
-            <button type="submit">Sign In</button>
-        </form>
-    </div>
-
-
-    <!-- Include Firebase SDK and JavaScript for handling Firebase logic -->
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
-    <script src="static/javascript.js"></script>
 </body>
 </html>
