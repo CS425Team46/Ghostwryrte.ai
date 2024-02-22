@@ -1,74 +1,75 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
 import { getFirestore, doc, setDoc } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
-import { getAuth } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
-import { getAnalytics } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics.js'
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDW-idC8yzOs7HlFZ21sB5-H7UjRZ6N6hs",
-  authDomain: "ghostwryte-ai.firebaseapp.com",
-  projectId: "ghostwryte-ai",
-  storageBucket: "ghostwryte-ai.appspot.com",
-  messagingSenderId: "837044282202",
-  appId: "1:837044282202:web:e5bc8ac9a865b8ee2cc963",
-  measurementId: "G-MD1XND7LM3"
+    apiKey: "AIzaSyDW-idC8yzOs7HlFZ21sB5-H7UjRZ6N6hs",
+    authDomain: "ghostwryte-ai.firebaseapp.com",
+    projectId: "ghostwryte-ai",
+    storageBucket: "ghostwryte-ai.appspot.com",
+    messagingSenderId: "837044282202",
+    appId: "1:837044282202:web:e5bc8ac9a865b8ee2cc963",
+    measurementId: "G-MD1XND7LM3"
 };
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
 
 document.addEventListener('DOMContentLoaded', () => {
     const fileUploadWindow = document.querySelector('.fileUploadWindow');
     const uploadedDocsList = document.querySelector('.uploadedDocs');
-    const signInButton     = document.querySelector('.signInButton');
-    const signUpButton     = document.querySelector('.signUpButton');
-    const auth = initializeAuth();
 
-    fileUploadWindow.addEventListener('dragover', (event) => {
-        event.preventDefault();
-        fileUploadWindow.classList.add('dragover');
-    });
+    if (fileUploadWindow) {
+        fileUploadWindow.addEventListener('dragover', (event) => {
+            event.preventDefault();
+            fileUploadWindow.classList.add('dragover');
+        });
 
-    fileUploadWindow.addEventListener('dragleave', () => {
-        fileUploadWindow.classList.remove('dragover');
-    });
-
-    fileUploadWindow.addEventListener('drop', (event) => {
-        event.preventDefault();
-        fileUploadWindow.classList.remove('dragover');
-
-        const files = event.dataTransfer.files;
-        fileProcessing(files);
-    });
-
-    fileUploadWindow.addEventListener('click', () => {
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.accept = '.txt';
-        fileInput.multiple = true;
-
-        fileInput.click();
-
-        fileInput.addEventListener('change', (event) => {
-            const files = event.target.files;
+        fileUploadWindow.addEventListener('dragleave', () => {
+            fileUploadWindow.classList.remove('dragover');
+        });
+    
+        fileUploadWindow.addEventListener('drop', (event) => {
+            event.preventDefault();
+            fileUploadWindow.classList.remove('dragover');
+    
+            const files = event.dataTransfer.files;
             fileProcessing(files);
         });
-    });
 
-    document.getElementById('signUpButton').addEventListener('click', function() {
-        console.log("Sign Up button clicked");
-        document.getElementById('signUp').classList.add('signButtonClicked');
-        document.getElementById('signIn').classList.remove('signButtonClicked');
-    });
+        fileUploadWindow.addEventListener('click', () => {
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = '.txt';
+            fileInput.multiple = true;
+    
+            fileInput.click();
+    
+            fileInput.addEventListener('change', (event) => {
+                const files = event.target.files;
+                fileProcessing(files);
+            });
+        });
+    
 
-    // Function to handle sign in button click
-    document.getElementById('signInButton').addEventListener('click', function() {
-        console.log("Sign In button clicked");
-        document.getElementById('signIn').classList.add('signButtonClicked');
-        document.getElementById('signUp').classList.remove('signButtonClicked');
-    });
-
-    function initializeAuth() {
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
-      return auth;
+        // Add other event listeners related to fileUploadWindow here...
     }
+
+    document.getElementById('signupForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const email = document.getElementById('signupEmail').value;
+        const password = document.getElementById('signupPassword').value;
+        handleSignUp(email, password);
+    });
+    
+    document.getElementById('signinForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const email = document.getElementById('signinEmail').value;
+        const password = document.getElementById('signinPassword').value;
+        handleSignIn(email, password);
+    });
 
     function fileProcessing(files) {
         for (const file of files) {
@@ -79,19 +80,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }
-
+    
     function readAndUploadFile(file) {
         const reader = new FileReader();
-
+    
         reader.onload = function (e) {
             const fileContent = e.target.result;
             const title = extractTitle(fileContent);
             fileUpload(title, fileContent);
         };
-
+    
         reader.readAsText(file);
     }
-
+    
     function extractTitle(fileContent) {
         const sentences = fileContent.split('.');
         return sentences[0].trim();
@@ -110,37 +111,41 @@ document.addEventListener('DOMContentLoaded', () => {
         const app = initializeApp(firebaseConfig); 
         const db = getFirestore(app);
 
-        await setDoc(doc(db, "DataSamples", title), {
-          Title: title,
-          Content: fileContent,
-        });
+        const user = auth.currentUser;
+        if (user) {
+            await setDoc(doc(db, 'users', user.uid, 'files', title), {
+                Title: title,
+                Content: fileContent,
+              });
+        } else {
+            console.error('No user is signed in to upload data');
+        }
     }
-
-    function signUp(email, password) {
+    
+    function handleSignUp() {
+        const email = document.getElementById('signupEmail').value;
+        const password = document.getElementById('signupPassword').value;
         createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                console.log("Signup successful", user);
+            .then(userCredential => {
+                console.log('Signup successful', userCredential.user);
             })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.error("Signup failed", errorCode, errorMessage);
+            .catch(error => {
+                console.error('Signup failed', error.code, error.message);
             });
     }
-
-    function signIn(email, password) {
+    
+    function handleSignIn() {
+        const email = document.getElementById('signinEmail').value;
+        const password = document.getElementById('signinPassword').value;
         signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                const user = userCredential.user;
-                console.log("Signin successful", user);
+            .then(userCredential => {
+                console.log('Signin successful', userCredential.user);
+                window.location.href = '/content-generation'; // Redirect the user
             })
-            .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                console.error("Signin failed", errorCode, errorMessage);
+            .catch(error => {
+                console.error('Signin failed', error.code, error.message);
             });
     }
-
-
 });
+
+
