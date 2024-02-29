@@ -30,7 +30,6 @@ def ai_training():
 def styling_and_format():
     return render_template('StylingAndFormat.html')
 
-
 @app.route('/generate-content', methods=['POST'])
 def generate_content():
     user_prompt = request.form['user_prompt']

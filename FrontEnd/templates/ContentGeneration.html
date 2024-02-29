@@ -19,7 +19,6 @@
             <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AudienceInsights.png') }}" class="barImg"><a href="#"> Audience Insights</a></button>
             <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/Templates.png') }}" class="barImg"><a href="#"> Templates</a></button>
             <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AITraining.png') }}" class="barImg"><a href="{{ url_for('ai_training') }}"> AI Training</a></button>
-
             
         </div>
         <div class="logOutWrapper">
@@ -31,12 +30,17 @@
     <div class="mainContentWrapper">
 
         <div class="mainContentWindow">
-
-            <div class="contentGenWrapper">
-                <div class="contentGenWindow">
-                    <pre>{{ ai_response }}</pre>
+            <div class="titleAndContentWrapper">
+                <div class="titleBarWrapper"> 
+                    
+                </div>
+                <div class="contentGenWrapper">
+                    <div class="contentGenWindow">
+                        <pre>{{ ai_response }}</pre>
+                    </div>
                 </div>
             </div>
+            
 
             <div class="bottomRow">
                 <form id="generateForm" method="post" action="{{ url_for('generate_content') }}" class="emptyClass">
@@ -44,8 +48,9 @@
                     <button class=genButton1><img src="{{ url_for('static', filename='images/paper-plane.png') }}" class="genImg"></button>
                 </form>
                 <button type="submit" class="genButton" id="genButton"><img src="{{ url_for('static', filename='images/clipboard.png') }}" class="genImg"></button>
-                
+                <div class="paddingElement"></div>
             </div>
+            <div class="paddingElement"></div>
         </div>
     </div>
 </body>
