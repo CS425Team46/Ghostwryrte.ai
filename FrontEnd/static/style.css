@@ -68,6 +68,7 @@ pre {
   width: auto;
   height: 200%;
   max-height: 20vh;
+  margin-bottom: 5%;
 
 }
 
@@ -93,7 +94,6 @@ pre {
   height: 15%;
   border-radius: 15px;
   background-color: #33343e;
-  
   padding-left: 3%;
   font-size: 2vh;
   resize: none;
@@ -111,7 +111,8 @@ pre {
 .logOutWrapper {
 
   display: flex;
-  flex-direction: column;
+  flex-direction: column;  
+  align-content: center;
   width: 100%;
   height: 10%;
   background: none;
@@ -121,16 +122,22 @@ pre {
 .logOut {
 
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
   color: #C2C2CC;
-  height: 100%;
+  height: 50%;
   background: none;
   border: none;
+  border-radius: 15px;
   font-family: Moon;
   font-size: 2.7vh;
-  margin-top: 5%;
-  margin-left: 8%;
+  margin: 2.5%;
+  vertical-align: center;
 
+}
+
+.logOut:hover {
+  background: #474956;
 }
 
 .logOutImg{
@@ -138,13 +145,10 @@ pre {
   width: auto;
   height: 80%;
   vertical-align: center;
+  margin-top: -1%;
   max-height: 1.5vh;
-  margin-top: 1.7%;
-  margin-right: 5%;
 
 }
-
-
 
 /* Includes Main Content (AKA content to the right of the toolbox section). */
 
