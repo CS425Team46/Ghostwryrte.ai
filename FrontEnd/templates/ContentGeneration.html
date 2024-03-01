@@ -2,7 +2,7 @@
 <html>
 <head>
     <style>
-         @font-face {
+        @font-face {
             font-family: "Moon";
             src: url("/static/fonts/MoonLight.otf");
         }
@@ -23,7 +23,7 @@
         </div>
         <div class="logOutWrapper">
             <hr>
-            <button class="logOut">Log out<img style="vertical-align:middle" src="{{ url_for('static', filename='images/LogOut.png') }}" class="logOutImg"></button>
+            <button type="button" id="LOButton" class="logOut">Log out<img style="vertical-align:middle" src="{{ url_for('static', filename='images/LogOut.png') }}" class="logOutImg"></button>
         </div>
     </div>
 
@@ -53,5 +53,7 @@
             <div class="paddingElement"></div>
         </div>
     </div>
+    <script type="module" src="{{ url_for('static', filename='uploadFiles.mjs') }}" defer></script>
 </body>
+
 </html>
