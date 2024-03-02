@@ -12,15 +12,15 @@ const firebaseConfig = {
     measurementId: "G-MD1XND7LM3"
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
 const fileUploadWindow = document.querySelector('.fileUploadWindow');
 const uploadedDocsList = document.querySelector('.uploadedDocs');
-const signUpForm = document.getElementById('signupForm');
+const accPageCheck = document.getElementById('accPage');
 const LOButton = document.getElementById('LOButton');
+var ACUserOption = 1; // 1 = Sign In & 2 = Sign Up
 
 if (fileUploadWindow) {
     fileUploadWindow.addEventListener('dragover', (event) => {
@@ -54,26 +54,48 @@ if (fileUploadWindow) {
         });
     });
 
-
-    // Add other event listeners related to fileUploadWindow here...
 }
 
-if(signUpForm){
+if(accPageCheck){
 
-    signUpForm.addEventListener('submit', function(event) {
+    const signInButton = document.getElementById('signInBtn');
+    const signUpButton = document.getElementById('signUpBtn');
+    const ACSubmit = document.getElementById('ACSubmit');
+
+   /* signUpForm.addEventListener('submit', function(event) {
         event.preventDefault();
         const email = document.getElementById('signupEmail').value;
         const password = document.getElementById('signupPassword').value;
         handleSignUp(email, password);
-    }, false);
+    }, false); */
     
-    document.getElementById('signinForm').addEventListener('submit', function(event) {
+    document.getElementById('userSubmitForm').addEventListener('submit', function(event) {
         event.preventDefault();
-        const email = document.getElementById('signinEmail').value;
-        const password = document.getElementById('signinPassword').value;
-        handleSignIn(email, password);
+        const email = document.getElementById('userEmail').value;
+        const password = document.getElementById('userPassword').value;
+        if (ACUserOption == 1){
+            handleSignIn(email, password);
+        } else {
+            handleSignUp(email, password);
+        }
+        
     }, false);
 
+    signInButton.addEventListener('click', function() {
+
+        signInButton.style.borderBottom = '3px solid #33343e';
+        signUpButton.style.borderBottom = 'none';
+        ACUserOption = 1;
+
+    });
+
+    signUpButton.addEventListener('click', function() {
+        
+        signInButton.style.borderBottom = 'none';
+        signUpButton.style.borderBottom = '3px solid #33343e';
+        ACUserOption = 0;
+    
+    });
 }
 
 if(LOButton){
@@ -141,8 +163,8 @@ async function uploadToFirebase(title, fileContent) {
 }
 
 function handleSignUp() {
-    const email = document.getElementById('signupEmail').value;
-    const password = document.getElementById('signupPassword').value;
+    const email = document.getElementById('userEmail').value;
+    const password = document.getElementById('userPassword').value;
     createUserWithEmailAndPassword(auth, email, password)
         .then(userCredential => {
             console.log('Signup successful', userCredential.user);
@@ -154,12 +176,12 @@ function handleSignUp() {
 
 function handleSignIn() {
 
-    const email = document.getElementById('signinEmail').value;
-    const password = document.getElementById('signinPassword').value;
+    const email = document.getElementById('userEmail').value;
+    const password = document.getElementById('userPassword').value;
     signInWithEmailAndPassword(auth, email, password)
         .then(userCredential => {
             console.log('Signin successful', userCredential.user);
-            window.location.href = '/content-generation'; // Redirect the user
+            window.location.href = '/content-generation';
         })
         .catch(error => {
             console.error('Signin failed', error.code, error.message);
