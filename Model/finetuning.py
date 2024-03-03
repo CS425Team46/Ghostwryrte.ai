@@ -5,11 +5,11 @@ import openai
 from openai import OpenAI
 import os
 
-# NOTE: When using a new API key, assign to environment vairable first (export OPENAI_API_KEY="<OPENAI_API_KEY>")
+# # NOTE: When using a new API key, assign to environment vairable first (export OPENAI_API_KEY="<OPENAI_API_KEY>")
 
 client = OpenAI()
 
-### STEP 1: UPLOAD TRAINING DATA
+# ## STEP 1: UPLOAD TRAINING DATA
 # # Training data needs to be uploaded using the Files API in order to be used with fine-tuning jobs
 # client.files.create(
 #     file=open("Model/skyler_training_data.jsonl", "rb"),

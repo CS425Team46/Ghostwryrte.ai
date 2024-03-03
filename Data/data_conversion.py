@@ -1,6 +1,12 @@
 import firebase_admin
 from firebase_admin import credentials, firestore
 import json
+import openai
+from openai import OpenAI
+import os
+
+client = OpenAI()
+
 
 # Initialize Firebase Admin
 cred = credentials.Certificate("ghostwryte-ai-firebase-adminsdk-uxybq-20881dd0dd.json")
@@ -36,6 +42,29 @@ def save_training_data_to_file(user_id):
             json.dump(item, outfile)
             outfile.write('\n')  # Write a new line for each JSON object
 
+def upload_to_openai_if_enough_entries(file_path, min_entries=10):
+    # Count the number of entries in the JSONL file
+    with open(file_path, 'r') as file:
+        entries = file.readlines()
+
+    # Check if there are at least min_entries
+    if len(entries) >= min_entries:
+        # Upload the file to OpenAI for fine-tuning
+        # response = openai.File.create(
+        #     file=open(file_path, 'rb'),
+        #     purpose='fine-tune'
+        # )
+        client.files.create(
+            file=open(file_path, "rb"),
+            purpose="fine-tune"
+        )
+        print(f'File uploaded successfully.')
+    else:
+        print(f'Not enough entries for fine-tuning. Found {len(entries)}, required {min_entries}.')
+
 if __name__ == '__main__':
-    user_id = 'EPG9YXfVGFUR1OqekhAZYi4dPl03'  # Replace with the currently signed in user ID
+    user_id = 'OWDgsuVdnHVTHnTavXc8MI86Bkh2'  # Replace with the currently signed in user ID
     save_training_data_to_file(user_id)
+
+    training_data_file = 'training_data_OWDgsuVdnHVTHnTavXc8MI86Bkh2.jsonl'  # Update with actual file path
+    upload_to_openai_if_enough_entries(training_data_file)
