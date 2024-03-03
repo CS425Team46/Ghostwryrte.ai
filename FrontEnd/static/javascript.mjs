@@ -188,4 +188,25 @@ function handleSignIn() {
         });
 }
 
+const uploadDataButton = document.getElementById('UploadData');
+if (uploadDataButton) {
+    uploadDataButton.addEventListener('click', () => {
+        console.log("Upload Data button clicked");
+
+        fetch('/run-data-conversion', {
+            method: 'POST',
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            alert('Data conversion initiated.');
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            alert('Data conversion failed.');
+        });
+    });
+}
+
+
 

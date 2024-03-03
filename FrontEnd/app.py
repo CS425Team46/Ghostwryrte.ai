@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, jsonify, render_template, request, redirect
 import openai
 from openai import OpenAI
 # import firebase_admin
@@ -46,6 +46,20 @@ def generate_content():
 def account_creation():
     return render_template('AccountCreation.html')
 
+
+@app.route('/run-data-conversion', methods=['POST'])
+def run_data_conversion():
+    import subprocess
+    result = subprocess.run(['python3', 'Data/data_conversion.py'], capture_output=True, text=True)
+    print(result)
+    if result.returncode == 0:
+        return jsonify({'message': 'Data conversion script executed successfully'})
+    else:
+        return jsonify({'message': 'Data conversion script failed'}), 500
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
 # DO NOT DELETE YET!!!!!!!!
 # @app.route('/signup', methods=['POST'])
 # def signup():
@@ -85,6 +99,3 @@ def account_creation():
 #     except Exception as e:
 #         return f'An error occurred: {str(e)}'
 
-
-if __name__ == '__main__':
-    app.run(debug=True)
