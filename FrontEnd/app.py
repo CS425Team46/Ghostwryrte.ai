@@ -46,6 +46,7 @@ def generate_content():
 def account_creation():
     return render_template('AccountCreation.html')
 
+# DO NOT DELETE YET!!!!!!!!
 # @app.route('/signup', methods=['POST'])
 # def signup():
 #     email = request.form['email']
