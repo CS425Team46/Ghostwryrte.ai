@@ -61,13 +61,6 @@ if(accPageCheck){
     const signInButton = document.getElementById('signInBtn');
     const signUpButton = document.getElementById('signUpBtn');
     const ACSubmit = document.getElementById('ACSubmit');
-
-   /* signUpForm.addEventListener('submit', function(event) {
-        event.preventDefault();
-        const email = document.getElementById('signupEmail').value;
-        const password = document.getElementById('signupPassword').value;
-        handleSignUp(email, password);
-    }, false); */
     
     document.getElementById('userSubmitForm').addEventListener('submit', function(event) {
         event.preventDefault();

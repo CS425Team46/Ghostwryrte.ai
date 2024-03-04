@@ -6,14 +6,23 @@
             font-family: "Moon";
             src: url("/static/fonts/MoonLight.otf");
         }
+        @font-face {
+            font-family: "FranieLight";
+            src: url("/static/fonts/FranieLight.otf");
+        }
+        @font-face {
+            font-family: "FranieRegular";
+            src: url("/static/fonts/FranieRegular.otf");
+        }
     </style>
     <title>GhostWryte.ai</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <div class="paddingElement"></div>
     <div class="workspaceTab">
         <div class="navigationWrapper">
-            <div class="logoAndName"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/Logo.png') }}" class="logoImg"></div>
+            <div><img style="vertical-align:middle" src="{{ url_for('static', filename='images/Logo.png') }}" class="logoImg"></div>
             <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/ContentGeneration.png') }}" class="barImg"><a href="{{ url_for('content_generation') }}"> Content Generation</a></button>
             <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/StyleAndFormatting.png') }}" class="barImg"><a href="{{ url_for('styling_and_format') }}"> Styling & Format</a></button>
             <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AudienceInsights.png') }}" class="barImg"><a href="#"> Audience Insights</a></button>
@@ -22,8 +31,7 @@
             
         </div>
         <div class="logOutWrapper">
-            <hr>
-            <button type="button" id="LOButton" class="logOut">Log out<img style="vertical-align:middle" src="{{ url_for('static', filename='images/LogOut.png') }}" class="logOutImg"></button>
+            <button type="button" id="LOButton" class="logOut">Log out<img style="vertical-align:middle" src="{{ url_for('static', filename='images/doorIcon.png') }}" class="logOutImg"></button>
         </div>
     </div>
 
@@ -32,25 +40,29 @@
         <div class="mainContentWindow">
             <div class="titleAndContentWrapper">
                 <div class="titleBarWrapper"> 
-                    
+                    <div class="titleHolder"></div>
                 </div>
                 <div class="contentGenWrapper">
+                    
                     <div class="contentGenWindow">
                         <pre>{{ ai_response }}</pre>
+                    </div>
+                    <div class="historyWrapper">
+                        <div class="historyID"></div>
+                        <div class="historyContentWindow"></div>
                     </div>
                 </div>
             </div>
             
 
             <div class="bottomRow">
-                <form id="generateForm" method="post" action="{{ url_for('generate_content') }}" class="emptyClass">
+                <form id="generateForm" method="post" action="{{ url_for('generate_content') }}" class="bottomRowInnerWrapper">
                     <textarea name="user_prompt" type="text" class="queryBox" placeholder="Enter prompt and/or bullet points, or outline."></textarea>
-                    <button class=genButton1><img src="{{ url_for('static', filename='images/paper-plane.png') }}" class="genImg"></button>
+                    <button class=genButton><img src="{{ url_for('static', filename='images/upArrow.png') }}" class="genImg"></button>
                 </form>
-                <button type="submit" class="genButton" id="genButton"><img src="{{ url_for('static', filename='images/clipboard.png') }}" class="genImg"></button>
-                <div class="paddingElement"></div>
+                <!-- <button type="submit" class="genButton" id="genButton"><img src="{{ url_for('static', filename='images/clipboard.png') }}" class="genImg"></button> -->
             </div>
-            <div class="paddingElement"></div>
+            <div class="paddingElement one"></div>
         </div>
     </div>
     <script type="module" src="{{ url_for('static', filename='javascript.mjs') }}" defer></script>
