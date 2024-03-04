@@ -70,6 +70,10 @@ def upload_to_openai_if_enough_entries(file_path, min_entries=10):
     else:
         print(f'Not enough entries for fine-tuning. Found {len(entries)}, required {min_entries}.')
 
+# def store_file_id_in_firebase(user_id, file_id):
+#     user_ref = db.collection('users').document(user_id)
+#     user_ref.update({"latest_file_id": file_id})
+
 if __name__ == '__main__':
     user_id = args.user_id  # Replace with the currently signed in user ID
     save_training_data_to_file(user_id)
