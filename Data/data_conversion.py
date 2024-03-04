@@ -4,6 +4,7 @@ import json
 import openai
 from openai import OpenAI
 import os
+import argparse
 
 client = OpenAI()
 
@@ -13,6 +14,13 @@ cred = credentials.Certificate("ghostwryte-ai-firebase-adminsdk-uxybq-20881dd0dd
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
+
+# Command line argument parsing
+parser = argparse.ArgumentParser(description='Convert user data to training format.')
+parser.add_argument('user_id', help='Firebase User ID')
+args = parser.parse_args()
+
+user_id = args.user_id
 
 def format_training_data_for_fine_tuning(user_id):
     user_files_ref = db.collection('users').document(user_id).collection('files')
@@ -36,7 +44,7 @@ def format_training_data_for_fine_tuning(user_id):
 
 def save_training_data_to_file(user_id):
     formatted_data = format_training_data_for_fine_tuning(user_id)
-    file_name = f'training_data_{user_id}.jsonl'
+    file_name = f'training_data.jsonl'
     with open(file_name, 'w') as outfile:
         for item in formatted_data:
             json.dump(item, outfile)
@@ -63,8 +71,8 @@ def upload_to_openai_if_enough_entries(file_path, min_entries=10):
         print(f'Not enough entries for fine-tuning. Found {len(entries)}, required {min_entries}.')
 
 if __name__ == '__main__':
-    user_id = 'OWDgsuVdnHVTHnTavXc8MI86Bkh2'  # Replace with the currently signed in user ID
+    user_id = args.user_id  # Replace with the currently signed in user ID
     save_training_data_to_file(user_id)
 
-    training_data_file = 'training_data_OWDgsuVdnHVTHnTavXc8MI86Bkh2.jsonl'  # Update with actual file path
+    training_data_file = 'training_data.jsonl'  # Update with actual file path
     upload_to_openai_if_enough_entries(training_data_file)

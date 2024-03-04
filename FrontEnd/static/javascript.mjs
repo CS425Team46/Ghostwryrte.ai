@@ -188,23 +188,67 @@ function handleSignIn() {
         });
 }
 
+// const uploadDataButton = document.getElementById('UploadData');
+// if (uploadDataButton) {
+//     uploadDataButton.addEventListener('click', () => {
+//         console.log("Upload Data button clicked");
+
+//         // fetch('/run-data-conversion', {
+//         //     method: 'POST',
+//         // })
+//         // .then(response => response.json())
+//         // .then(data => {
+//         //     console.log('Success:', data);
+//         //     alert('Data conversion initiated.');
+//         // })
+//         // .catch((error) => {
+//         //     console.error('Error:', error);
+//         //     alert('Data conversion failed.');
+//         // });
+
+//         fetch('/run-data-conversion', {
+//             method: 'POST',
+//             // headers: {
+//             //     'Content-Type': 'application/json',
+//             // },
+//             body: JSON.stringify({ user_id: user.uid }) 
+//         })
+//         .then(response => response.json())
+//         .then(data => {
+//             console.log(data.message);
+//             alert('Data conversion initiated.');
+//         })
+//         .catch(error => {
+//             console.error('Error starting data conversion:', error);
+//         });
+//     });
+// }
+
 const uploadDataButton = document.getElementById('UploadData');
 if (uploadDataButton) {
     uploadDataButton.addEventListener('click', () => {
-        console.log("Upload Data button clicked");
-
-        fetch('/run-data-conversion', {
-            method: 'POST',
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Success:', data);
-            alert('Data conversion initiated.');
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-            alert('Data conversion failed.');
-        });
+        const user = auth.currentUser; // Ensure you get the current user here
+        if (user) { // Check if user exists
+            console.log("Upload Data button clicked");
+            fetch('/run-data-conversion', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ user_id: user.uid })  // Now 'user' should be defined
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message);
+                alert('Data conversion initiated.');
+            })
+            .catch(error => {
+                console.error('Error starting data conversion:', error);
+            });
+        } else {
+            console.log("No user signed in");
+            alert("Please sign in to upload data");
+        }
     });
 }
 
