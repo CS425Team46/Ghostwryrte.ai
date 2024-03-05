@@ -1,19 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-	    <style>
-         @font-face {
+    <style>
+        @font-face {
             font-family: "Moon";
             src: url("/static/fonts/MoonLight.otf");
         }
-        </style>
-	<title>GhostWryte.ai</title>
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+        @font-face {
+            font-family: "FranieLight";
+            src: url("/static/fonts/FranieLight.otf");
+        }
+        @font-face {
+            font-family: "FranieRegular";
+            src: url("/static/fonts/FranieRegular.otf");
+        }
+    </style>
+    <title>GhostWryte.ai</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <div class="paddingElement"></div>
     <div class="workspaceTab">
         <div class="navigationWrapper">
-            <div class="logoAndName"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/Logo.png') }}" class="logoImg"></div>
+            <div><img style="vertical-align:middle" src="{{ url_for('static', filename='images/Logo.png') }}" class="logoImg"></div>
             <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/ContentGeneration.png') }}" class="barImg"><a href="{{ url_for('content_generation') }}"> Content Generation</a></button>
             <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/StyleAndFormatting.png') }}" class="barImg"><a href="{{ url_for('styling_and_format') }}"> Styling & Format</a></button>
             <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AudienceInsights.png') }}" class="barImg"><a href="#"> Audience Insights</a></button>
@@ -22,14 +31,12 @@
             
         </div>
         <div class="logOutWrapper">
-            <hr>
-            <button type="button" id="LOButton" class="logOut">Log out<img style="vertical-align:middle" src="{{ url_for('static', filename='images/LogOut.png') }}" class="logOutImg"></button>
+            <button type="button" id="LOButton" class="logOut">Log out<img style="vertical-align:middle" src="{{ url_for('static', filename='images/doorIcon.png') }}" class="logOutImg"></button>
         </div>
     </div>
 
     <div class="mainContentWrapper">
 
-       
 		<div class="mainContentWindow">
 			<div class="innerWindow">
 				<button class="fileUploadWindow">

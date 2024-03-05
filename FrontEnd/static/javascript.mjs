@@ -76,16 +76,20 @@ if(accPageCheck){
 
     signInButton.addEventListener('click', function() {
 
-        signInButton.style.borderBottom = '3px solid #33343e';
-        signUpButton.style.borderBottom = 'none';
+        signInButton.style.color = 'var(--textAndAccentFour)';
+        signInButton.style.borderBottom = '3px solid var(--textAndAccentFour)';
+        signUpButton.style.color = 'var(--deselectedColor)';
+        signUpButton.style.borderBottom = '3px solid var(--deselectedColor)';
         ACUserOption = 1;
 
     });
 
     signUpButton.addEventListener('click', function() {
         
-        signInButton.style.borderBottom = 'none';
-        signUpButton.style.borderBottom = '3px solid #33343e';
+        signUpButton.style.color = 'var(--textAndAccentFour)';
+        signUpButton.style.borderBottom = '3px solid var(--textAndAccentFour)';
+        signInButton.style.color = 'var(--deselectedColor)';
+        signInButton.style.borderBottom = '3px solid var(--deselectedColor)';
         ACUserOption = 0;
     
     });

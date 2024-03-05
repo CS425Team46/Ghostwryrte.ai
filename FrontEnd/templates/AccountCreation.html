@@ -6,26 +6,34 @@
             font-family: "Moon";
             src: url("/static/fonts/MoonLight.otf");
         }
+        @font-face {
+            font-family: "FranieLight";
+            src: url("/static/fonts/FranieLight.otf");
+        }
+        @font-face {
+            font-family: "FranieRegular";
+            src: url("/static/fonts/FranieRegular.otf");
+        }
     </style>
     <title>GhostWryte.ai</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     
 </head>
-<body>
+<body class="accountCreationPg">
     
     <div class="AccCP" id="accPage">
         <div class="accountCreationWrapper">
             <div class="actionSelector">
-                <button class="signInButton" id="signInBtn">Sign In</button> or
+                <button class="signInButton" id="signInBtn">Sign In</button>
                 <button class="signUpButton" id="signUpBtn">Sign Up</button>
             </div>
 
             <div class="signInAndUpWrapper">
                 <form class="userInputAC" id="userSubmitForm">
                     <div>Email Address</div> 
-                    <input class="loginInputBox" placeholder="Enter your email address here." type="email" id="userEmail" name="email" required><br>
+                    <input class="loginInputBox" type="email" id="userEmail" name="email" required><br>
                     Password 
-                    <input class="loginInputBox" placeholder="Enter your password here." type="password" id="userPassword" name="password" required><br>
+                    <input class="loginInputBox" type="password" id="userPassword" name="password" required><br>
                     <button class="ACSubmitButton" type="submit" id="ACSubmit">Continue</button> 
                 </form>
             </div>
