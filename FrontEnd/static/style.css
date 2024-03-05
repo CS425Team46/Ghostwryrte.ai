@@ -470,8 +470,8 @@ pre {
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  width: 20%;
-  height: 30%;
+  width: 35%;
+  height: 50%;
   background: var(--accentTwo);
   border-radius: 40px;
 }
@@ -480,9 +480,9 @@ pre {
 
   display: flex;
   justify-content: center;
-  width: 80%;
+  width: 90%;
   font-family: FranieRegular;
-  font-size: 1.7vh;
+  font-size: 1.8vh;
   background: none;
   color: var(--textAndAccentFour);
 }
@@ -494,7 +494,7 @@ pre {
   justify-content: center;
   border: none;
   font-family: FranieRegular;
-  font-size: 2vh;
+  font-size: 2.2vh;
   width: 40%;
   padding-bottom: 3%;
   border-bottom: 3px solid var(--textAndAccentFour);
@@ -510,7 +510,7 @@ pre {
   border: none;
   width: 40%;
   font-family: FranieRegular;
-  font-size: 2vh;
+  font-size: 2.2vh;
   color: var(--deselectedColor);
   border-bottom: 3px solid var(--deselectedColor);
 
@@ -521,10 +521,9 @@ pre {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 30%;
-  width: 64%;
+  height: 50%;
+  width: 72%;
   background: none;
-  margin-bottom: 20%;
 
 }
 
@@ -533,7 +532,7 @@ pre {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  font-size: 1.1vh;
+  font-size: 1.8vh;
   font-family: FranieRegular;
   color: var(--textAndAccentFour);
   gap: 2%;
@@ -573,8 +572,8 @@ pre {
   color: var(--textAndAccentFour);
   background: #92612c;
   width: 40%;
-  height: 20%;
-  font-size: 1vh;
+  height: 40%;
+  font-size: 1.8vh;
   padding: 3%;
   border-radius: 10px;
   margin-left: 30%;
