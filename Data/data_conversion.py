@@ -21,6 +21,8 @@ parser.add_argument('user_id', help='Firebase User ID')
 args = parser.parse_args()
 
 user_id = args.user_id
+# print(f'UID: {user_id}')
+# user_id = "lQvmWjID8DPO0vHn3elqoKsxpQJ3"
 
 def format_training_data_for_fine_tuning(user_id):
     user_files_ref = db.collection('users').document(user_id).collection('files')
@@ -58,25 +60,37 @@ def upload_to_openai_if_enough_entries(file_path, min_entries=10):
     # Check if there are at least min_entries
     if len(entries) >= min_entries:
         # Upload the file to OpenAI for fine-tuning
-        # response = openai.File.create(
-        #     file=open(file_path, 'rb'),
-        #     purpose='fine-tune'
-        # )
-        client.files.create(
+        response = client.files.create(
             file=open(file_path, "rb"),
             purpose="fine-tune"
         )
+        file_id = response.id
         print(f'File uploaded successfully.')
+        return file_id
     else:
         print(f'Not enough entries for fine-tuning. Found {len(entries)}, required {min_entries}.')
 
-# def store_file_id_in_firebase(user_id, file_id):
-#     user_ref = db.collection('users').document(user_id)
-#     user_ref.update({"latest_file_id": file_id})
+def store_file_id_in_firebase(user_id, file_id):
+    user_ref = db.collection('users').document(user_id)
+    user_ref.update({"latest_file_id": file_id})
 
 if __name__ == '__main__':
-    user_id = args.user_id  # Replace with the currently signed in user ID
+    # Command line argument parsing
+    parser = argparse.ArgumentParser(description='Convert user data to training format.')
+    parser.add_argument('user_id', help='Firebase User ID')
+    args = parser.parse_args()
+
+    user_id = args.user_id
+    print(f'UID: {user_id}')
+
+    # user_id = "lQvmWjID8DPO0vHn3elqoKsxpQJ3"
     save_training_data_to_file(user_id)
 
     training_data_file = 'training_data.jsonl'  # Update with actual file path
-    upload_to_openai_if_enough_entries(training_data_file)
+    # upload_to_openai_if_enough_entries(training_data_file)
+    file_id = upload_to_openai_if_enough_entries(training_data_file)
+
+    if file_id:
+        store_file_id_in_firebase(user_id, file_id)
+    else:
+        print("Failed to add")
