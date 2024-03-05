@@ -251,4 +251,32 @@ if (uploadDataButton) {
 }
 
 
+const trainModelButton = document.getElementById('TrainModel');
+if (trainModelButton) {
+    trainModelButton.addEventListener('click', () => {
+        const user = getAuth().currentUser;  // Make sure Firebase Auth is properly initialized and used here
+        if (user) {
+            fetch('/start-model-training', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ user_id: user.uid })  // Send the user's ID to backend
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message);
+                alert(data.message);
+            })
+            .catch(error => {
+                console.error('Error starting model training:', error);
+            });
+        } else {
+            console.log("No user signed in");
+            alert("Please sign in to start model training");
+        }
+    });
+}
+
+
 

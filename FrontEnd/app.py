@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, render_template, request, redirect
 import openai
 from openai import OpenAI
+# from model_training import start_model_training
+
 
 # import firebase_admin
 # from firebase_admin import credentials, firestore, auth
@@ -64,8 +66,19 @@ def run_data_conversion():
     if result.returncode == 0:
         return jsonify({'message': 'Data conversion script executed successfully'})
     else:
-        # Return more information for debugging
         return jsonify({'message': f'Data conversion script failed: {result.stderr}'}), 500
+    
+# @app.route('/start-model-training', methods=['POST'])
+# def handle_start_model_training():
+#     user_id = request.json.get('user_id')
+#     if not user_id:
+#         return jsonify({'message': 'User ID is required'}), 400
+
+#     result = start_model_training(user_id)
+#     if result.get('error'):
+#         return jsonify({'message': result['message']}), 500
+#     else:
+#         return jsonify({'message': result['message'], 'job_id': result['job_id']})
 
 if __name__ == '__main__':
     app.run(debug=True)
