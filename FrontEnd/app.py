@@ -47,26 +47,20 @@ def generate_content():
 def account_creation():
     return render_template('AccountCreation.html')
 
-
-# @app.route('/run-data-conversion', methods=['POST'])
-# def run_data_conversion():
-#     import subprocess
-#     result = subprocess.run(['python3', 'Data/data_conversion.py'], capture_output=True, text=True)
-#     print(result)
-#     if result.returncode == 0:
-#         return jsonify({'message': 'Data conversion script executed successfully'})
-#     else:
-#         return jsonify({'message': 'Data conversion script failed'}), 500
-
 @app.route('/run-data-conversion', methods=['POST'])
 def run_data_conversion():
     user_id = request.json.get('user_id')
     # Check if user_id is not None before proceeding
     if not user_id:
         return jsonify({'message': 'No user ID provided'}), 400
+    # print(f'UID: {user_id}')
+
     
     import subprocess
     result = subprocess.run(['python3', 'Data/data_conversion.py', user_id], capture_output=True, text=True)
+    print("STDOUT:", result.stdout)
+    print("STDERR:", result.stderr)
+
     if result.returncode == 0:
         return jsonify({'message': 'Data conversion script executed successfully'})
     else:
