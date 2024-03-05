@@ -8,13 +8,13 @@
 
 :root {
 
-  --bgColor: #0e0d0c; /* Navigation Bar */
-  --accentOne: #0e0d0c; /*Bottom Part */
+  --bgColor: #131211; /* Navigation Bar */
+  --accentOne: #131211; /*Bottom Part */
   --accentTwo: #202020; /* Main Content window and Query Box*/
   --accentThree: #000000; /* Top Accent Part*/
   --textAndAccentFour: #eaeaea;
-  --startColor: #2c2722;
-  --endColor: #171513;
+  --startColor: #372f26;
+  --endColor: #231d15;
   --deselectedColor: #4C4C4C;
   --loginInputBox: #6F6F6F;
 
@@ -111,16 +111,16 @@ pre {
   justify-content: flex-start;
   align-items: center;
   width: 92%;
-  height: 5%;
+  height: 7%;
   border-radius: 15px;
   background: none;
   padding-left: 3%;
-  font-size: 1.7vh;
+  font-size: 1.8vh;
   resize: none;
   font-family: FranieRegular;
   overflow: hidden;
   border: none;
-  color: #dddddd;
+  color: var(--textAndAccentFour);
 
 }
 
@@ -233,6 +233,21 @@ pre {
 
 }
 
+.titleText{
+
+  background: none;
+  width: 90%;
+  overflow: hidden;
+  color: var(--textAndAccentFour);
+  font-size: 4.5vh;
+  font-family: FranieRegular;
+  padding-left: 3%;
+  border: none;
+  outline: none;
+  padding-top: 1%;
+
+}
+
 .contentGenWrapper {
 
   display: flex;
@@ -251,7 +266,7 @@ pre {
   background-image: linear-gradient(var(--startColor), var(--endColor));
   height: 99%;
   width: 79%;
-  font-size: 1.6vh;
+  font-size: 2.4vh;
   font-family: Calibri;
   padding-top: 2vw;
   padding-left: 2vw;
@@ -330,9 +345,9 @@ pre {
   background: none;
   width: 90%;
   height: 100%;
-  padding-top: .75vw;
+  padding-top: .5vw;
   padding-left: 1vw;
-  font-size: 1.5vh;
+  font-size: 2.4vh;
   color: var(--textAndAccentFour);
   resize: none;
   border: none;

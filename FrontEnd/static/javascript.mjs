@@ -123,6 +123,7 @@ function readAndUploadFile(file) {
 
     reader.onload = function (e) {
         const fileContent = e.target.result;
+        
         const title = extractTitle(fileContent);
         fileUpload(title, fileContent);
     };
