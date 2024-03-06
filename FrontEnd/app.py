@@ -66,6 +66,8 @@ def generate_content():
             return jsonify({'message': 'Model ID not found for user'}), 400
     else:
         return jsonify({'message': 'User not found'}), 404
+    
+    print(model_id)
 
     response = client.chat.completions.create(
         model=model_id,  # Use the fetched model_id

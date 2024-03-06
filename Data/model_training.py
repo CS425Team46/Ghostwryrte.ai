@@ -84,8 +84,6 @@ def check_finetuning_job_status(job_id, user_id):  # Add user_id parameter
         time.sleep(5) 
 
 
-
-
 # # List fine-tuning jobs
 # print(client.fine_tuning.jobs.list(limit=1))
 
@@ -106,8 +104,8 @@ if __name__ == '__main__':
     # print(json.dumps(result))  # this must be the last output
 
     if 'job_id' in result:
-        print("About to check fine-tuning job status", file=sys.stderr)  # Ensure this message is visible
-        status = check_finetuning_job_status(result['job_id'], user_id)  # Pass user_id here
+        print("About to check fine-tuning job status", file=sys.stderr)  
+        status = check_finetuning_job_status(result['job_id'], user_id)  
         print("Status:", status, file=sys.stderr)
         print(json.dumps(result))  
     else:

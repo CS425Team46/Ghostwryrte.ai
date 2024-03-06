@@ -32,7 +32,6 @@ auth.onAuthStateChanged((user) => {
     } else {
         // User is signed out
         console.log("No user signed in");
-        // Optional: Redirect to login page or show a message
     }
 });
 
