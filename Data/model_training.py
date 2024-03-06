@@ -2,6 +2,9 @@ import json
 import warnings
 warnings.filterwarnings("ignore", category=DeprecationWarning)
 warnings.filterwarnings("ignore", message="urllib3 v2 only supports OpenSSL 1.1.1+")
+import sys
+import time
+import logging
 
 import firebase_admin
 from firebase_admin import firestore, credentials, firestore
@@ -23,6 +26,9 @@ parser.add_argument('user_id', help='Firebase User ID')
 args = parser.parse_args()
 
 user_id = args.user_id
+
+logging.basicConfig(filename='finetuning_status.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
 
 
 def start_model_training(user_id):
@@ -50,12 +56,44 @@ def start_model_training(user_id):
         )
 
         user_ref = db.collection('users').document(user_id)
-        user_ref.update({"model_id": response.id})
+        user_ref.update({"job_id": response.id})
 
         return {'message': 'Model training started successfully', 'job_id': response.id}
     except Exception as e:
         return {'message': f'Failed to start model training: {str(e)}', 'error': True}
 
+
+def check_finetuning_job_status(job_id, user_id):  # Add user_id parameter
+    while True:
+        job_status = client.fine_tuning.jobs.retrieve(job_id)
+        logging.info(f"Checking status of job {job_id}: {job_status.status}")
+
+        if job_status.status == 'succeeded':
+            model_id = job_status.fine_tuned_model  
+            logging.info(f"Job {job_id} completed successfully. Model ID: {model_id}")
+            # Update the Firestore with the model_id
+            user_ref = db.collection('users').document(user_id)
+            user_ref.update({"model_id": model_id})
+            logging.info(f"Updated Firestore with model ID {model_id} for user {user_id}")
+            return {'message': 'Model training completed successfully', 'model_id': model_id}
+        elif job_status.status == 'failed':
+            logging.error(f"Job {job_id} failed.")
+            return {'message': 'Model training failed'}
+
+        # Wait before checking the status again
+        time.sleep(5) 
+
+
+
+
+# # List fine-tuning jobs
+# print(client.fine_tuning.jobs.list(limit=1))
+
+# # Retrieve the state of a fine-tune
+# print(client.fine_tuning.jobs.retrieve("ftjob-4G1by3VoLtqMbkj2SMLtuNvW"))
+
+# # List events from a fine-tuning job
+# print(client.fine_tuning.jobs.list_events(fine_tuning_job_id="ftjob-4G1by3VoLtqMbkj2SMLtuNvW", limit=10))
 
 if __name__ == '__main__':
     # Get user ID from command line argument
@@ -65,5 +103,13 @@ if __name__ == '__main__':
 
     user_id = args.user_id
     result = start_model_training(user_id)
-    print(json.dumps(result))  # Ensure this is the only print in this conditional There cant me warning messages.
+    # print(json.dumps(result))  # this must be the last output
 
+    if 'job_id' in result:
+        print("About to check fine-tuning job status", file=sys.stderr)  # Ensure this message is visible
+        status = check_finetuning_job_status(result['job_id'], user_id)  # Pass user_id here
+        print("Status:", status, file=sys.stderr)
+        print(json.dumps(result))  
+    else:
+        print("No job ID found to check status.", file=sys.stderr)
+        print(json.dumps({'message': 'No job ID found to check status.'}))
