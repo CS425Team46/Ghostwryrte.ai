@@ -254,14 +254,15 @@ if (uploadDataButton) {
 const trainModelButton = document.getElementById('TrainModel');
 if (trainModelButton) {
     trainModelButton.addEventListener('click', () => {
-        const user = getAuth().currentUser;  // Make sure Firebase Auth is properly initialized and used here
+        const user = auth.currentUser;
         if (user) {
+            console.log("Train Model button clicked");
             fetch('/start-model-training', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ user_id: user.uid })  // Send the user's ID to backend
+                body: JSON.stringify({ user_id: user.uid })
             })
             .then(response => response.json())
             .then(data => {
@@ -277,6 +278,7 @@ if (trainModelButton) {
         }
     });
 }
+
 
 
 

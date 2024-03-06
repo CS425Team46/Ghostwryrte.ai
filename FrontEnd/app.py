@@ -1,6 +1,8 @@
+import json
 from flask import Flask, jsonify, render_template, request, redirect
 import openai
 from openai import OpenAI
+import subprocess
 # from model_training import start_model_training
 
 
@@ -57,8 +59,6 @@ def run_data_conversion():
         return jsonify({'message': 'No user ID provided'}), 400
     # print(f'UID: {user_id}')
 
-    
-    import subprocess
     result = subprocess.run(['python3', 'Data/data_conversion.py', user_id], capture_output=True, text=True)
     print("STDOUT:", result.stdout)
     print("STDERR:", result.stderr)
@@ -68,57 +68,27 @@ def run_data_conversion():
     else:
         return jsonify({'message': f'Data conversion script failed: {result.stderr}'}), 500
     
-# @app.route('/start-model-training', methods=['POST'])
-# def handle_start_model_training():
-#     user_id = request.json.get('user_id')
-#     if not user_id:
-#         return jsonify({'message': 'User ID is required'}), 400
+@app.route('/start-model-training', methods=['POST'])
+def start_model_training():
+    user_id = request.json.get('user_id')
+    if not user_id:
+        return jsonify({'message': 'No user ID provided'}), 400
+    
+    result = subprocess.run(['python3', 'Data/model_training.py', user_id], capture_output=True, text=True)
 
-#     result = start_model_training(user_id)
-#     if result.get('error'):
-#         return jsonify({'message': result['message']}), 500
-#     else:
-#         return jsonify({'message': result['message'], 'job_id': result['job_id']})
+    # Check if the script ran successfully
+    if result.returncode == 0:
+        try:
+            # Attempt to parse the stdout as JSON
+            output = json.loads(result.stdout)
+            return jsonify(output), 200
+        except json.JSONDecodeError:
+            # If stdout is not valid JSON, return the raw output for debugging
+            return jsonify({'message': 'Non-JSON output received', 'output': result.stdout}), 500
+    else:
+        return jsonify({'message': f'Model training script failed: {result.stderr}'}), 500
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-# DO NOT DELETE YET!!!!!!!!
-# @app.route('/signup', methods=['POST'])
-# def signup():
-#     email = request.form['email']
-#     password = request.form['password']
-#     # Add user creation logic here using Firebase Admin SDK
-#     try:
-#         # Create user using Firebase Authentication
-#         user = auth.create_user(email=email, password=password)
-
-#         # Add user to Firestore
-#         user_ref = db.collection('users').document(user.uid)
-#         user_ref.set({
-#             'email': email,
-#             'password': password,
-#             'training_data': '',
-#             'model_id':'',
-#             'generated_prompts':'',
-#             'created_at': firestore.SERVER_TIMESTAMP
-#         })
-
-#         return 'User created successfully.'
-#     except Exception as e:
-#         return f'An error occurred: {str(e)}'
-
-# @app.route('/signin', methods=['POST'])
-# def signin():
-#     email = request.form['email']
-#     password = request.form['password']
-#     try:
-#         # Authenticate the user
-#         user = auth.get_user_by_email(email)
-#         # Check if the password is correct 
-        
-#         # If authentication is successful, redirect
-#         return redirect('/content-generation')
-#     except Exception as e:
-#         return f'An error occurred: {str(e)}'
-

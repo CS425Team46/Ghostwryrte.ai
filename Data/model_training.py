@@ -1,3 +1,8 @@
+import json
+import warnings
+warnings.filterwarnings("ignore", category=DeprecationWarning)
+warnings.filterwarnings("ignore", message="urllib3 v2 only supports OpenSSL 1.1.1+")
+
 import firebase_admin
 from firebase_admin import firestore, credentials, firestore
 import openai
@@ -41,4 +46,4 @@ def start_model_training(user_id):
 if __name__ == '__main__':
     test_user_id = 'lQvmWjID8DPO0vHn3elqoKsxpQJ3'
     result = start_model_training(test_user_id)
-    print(result)
+    print(json.dumps(result))  # Ensure this is the only print in this conditional.
