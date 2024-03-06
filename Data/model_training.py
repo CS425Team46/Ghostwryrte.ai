@@ -7,6 +7,8 @@ import firebase_admin
 from firebase_admin import firestore, credentials, firestore
 import openai
 from openai import OpenAI
+import argparse
+import json
 
 client = OpenAI()
 # Initialize Firebase Admin
@@ -14,6 +16,14 @@ cred = credentials.Certificate("ghostwryte-ai-firebase-adminsdk-uxybq-20881dd0dd
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
+
+# Command line argument parsing
+parser = argparse.ArgumentParser(description='Start model training for a user.')
+parser.add_argument('user_id', help='Firebase User ID')
+args = parser.parse_args()
+
+user_id = args.user_id
+
 
 def start_model_training(user_id):
 
@@ -44,6 +54,12 @@ def start_model_training(user_id):
 
 
 if __name__ == '__main__':
-    test_user_id = 'lQvmWjID8DPO0vHn3elqoKsxpQJ3'
-    result = start_model_training(test_user_id)
-    print(json.dumps(result))  # Ensure this is the only print in this conditional.
+    # Get user ID from command line argument
+    parser = argparse.ArgumentParser(description='Start model training for a user.')
+    parser.add_argument('user_id', help='Firebase User ID')
+    args = parser.parse_args()
+
+    user_id = args.user_id
+    result = start_model_training(user_id)
+    print(json.dumps(result))  # Ensure this is the only print in this conditional There cant me warning messages.
+

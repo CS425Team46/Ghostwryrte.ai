@@ -186,42 +186,6 @@ function handleSignIn() {
         });
 }
 
-// const uploadDataButton = document.getElementById('UploadData');
-// if (uploadDataButton) {
-//     uploadDataButton.addEventListener('click', () => {
-//         console.log("Upload Data button clicked");
-
-//         // fetch('/run-data-conversion', {
-//         //     method: 'POST',
-//         // })
-//         // .then(response => response.json())
-//         // .then(data => {
-//         //     console.log('Success:', data);
-//         //     alert('Data conversion initiated.');
-//         // })
-//         // .catch((error) => {
-//         //     console.error('Error:', error);
-//         //     alert('Data conversion failed.');
-//         // });
-
-//         fetch('/run-data-conversion', {
-//             method: 'POST',
-//             // headers: {
-//             //     'Content-Type': 'application/json',
-//             // },
-//             body: JSON.stringify({ user_id: user.uid }) 
-//         })
-//         .then(response => response.json())
-//         .then(data => {
-//             console.log(data.message);
-//             alert('Data conversion initiated.');
-//         })
-//         .catch(error => {
-//             console.error('Error starting data conversion:', error);
-//         });
-//     });
-// }
-
 const uploadDataButton = document.getElementById('UploadData');
 if (uploadDataButton) {
     uploadDataButton.addEventListener('click', () => {
@@ -278,6 +242,7 @@ if (trainModelButton) {
         }
     });
 }
+
 
 
 

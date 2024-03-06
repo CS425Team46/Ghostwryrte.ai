@@ -76,7 +76,6 @@ def start_model_training():
     
     result = subprocess.run(['python3', 'Data/model_training.py', user_id], capture_output=True, text=True)
 
-    # Check if the script ran successfully
     if result.returncode == 0:
         try:
             # Attempt to parse the stdout as JSON
