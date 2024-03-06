@@ -58,9 +58,14 @@
             
 
             <div class="bottomRow">
-                <form id="generateForm" method="post" action="{{ url_for('generate_content') }}" class="bottomRowInnerWrapper">
+                <!-- <form id="generateForm" method="post" action="{{ url_for('generate_content') }}" class="bottomRowInnerWrapper">
                     <textarea name="user_prompt" type="text" class="queryBox" placeholder="Enter prompt and/or bullet points, or outline."></textarea>
                     <button class=genButton><img src="{{ url_for('static', filename='images/upArrow.png') }}" class="genImg"></button>
+                </form> -->
+                <form id="generateForm" method="post" action="{{ url_for('generate_content') }}" class="bottomRowInnerWrapper">
+                    <input type="hidden" name="user_id" id="formUserId">  <!-- Hidden field for user ID -->
+                    <textarea name="user_prompt" class="queryBox" placeholder="Enter prompt..."></textarea>
+                    <button type="submit" class="genButton"><img src="{{ url_for('static', filename='images/upArrow.png') }}" class="genImg"></button>
                 </form>
                 <!-- <button type="submit" class="genButton" id="genButton"><img src="{{ url_for('static', filename='images/clipboard.png') }}" class="genImg"></button> -->
             </div>

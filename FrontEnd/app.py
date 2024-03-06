@@ -48,27 +48,27 @@ def styling_and_format():
 
 @app.route('/generate-content', methods=['POST'])
 def generate_content():
-    user_id = request.json.get('user_id')
-    # Check if user_id is not None before proceeding
-    if not user_id:
-        return jsonify({'message': 'No user ID provided'}), 400
+    # Fetch the data from form fields
+    user_id = request.form.get('user_id')  # Adjust according to how you plan to send user_id
+    user_prompt = request.form.get('user_prompt')
 
-    # Fetch the user's model ID from Firestore
+    # Handle cases where data is missing
+    if not user_id or not user_prompt:
+        return jsonify({'message': 'Missing user ID or prompt'}), 400
+
+    # Proceed as previously described
     user_ref = db.collection('users').document(user_id)
     user_doc = user_ref.get()
     if user_doc.exists:
         user_data = user_doc.to_dict()
-        model_id = user_data.get('model_id')  
+        model_id = user_data.get('model_id')
         if not model_id:
             return jsonify({'message': 'Model ID not found for user'}), 400
     else:
         return jsonify({'message': 'User not found'}), 404
-    print(model_id)
 
-    user_prompt = request.form['user_prompt']
-    # Call AI model with the user_prompt using the user-specific model ID
     response = client.chat.completions.create(
-        model=model_id,  # Use the model ID fetched from Firestore
+        model=model_id,  # Use the fetched model_id
         messages=[{"role": "user", "content": user_prompt}]
     )
     message_content = response.choices[0].message.content.strip()

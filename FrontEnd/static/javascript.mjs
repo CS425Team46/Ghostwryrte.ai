@@ -22,6 +22,20 @@ const accPageCheck = document.getElementById('accPage');
 const LOButton = document.getElementById('LOButton');
 var ACUserOption = 1; // 1 = Sign In & 2 = Sign Up
 
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        // User is signed in, set the user_id in the hidden form field
+        const userIdField = document.getElementById('formUserId');
+        if (userIdField) {
+            userIdField.value = user.uid;
+        }
+    } else {
+        // User is signed out
+        console.log("No user signed in");
+        // Optional: Redirect to login page or show a message
+    }
+});
+
 if (fileUploadWindow) {
     fileUploadWindow.addEventListener('dragover', (event) => {
         event.preventDefault();
