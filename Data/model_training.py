@@ -48,6 +48,10 @@ def start_model_training(user_id):
             "learning_rate_multiplier": 0.1
         }
         )
+
+        user_ref = db.collection('users').document(user_id)
+        user_ref.update({"model_id": response.id})
+
         return {'message': 'Model training started successfully', 'job_id': response.id}
     except Exception as e:
         return {'message': f'Failed to start model training: {str(e)}', 'error': True}
