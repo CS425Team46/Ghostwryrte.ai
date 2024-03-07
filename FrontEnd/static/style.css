@@ -13,9 +13,8 @@
   --accentTwo: #202020; /* Main Content window and Query Box*/
   --accentThree: #000000; /* Top Accent Part*/
   --textAndAccentFour: #eaeaea;
-  --startColor: #19251c;
-  --intermediaryColor: #161e18;
-  --endColor: #201b1b;
+  --startColor: #372f26;
+  --endColor: #231d15;
   --deselectedColor: #4C4C4C;
   --loginInputBox: #6F6F6F;
 
@@ -79,7 +78,7 @@ pre {
 
   width: auto;
   height: 100%;
-  max-height: 70%;
+  max-height: 3vh;
   margin-right: 15px;
 
 }
@@ -151,7 +150,7 @@ pre {
   background: var(--endColor);
   color: var(--textAndAccentFour);
   font-family: FranieRegular;
-  font-size: 2.4vh;
+  font-size: 2vh;
   border: none;
   border-radius: 10px;
   
@@ -193,7 +192,7 @@ pre {
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-evenly;
   background: var(--accentOne);
   height: 100%;
   width: 100%;
@@ -395,78 +394,6 @@ pre {
 }
 
 /* Includes Content related to AITraining Page */
-.newWrapper{
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
-  gap: 1%;
-}
-
-.UFWindow{
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10%;
-  height: 47.6%;
-  width: 99%;
-  background-image: linear-gradient(var(--startColor), var(--intermediaryColor));
-  border-radius: 10px;
-  margin-top: .5%;
-  margin-left: .2%;
-
-}
-
-.uploadedFilesWrapper{
-
-  display: flex;
-  height: 47.6%;
-  width: 100%;
-  margin-left: .2%;
-  gap: .6%;
-}
-
-.uploadedFilesWindow{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  width: 79%;
-  background-image: linear-gradient(var(--startColor), var(--endColor));
-  border-radius: 10px;
-}
-.butttonWrapperAIP{
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 19%;
-  gap: 2%;
-}
-
-.UploadFilesButton {
-  display: flex;
-  height: 50%;
-  width: 100%;
-  border-radius: 10px;
-  background-image: linear-gradient(var(--startColor), var(--intermediaryColor));
-}
-
-.trainModelButton{
-  display: flex;
-  height: 50%;
-  width: 100%;
-  border-radius: 10px;
-  background-image: linear-gradient(var(--startColor), var(--endColor)); 
-}
-
-.uploadImg {
-
-  width: 10%;
-  height: 40%;
-
-}
 
 .fileUploadWindow {
   margin-top: 3vw;
@@ -489,28 +416,55 @@ pre {
 
 .uploadText {
 
-  color: var(--textAndAccentFour); 
-  font-size: 6vh; 
-  font-family: FranieRegular;
+  position: absolute;
+  bottom: 15%; 
+  left: 50%;
+  transform: translateX(-50%);
+  color: #131313; 
+  font-size: 40px; 
+  font-family: Calibri;
 
+}
+
+.uploadedDocWindow {
+
+  width: 75%;
+  height: 40%;
+  border-radius: 20px;
+  background-color: #C2C2CC;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .uploadedText {
 
   padding-top: 1vw;
   text-align: center; 
-  font-size: 6vh;
-  font-family: FranieRegular;
-  color: var(--textAndAccentFour)
+  font-size: 150%;
+  font-weight: bold;
+  font-family: Calibri;
 }
 
 .uploadedDocs {
 
   margin: 0;
-  font-size: 3vh;
-  font-family: FranieRegular;
-  color: var(--textAndAccentFour);
+  padding-left: 2vw;
+  font-size: 150%;
+  font-family: Calibri;
+}
 
+.innerWindow {
+
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  bottom: 0;
+  background-color: none;
+  width: 75%;
+  height: 100%;
 }
 
 /* Account Creation Page */
@@ -613,6 +567,7 @@ pre {
   padding-left: 2.5%;
   height: 20%;
   width: 100%;
+  
 
 }
 

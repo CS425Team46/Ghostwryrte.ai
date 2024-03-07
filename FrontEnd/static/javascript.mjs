@@ -16,7 +16,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-const fileUploadWindow = document.querySelector('.UFWindow');
+const fileUploadWindow = document.querySelector('.fileUploadWindow');
 const uploadedDocsList = document.querySelector('.uploadedDocs');
 const accPageCheck = document.getElementById('accPage');
 const LOButton = document.getElementById('LOButton');
