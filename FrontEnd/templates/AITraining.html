@@ -38,7 +38,27 @@
     <div class="mainContentWrapper">
 
 		<div class="mainContentWindow">
-			<div class="innerWindow">
+            <div class="newWrapper">
+                <div class="UFWindow">
+                    <img style="vertical-align: middle" src="{{ url_for('static', filename='images/fileUploadPic.png') }}" class="uploadImg">
+			        <p class="uploadText">Click to Upload Files</p>
+                </div>
+                <div class="uploadedFilesWrapper">
+                    <div class="uploadedFilesWindow">
+                        <div class="uploadedText">Uploaded Files</div>
+                        <ul class=" ">
+
+                        </ul>
+                    </div>
+                    <div class="butttonWrapperAIP">
+                        <div class="UploadFilesButton"></div>
+                        <button id="UploadData">Upload Data</button>
+                        <div class="trainModelButton"></div>
+                    </div>
+                </div>
+            </div>
+            
+<!-- 			<div class="innerWindow">
 				<button class="fileUploadWindow">
 			        <img style="vertical-align: middle" src="{{ url_for('static', filename='images/CloudImg.jpg') }}" class="barImg">
 			        <p class="uploadText">Drag and drop files here</p>
@@ -47,10 +67,14 @@
 			    	<div class="uploadedText">Uploaded Files</div>
 			    	<ul class="uploadedDocs">
 			    	</ul>
-		    </div>
+		    </div> -->
             <!-- THIS NEEDS TO BE MADE PRETTY -->
+<<<<<<< Updated upstream
             <button id="UploadData">Upload Data</button>
             <button id="TrainModel">Train Model</button>
+=======
+       <!--      <button id="UploadData">Upload Data</button> -->
+>>>>>>> Stashed changes
 		</div>
 		</div>
 	</div>
