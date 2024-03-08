@@ -348,8 +348,8 @@ pre {
   background-color: var(--mainAccentColor);
   justify-content: center;
   align-items: center;
-  width: 3.5vw;
-  height: 40%;
+  width: 3vw;
+  height: 35%;
   border-radius: 30px;
   border: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
@@ -399,24 +399,36 @@ pre {
   background: none;
 
 }
+
 .historyContentWindow{
 
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   height: 89%;
   width: 100%;
   border-radius: 10px;
-
+  margin-top: 5%;
+  gap: 1%;
 
 }
 
-.bottomRow {
-
+.historyInstance {
   display: flex;
-  justify-content: center;
-  background-color: none;
-  height: 5%;
-  width: 79%;
-
+  align-items: center;
+  padding: 2%;
+  height: 8%;
+  width: 90%;
+  border-radius: 20px;
+  font-size: 1.8vh;
+  color: var(--textColor);
+  font-family: FranieRegular;
+  background: var(--secondaryColor);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; /* Use ellipsis to indicate text overflow */
 }
+
 
 /* Includes Content related to AITraining Page */
 

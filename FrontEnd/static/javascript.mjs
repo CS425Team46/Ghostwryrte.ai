@@ -1,6 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
-import { getFirestore, doc, setDoc } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+import { getFirestore, collection, query, orderBy, limit, doc, setDoc, serverTimestamp, getDocs } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyDW-idC8yzOs7HlFZ21sB5-H7UjRZ6N6hs",
@@ -20,20 +21,27 @@ const fileUploadWindow = document.querySelector('.fileUploadWindow');
 const uploadedDocsList = document.querySelector('.uploadedDocs');
 const accPageCheck = document.getElementById('accPage');
 const LOButton = document.getElementById('LOButton');
+const genButtonID = document.getElementById('genButtonID');
+const historyContentWindow = document.querySelector('.historyContentWindow');
+const historyInstance = document.createElement('div');
+const contentWindow = document.querySelector('.contentGenWindow');
 var ACUserOption = 1; // 1 = Sign In & 2 = Sign Up
 
 auth.onAuthStateChanged((user) => {
     if (user) {
-        // User is signed in, set the user_id in the hidden form field
         const userIdField = document.getElementById('formUserId');
         if (userIdField) {
             userIdField.value = user.uid;
         }
+        if (contentWindow){
+            callUpload();
+        }
+        loadHistoryButtons();
     } else {
-        // User is signed out
         console.log("No user signed in");
     }
 });
+
 
 if (fileUploadWindow) {
     fileUploadWindow.addEventListener('dragover', (event) => {
@@ -110,7 +118,6 @@ if(accPageCheck){
 
 if(LOButton){
     LOButton.addEventListener('click', function() {
-        console.log("Hello world");
         signOut(auth).then(() => {
             console.log('User signed out.');
             window.location.href = '/'
@@ -120,6 +127,57 @@ if(LOButton){
     }, false);
 }
 
+function callUpload() {
+    if(contentWindow){
+        var content = document.getElementsByTagName('pre')[0].innerHTML;
+        if(content){
+            const newContent = content
+            const title = extractTitle(content);
+            uploadHistory(title, newContent);
+        } 
+    }
+}
+async function uploadHistory(title, fileContent) {
+
+    var user = auth.currentUser;
+    console.log(user);
+    if (user) {
+        await setDoc(doc(db, 'users', user.uid, 'history', title), {
+            title: title,
+            content: fileContent,
+            time: serverTimestamp()
+            });
+    } else {
+        console.error('No user is signed in to generate history');
+    }
+
+}
+
+async function loadHistoryButtons() {
+    const user = auth.currentUser;
+    if (user) {
+        const historyRef = collection(db, `users/${user.uid}/history`);
+        const q = query(historyRef, orderBy('time', 'desc'), limit(10));
+        const querySnapshot = await getDocs(q);
+        
+        querySnapshot.forEach(doc => {
+            const title = doc.data().title;
+            createHistoryButton(title);
+        });
+    } else {
+        console.error('No user is signed in to load history');
+    }
+}
+
+
+function createHistoryButton(title) {
+    const historyButton = document.createElement('button');
+    historyButton.textContent = title;
+    historyButton.classList.add('historyInstance');
+    historyButton.addEventListener('click', () => {
+    });
+    historyContentWindow.appendChild(historyButton);
+}
 
 function fileProcessing(files) {
     for (const file of files) {
@@ -172,6 +230,8 @@ async function uploadToFirebase(title, fileContent) {
         console.error('No user is signed in to upload data');
     }
 }
+
+
 
 function handleSignUp() {
     const email = document.getElementById('userEmail').value;
