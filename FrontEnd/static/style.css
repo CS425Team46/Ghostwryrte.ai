@@ -18,23 +18,28 @@
   --deselectedColor: #4C4C4C;
   --loginInputBox: #6F6F6F;
 
+  --mainColor: #ffffff;
+  --secondaryColor: #F0F0F0;
+  --secondaryAccent: #DEDEDE;
+  --mainAccentColor: #caf39b;
+  --textColor: #030303;
+
 }
 
 html, body { 
 
   height: 100%; 
   overflow: hidden;
-  background: var(--bgColor);
+  background: var(--secondaryColor);
 
 }
 
 body {
-  margin-left: .5%;
 }
 
 a:link, a:visited {
 
-  color: #C2C2CC;
+  color: var(--textColor);
   text-decoration: none;
 
 }
@@ -53,7 +58,7 @@ pre {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background: var(--bgColor);
+  background: var(--secondaryColor);
   width: 16%;
   height: 100%;
   float: left;
@@ -67,13 +72,53 @@ pre {
   align-items: center;
   justify-content: flex-start;
   gap: 2%;
-  width: 97%;
-  height: 88.6%;
-  margin-top: 2%;
-  background-image: linear-gradient(var(--startColor), var(--endColor));
-  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  background: var(--secondaryColor);
 
 }
+
+.userInformationWrapper{
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  height: 7%;
+  border-radius: 30px;
+  background: var(--mainColor);
+  margin-top: 8%;
+  margin-bottom: 13%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+
+}
+
+.profilePicture{
+
+  height: 80%;
+  width: 25%;
+  border-radius: 20px;
+  margin-left: 5%;
+
+}
+
+.profileImg{
+
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 40px;
+
+}
+
+.userEmail{
+
+  width: 60%;
+  font-size: .8vw;
+  flex-grow: 1;
+  color: var(--textColor)
+
+}
+
 .barImg {
 
   width: auto;
@@ -92,88 +137,75 @@ pre {
 
 }
 
-/* 
-.logoAndName {
-
-  display: flex;
-  justify-content: center;
-  height: 50%;
-  font-size: 350%;
-  font-weight: bold;
-  border: none;
-  color: #f7f7f7;
-
-} Got replaced by the Ghostwryte logo but I'm leaving this here just in case I end up wanting to change it.*/ 
-
 .navigationButton {
 
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  width: 92%;
+  width: 90%;
   height: 7%;
-  border-radius: 15px;
-  background: none;
-  padding-left: 3%;
-  font-size: 1.8vh;
+  padding-left: 5%;
+  border-radius: 30px;
+  background: var(--secondaryColor);
+  font-size: 1.5vh;
   resize: none;
   font-family: FranieRegular;
   overflow: hidden;
   border: none;
-  color: var(--textAndAccentFour);
+  color: var(--textColor);
+  
 
 }
 
 .navigationButton:hover {
-  background: #474956;
+  background: var(--mainAccentColor);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
 
 .logOutWrapper {
 
   display: flex;
-  flex-direction: column;  
+  flex-direction: column; 
+  align-items: center;
   align-content: center;
-  width: 97%;
-  height: 10%;
-  background: none;
+  width: 90%;
+  height: 15%;
+  background: var(--secondaryColor);
+  border-top: 3px solid var(--secondaryAccent);
+
 
 }
 
 .logOut {
 
   display: flex;
-  justify-content: center;
-  gap: 5%;
+  justify-content: flex-start;
   align-items: center;
-  height: 50%;
+  gap: 5%;
+  padding-left: 8%;
+  height: 40%;
   width: 100%;
-  background: var(--endColor);
-  color: var(--textAndAccentFour);
+  color: var(--textColor);
   font-family: FranieRegular;
   font-size: 2vh;
   border: none;
-  border-radius: 10px;
+  background: none;
+  border-radius: 30px;
+  margin-top: 5%;
+
   
 }
 
-.inheritSizeBox {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  background: red;
-}
-
 .logOut:hover {
-  background: #474956;
+  background: var(--mainAccentColor);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
 
 .logOutImg{
 
   width: auto;
-  height: 80%;
-  vertical-align: center;
-  margin-top: -1%;
-  max-height: 1.5vh;
+  height: 100%;
+  max-height: 2.7vh;
 
 }
 
@@ -183,7 +215,7 @@ pre {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  height: 97.5%;
+  height: 100%;
   width: 84%;
 }
 
@@ -193,118 +225,178 @@ pre {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  background: var(--accentOne);
+  background: var(--mainColor);
   height: 100%;
   width: 100%;
 
 }
-.titleAndContentWrapper{
+
+.mainWindowColumn {
 
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
 
+
 }
 
-.titleBarWrapper {
+.titleBar{
 
   display: flex;
   align-items: center;
-  /* background: var(--accentThree);
-  border-bottom-style: solid; */
-  border-bottom-color: var(--textAndAccentFour);
-  border-top-left-radius: 45px;
-  border-top-right-radius: 45px;
-  height: 15%;
+  border-bottom: var(--secondaryColor);
+  height: 10%;
   width: 100%;
-  align-self: flex-start;
-
+  border-bottom: 3px solid var(--secondaryColor);
 }
 
-.titleHolder {
-
-  display: flex;
-  margin-left: .5%;
-  background: var(--startColor);
-  height: 90%;
-  width: 98.5%;
-  border-radius: 10px;
-
-}
 
 .titleText{
 
   background: none;
-  width: 90%;
+  width: 85%;
   overflow: hidden;
-  color: var(--textAndAccentFour);
+  color: var(--textColor);
   font-size: 4.5vh;
   font-family: FranieRegular;
-  padding-left: 3%;
+  padding-left: 3.8%;
   border: none;
   outline: none;
   padding-top: 1%;
 
 }
 
-.contentGenWrapper {
+.generationAndHistoryWrapper{
 
   display: flex;
-  justify-content: space-around;
+  height: 90%;
+  width: 100%;
+
+}
+.contentGenerationWrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  background-color: none;
-  height: 84.7%;
-  width: 99%;
-  
+  width: 75%;
+  height: 100%;
 }
 
 .contentGenWindow {
 
   display: flex;
-  border-radius: 10px;
-  background-image: linear-gradient(var(--startColor), var(--endColor));
-  height: 99%;
-  width: 79%;
+  height: 70%;
+  width: 90%;
   font-size: 2.4vh;
-  font-family: Calibri;
+  font-family: Calibri; 
   padding-top: 2vw;
   padding-left: 2vw;
   resize: none;
   margin: auto; 
   overflow: auto;
-  color: var(--textAndAccentFour);
+  color: var(--textColor);
 
 }
 
+.queryWrapper{
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 25%;
+  width: 100%;
+
+}
+
+
+.bottomRowInnerWrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 3%;
+  height: 70%;
+  width: 90%;
+  background-color: var(--mainColor);
+  border-radius: 40px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+
+.queryBox {
+
+  display: flex;
+  background: none;
+  width: 90%;
+  height: 100%;
+  padding-top: 1vw;
+  padding-left: 1vw;
+  font-size: 2.4vh;
+  color: var(--textColor);
+  resize: none;
+  border: none;
+  overflow: hidden;
+  outline: none;
+
+}
+
+.genButton {
+
+  display: flex;
+  align-self: flex-end;
+  margin-bottom: 1%;
+  background-color: var(--mainAccentColor);
+  justify-content: center;
+  align-items: center;
+  width: 3.5vw;
+  height: 40%;
+  border-radius: 30px;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.genImg {
+
+  display: block;
+  max-height: 120%;
+  max-width: 120%;
+  height: 3vh;
+  width: auto;
+}
+
+.genButton:hover {
+
+  outline: auto;
+
+}
+
+
 .historyWrapper{
-  
+
   display: flex;
   flex-direction: column;
-  height: 99%;
-  width: 20%;
-  background: none;
-  gap: 1%;
-  
+  justify-content: center;
+  align-items: center;
+  width: 25%;
+  height: 100%;
+  border-left: 3px solid var(--secondaryColor);
+  flex-grow: 1;
+
 }
 
 .historyID{
 
   display: flex;
+  justify-content: center;
   height: 10%;
-  width: 100%;
+  width: 90%;
   background: none;
-  border-radius: 10px;
-  border-bottom-style: solid;
-  border-bottom-color: #242424;
-  color: var(--textAndAccentFour);
+  border-bottom: 3px solid var(--secondaryColor);
+  color: var(--textColor);
   align-items: center;
-  justify-content: left;
-  padding-left: 5%;
-  padding-top: 3%;
-  font-size: 4vh;
+  font-size: 3vh;
   font-family: FranieRegular;
-  background: var(--startColor);
+  background: none;
 
 }
 .historyContentWindow{
@@ -312,7 +404,7 @@ pre {
   height: 89%;
   width: 100%;
   border-radius: 10px;
-  background-image: linear-gradient(var(--startColor), var(--endColor));
+
 
 }
 
@@ -324,73 +416,6 @@ pre {
   height: 5%;
   width: 79%;
 
-}
-
-.bottomRowInnerWrapper {
-
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 3%;
-  height: 100%;
-  width: 60%;
-  background-color: var(--endColor);
-  border-radius: 10px;
-
-}
-
-.queryBox {
-
-  display: flex;
-  background: none;
-  width: 90%;
-  height: 100%;
-  padding-top: .5vw;
-  padding-left: 1vw;
-  font-size: 2.4vh;
-  color: var(--textAndAccentFour);
-  resize: none;
-  border: none;
-  overflow: hidden;
-  outline: none;
-
-}
-
-.genButton {
-
-  display: flex;
-  background-color: var(--textAndAccentFour);
-  justify-content: center;
-  align-items: center;
-  width: 1.8vw;
-  height: 70%;
-  border-radius: 10px;
-  border: none;
-}
-
-.genImg {
-
-  display: block;
-  max-height: 100%;
-  max-width: 100%;
-  height: 2.5vh;
-  width: auto;
-}
-
-.genButton:hover {
-
-  outline: auto;
-
-}
-
-.paddingElement {
-  height: 2%;
-  width: 20%
-}
-
-.paddingElement.one {
-  height: 3%;
-  width: 20%
 }
 
 /* Includes Content related to AITraining Page */
