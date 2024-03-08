@@ -84,15 +84,6 @@ def check_finetuning_job_status(job_id, user_id):  # Add user_id parameter
         time.sleep(5) 
 
 
-# # List fine-tuning jobs
-# print(client.fine_tuning.jobs.list(limit=1))
-
-# # Retrieve the state of a fine-tune
-# print(client.fine_tuning.jobs.retrieve("ftjob-4G1by3VoLtqMbkj2SMLtuNvW"))
-
-# # List events from a fine-tuning job
-# print(client.fine_tuning.jobs.list_events(fine_tuning_job_id="ftjob-4G1by3VoLtqMbkj2SMLtuNvW", limit=10))
-
 if __name__ == '__main__':
     # Get user ID from command line argument
     parser = argparse.ArgumentParser(description='Start model training for a user.')
