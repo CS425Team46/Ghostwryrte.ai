@@ -18,7 +18,7 @@ This software is copyrighted by Yoojung Nam and is provided under the following 
    You are prohibited from using the specified files for commercial purposes without obtaining explicit signoff from Yoojung Nam. Commercial purposes include, but are not limited to, selling, licensing, or otherwise exploiting the software for financial gain.
 
 4. Educational Use:
-   The specified files may be used for educational purposes, such as classroom instruction and academic research, without the need for additional permission.
+   The specified files may be used but not modified for educational purposes, such as classroom instruction and academic research, without the need for additional permission.
 
 5. Distribution:
    You may distribute the specified files in their original, unmodified form, provided that you include this license and attribution to Yoojung Nam.
