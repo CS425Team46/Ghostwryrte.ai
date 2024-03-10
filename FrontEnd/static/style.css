@@ -306,7 +306,6 @@ pre {
 
 }
 
-
 .bottomRowInnerWrapper {
   display: flex;
   justify-content: flex-start;
@@ -439,7 +438,7 @@ pre {
 
 }
 
-/* Includes Content related to AITraining Page */
+/* Includes Content related to AI Training Page */
 
 .aiTrainingWrapper {
 
@@ -595,7 +594,6 @@ pre {
   outline: none;
   background: none;
 
-
 }
 
 .uploadAndTrainButtons{
@@ -626,6 +624,19 @@ pre {
 
 }
 
+#UploadData:hover{
+
+  background: var(--mainAccentColor);
+  border: 1px solid black;
+
+}
+
+#UploadData:active {
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+
+}
+
 #TrainModel{
 
   display: flex;
@@ -643,6 +654,18 @@ pre {
 
 }
 
+#TrainModel:hover{
+
+  background: var(--mainAccentColor);
+  border: 1px solid black;
+
+}
+
+#TrainModel:active {
+
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+
+}
 
 /* Account Creation Page */
 
