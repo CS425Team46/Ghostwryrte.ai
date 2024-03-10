@@ -23,14 +23,13 @@
         <div class="navigationWrapper">
             <div class="userInformationWrapper">
                 <div class="profilePicture"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/emptyProfile.png') }}" class="profileImg"></div>
-                <div class="userEmail">userEmail@example.com</div>
+                <div class="userEmail" id="emailContainer"></div>
             </div>
             <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/ContentGeneration.png') }}" class="barImg"><a href="{{ url_for('content_generation') }}"> Content Generation</a></button>
             <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/StyleAndFormatting.png') }}" class="barImg"><a href="{{ url_for('styling_and_format') }}"> Styling & Format</a></button>
             <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AudienceInsights.png') }}" class="barImg"><a href="#"> Audience Insights</a></button>
             <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/Templates.png') }}" class="barImg"><a href="#"> Templates</a></button>
             <button class="navigationButton" style="background: var(--mainColor); box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AITraining.png') }}" class="barImg"><a href="{{ url_for('ai_training') }}"> AI Training</a></button>
-            
         </div>
         <div class="logOutWrapper">
             <button type="button" id="LOButton" class="logOut"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/doorIcon.png') }}" class="logOutImg">Log out</button>
@@ -40,19 +39,23 @@
     <div class="mainContentWrapper">
 
 		<div class="mainContentWindow">
-			<div class="innerWindow">
-				<button class="fileUploadWindow">
-			        <img style="vertical-align: middle" src="{{ url_for('static', filename='images/CloudImg.jpg') }}" class="barImg">
-			        <p class="uploadText">Drag and drop files here</p>
-			    </button>
-			    <div class="uploadedDocWindow">
-			    	<div class="uploadedText">Uploaded Files</div>
-			    	<ul class="uploadedDocs">
-			    	</ul>
-		    </div>
-            <!-- THIS NEEDS TO BE MADE PRETTY -->
-            <button id="UploadData">Upload Data</button>
-            <button id="TrainModel">Train Model</button>
+            <div class="aiTrainingWrapper">
+                <div class="fileUploadWrapper">
+                    <div class="innerUploadWrapper">
+                        <img style="vertical-align: middle" src="{{ url_for('static', filename='images/CloudImg.jpg') }}" class="uploadImg">
+                        <h1 class="instructionText">Drop your files here</h1>
+                        <h1 class="instructionText Two">or</h1>
+                        <div class="browse">Browse</div>
+                    </div>
+                    <div class="uploadedFilesAndButtons">
+                        <div class="uploadedFiles"></div>
+                        <div class="uploadAndTrainButtons">
+                            <button id="UploadData">Upload Data</button>
+                            <button id="TrainModel">Train Model</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 		</div>
 		</div>
 	</div>
@@ -60,3 +63,11 @@
 </body>
 
 </html>
+
+
+<!-- Example Instance 
+    <div class="uploadedFileInstance">
+    <img style="vertical-align:middle" src="{{ url_for('static', filename='images/textFile.png') }}" class="fileInstanceImgTxt">
+    <span class="fileName">Example.txt</span>
+    <button class="deleteFileButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/redx.png') }}" class="fileInstanceImgX"></button>
+</div> -->

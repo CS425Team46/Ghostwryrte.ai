@@ -441,77 +441,208 @@ pre {
 
 /* Includes Content related to AITraining Page */
 
-.fileUploadWindow {
-  margin-top: 3vw;
-  width: 75%;
-  height: 40%; 
-  border-style: dotted;
-  background-color: var(--accentTwo);
-  border-radius: 20px;
-  overflow: hidden;
-  position: relative;
-  display: inline-grid;
-}
+.aiTrainingWrapper {
 
-.fileUploadWindow img {
-  max-width: 40%;
-  max-height: 40%;
-  display: block;
-  margin: auto;
-}
-
-.uploadText {
-
-  position: absolute;
-  bottom: 15%; 
-  left: 50%;
-  transform: translateX(-50%);
-  color: #131313; 
-  font-size: 40px; 
-  font-family: Calibri;
-
-}
-
-.uploadedDocWindow {
-
-  width: 75%;
-  height: 40%;
-  border-radius: 20px;
-  background-color: #C2C2CC;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-
-.uploadedText {
-
-  padding-top: 1vw;
-  text-align: center; 
-  font-size: 150%;
-  font-weight: bold;
-  font-family: Calibri;
-}
-
-.uploadedDocs {
-
-  margin: 0;
-  padding-left: 2vw;
-  font-size: 150%;
-  font-family: Calibri;
-}
-
-.innerWindow {
-
-  flex-wrap: wrap;
   display: flex;
   justify-content: center;
-  position: relative;
-  bottom: 0;
-  background-color: none;
-  width: 75%;
+  align-items: center;
   height: 100%;
+  width: 100%;
+
 }
+
+.fileUploadWrapper {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 55%;
+  width: 70%;
+  background: var(--secondaryColor);
+  border-radius: 30px;
+  margin-bottom: 10%;
+  gap: 2%;
+
+}
+
+.innerUploadWrapper{
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6%;
+  height: 80%;
+  width: 40%;
+  background: var(--mainColor);
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.innerUploadWrapper:hover{
+
+  border: 1px solid black;
+
+}
+
+.uploadImg{
+
+  max-height: 30%;
+  width: auto;
+
+}
+
+.instructionText{
+
+  font-size: 2vh;
+  font-family: FranieRegular;
+  color: var(--textColor);
+
+}
+
+.instructionText.Two{
+
+  font-size: 1.7vh;
+  font-family: FranieRegular;
+  color: var(--textColor);
+}
+
+
+.browse{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35%;
+  height: 12%;
+  border-radius: 5px;
+  font-family: FranieRegular;
+  font-size: 2.2vh;
+  border: 1px solid black;
+  background: var(--mainAccentColor);
+  color: var(--textColor);
+
+}
+
+.uploadedFilesAndButtons{
+
+  display: flex;
+  flex-direction: column;
+  height: 80%;
+  width: 50%;
+
+}
+
+.uploadedFiles {
+
+  display: flex;
+  flex-direction: column;
+  gap: 5%;
+  height: 85%;
+  width: 100%;
+  overflow-y: auto; 
+
+}
+
+.uploadedFileInstance {
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 3%;
+  gap: 3%;
+  width: 100%;
+  min-height: 15%;
+  max-height: 15%;
+  background: var(--mainColor);
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.fileInstanceImgTxt {
+
+  max-height: 75%;
+  width: auto;
+
+}
+
+.fileInstanceImgX {
+
+  max-height: 100%;
+  max-width: 50%;
+  width: auto;
+
+}
+
+.fileName{
+
+  display: flex;
+  width: 75%;
+  font-family: FranieRegular;
+  padding-top: 1%;
+  font-size: 1.6vh;
+  pointer-events: none;
+
+}
+
+.deleteFileButton{
+
+  max-height: 100%;
+  max-width: 15%;
+  border: none;
+  outline: none;
+  background: none;
+
+
+}
+
+.uploadAndTrainButtons{
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 5%;
+  height: 15%;
+  width: 100%;
+
+}
+
+#UploadData{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60%;
+  width: 35%;
+  padding-top: .5%;
+  font-family: FranieRegular;
+  font-size: 1.5vh;
+  border: none;
+  border-radius: 15px;
+  background: var(--mainColor);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+#TrainModel{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60%;
+  width: 35%;
+  padding-top: .5%;
+  font-family: FranieRegular;
+  font-size: 1.5vh;
+  border: none;
+  border-radius: 15px;
+  background: var(--mainColor);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
 
 /* Account Creation Page */
 

@@ -17,14 +17,18 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-const fileUploadWindow = document.querySelector('.fileUploadWindow');
-const uploadedDocsList = document.querySelector('.uploadedDocs');
+/* AI Training Page */
+const fileUploadWindow = document.querySelector('.innerUploadWrapper');
+const uploadedDocsList = document.querySelector('.uploadedFiles');
+/* Account Creation Page */
 const accPageCheck = document.getElementById('accPage');
 const LOButton = document.getElementById('LOButton');
+/* Content Generation Page */
 const genButtonID = document.getElementById('genButtonID');
 const historyContentWindow = document.querySelector('.historyContentWindow');
 const historyInstance = document.createElement('div');
 const contentWindow = document.querySelector('.contentGenWindow');
+
 var ACUserOption = 1; // 1 = Sign In & 2 = Sign Up
 
 auth.onAuthStateChanged((user) => {
@@ -35,8 +39,8 @@ auth.onAuthStateChanged((user) => {
         }
         if (contentWindow){
             callUpload();
+            loadHistoryButtons(); 
         }
-        loadHistoryButtons();
         setEmailOnPage();
     } else {
         console.log("No user signed in");
@@ -51,89 +55,7 @@ function setEmailOnPage() {
 
 }
 
-if (fileUploadWindow) {
-    fileUploadWindow.addEventListener('dragover', (event) => {
-        event.preventDefault();
-        fileUploadWindow.classList.add('dragover');
-    });
-
-    fileUploadWindow.addEventListener('dragleave', () => {
-        fileUploadWindow.classList.remove('dragover');
-    });
-
-    fileUploadWindow.addEventListener('drop', (event) => {
-        event.preventDefault();
-        fileUploadWindow.classList.remove('dragover');
-
-        const files = event.dataTransfer.files;
-        fileProcessing(files);
-    });
-
-    fileUploadWindow.addEventListener('click', () => {
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.accept = '.txt';
-        fileInput.multiple = true;
-
-        fileInput.click();
-
-        fileInput.addEventListener('change', (event) => {
-            const files = event.target.files;
-            fileProcessing(files);
-        });
-    });
-
-}
-
-if(accPageCheck){
-
-    const signInButton = document.getElementById('signInBtn');
-    const signUpButton = document.getElementById('signUpBtn');
-    const ACSubmit = document.getElementById('ACSubmit');
-    
-    document.getElementById('userSubmitForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const email = document.getElementById('userEmail').value;
-        const password = document.getElementById('userPassword').value;
-        if (ACUserOption == 1){
-            handleSignIn(email, password);
-        } else {
-            handleSignUp(email, password);
-        }
-        
-    }, false);
-
-    signInButton.addEventListener('click', function() {
-
-        signInButton.style.color = 'var(--textColor)';
-        signInButton.style.borderBottom = '5px solid var(--textColor)';
-        signUpButton.style.color = 'var(--deselectedColor)';
-        signUpButton.style.borderBottom = '5px solid var(--deselectedColor)';
-        ACUserOption = 1;
-
-    });
-
-    signUpButton.addEventListener('click', function() {
-        
-        signUpButton.style.color = 'var(--textColor)';
-        signUpButton.style.borderBottom = '5px solid var(--textColor)';
-        signInButton.style.color = 'var(--deselectedColor)';
-        signInButton.style.borderBottom = '5px solid var(--deselectedColor)';
-        ACUserOption = 0;
-    
-    });
-}
-
-if(LOButton){
-    LOButton.addEventListener('click', function() {
-        signOut(auth).then(() => {
-            console.log('User signed out.');
-            window.location.href = '/'
-        }).catch((error) => {
-            console.error('Signout Error', error.code, error.message);
-        });
-    }, false);
-}
+/* Content Generation Page */
 
 function callUpload() {
     if(contentWindow){
@@ -192,6 +114,41 @@ function createHistoryButton(title, content) {
     historyContentWindow.appendChild(historyButton);
 }
 
+/* AI Training Page */
+
+if (fileUploadWindow) {
+    fileUploadWindow.addEventListener('dragover', (event) => {
+        event.preventDefault();
+        fileUploadWindow.classList.add('dragover');
+    });
+
+    fileUploadWindow.addEventListener('dragleave', () => {
+        fileUploadWindow.classList.remove('dragover');
+    });
+
+    fileUploadWindow.addEventListener('drop', (event) => {
+        event.preventDefault();
+        fileUploadWindow.classList.remove('dragover');
+
+        const files = event.dataTransfer.files;
+        fileProcessing(files);
+    });
+
+    fileUploadWindow.addEventListener('click', () => {
+        const fileInput = document.createElement('input');
+        fileInput.type = 'file';
+        fileInput.accept = '.txt';
+        fileInput.multiple = true;
+
+        fileInput.click();
+
+        fileInput.addEventListener('change', (event) => {
+            const files = event.target.files;
+            fileProcessing(files);
+        });
+    });
+
+}
 
 function fileProcessing(files) {
     for (const file of files) {
@@ -208,8 +165,9 @@ function readAndUploadFile(file) {
 
     reader.onload = function (e) {
         const fileContent = e.target.result;
-        
-        const title = extractTitle(fileContent);
+        let title = file.name;
+        const dotIndex = title.lastIndexOf('.');
+        title = title.substring(0, dotIndex) + title.substring(dotIndex).toLowerCase();
         fileUpload(title, fileContent);
     };
 
@@ -222,12 +180,58 @@ function extractTitle(fileContent) {
 }
 
 function fileUpload(title, fileContent) {
-    const listItem = document.createElement('li');
-    listItem.textContent = title;
-    uploadedDocsList.appendChild(listItem);
+    const uploadedFileInstance = document.createElement('div');
+    uploadedFileInstance.classList.add('uploadedFileInstance');
 
-    uploadToFirebase(title, fileContent);
+    const img = document.createElement('img');
+    img.setAttribute('src', "./static/images/textFile.png");
+    img.classList.add('fileInstanceImgTxt');
+    uploadedFileInstance.appendChild(img);
+
+    const fileNameSpan = document.createElement('span');
+    fileNameSpan.textContent = title;
+    fileNameSpan.classList.add('fileName');
+    uploadedFileInstance.appendChild(fileNameSpan);
+
+    const deleteButton = document.createElement('button');
+    deleteButton.classList.add('deleteFileButton');
+    deleteButton.addEventListener('click', function() {
+        uploadedDocsList.removeChild(uploadedFileInstance);
+    });
+    
+    const deleteImg = document.createElement('img');
+    deleteImg.setAttribute('src', "./static/images/redx.png");
+    deleteImg.classList.add('fileInstanceImgX');
+    deleteButton.appendChild(deleteImg);
+
+    uploadedFileInstance.appendChild(deleteButton);
+
+    uploadedDocsList.appendChild(uploadedFileInstance);
+
+    uploadedFileInstance.setAttribute('fileContent', fileContent);
+
+    /* uploadToFirebase(title, fileContent); */
 }
+
+function uploadAllFilesToFirebase() {
+
+    const uploadedFileInstances = document.querySelectorAll('.uploadedFileInstance');
+    uploadedFileInstances.forEach(fileInstance => {
+
+        const title = fileInstance.querySelector('.fileName').textContent;
+        const fileContent = fileInstance.getAttribute('fileContent');
+        
+        uploadToFirebase(title, fileContent)
+            .then(() => {
+                fileInstance.remove();
+            })
+            .catch(error => {
+                console.error('Error uploading file:', error);
+            });
+    });
+
+}
+
 
 async function uploadToFirebase(title, fileContent) {
 
@@ -245,46 +249,19 @@ async function uploadToFirebase(title, fileContent) {
     }
 }
 
-
-
-function handleSignUp() {
-    const email = document.getElementById('userEmail').value;
-    const password = document.getElementById('userPassword').value;
-    createUserWithEmailAndPassword(auth, email, password)
-        .then(userCredential => {
-            console.log('Signup successful', userCredential.user);
-        })
-        .catch(error => {
-            console.error('Signup failed', error.code, error.message);
-        });
-}
-
-function handleSignIn() {
-
-    const email = document.getElementById('userEmail').value;
-    const password = document.getElementById('userPassword').value;
-    signInWithEmailAndPassword(auth, email, password)
-        .then(userCredential => {
-            console.log('Signin successful', userCredential.user);
-            window.location.href = '/content-generation';
-        })
-        .catch(error => {
-            console.error('Signin failed', error.code, error.message);
-        });
-}
-
 const uploadDataButton = document.getElementById('UploadData');
 if (uploadDataButton) {
     uploadDataButton.addEventListener('click', () => {
-        const user = auth.currentUser; // Ensure you get the current user here
-        if (user) { // Check if user exists
+        const user = auth.currentUser; 
+        if (user) {
+            uploadAllFilesToFirebase();
             console.log("Upload Data button clicked");
             fetch('/run-data-conversion', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ user_id: user.uid })  // Now 'user' should be defined
+                body: JSON.stringify({ user_id: user.uid }) 
             })
             .then(response => response.json())
             .then(data => {
@@ -294,6 +271,8 @@ if (uploadDataButton) {
             .catch(error => {
                 console.error('Error starting data conversion:', error);
             });
+
+            
         } else {
             console.log("No user signed in");
             alert("Please sign in to upload data");
@@ -328,6 +307,86 @@ if (trainModelButton) {
             alert("Please sign in to start model training");
         }
     });
+}
+
+
+/* Account Creation Page */
+
+if(accPageCheck){
+
+    const signInButton = document.getElementById('signInBtn');
+    const signUpButton = document.getElementById('signUpBtn');
+    const ACSubmit = document.getElementById('ACSubmit');
+    
+    document.getElementById('userSubmitForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const email = document.getElementById('userEmail').value;
+        const password = document.getElementById('userPassword').value;
+        if (ACUserOption == 1){
+            handleSignIn(email, password);
+        } else {
+            handleSignUp(email, password);
+        }
+        
+    }, false);
+
+    signInButton.addEventListener('click', function() {
+
+        signInButton.style.color = 'var(--textColor)';
+        signInButton.style.borderBottom = '5px solid var(--textColor)';
+        signUpButton.style.color = 'var(--deselectedColor)';
+        signUpButton.style.borderBottom = '5px solid var(--deselectedColor)';
+        ACUserOption = 1;
+
+    });
+
+    signUpButton.addEventListener('click', function() {
+        
+        signUpButton.style.color = 'var(--textColor)';
+        signUpButton.style.borderBottom = '5px solid var(--textColor)';
+        signInButton.style.color = 'var(--deselectedColor)';
+        signInButton.style.borderBottom = '5px solid var(--deselectedColor)';
+        ACUserOption = 0;
+    
+    });
+}
+
+if(LOButton){
+    LOButton.addEventListener('click', function() {
+        signOut(auth).then(() => {
+            console.log('User signed out.');
+            window.location.href = '/'
+        }).catch((error) => {
+            console.error('Signout Error', error.code, error.message);
+        });
+    }, false);
+}
+
+
+function handleSignUp() {
+    const email = document.getElementById('userEmail').value;
+    const password = document.getElementById('userPassword').value;
+    createUserWithEmailAndPassword(auth, email, password)
+        .then(userCredential => {
+            console.log('Signup successful', userCredential.user);
+        })
+        .catch(error => {
+            console.error('Signup failed', error.code, error.message);
+        });
+}
+
+function handleSignIn() {
+
+    const email = document.getElementById('userEmail').value;
+    const password = document.getElementById('userPassword').value;
+    signInWithEmailAndPassword(auth, email, password)
+        .then(userCredential => {
+            console.log('Signin successful', userCredential.user);
+            window.location.href = '/content-generation';
+        })
+        .catch(error => {
+            console.error('Signin failed', error.code, error.message);
+        });
 }
 
 
