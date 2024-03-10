@@ -409,14 +409,15 @@ pre {
   width: 100%;
   border-radius: 10px;
   margin-top: 5%;
-  gap: 1%;
+  gap: 2%;
 
 }
 
 .historyInstance {
+  
   display: flex;
   align-items: center;
-  padding: 2%;
+  padding: 5%;
   height: 8%;
   width: 90%;
   border-radius: 20px;
@@ -424,11 +425,22 @@ pre {
   color: var(--textColor);
   font-family: FranieRegular;
   background: var(--secondaryColor);
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis; /* Use ellipsis to indicate text overflow */
+  border: none;
+
 }
 
+.historyInstance:hover {
+  background: var(--mainAccentColor);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.innerHistorySpan {
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+
+}
 
 /* Includes Content related to AITraining Page */
 

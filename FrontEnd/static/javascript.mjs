@@ -140,7 +140,6 @@ function callUpload() {
 async function uploadHistory(title, fileContent) {
 
     var user = auth.currentUser;
-    console.log(user);
     if (user) {
         await setDoc(doc(db, 'users', user.uid, 'history', title), {
             title: title,
@@ -162,22 +161,29 @@ async function loadHistoryButtons() {
         
         querySnapshot.forEach(doc => {
             const title = doc.data().title;
-            createHistoryButton(title);
+            const content = doc.data().content;
+            createHistoryButton(title, content);
         });
     } else {
         console.error('No user is signed in to load history');
     }
 }
 
-
-function createHistoryButton(title) {
+function createHistoryButton(title, content) {
     const historyButton = document.createElement('button');
-    historyButton.textContent = title;
+    const buttonText = document.createElement('span');
+
+    buttonText.textContent = title;
+    buttonText.classList.add('innerHistorySpan'); 
+    historyButton.appendChild(buttonText); 
     historyButton.classList.add('historyInstance');
+
     historyButton.addEventListener('click', () => {
+        document.getElementsByTagName('pre')[0].innerHTML = content;
     });
     historyContentWindow.appendChild(historyButton);
 }
+
 
 function fileProcessing(files) {
     for (const file of files) {
