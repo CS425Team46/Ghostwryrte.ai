@@ -23,7 +23,7 @@
         <div class="navigationWrapper">
             <div class="userInformationWrapper">
                 <div class="profilePicture"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/emptyProfile.png') }}" class="profileImg"></div>
-                <div class="userEmail">userEmail@example.com</div>
+                <div class="userEmail" id="emailContainer"></div>
             </div>
             <button class="navigationButton" style="background: var(--mainColor); box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/ContentGeneration.png') }}" class="barImg"><a href="{{ url_for('content_generation') }}"> Content Generation</a></button>
             <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/StyleAndFormatting.png') }}" class="barImg"><a href="{{ url_for('styling_and_format') }}"> Styling & Format</a></button>

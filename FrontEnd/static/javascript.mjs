@@ -37,11 +37,19 @@ auth.onAuthStateChanged((user) => {
             callUpload();
         }
         loadHistoryButtons();
+        setEmailOnPage();
     } else {
         console.log("No user signed in");
     }
 });
 
+function setEmailOnPage() {
+
+    const user = auth.currentUser;
+    var emailContainer = document.getElementById('emailContainer');
+    emailContainer.textContent = user.email;
+
+}
 
 if (fileUploadWindow) {
     fileUploadWindow.addEventListener('dragover', (event) => {
@@ -97,20 +105,20 @@ if(accPageCheck){
 
     signInButton.addEventListener('click', function() {
 
-        signInButton.style.color = 'var(--textAndAccentFour)';
-        signInButton.style.borderBottom = '3px solid var(--textAndAccentFour)';
+        signInButton.style.color = 'var(--textColor)';
+        signInButton.style.borderBottom = '5px solid var(--textColor)';
         signUpButton.style.color = 'var(--deselectedColor)';
-        signUpButton.style.borderBottom = '3px solid var(--deselectedColor)';
+        signUpButton.style.borderBottom = '5px solid var(--deselectedColor)';
         ACUserOption = 1;
 
     });
 
     signUpButton.addEventListener('click', function() {
         
-        signUpButton.style.color = 'var(--textAndAccentFour)';
-        signUpButton.style.borderBottom = '3px solid var(--textAndAccentFour)';
+        signUpButton.style.color = 'var(--textColor)';
+        signUpButton.style.borderBottom = '5px solid var(--textColor)';
         signInButton.style.color = 'var(--deselectedColor)';
-        signInButton.style.borderBottom = '3px solid var(--deselectedColor)';
+        signInButton.style.borderBottom = '5px solid var(--deselectedColor)';
         ACUserOption = 0;
     
     });
