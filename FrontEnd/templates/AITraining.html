@@ -25,11 +25,11 @@
                 <div class="profilePicture"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/emptyProfile.png') }}" class="profileImg"></div>
                 <div class="userEmail" id="emailContainer"></div>
             </div>
-            <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/ContentGeneration.png') }}" class="barImg"><a href="{{ url_for('content_generation') }}"> Content Generation</a></button>
-            <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/StyleAndFormatting.png') }}" class="barImg"><a href="{{ url_for('styling_and_format') }}"> Styling & Format</a></button>
-            <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AudienceInsights.png') }}" class="barImg"><a href="#"> Audience Insights</a></button>
-            <button class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/Templates.png') }}" class="barImg"><a href="#"> Templates</a></button>
-            <button class="navigationButton" style="background: var(--mainColor); box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AITraining.png') }}" class="barImg"><a href="{{ url_for('ai_training') }}"> AI Training</a></button>
+            <a href="{{ url_for('content_generation') }}" class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/ContentGeneration.png') }}" class="barImg">Content Generation</a>
+            <a href="{{ url_for('styling_and_format') }}" class="navigationButton" id="styleAF"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/StyleAndFormatting.png') }}" class="barImg">Styling & Format</a>
+            <a href="#" class="navigationButton" id=""><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AudienceInsights.png') }}" class="barImg">Audience Insights</a>
+            <a href="#" class="navigationButton" id=""><img style="vertical-align:middle" src="{{ url_for('static', filename='images/Templates.png') }}" class="barImg">Templates</a>
+            <a href="{{ url_for('ai_training') }}" class="navigationButton" id="aiTrain"style="background: var(--mainColor); box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AITraining.png') }}" class="barImg">AI Training</a>
         </div>
         <div class="logOutWrapper">
             <button type="button" id="LOButton" class="logOut"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/doorIcon.png') }}" class="logOutImg">Log out</button>

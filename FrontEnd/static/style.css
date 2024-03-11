@@ -8,11 +8,14 @@
 
 :root {
 
+  transition: all 0.1s;
+
   --accentTwo: #202020; /* Main Content window and Query Box*/
   --textAndAccentFour: #eaeaea;
   --deselectedColor: #a8a6a6;
   --loginInputBox: #c5c5c5;
 
+  --offWhite: #f1f1f1;
   --mainColor: #ffffff;
   --secondaryColor: #F0F0F0;
   --secondaryAccent: #DEDEDE;
@@ -157,6 +160,7 @@ pre {
 .navigationButton:hover {
   background: var(--mainAccentColor);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
 }
 
 .logOutWrapper {
@@ -196,6 +200,7 @@ pre {
 .logOut:hover {
   background: var(--mainAccentColor);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
 }
 
 .logOutImg{
@@ -363,6 +368,7 @@ pre {
 .genButton:hover {
 
   outline: auto;
+  cursor: pointer;
 
 }
 
@@ -428,6 +434,7 @@ pre {
 .historyInstance:hover {
   background: var(--mainAccentColor);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
 }
 
 .innerHistorySpan {
@@ -482,6 +489,7 @@ pre {
 .innerUploadWrapper:hover{
 
   border: 1px solid black;
+  cursor: pointer;
 
 }
 
@@ -596,6 +604,12 @@ pre {
 
 }
 
+.deleteFileButton:hover{
+
+  cursor: pointer;
+
+}
+
 .uploadAndTrainButtons{
 
   display: flex;
@@ -628,6 +642,7 @@ pre {
 
   background: var(--mainAccentColor);
   border: 1px solid black;
+  cursor: pointer;
 
 }
 
@@ -658,6 +673,7 @@ pre {
 
   background: var(--mainAccentColor);
   border: 1px solid black;
+  cursor: pointer;
 
 }
 
