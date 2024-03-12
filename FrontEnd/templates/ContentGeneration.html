@@ -40,33 +40,35 @@
     <div class="mainContentWrapper">
 
         <div class="mainContentWindow">
-            <div class="mainWindowColumn">
-                <div class="titleBar">
-                    <input placeholder="Untitled Document" class="titleText"/>
-                </div>
-                <div class="generationAndHistoryWrapper">
-                    <div class="contentGenerationWrapper">
-                        <div class="contentGenWindow">
-                            <pre>{{ ai_response }}</pre>
+                    <div class="mainWindowColumn">
+                        <div class="titleBar">
+                            <input placeholder="Untitled Document" class="titleText"/>
                         </div>
-                        <div class="queryWrapper">
-                            <form id="generateForm" method="post" action="{{ url_for('generate_content') }}" class="bottomRowInnerWrapper">
-                                <input type="hidden" name="user_id" id="formUserId"> 
-                                <textarea name="user_prompt" class="queryBox" placeholder="Enter prompt..."></textarea>
-                                <button type="submit" class="genButton" id="genButtonID"><img src="{{ url_for('static', filename='images/upArrow.png') }}" class="genImg"></button>
-                            </form>
+                        <div class="generationAndHistoryWrapper">
+                            <div class="contentGenerationWrapper">
+                                <div class="contentGenWindow">
+                                    <pre>{{ ai_response }}</pre>
+                                </div>
+                                <div class="queryWrapper">
+                                    <form id="generateForm" method="post" action="{{ url_for('generate_content') }}" class="bottomRowInnerWrapper">
+                                        <input type="hidden" name="user_id" id="formUserId"> 
+                                        <textarea name="user_prompt" class="queryBox" placeholder="Enter prompt..."></textarea>
+                                        <div class="queryButtonWrapper">
+                                            <button class="copyButton"><img src="{{ url_for('static', filename='images/clipboard.png') }}" class="genImg" id="copyImg"></button>
+                                            <button type="submit" class="genButton" id="genButtonID"><img src="{{ url_for('static', filename='images/upArrow.png') }}" class="genImg"></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            
+                            <div class="historyWrapper">
+                                <div class="historyID">History</div>
+                                <div class="historyContentWindow">
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="historyWrapper">
-                        <div class="historyID">History</div>
-                        <div class="historyContentWindow">
-                        </div>
-                    </div>
                 </div>
-            </div>
-        </div>
-                <!-- <button type="submit" class="genButton" id="genButton"><img src="{{ url_for('static', filename='images/clipboard.png') }}" class="genImg"></button> -->
             </div>
         </div>
     </div>

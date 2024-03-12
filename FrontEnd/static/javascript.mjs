@@ -28,6 +28,7 @@ const genButtonID = document.getElementById('genButtonID');
 const historyContentWindow = document.querySelector('.historyContentWindow');
 const historyInstance = document.createElement('div');
 const contentWindow = document.querySelector('.contentGenWindow');
+const copyButton = document.querySelector('.copyButton');
 
 var ACUserOption = 1; // 1 = Sign In & 2 = Sign Up
 
@@ -40,6 +41,7 @@ auth.onAuthStateChanged((user) => {
         if (contentWindow){
             callUpload();
             loadHistoryButtons(); 
+            checkForContent();
         }
         setEmailOnPage();
     } else {
@@ -56,6 +58,60 @@ function setEmailOnPage() {
 }
 
 /* Content Generation Page */
+
+if (contentWindow) {
+    document.querySelector('.copyButton').addEventListener('click', (event) => {
+        event.preventDefault();
+        var content = document.querySelector('pre'); 
+        
+        var range = document.createRange();
+        range.selectNodeContents(content);
+        
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand('copy');
+        selection.removeAllRanges();
+    
+        var img = document.getElementById('copyImg');
+        img.setAttribute('src', "./static/images/checkmark.svg");
+        
+        setTimeout(() => {
+            img.setAttribute('src', "./static/images/clipboard.png");
+        }, 1000); 
+    });
+
+    document.querySelector('.queryBox').addEventListener('input', handlePromptChange);
+    function handlePromptChange() {
+        checkForContent(); 
+    }
+}
+
+
+function checkForContent() {
+    if (contentWindow) {
+        var generatedContent = document.getElementsByTagName('pre')[0].innerHTML;
+        var promptContent = document.querySelector('.queryBox').value.trim(); 
+        
+        if(generatedContent) {
+            copyButton.style.visibility = 'visible';
+            copyButton.style.pointerEvents = 'all';
+        } else {
+            copyButton.style.visibility = 'hidden';
+            copyButton.style.pointerEvents = 'none';
+        }
+        if(promptContent) { 
+            genButtonID.style.pointerEvents = 'all';
+            genButtonID.style.background = "var(--mainAccentColor)";
+            genButtonID.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.4)";
+        } else {
+            genButtonID.style.pointerEvents = 'none';
+            genButtonID.style.background = "var(--secondaryColor)";
+            genButtonID.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.2)";
+        }        
+    }
+}
+
 
 function callUpload() {
     if(contentWindow){
@@ -110,6 +166,7 @@ function createHistoryButton(title, content) {
 
     historyButton.addEventListener('click', () => {
         document.getElementsByTagName('pre')[0].innerHTML = content;
+        checkForContent();
     });
     historyContentWindow.appendChild(historyButton);
 }
