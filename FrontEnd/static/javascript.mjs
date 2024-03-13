@@ -212,10 +212,15 @@ function fileUpload(title, fileContent) {
 
 }
 
-// Generate a session ID using a timestamp (or any other unique approach you prefer)
 function generateSessionId() {
     return new Date().getTime().toString();  // Convert time to string to use as a session ID
 }
+
+function extractFirstSentence(content) {
+    const matches = content.match(/(.*?[.?!])(\s|$)/);
+    return matches ? matches[1] : content;
+}
+
 
 function uploadAllFilesToFirebase(session_id) {
     return new Promise((resolve, reject) => {
@@ -223,8 +228,8 @@ function uploadAllFilesToFirebase(session_id) {
         let uploadPromises = [];
 
         uploadedFileInstances.forEach(fileInstance => {
-            const title = fileInstance.querySelector('.fileName').textContent;
             const fileContent = fileInstance.getAttribute('fileContent');
+            const title = extractFirstSentence(fileContent);  // Extract the first sentence to use as the title
 
             // Collect all upload promises
             uploadPromises.push(
@@ -239,6 +244,7 @@ function uploadAllFilesToFirebase(session_id) {
         Promise.all(uploadPromises).then(resolve).catch(reject);
     });
 }
+
 
 
 
