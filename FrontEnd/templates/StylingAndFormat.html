@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="workspaceTab">
+    <nav class="workspaceTab">
         <div class="navigationWrapper">
             <div class="userInformationWrapper">
                 <div class="profilePicture"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/emptyProfile.png') }}" class="profileImg"></div>
@@ -35,14 +35,13 @@
         <div class="logOutWrapper">
             <button type="button" id="LOButton" class="logOut"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/doorIcon.png') }}" class="logOutImg">Log out</button>
         </div>
-    </div>
+    </nav>
 
-    <div class="mainContentWrapper">
+    <main class="mainContentWrapper">
 
         <div class="mainContentWindow">
 
-
-	</div>
+        </main>
     <script type="module" src="{{ url_for('static', filename='javascript.mjs') }}" defer></script>
 </body>
 </html>

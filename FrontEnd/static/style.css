@@ -297,6 +297,10 @@ pre {
 
 }
 
+.contentGenWindow > pre {
+  width: 97%;
+}
+
 .contentGenWindow::-webkit-scrollbar {
   width: .3vw;
 }
@@ -393,6 +397,45 @@ pre {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
 }
 
+.loader {
+	width: 75%;
+	height: 75%;
+	border:solid 5px var(--textColor);
+	border-radius: 50%;
+	border-right-color: transparent;
+	border-bottom-color: transparent;
+	 -webkit-transition: all 0.5s ease-in;
+    -webkit-animation-name: rotate; 
+    -webkit-animation-duration: 1.0s; 
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    	 transition: all 0.5s ease-in;
+    animation-name: rotate; 
+    animation-duration: 1.0s; 
+    animation-iteration-count: infinite;
+    animation-timing-function: linear; 
+    display: none;
+    pointer-events: none;
+}
+
+@keyframes rotate {
+  from {
+      transform: rotate(0deg);
+  }
+  to { 
+      transform: rotate(360deg);
+  }
+}
+
+@-webkit-keyframes rotate {
+  from {
+      -webkit-transform: rotate(0deg);
+  }
+  to { 
+      -webkit-transform: rotate(360deg);
+  }
+}
+
 .copyButton {
 
   display: flex;
@@ -464,7 +507,7 @@ pre {
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 89%;
+  height: 83%;
   width: 100%;
   border-radius: 10px;
   margin-top: 5%;
@@ -540,6 +583,7 @@ pre {
   background: var(--mainColor);
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  -webkit-user-select: none;
 
 }
 
@@ -549,10 +593,8 @@ pre {
 }
 
 .uploadImg{
-
   max-height: 30%;
   width: auto;
-
 }
 
 .instructionText{
@@ -604,8 +646,27 @@ pre {
   height: 85%;
   width: 100%;
   overflow-y: auto; 
+  -webkit-user-select: none;
 
 }
+
+.uploadedFiles::-webkit-scrollbar {
+  width: .2vw;
+}
+
+.uploadedFiles::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: var(--secondaryColor);
+  border: 1px solid var(--offWhite);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+}
+        
+.uploadedFiles::-webkit-scrollbar-thumb {
+
+  border-radius: 8px;
+  background-color: var(--textColor);
+}
+
 
 .uploadedFileInstance {
 
@@ -614,12 +675,12 @@ pre {
   align-items: center;
   padding-left: 3%;
   gap: 3%;
-  width: 100%;
+  width: 98%;
   min-height: 15%;
   max-height: 15%;
   background: var(--mainColor);
   border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 
 }
 

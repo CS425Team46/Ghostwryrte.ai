@@ -19,7 +19,8 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="workspaceTab">
+    <nav class="workspaceTab">
+
         <div class="navigationWrapper">
             <div class="userInformationWrapper">
                 <div class="profilePicture"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/emptyProfile.png') }}" class="profileImg"></div>
@@ -32,12 +33,13 @@
             <a href="{{ url_for('ai_training') }}" class="navigationButton" id="aiTrain"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AITraining.png') }}" class="barImg">AI Training</a>
             
         </div>
+
         <div class="logOutWrapper">
             <button type="button" id="LOButton" class="logOut"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/doorIcon.png') }}" class="logOutImg">Log out</button>
         </div>
-    </div>
+    </nav>
 
-    <div class="mainContentWrapper">
+    <main class="mainContentWrapper">
 
         <div class="mainContentWindow">
                     <div class="mainWindowColumn">
@@ -55,7 +57,7 @@
                                         <textarea name="user_prompt" class="queryBox" placeholder="Enter prompt..."></textarea>
                                         <div class="queryButtonWrapper">
                                             <button class="copyButton"><img src="{{ url_for('static', filename='images/clipboard.png') }}" class="genImg" id="copyImg"></button>
-                                            <button type="submit" class="genButton" id="genButtonID"><img src="{{ url_for('static', filename='images/upArrow.png') }}" class="genImg"></button>
+                                            <button type="submit" class="genButton" id="genButtonID"><div class="loader" id="circleLoader"></div><img src="{{ url_for('static', filename='images/upArrow.png') }}" class="genImg" id="upArrowImg"></button>
                                         </div>
                                     </form>
                                 </div>
@@ -71,7 +73,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </main>
     <script type="module" src="{{ url_for('static', filename='javascript.mjs') }}" defer></script>
 </body>
 

@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <div class="workspaceTab">
+    <nav class="workspaceTab">
         <div class="navigationWrapper">
             <div class="userInformationWrapper">
                 <div class="profilePicture"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/emptyProfile.png') }}" class="profileImg"></div>
@@ -34,14 +34,14 @@
         <div class="logOutWrapper">
             <button type="button" id="LOButton" class="logOut"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/doorIcon.png') }}" class="logOutImg">Log out</button>
         </div>
-    </div>
+    </nav>
 
-    <div class="mainContentWrapper">
+    <main class="mainContentWrapper">
 
 		<div class="mainContentWindow">
             <div class="aiTrainingWrapper">
                 <div class="fileUploadWrapper">
-                    <div class="innerUploadWrapper">
+                    <div class="innerUploadWrapper" tabindex="0">
                         <img style="vertical-align: middle" src="{{ url_for('static', filename='images/CloudImg.jpg') }}" class="uploadImg">
                         <h1 class="instructionText">Drop your files here</h1>
                         <h1 class="instructionText Two">or</h1>
@@ -58,7 +58,7 @@
             </div>
 		</div>
 		</div>
-	</div>
+	</main>
     <script type="module" src="{{ url_for('static', filename='javascript.mjs') }}" defer></script>
 </body>
 

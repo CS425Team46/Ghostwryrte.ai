@@ -85,6 +85,14 @@ if (contentWindow) {
     function handlePromptChange() {
         checkForContent(); 
     }
+    genButtonID.addEventListener('click', function(event) {
+        const arrowImg = document.getElementById('upArrowImg');
+        const loader = document.getElementById('circleLoader');
+        genButtonID.style.pointerEvents = 'none';
+        arrowImg.style.display = 'none';
+        loader.style.display = 'block';
+    });
+
 }
 
 
@@ -174,6 +182,23 @@ function createHistoryButton(title, content) {
 /* AI Training Page */
 
 if (fileUploadWindow) {
+    
+    fileUploadWindow.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter' || event.keyCode === 13) {
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.accept = '.txt';
+            fileInput.multiple = true;
+
+            fileInput.click();
+
+            fileInput.addEventListener('change', (event) => {
+                const files = event.target.files;
+                fileProcessing(files);
+            });
+        }
+    });
+
     fileUploadWindow.addEventListener('dragover', (event) => {
         event.preventDefault();
         fileUploadWindow.classList.add('dragover');
