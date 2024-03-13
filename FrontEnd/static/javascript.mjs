@@ -225,6 +225,15 @@ function extractFirstSentence(content) {
 function uploadAllFilesToFirebase(session_id) {
     return new Promise((resolve, reject) => {
         const uploadedFileInstances = document.querySelectorAll('.uploadedFileInstance');
+        
+        // Check if there are fewer than minimum number of entries files
+        if (uploadedFileInstances.length < 10) {
+            console.error('Error: Less than 10 files. Aborting upload.');
+            alert('Please upload at least 10 files before submitting.');
+            reject('Not enough files');  
+            return;  // Stop execution of the function
+        }
+
         let uploadPromises = [];
 
         uploadedFileInstances.forEach(fileInstance => {
@@ -244,6 +253,7 @@ function uploadAllFilesToFirebase(session_id) {
         Promise.all(uploadPromises).then(resolve).catch(reject);
     });
 }
+
 
 
 
@@ -287,31 +297,33 @@ if (uploadDataButton) {
     uploadDataButton.addEventListener('click', () => {
         const user = auth.currentUser; 
         if (user) {
-            const session_id = generateSessionId(); // Ensure this matches the function you used to generate session ID
-            uploadAllFilesToFirebase(session_id).then(() => {
+            const session_id = generateSessionId();
+            uploadAllFilesToFirebase(session_id)
+            .then(() => {
                 console.log("Upload Data button clicked");
-                fetch('/run-data-conversion', {
+                return fetch('/run-data-conversion', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ user_id: user.uid, session_id: session_id }) 
-                })
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data.message);
-                    alert('Data conversion initiated.');
-                })
-                .catch(error => {
-                    console.error('Error starting data conversion:', error);
+                    body: JSON.stringify({ user_id: user.uid, session_id: session_id })
                 });
-            });     
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data.message);
+                alert('Data conversion initiated.');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
         } else {
             console.log("No user signed in");
             alert("Please sign in to upload data");
         }
     });
 }
+
 
 
 
