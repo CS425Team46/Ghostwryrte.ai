@@ -18,14 +18,16 @@ db = firestore.client()
 # Command line argument parsing
 parser = argparse.ArgumentParser(description='Convert user data to training format.')
 parser.add_argument('user_id', help='Firebase User ID')
+parser.add_argument('session_id', help='Session ID')
 args = parser.parse_args()
 
 user_id = args.user_id
+session_id = args.session_id
 # print(f'UID: {user_id}')
 # user_id = "lQvmWjID8DPO0vHn3elqoKsxpQJ3"
 
-def format_training_data_for_fine_tuning(user_id):
-    user_files_ref = db.collection('users').document(user_id).collection('files')
+def format_training_data_for_fine_tuning(user_id, session_id):
+    user_files_ref = db.collection('users').document(user_id).collection(f'files_{session_id}')
     docs = user_files_ref.stream()
     training_data = []
 
@@ -44,9 +46,9 @@ def format_training_data_for_fine_tuning(user_id):
 
     return training_data
 
-def save_training_data_to_file(user_id):
-    formatted_data = format_training_data_for_fine_tuning(user_id)
-    file_name = f'training_data.jsonl'
+def save_training_data_to_file(user_id, session_id):
+    formatted_data = format_training_data_for_fine_tuning(user_id, session_id)
+    file_name = f'training_data_{session_id}.jsonl'
     with open(file_name, 'w') as outfile:
         for item in formatted_data:
             json.dump(item, outfile)
@@ -78,15 +80,20 @@ if __name__ == '__main__':
     # Command line argument parsing
     parser = argparse.ArgumentParser(description='Convert user data to training format.')
     parser.add_argument('user_id', help='Firebase User ID')
+    parser.add_argument('session_id', help='Session ID')
     args = parser.parse_args()
 
     user_id = args.user_id
+    session_id = args.session_id
+
     print(f'UID: {user_id}')
+    print(f'session_id: {session_id}')
 
     # user_id = "lQvmWjID8DPO0vHn3elqoKsxpQJ3"
-    save_training_data_to_file(user_id)
+    save_training_data_to_file(user_id, session_id)
 
-    training_data_file = 'training_data.jsonl'  # Update with actual file path
+    training_data_file = f'training_data_{session_id}.jsonl'  # Correct formatting
+
     # upload_to_openai_if_enough_entries(training_data_file)
     file_id = upload_to_openai_if_enough_entries(training_data_file)
 

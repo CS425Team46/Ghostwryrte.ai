@@ -74,13 +74,14 @@ def account_creation():
 
 @app.route('/run-data-conversion', methods=['POST'])
 def run_data_conversion():
-    user_id = request.json.get('user_id')
-    # Check if user_id is not None before proceeding
-    if not user_id:
-        return jsonify({'message': 'No user ID provided'}), 400
-    # print(f'UID: {user_id}')
+    data = request.json
+    user_id = data.get('user_id')
+    session_id = data.get('session_id')
 
-    result = subprocess.run(['python3', 'Data/data_conversion.py', user_id], capture_output=True, text=True)
+    if not user_id or not session_id:
+        return jsonify({'message': 'No user ID or session ID provided'}), 400
+
+    result = subprocess.run(['python3', 'Data/data_conversion.py', user_id, session_id], capture_output=True, text=True)
     print("STDOUT:", result.stdout)
     print("STDERR:", result.stderr)
 

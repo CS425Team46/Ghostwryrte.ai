@@ -265,3 +265,34 @@
 2024-03-06 14:20:14,416 - INFO - Checking status of job ftjob-cCwR1BZcnySM8A8FKC1BSF3O: succeeded
 2024-03-06 14:20:14,416 - INFO - Job ftjob-cCwR1BZcnySM8A8FKC1BSF3O completed successfully. Model ID: ft:gpt-3.5-turbo-0125:personal::8ztuKIWK
 2024-03-06 14:20:14,560 - INFO - Updated Firestore with model ID ft:gpt-3.5-turbo-0125:personal::8ztuKIWK for user OWDgsuVdnHVTHnTavXc8MI86Bkh2
+2024-03-13 12:44:40,729 - INFO - HTTP Request: POST https://api.openai.com/v1/fine_tuning/jobs "HTTP/1.1 200 OK"
+2024-03-13 12:44:41,017 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-WBqvc4oBAHwuPRM6rNg35Z3W "HTTP/1.1 200 OK"
+2024-03-13 12:44:41,019 - INFO - Checking status of job ftjob-WBqvc4oBAHwuPRM6rNg35Z3W: validating_files
+2024-03-13 12:44:46,177 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-WBqvc4oBAHwuPRM6rNg35Z3W "HTTP/1.1 200 OK"
+2024-03-13 12:44:46,183 - INFO - Checking status of job ftjob-WBqvc4oBAHwuPRM6rNg35Z3W: validating_files
+2024-03-13 12:44:51,329 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-WBqvc4oBAHwuPRM6rNg35Z3W "HTTP/1.1 200 OK"
+2024-03-13 12:44:51,335 - INFO - Checking status of job ftjob-WBqvc4oBAHwuPRM6rNg35Z3W: validating_files
+2024-03-13 12:44:56,464 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-WBqvc4oBAHwuPRM6rNg35Z3W "HTTP/1.1 200 OK"
+2024-03-13 12:44:56,471 - INFO - Checking status of job ftjob-WBqvc4oBAHwuPRM6rNg35Z3W: validating_files
+2024-03-13 12:45:01,632 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-WBqvc4oBAHwuPRM6rNg35Z3W "HTTP/1.1 200 OK"
+2024-03-13 12:45:01,638 - INFO - Checking status of job ftjob-WBqvc4oBAHwuPRM6rNg35Z3W: validating_files
+2024-03-13 12:45:06,784 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-WBqvc4oBAHwuPRM6rNg35Z3W "HTTP/1.1 200 OK"
+2024-03-13 12:45:06,790 - INFO - Checking status of job ftjob-WBqvc4oBAHwuPRM6rNg35Z3W: running
+2024-03-13 12:45:11,915 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-WBqvc4oBAHwuPRM6rNg35Z3W "HTTP/1.1 200 OK"
+2024-03-13 12:45:11,917 - INFO - Checking status of job ftjob-WBqvc4oBAHwuPRM6rNg35Z3W: running
+2024-03-13 12:45:17,046 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-WBqvc4oBAHwuPRM6rNg35Z3W "HTTP/1.1 200 OK"
+2024-03-13 12:45:17,049 - INFO - Checking status of job ftjob-WBqvc4oBAHwuPRM6rNg35Z3W: running
+2024-03-13 12:45:22,180 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-WBqvc4oBAHwuPRM6rNg35Z3W "HTTP/1.1 200 OK"
+2024-03-13 12:45:22,185 - INFO - Checking status of job ftjob-WBqvc4oBAHwuPRM6rNg35Z3W: running
+2024-03-13 12:45:27,324 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-WBqvc4oBAHwuPRM6rNg35Z3W "HTTP/1.1 200 OK"
+2024-03-13 12:45:27,330 - INFO - Checking status of job ftjob-WBqvc4oBAHwuPRM6rNg35Z3W: running
+2024-03-13 12:45:32,470 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-WBqvc4oBAHwuPRM6rNg35Z3W "HTTP/1.1 200 OK"
+2024-03-13 12:45:32,474 - INFO - Checking status of job ftjob-WBqvc4oBAHwuPRM6rNg35Z3W: running
+2024-03-13 12:45:37,695 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-WBqvc4oBAHwuPRM6rNg35Z3W "HTTP/1.1 200 OK"
+2024-03-13 12:45:37,699 - INFO - Checking status of job ftjob-WBqvc4oBAHwuPRM6rNg35Z3W: running
+2024-03-13 12:45:42,825 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-WBqvc4oBAHwuPRM6rNg35Z3W "HTTP/1.1 200 OK"
+2024-03-13 12:45:42,835 - INFO - Checking status of job ftjob-WBqvc4oBAHwuPRM6rNg35Z3W: running
+2024-03-13 12:45:47,982 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-WBqvc4oBAHwuPRM6rNg35Z3W "HTTP/1.1 200 OK"
+2024-03-13 12:45:48,012 - INFO - Checking status of job ftjob-WBqvc4oBAHwuPRM6rNg35Z3W: running
+2024-03-13 12:45:53,153 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-WBqvc4oBAHwuPRM6rNg35Z3W "HTTP/1.1 200 OK"
+2024-03-13 12:45:53,159 - INFO - Checking status of job ftjob-WBqvc4oBAHwuPRM6rNg35Z3W: running

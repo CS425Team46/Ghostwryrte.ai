@@ -28,7 +28,6 @@ const genButtonID = document.getElementById('genButtonID');
 const historyContentWindow = document.querySelector('.historyContentWindow');
 const historyInstance = document.createElement('div');
 const contentWindow = document.querySelector('.contentGenWindow');
-const copyButton = document.querySelector('.copyButton');
 
 var ACUserOption = 1; // 1 = Sign In & 2 = Sign Up
 
@@ -41,7 +40,6 @@ auth.onAuthStateChanged((user) => {
         if (contentWindow){
             callUpload();
             loadHistoryButtons(); 
-            checkForContent();
         }
         setEmailOnPage();
     } else {
@@ -58,68 +56,6 @@ function setEmailOnPage() {
 }
 
 /* Content Generation Page */
-
-if (contentWindow) {
-    document.querySelector('.copyButton').addEventListener('click', (event) => {
-        event.preventDefault();
-        var content = document.querySelector('pre'); 
-        
-        var range = document.createRange();
-        range.selectNodeContents(content);
-        
-        var selection = window.getSelection();
-        selection.removeAllRanges();
-        selection.addRange(range);
-        document.execCommand('copy');
-        selection.removeAllRanges();
-    
-        var img = document.getElementById('copyImg');
-        img.setAttribute('src', "./static/images/checkmark.svg");
-        
-        setTimeout(() => {
-            img.setAttribute('src', "./static/images/clipboard.png");
-        }, 1000); 
-    });
-
-    document.querySelector('.queryBox').addEventListener('input', handlePromptChange);
-    function handlePromptChange() {
-        checkForContent(); 
-    }
-    genButtonID.addEventListener('click', function(event) {
-        const arrowImg = document.getElementById('upArrowImg');
-        const loader = document.getElementById('circleLoader');
-        genButtonID.style.pointerEvents = 'none';
-        arrowImg.style.display = 'none';
-        loader.style.display = 'block';
-    });
-
-}
-
-
-function checkForContent() {
-    if (contentWindow) {
-        var generatedContent = document.getElementsByTagName('pre')[0].innerHTML;
-        var promptContent = document.querySelector('.queryBox').value.trim(); 
-        
-        if(generatedContent) {
-            copyButton.style.visibility = 'visible';
-            copyButton.style.pointerEvents = 'all';
-        } else {
-            copyButton.style.visibility = 'hidden';
-            copyButton.style.pointerEvents = 'none';
-        }
-        if(promptContent) { 
-            genButtonID.style.pointerEvents = 'all';
-            genButtonID.style.background = "var(--mainAccentColor)";
-            genButtonID.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.4)";
-        } else {
-            genButtonID.style.pointerEvents = 'none';
-            genButtonID.style.background = "var(--secondaryColor)";
-            genButtonID.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.2)";
-        }        
-    }
-}
-
 
 function callUpload() {
     if(contentWindow){
@@ -174,7 +110,6 @@ function createHistoryButton(title, content) {
 
     historyButton.addEventListener('click', () => {
         document.getElementsByTagName('pre')[0].innerHTML = content;
-        checkForContent();
     });
     historyContentWindow.appendChild(historyButton);
 }
@@ -182,23 +117,6 @@ function createHistoryButton(title, content) {
 /* AI Training Page */
 
 if (fileUploadWindow) {
-    
-    fileUploadWindow.addEventListener('keydown', function(event) {
-        if (event.key === 'Enter' || event.keyCode === 13) {
-            const fileInput = document.createElement('input');
-            fileInput.type = 'file';
-            fileInput.accept = '.txt';
-            fileInput.multiple = true;
-
-            fileInput.click();
-
-            fileInput.addEventListener('change', (event) => {
-                const files = event.target.files;
-                fileProcessing(files);
-            });
-        }
-    });
-
     fileUploadWindow.addEventListener('dragover', (event) => {
         event.preventDefault();
         fileUploadWindow.classList.add('dragover');
@@ -292,75 +210,103 @@ function fileUpload(title, fileContent) {
 
     uploadedFileInstance.setAttribute('fileContent', fileContent);
 
-    /* uploadToFirebase(title, fileContent); */
 }
 
-function uploadAllFilesToFirebase() {
+// Generate a session ID using a timestamp (or any other unique approach you prefer)
+function generateSessionId() {
+    return new Date().getTime().toString();  // Convert time to string to use as a session ID
+}
 
-    const uploadedFileInstances = document.querySelectorAll('.uploadedFileInstance');
-    uploadedFileInstances.forEach(fileInstance => {
+function uploadAllFilesToFirebase(session_id) {
+    return new Promise((resolve, reject) => {
+        const uploadedFileInstances = document.querySelectorAll('.uploadedFileInstance');
+        let uploadPromises = [];
 
-        const title = fileInstance.querySelector('.fileName').textContent;
-        const fileContent = fileInstance.getAttribute('fileContent');
-        
-        uploadToFirebase(title, fileContent)
-            .then(() => {
-                fileInstance.remove();
-            })
-            .catch(error => {
-                console.error('Error uploading file:', error);
-            });
+        uploadedFileInstances.forEach(fileInstance => {
+            const title = fileInstance.querySelector('.fileName').textContent;
+            const fileContent = fileInstance.getAttribute('fileContent');
+
+            // Collect all upload promises
+            uploadPromises.push(
+                uploadToFirebase(title, fileContent, session_id)
+                .then(() => {
+                    fileInstance.remove(); // Remove the file instance from the UI after successful upload
+                })
+            );
+        });
+
+        // Wait for all uploads to complete
+        Promise.all(uploadPromises).then(resolve).catch(reject);
     });
-
 }
 
 
-async function uploadToFirebase(title, fileContent) {
 
+async function uploadToFirebase(title, fileContent, sessionId) {
     const app = initializeApp(firebaseConfig); 
     const db = getFirestore(app);
-
     const user = auth.currentUser;
+
     if (user) {
-        await setDoc(doc(db, 'users', user.uid, 'files', title), {
+        // Use the session ID to create a unique directory for the user's current session
+        await setDoc(doc(db, 'users', user.uid, `files_${sessionId}`, title), {
             Title: title,
             Content: fileContent,
-            });
+        });
     } else {
         console.error('No user is signed in to upload data');
     }
 }
+
+
+
+// async function uploadToFirebase(title, fileContent) {
+
+//     const app = initializeApp(firebaseConfig); 
+//     const db = getFirestore(app);
+
+//     const user = auth.currentUser;
+//     if (user) {
+//         await setDoc(doc(db, 'users', user.uid, 'files', title), {
+//             Title: title,
+//             Content: fileContent,
+//             });
+//     } else {
+//         console.error('No user is signed in to upload data');
+//     }
+// }
 
 const uploadDataButton = document.getElementById('UploadData');
 if (uploadDataButton) {
     uploadDataButton.addEventListener('click', () => {
         const user = auth.currentUser; 
         if (user) {
-            uploadAllFilesToFirebase();
-            console.log("Upload Data button clicked");
-            fetch('/run-data-conversion', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ user_id: user.uid }) 
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data.message);
-                alert('Data conversion initiated.');
-            })
-            .catch(error => {
-                console.error('Error starting data conversion:', error);
-            });
-
-            
+            const session_id = generateSessionId(); // Ensure this matches the function you used to generate session ID
+            uploadAllFilesToFirebase(session_id).then(() => {
+                console.log("Upload Data button clicked");
+                fetch('/run-data-conversion', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ user_id: user.uid, session_id: session_id }) 
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data.message);
+                    alert('Data conversion initiated.');
+                })
+                .catch(error => {
+                    console.error('Error starting data conversion:', error);
+                });
+            });     
         } else {
             console.log("No user signed in");
             alert("Please sign in to upload data");
         }
     });
 }
+
 
 
 const trainModelButton = document.getElementById('TrainModel');
