@@ -44,7 +44,9 @@ auth.onAuthStateChanged((user) => {
             loadHistoryButtons(); 
             checkForContent();
         }
-        setEmailOnPage();
+        if(!accPageCheck){
+            setEmailOnPage();
+        }
     } else {
         console.log("No user signed in");
     }
@@ -61,6 +63,7 @@ function setEmailOnPage() {
 /* Content Generation Page */
 
 if (contentWindow) {
+    
     document.querySelector('.copyButton').addEventListener('click', (event) => {
         event.preventDefault();
         var content = document.querySelector('pre'); 
@@ -490,18 +493,32 @@ if(LOButton){
     }, false);
 }
 
-
-function handleSignUp() {
-    const email = document.getElementById('userEmail').value;
-    const password = document.getElementById('userPassword').value;
+function handleSignUp(email, password) {
     createUserWithEmailAndPassword(auth, email, password)
         .then(userCredential => {
             console.log('Signup successful', userCredential.user);
+
+            const userData = {
+                email: userCredential.user.email,
+                model_id: '',
+                latest_training_file: '',
+                job_id: '',
+                created_at: serverTimestamp()
+            };
+
+            setDoc(doc(db, 'users', userCredential.user.uid), userData)
+                .then(() => {
+                    console.log('User data saved successfully');
+                })
+                .catch(error => {
+                    console.error('Error saving user data', error);
+                });
         })
         .catch(error => {
             console.error('Signup failed', error.code, error.message);
         });
 }
+
 
 function handleSignIn() {
 
