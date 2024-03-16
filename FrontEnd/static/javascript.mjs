@@ -443,44 +443,61 @@ if (trainModelButton) {
 
 /* Account Creation Page */
 
-if(accPageCheck){
-
+if (accPageCheck) {
     const signInButton = document.getElementById('signInBtn');
     const signUpButton = document.getElementById('signUpBtn');
     const ACSubmit = document.getElementById('ACSubmit');
-    
-    document.getElementById('userSubmitForm').addEventListener('submit', function(event) {
-        event.preventDefault();
+    var confirmPass = document.getElementById('confirmPassword');
+    var CPText = document.getElementById('CPText');
+    const signInAndUpWrapper = document.getElementById('SIAUW');
+
+    document.getElementById('userSubmitForm').addEventListener('submit', function (event) {
         const email = document.getElementById('userEmail').value;
         const password = document.getElementById('userPassword').value;
-        if (ACUserOption == 1){
+        event.preventDefault(); 
+        confirmPass.setCustomValidity("");
+        if (ACUserOption == 1) {
             handleSignIn(email, password);
         } else {
-            handleSignUp(email, password);
+            if (confirmPass.value != password) { // If the password doesnt match the typed confirm password, report message
+                confirmPass.setCustomValidity("Passwords don't match"); 
+                confirmPass.reportValidity(); 
+            } else {
+                handleSignUp(email, password);
+            }
         }
-        
-    }, false);
+    });
 
-    signInButton.addEventListener('click', function() {
+    confirmPass.addEventListener('input', function() {
+        confirmPass.setCustomValidity("");
+        confirmPass.reportValidity(); 
+    });
 
+    signInButton.addEventListener('click', function () {
         signInButton.style.color = 'var(--textColor)';
         signInButton.style.borderBottom = '5px solid var(--textColor)';
         signUpButton.style.color = 'var(--deselectedColor)';
         signUpButton.style.borderBottom = '5px solid var(--deselectedColor)';
+        confirmPass.style.display = 'none';
+        CPText.style.display = 'none';
+        signInAndUpWrapper.style.paddingBottom = '15%';
+/*      document.getElementById('userEmail').value = "";
+        document.getElementById('userPassword').value = ""; */
         ACUserOption = 1;
-
     });
 
-    signUpButton.addEventListener('click', function() {
-        
+    signUpButton.addEventListener('click', function () {
         signUpButton.style.color = 'var(--textColor)';
         signUpButton.style.borderBottom = '5px solid var(--textColor)';
         signInButton.style.color = 'var(--deselectedColor)';
         signInButton.style.borderBottom = '5px solid var(--deselectedColor)';
-        ACUserOption = 0;
-    
+        confirmPass.style.display = 'flex';
+        CPText.style.display = 'flex';
+        signInAndUpWrapper.style.paddingBottom = '8%';
+        ACUserOption = 2;
     });
 }
+
 
 if(LOButton){
     LOButton.addEventListener('click', function() {
@@ -521,7 +538,6 @@ function handleSignUp(email, password) {
 
 
 function handleSignIn() {
-
     const email = document.getElementById('userEmail').value;
     const password = document.getElementById('userPassword').value;
     signInWithEmailAndPassword(auth, email, password)

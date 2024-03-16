@@ -23,20 +23,26 @@
     
     <div class="AccCP" id="accPage">
         <div class="accountCreationWrapper">
-            <div class="actionSelector">
-                <button class="signInButton" id="signInBtn">Sign In</button>
-                <button class="signUpButton" id="signUpBtn">Sign Up</button>
+            <div class="actionWrapper">
+                <div class="actionSelector">
+                    <button class="signInButton" id="signInBtn">Sign In</button>
+                    <button class="signUpButton" id="signUpBtn">Sign Up</button>
+                </div>
             </div>
-
-            <div class="signInAndUpWrapper">
-                <form class="userInputAC" id="userSubmitForm">
-                    <div>Email Address</div> 
-                    <input class="loginInputBox" type="email" id="userEmail" name="email" required><br>
-                    Password 
-                    <input class="loginInputBox" type="password" id="userPassword" name="password" required><br>
-                    <button class="ACSubmitButton" type="submit" id="ACSubmit">Continue</button> 
-                </form>
+            <div class="outerSignInWrapper">
+                <div class="signInAndUpWrapper" id="SIAUW">
+                    <form class="userInputAC" id="userSubmitForm">
+                        <div class="loginText">Email Address</div> 
+                        <input class="loginInputBox" type="email" id="userEmail" name="email" required>
+                        <div class="loginText">Password</div> 
+                        <input class="loginInputBox" type="password" id="userPassword" name="password" required>
+                        <div class="loginText" id="CPText">Confirm Password </div>
+                        <input class="loginInputBox" type="password" id="confirmPassword" name="confirmPassword"><br>
+                        <button class="ACSubmitButton" type="submit" id="ACSubmit">Continue</button> 
+                    </form>
+                </div>
             </div>
+            
         </div>
     </div>
     <script type="module" src="{{ url_for('static', filename='javascript.mjs') }}" defer></script>

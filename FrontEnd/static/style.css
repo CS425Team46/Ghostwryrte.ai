@@ -76,7 +76,7 @@ pre {
   justify-content: center;
   width: 90%;
   height: 7%;
-  border-radius: 30px;
+  border-radius: 20px;
   background: var(--mainColor);
   margin-top: 8%;
   margin-bottom: 13%;
@@ -141,7 +141,7 @@ pre {
   width: 90%;
   height: 7%;
   padding-left: 5%;
-  border-radius: 30px;
+  border-radius: 15px;
   background: var(--secondaryColor);
   font-size: 1.5vh;
   resize: none;
@@ -157,6 +157,7 @@ pre {
   background: var(--mainAccentColor);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   cursor: pointer;
+  transition: all .25s ease;
 }
 
 .logOutWrapper {
@@ -187,7 +188,7 @@ pre {
   font-size: 2vh;
   border: none;
   background: none;
-  border-radius: 30px;
+  border-radius: 15px;
   margin-top: 5%;
 
   
@@ -197,6 +198,7 @@ pre {
   background: var(--mainAccentColor);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   cursor: pointer;
+  transition: all .25s ease;
 }
 
 .logOutImg{
@@ -337,7 +339,7 @@ pre {
   height: 70%;
   width: 90%;
   background-color: var(--mainColor);
-  border-radius: 40px;
+  border-radius: 25px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
 
@@ -382,7 +384,7 @@ pre {
   align-items: center;
   width: 3vw;
   height: 3vw;
-  border-radius: 20px;
+  border-radius: 10px;
   border: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 
@@ -391,6 +393,7 @@ pre {
 .genButton:hover {
   outline: auto;
   cursor: pointer;
+  transition: all .25s ease;
 }
 
 .genButton:active {
@@ -446,7 +449,7 @@ pre {
   align-items: center;
   width: 3vw;
   height: 3vw;
-  border-radius: 20px;
+  border-radius: 10px;
   border: none;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   visibility: hidden;
@@ -457,6 +460,7 @@ pre {
 .copyButton:hover {
   outline: auto;
   cursor: pointer;
+  transition: all .25s ease;
 }
 .copyButton:active {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
@@ -507,7 +511,7 @@ pre {
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 83%;
+  height: 83.7%;
   width: 100%;
   border-radius: 10px;
   margin-top: 5%;
@@ -522,7 +526,7 @@ pre {
   padding: 5%;
   height: 8%;
   width: 90%;
-  border-radius: 20px;
+  border-radius: 10px;
   font-size: 1.8vh;
   color: var(--textColor);
   font-family: FranieRegular;
@@ -535,6 +539,7 @@ pre {
   background: var(--mainAccentColor);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   cursor: pointer;
+  transition: all .25s ease;
 }
 
 .innerHistorySpan {
@@ -565,9 +570,10 @@ pre {
   height: 55%;
   width: 70%;
   background: var(--secondaryColor);
-  border-radius: 30px;
+  border-radius: 15px;
   margin-bottom: 10%;
   gap: 2%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
 }
 
@@ -581,7 +587,7 @@ pre {
   height: 80%;
   width: 40%;
   background: var(--mainColor);
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   -webkit-user-select: none;
 
@@ -590,6 +596,7 @@ pre {
 .innerUploadWrapper:hover{
   border: 1px solid black;
   cursor: pointer;
+  transition: all .25s ease;
 }
 
 .uploadImg{
@@ -679,7 +686,7 @@ pre {
   min-height: 15%;
   max-height: 15%;
   background: var(--mainColor);
-  border-radius: 20px;
+  border-radius: 10px;
   /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
 
 }
@@ -692,11 +699,11 @@ pre {
 }
 
 .fileInstanceImgX {
-
   max-height: 100%;
-  max-width: 50%;
+  max-width: 35%;
   width: auto;
-
+  padding-top: 5%;
+  margin-left: 3%;
 }
 
 .fileName{
@@ -746,7 +753,7 @@ pre {
   font-family: FranieRegular;
   font-size: 1.5vh;
   border: none;
-  border-radius: 15px;
+  border-radius: 10px;
   background: var(--mainColor);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
@@ -756,6 +763,7 @@ pre {
   background: var(--mainAccentColor);
   border: 1px solid black;
   cursor: pointer;
+  transition: all .25s ease;
 }
 
 #UploadData:active {
@@ -773,7 +781,7 @@ pre {
   font-family: FranieRegular;
   font-size: 1.5vh;
   border: none;
-  border-radius: 15px;
+  border-radius: 10px;
   background: var(--mainColor);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
@@ -783,6 +791,7 @@ pre {
   background: var(--mainAccentColor);
   border: 1px solid black;
   cursor: pointer;
+  transition: all .25s ease;
 }
 
 #TrainModel:active {
@@ -810,7 +819,17 @@ pre {
   width: 35%;
   height: 50%;
   background: var(--secondaryColor);
-  border-radius: 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.actionWrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30%;
+  width: 100%;  
+  
 }
 
 .actionSelector {
@@ -858,18 +877,33 @@ pre {
 .signUpButton:hover{
   cursor: pointer;
 }
-
+.outerSignInWrapper{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 70%;
+}
 .signInAndUpWrapper {
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 50%;
+  justify-content: center;
+  height: 100%;
   width: 72%;
   background: none;
+  padding-bottom: 15%;
 
 }
-
+#confirmPassword{
+  display: none;
+}
+#CPText{
+  display: none;
+}
+.loginText{
+  margin-top: 4%;
+}
 .userInputAC {
 
   display: flex;
@@ -888,7 +922,7 @@ pre {
   align-items: center;
   border: none;
   background: var(--loginInputBox);
-  border-radius: 10px;
+  border-radius: 8px;
   font-size: 1.3vh;
   padding-top: 2.5%;
   padding-bottom: 2.5%;
@@ -917,7 +951,7 @@ pre {
   height: 40%;
   font-size: 1.8vh;
   padding: 3%;
-  border-radius: 10px;
+  border-radius: 8px;
   margin-left: 30%;
 
 }
@@ -925,6 +959,7 @@ pre {
 .ACSubmitButton:hover{
   cursor: pointer;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: all .25s ease;
 }
 .ACSubmitButton:active{
   cursor: pointer;
