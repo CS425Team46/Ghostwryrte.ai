@@ -1,4 +1,4 @@
-altgraph @ file:///AppleInternal/Library/BuildRoots/860631e9-c1c5-11ee-98ee-b6ef2fd8d87b/Library/Caches/com.apple.xbs/Sources/python3/altgraph-0.17.2-py2.py3-none-any.whl
+altgraph==0.17.2
 annotated-types==0.6.0
 anyio==3.7.1
 appnope==0.1.4
@@ -37,7 +37,7 @@ firebase-admin==6.4.0
 Flask==3.0.0
 fonttools==4.43.1
 fqdn==1.5.1
-future @ file:///AppleInternal/Library/BuildRoots/860631e9-c1c5-11ee-98ee-b6ef2fd8d87b/Library/Caches/com.apple.xbs/Sources/python3/future-0.18.2-py3-none-any.whl
+future==0.18.2
 google-api-core==2.15.0
 google-api-python-client==2.115.0
 google-auth==2.27.0
@@ -80,7 +80,7 @@ jupyterlab==4.1.1
 jupyterlab_pygments==0.3.0
 jupyterlab_server==2.25.3
 kiwisolver==1.4.5
-macholib @ file:///AppleInternal/Library/BuildRoots/860631e9-c1c5-11ee-98ee-b6ef2fd8d87b/Library/Caches/com.apple.xbs/Sources/python3/macholib-1.15.2-py2.py3-none-any.whl
+macholib==1.15.2
 MarkupSafe==2.1.3
 matplotlib==3.8.0
 matplotlib-inline==0.1.6
@@ -132,7 +132,7 @@ rsa==4.9
 scikit-learn==1.3.2
 scipy==1.11.3
 Send2Trash==1.8.2
-six @ file:///AppleInternal/Library/BuildRoots/860631e9-c1c5-11ee-98ee-b6ef2fd8d87b/Library/Caches/com.apple.xbs/Sources/python3/six-1.15.0-py2.py3-none-any.whl
+six==1.15.0
 sniffio==1.3.0
 soupsieve==2.5
 stack-data==0.6.3
