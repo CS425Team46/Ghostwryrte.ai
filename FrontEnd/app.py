@@ -2,6 +2,7 @@ import json
 from flask import Flask, jsonify, render_template, request, redirect
 import openai
 from openai import OpenAI
+import os
 import subprocess
 # from model_training import start_model_training
 
@@ -9,8 +10,17 @@ import subprocess
 import firebase_admin
 from firebase_admin import credentials, firestore, auth
 
-cred = credentials.Certificate("ghostwryte-ai-firebase-adminsdk-uxybq-20881dd0dd.json")
-firebase_admin.initialize_app(cred)
+# firebase_creds = json.loads(os.environ.get('FIREBASE_CREDENTIALS'))
+# cred = credentials.Certificate("firebase_creds")
+# firebase_admin.initialize_app(cred)
+
+firebase_creds = os.environ.get('FIREBASE_CREDENTIALS')
+if firebase_creds:
+    cred_dict = json.loads(firebase_creds)
+    cred = credentials.Certificate(cred_dict)
+    firebase_admin.initialize_app(cred)
+else:
+    raise ValueError('The FIREBASE_CREDENTIALS environment variable is not set.')
 
 # Initialize Firestore
 db = firestore.client()

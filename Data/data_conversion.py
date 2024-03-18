@@ -10,8 +10,17 @@ client = OpenAI()
 
 
 # Initialize Firebase Admin
-cred = credentials.Certificate("ghostwryte-ai-firebase-adminsdk-uxybq-20881dd0dd.json")
-firebase_admin.initialize_app(cred)
+# firebase_creds = json.loads(os.environ.get('FIREBASE_CREDENTIALS'))
+# cred = credentials.Certificate("firebase_creds")
+# firebase_admin.initialize_app(cred)
+
+firebase_creds = os.environ.get('FIREBASE_CREDENTIALS')
+if firebase_creds:
+    cred_dict = json.loads(firebase_creds)
+    cred = credentials.Certificate(cred_dict)
+    firebase_admin.initialize_app(cred)
+else:
+    raise ValueError('The FIREBASE_CREDENTIALS environment variable is not set.')
 
 db = firestore.client()
 
