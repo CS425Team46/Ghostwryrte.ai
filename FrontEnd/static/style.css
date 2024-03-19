@@ -108,7 +108,10 @@ pre {
   flex-grow: 1;
   padding-top: 1%;
   color: var(--textColor);
-  font-family: FranieRegular;
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis; 
@@ -143,9 +146,12 @@ pre {
   padding-left: 5%;
   border-radius: 15px;
   background: var(--secondaryColor);
-  font-size: 1.5vh;
+  font-size: 1vw;
   resize: none;
-  font-family: FranieRegular;
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
   overflow: hidden;
   border: none;
   color: var(--textColor);
@@ -184,8 +190,11 @@ pre {
   height: 40%;
   width: 100%;
   color: var(--textColor);
-  font-family: FranieRegular;
-  font-size: 2vh;
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 1.1vw;
   border: none;
   background: none;
   border-radius: 15px;
@@ -258,8 +267,11 @@ pre {
   width: 85%;
   overflow: hidden;
   color: var(--textColor);
-  font-size: 4.5vh;
-  font-family: FranieRegular;
+  font-size: 3vw;
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
   padding-left: 3.8%;
   border: none;
   outline: none;
@@ -289,7 +301,10 @@ pre {
   height: 75%;
   width: 90%;
   font-size: 2.4vh;
-  font-family: Calibri; 
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
   padding-top: 2vw;
   padding-left: 2vw;
   resize: none;
@@ -497,11 +512,15 @@ pre {
   height: 10%;
   width: 90%;
   background: none;
+  padding-bottom: 5%;
   border-bottom: 3px solid var(--secondaryColor);
   color: var(--textColor);
   align-items: center;
-  font-size: 3vh;
-  font-family: FranieRegular;
+  font-size: 3vw;
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
   background: none;
 
 }
@@ -527,9 +546,12 @@ pre {
   height: 8%;
   width: 90%;
   border-radius: 10px;
-  font-size: 1.8vh;
+  font-size: 1vw;
   color: var(--textColor);
-  font-family: FranieRegular;
+  font-family: "Mulish", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
   background: var(--secondaryColor);
   border: none;
 
@@ -607,7 +629,8 @@ pre {
 .instructionText{
 
   font-size: 2vh;
-  font-family: FranieRegular;
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
   color: var(--textColor);
 
 }
@@ -615,7 +638,8 @@ pre {
 .instructionText.Two{
 
   font-size: 1.7vh;
-  font-family: FranieRegular;
+  font-family: "Mulish", sans-serif;
+  font-weight: 800;
   color: var(--textColor);
 }
 
@@ -628,7 +652,8 @@ pre {
   width: 35%;
   height: 12%;
   border-radius: 5px;
-  font-family: FranieRegular;
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
   font-size: 2.2vh;
   border: 1px solid black;
   background: var(--mainAccentColor);
@@ -710,7 +735,8 @@ pre {
 
   display: flex;
   width: 75%;
-  font-family: FranieRegular;
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
   padding-top: 1%;
   font-size: 1.6vh;
   pointer-events: none;
@@ -749,9 +775,9 @@ pre {
   align-items: center;
   height: 60%;
   width: 35%;
-  padding-top: .5%;
-  font-family: FranieRegular;
-  font-size: 1.5vh;
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
+  font-size: 1vw;
   border: none;
   border-radius: 10px;
   background: var(--mainColor);
@@ -777,9 +803,9 @@ pre {
   align-items: center;
   height: 60%;
   width: 35%;
-  padding-top: .5%;
-  font-family: FranieRegular;
-  font-size: 1.5vh;
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
+  font-size: 1vw;
   border: none;
   border-radius: 10px;
   background: var(--mainColor);
@@ -837,7 +863,6 @@ pre {
   display: flex;
   justify-content: center;
   width: 90%;
-  font-family: FranieRegular;
   font-size: 1.8vh;
   background: none;
   color: var(--textColor);
@@ -849,8 +874,9 @@ pre {
   background: none;
   justify-content: center;
   border: none;
-  font-family: FranieRegular;
-  font-size: 2.2vh;
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
+  font-size: 1.5vw;
   width: 40%;
   padding-bottom: 3%;
   border-bottom: 5px solid var(--textColor);
@@ -868,8 +894,9 @@ pre {
   justify-content: center;
   border: none;
   width: 40%;
-  font-family: FranieRegular;
-  font-size: 2.2vh;
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
+  font-size: 1.5vw;
   color: var(--deselectedColor);
   border-bottom: 5px solid var(--deselectedColor);
 
@@ -902,6 +929,9 @@ pre {
   display: none;
 }
 .loginText{
+  margin-top: 2%;
+}
+.loginText.Sep{
   margin-top: 4%;
 }
 .userInputAC {
@@ -909,8 +939,9 @@ pre {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  font-size: 1.8vh;
-  font-family: FranieRegular;
+  font-size: 1vw;
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
   color: var(--textColor);
   gap: 2%;
 
@@ -922,8 +953,10 @@ pre {
   align-items: center;
   border: none;
   background: var(--loginInputBox);
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
   border-radius: 8px;
-  font-size: 1.3vh;
+  font-size: 1.4vh;
   padding-top: 2.5%;
   padding-bottom: 2.5%;
   padding-left: 2.5%;
@@ -944,12 +977,13 @@ pre {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: FranieRegular;
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
   color: var(--textColor);
   background: var(--mainAccentColor);
   width: 40%;
   height: 40%;
-  font-size: 1.8vh;
+  font-size: 1.3vw;
   padding: 3%;
   border-radius: 8px;
   margin-left: 30%;
@@ -965,6 +999,153 @@ pre {
   cursor: pointer;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
   border: 3px solid black;
+}
+
+
+/* Toast */
+
+.toastImg {
+  display: block;
+  max-height: 100%;
+  max-width: 100%;
+  height: 2.5vh;
+  width: auto;
+}
+
+.toast { 
+	position: fixed; 
+	top: 25px; 
+	right: 25px; 
+	max-width: 30%; 
+  min-width: 10%;
+	background: #fff; 
+	padding: 0.5rem; 
+	border-radius: 4px; 
+	box-shadow: -1px 1px 10px
+		rgba(0, 0, 0, 0.3); 
+	z-index: 1023; 
+	animation: slideInRight 0.3s 
+			ease-in-out forwards, 
+		fadeOut 0.5s ease-in-out 
+			forwards 5s; 
+	transform: translateX(110%); 
+} 
+
+.toast.closing { 
+	animation: slideOutRight 0.5s 
+		ease-in-out forwards; 
+} 
+
+.toast-progress { 
+	position: absolute; 
+	display: block; 
+	bottom: 0; 
+	left: 0; 
+	height: 4px; 
+	width: 100%; 
+	background: #b7b7b7; 
+	animation: toastProgress 3s 
+		ease-in-out forwards; 
+} 
+
+.toast-content-wrapper { 
+	display: flex; 
+	justify-content: space-between; 
+	align-items: center; 
+} 
+
+.toast-icon { 
+  display: flex;
+  align-items: center;
+	padding: 0.35rem 0.5rem; 
+  width: 100%;
+	font-size: 2rem; 
+} 
+
+.toast-message { 
+	flex: 1; 
+  font-family: "Mulish", sans-serif;
+  font-weight: 600;
+	font-size: 1.3rem; 
+	color: #000000; 
+	padding: 0.5rem; 
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+} 
+
+.toast.toast-success { 
+	background: #95eab8; 
+} 
+
+.toast.toast-success .toast-progress { 
+	background-color: #2ecc71; 
+} 
+
+.toast.toast-danger { 
+	background: #efaca5; 
+} 
+
+.toast.toast-danger .toast-progress { 
+	background-color: #e74c3c; 
+} 
+
+.toast.toast-info { 
+	background: #bddaed; 
+} 
+
+.toast.toast-info .toast-progress { 
+	background-color: #3498db; 
+} 
+
+.toast.toast-warning { 
+	background: #ead994; 
+} 
+
+.toast.toast-warning .toast-progress { 
+	background-color: #f1c40f; 
+} 
+
+@keyframes slideInRight { 
+	0% { 
+		transform: translateX(110%); 
+	} 
+	75% { 
+		transform: translateX(-10%); 
+	} 
+	100% { 
+		transform: translateX(0%); 
+	} 
+} 
+
+@keyframes slideOutRight { 
+	0% { 
+		transform: translateX(0%); 
+	} 
+	25% { 
+		transform: translateX(-10%); 
+	} 
+	100% { 
+		transform: translateX(110%); 
+	} 
+} 
+
+@keyframes fadeOut { 
+	0% { 
+		opacity: 1; 
+	} 
+	100% { 
+		opacity: 0; 
+	} 
+} 
+
+@keyframes toastProgress { 
+	0% { 
+		width: 100%; 
+	} 
+	100% { 
+		width: 0%; 
+	} 
 }
 
 .accountCreationPg{

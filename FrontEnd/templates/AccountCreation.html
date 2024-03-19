@@ -1,23 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-        @font-face {
-            font-family: "Moon";
-            src: url("/static/fonts/MoonLight.otf");
-        }
-        @font-face {
-            font-family: "FranieLight";
-            src: url("/static/fonts/FranieLight.otf");
-        }
-        @font-face {
-            font-family: "FranieRegular";
-            src: url("/static/fonts/FranieRegular.otf");
-        }
-    </style>
     <title>GhostWryte.ai</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 </head>
 <body class="accountCreationPg">
     
@@ -37,7 +25,8 @@
                         <div class="loginText">Password</div> 
                         <input class="loginInputBox" type="password" id="userPassword" name="password" required>
                         <div class="loginText" id="CPText">Confirm Password </div>
-                        <input class="loginInputBox" type="password" id="confirmPassword" name="confirmPassword"><br>
+                        <input class="loginInputBox" type="password" id="confirmPassword" name="confirmPassword">
+                        <div class="loginText Sep"></div>
                         <button class="ACSubmitButton" type="submit" id="ACSubmit">Continue</button> 
                     </form>
                 </div>
@@ -45,6 +34,7 @@
             
         </div>
     </div>
+    <div class="toast-overlay" id="toast-overlay"></div>
     <script type="module" src="{{ url_for('static', filename='javascript.mjs') }}" defer></script>
 </body>
 

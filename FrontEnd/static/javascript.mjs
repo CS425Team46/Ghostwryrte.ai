@@ -48,6 +48,9 @@ auth.onAuthStateChanged((user) => {
             setEmailOnPage();
         }
     } else {
+        if(!accPageCheck){ // I don't think this will break anything. If no user is signed in, dont let them onto the page.
+            window.location.href = '/';
+        }   
         console.log("No user signed in");
     }
 });
@@ -98,7 +101,6 @@ if (contentWindow) {
     });
 }
 
-
 function checkForContent() {
     if (contentWindow) {
         var generatedContent = document.getElementsByTagName('pre')[0].innerHTML;
@@ -123,7 +125,6 @@ function checkForContent() {
     }
 }
 
-
 function callUpload() {
     if(contentWindow){
         var content = document.getElementsByTagName('pre')[0].innerHTML;
@@ -144,6 +145,7 @@ async function uploadHistory(title, fileContent) {
             time: serverTimestamp()
             });
     } else {
+        showToast("No user is signed in to generate history", "danger", 5000);
         console.error('No user is signed in to generate history');
     }
 
@@ -162,6 +164,7 @@ async function loadHistoryButtons() {
             createHistoryButton(title, content);
         });
     } else {
+        showToast("No user is signed in to load history", "danger", 5000);
         console.error('No user is signed in to load history');
     }
 }
@@ -240,7 +243,7 @@ function fileProcessing(files) {
         if (file.type === 'text/plain') {
             readAndUploadFile(file);
         } else {
-            alert('Only .txt files are accepted.');
+            showToast("Only .txt files are accepted", "warning", 5000);
         }
     }
 }
@@ -314,8 +317,7 @@ function uploadAllFilesToFirebase(session_id) {
         // Check if there are fewer than minimum number of entries files
         if (uploadedFileInstances.length < 10) {
             console.error('Error: Less than 10 files. Aborting upload.');
-            alert('Please upload at least 10 files before submitting.');
-            reject('Not enough files');  
+            reject('Please submit at least 10 files before uploading.');  
             return;  // Stop execution of the function
         }
 
@@ -339,10 +341,6 @@ function uploadAllFilesToFirebase(session_id) {
     });
 }
 
-
-
-
-
 async function uploadToFirebase(title, fileContent, sessionId) {
     const app = initializeApp(firebaseConfig); 
     const db = getFirestore(app);
@@ -358,8 +356,6 @@ async function uploadToFirebase(title, fileContent, sessionId) {
         console.error('No user is signed in to upload data');
     }
 }
-
-
 
 // async function uploadToFirebase(title, fileContent) {
 
@@ -397,20 +393,18 @@ if (uploadDataButton) {
             .then(response => response.json())
             .then(data => {
                 console.log(data.message);
-                alert('Data conversion initiated.');
+                showToast("Data successfully uploaded!", "success", 5000); 
             })
             .catch(error => {
+                showToast(error, "warning", 5000); 
                 console.error('Error:', error);
             });
         } else {
             console.log("No user signed in");
-            alert("Please sign in to upload data");
+            showToast("Please sign in to upload data", "danger", 5000); 
         }
     });
 }
-
-
-
 
 const trainModelButton = document.getElementById('TrainModel');
 if (trainModelButton) {
@@ -428,18 +422,21 @@ if (trainModelButton) {
             .then(response => response.json())
             .then(data => {
                 console.log(data.message);
-                alert(data.message);
+                if(data.message == "Model training script failed"){
+                    showToast(data.message, "danger", 5000);
+                } else{
+                    showToast(data.message, "success", 5000);
+                }
             })
             .catch(error => {
                 console.error('Error starting model training:', error);
             });
         } else {
             console.log("No user signed in");
-            alert("Please sign in to start model training");
+            showToast("Please sign in to start model training", "danger", 5000);
         }
     });
 }
-
 
 /* Account Creation Page */
 
@@ -505,6 +502,7 @@ if(LOButton){
             console.log('User signed out.');
             window.location.href = '/'
         }).catch((error) => {
+            showToast("Signout Error", "danger", 5000);
             console.error('Signout Error', error.code, error.message);
         });
     }, false);
@@ -525,6 +523,7 @@ function handleSignUp(email, password) {
 
             setDoc(doc(db, 'users', userCredential.user.uid), userData)
                 .then(() => {
+                    showToast("Signup successful!", "success", 5000);
                     console.log('User data saved successfully');
                 })
                 .catch(error => {
@@ -532,10 +531,10 @@ function handleSignUp(email, password) {
                 });
         })
         .catch(error => {
+            showToast("Signup failed", "danger", 5000);
             console.error('Signup failed', error.code, error.message);
         });
 }
-
 
 function handleSignIn() {
     const email = document.getElementById('userEmail').value;
@@ -547,5 +546,49 @@ function handleSignIn() {
         })
         .catch(error => {
             console.error('Signin failed', error.code, error.message);
+            console.log(error.message);
+            if(error.message == "Firebase: Error (auth/invalid-credential)."){
+                showToast("Invalid login. Please check credentials.", "danger", 5000); 
+            } else{
+                showToast("Sign In Failed", "danger", 5000);
+            }
+             
+            
         });
 }
+
+/* Toast Stuff */
+
+let icon = { 
+	success: 
+	'<img src="static/images/successIcon.svg" class="toastImg"', 
+	danger: 
+	'<img src="static/images/dangerIcon.svg" class="toastImg"', 
+	warning: 
+	'<img src="static/images/warningIcon.svg" class="toastImg"', 
+	info: 
+	'<img src="static/images/infoIcon.svg" class="toastImg"', 
+}; 
+
+const showToast = ( message = "", toastType = "info", duration = 5000) => { 
+	if (!Object.keys(icon).includes(toastType)){
+        toastType = "info"; 
+    }
+	let box = document.createElement("div"); 
+	box.classList.add("toast", `toast-${toastType}`); 
+	box.innerHTML = ` <div class="toast-content-wrapper"> 
+					<div class="toast-icon"> 
+					${icon[toastType]} 
+					</div> 
+					<div class="toast-message">${message}</div> 
+					<div class="toast-progress"></div> 
+					</div>`; 
+	duration = duration || 5000; 
+	box.querySelector(".toast-progress").style.animationDuration = `${duration / 1000}s`; 
+
+	let toastAlready = document.body.querySelector(".toast"); 
+	if (toastAlready) { 
+		toastAlready.remove(); 
+	} 
+	document.body.appendChild(box)
+}; 
