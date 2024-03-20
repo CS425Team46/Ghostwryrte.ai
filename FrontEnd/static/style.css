@@ -275,7 +275,9 @@ pre {
   padding-left: 3.8%;
   border: none;
   outline: none;
-  padding-top: 1%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
 
 }
 

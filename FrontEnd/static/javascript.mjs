@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
-import { getFirestore, collection, query, orderBy, limit, doc, setDoc, serverTimestamp, getDocs } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+import { getFirestore, collection, query, orderBy, limit, doc, setDoc, serverTimestamp, getDocs, getDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
 
 
@@ -29,7 +29,7 @@ const historyContentWindow = document.querySelector('.historyContentWindow');
 const historyInstance = document.createElement('div');
 const contentWindow = document.querySelector('.contentGenWindow');
 const copyButton = document.querySelector('.copyButton');
-
+const titleInput = document.querySelector('.titleText');
 
 var ACUserOption = 1; // 1 = Sign In & 2 = Sign Up
 
@@ -67,6 +67,7 @@ function setEmailOnPage() {
 
 if (contentWindow) {
     
+
     document.querySelector('.copyButton').addEventListener('click', (event) => {
         event.preventDefault();
         var content = document.querySelector('pre'); 
@@ -92,6 +93,7 @@ if (contentWindow) {
     function handlePromptChange() {
         checkForContent(); 
     }
+
     genButtonID.addEventListener('click', function(event) {
         const arrowImg = document.getElementById('upArrowImg');
         const loader = document.getElementById('circleLoader');
@@ -99,6 +101,55 @@ if (contentWindow) {
         arrowImg.style.display = 'none';
         loader.style.display = 'block';
     });
+
+    titleInput.addEventListener('blur', updateTitle);
+
+    titleInput.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            updateTitle();
+        }
+    });
+
+    titleInput.addEventListener('focus', function(event) {
+        titleInput.value = "";
+    });
+    
+    function updateTitle() {
+        const newTitle = titleInput.value.trim();
+        const selectedHistoryButton = document.querySelector('.historyInstance.selected');
+        if (selectedHistoryButton) {
+            const oldTitle = selectedHistoryButton.textContent;
+            selectedHistoryButton.querySelector('.innerHistorySpan').textContent = newTitle;
+            updateHistoryInFirestore(oldTitle, newTitle);
+        }
+        titleInput.blur();
+    }
+    
+    async function updateHistoryInFirestore(oldTitle, newTitle) {
+        const user = auth.currentUser;
+        if (user) {
+            const oldHistoryRef = doc(db, 'users', user.uid, 'history', oldTitle);
+            const oldHistoryDoc = await getDoc(oldHistoryRef);
+    
+            if (oldHistoryDoc.exists()) {
+                console.log("got here");
+                console.log(oldHistoryDoc);
+                const oldHistoryData = oldHistoryDoc.data();
+                await setDoc(doc(db, 'users', user.uid, 'history', newTitle), {
+                    title: newTitle,
+                    content: oldHistoryData.content,
+                    time: oldHistoryData.time
+                });
+                await deleteDoc(oldHistoryRef);
+            } else {
+                console.error('Document does not exist:', oldTitle);
+            }
+        } else {
+            console.error('No user is signed in to update history');
+        }
+    }
+
 }
 
 function checkForContent() {
@@ -174,16 +225,20 @@ function createHistoryButton(title, content) {
     const buttonText = document.createElement('span');
 
     buttonText.textContent = title;
-    buttonText.classList.add('innerHistorySpan'); 
-    historyButton.appendChild(buttonText); 
+    buttonText.classList.add('innerHistorySpan');
+    historyButton.appendChild(buttonText);
     historyButton.classList.add('historyInstance');
 
     historyButton.addEventListener('click', () => {
+        titleInput.value = buttonText.textContent; 
+        document.querySelector('.historyInstance.selected')?.classList.remove('selected'); 
+        historyButton.classList.add('selected'); 
         document.getElementsByTagName('pre')[0].innerHTML = content;
         checkForContent();
     });
     historyContentWindow.appendChild(historyButton);
 }
+
 
 /* AI Training Page */
 
