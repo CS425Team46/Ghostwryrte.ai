@@ -2,7 +2,8 @@
 <html>
 <head>
     <title>GhostWryte.ai</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type="text/css"  media='only screen and (max-width: 991px)' href="{{ url_for('static', filename='styleSmall.css') }}">
+    <link rel="stylesheet" type="text/css"  media='only screen and (min-width: 992px)' href="{{ url_for('static', filename='styleLarge.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
@@ -32,7 +33,7 @@
                         <!-- <div class="loginText">Password</div> -->
                         <input class="loginInputBox" type="password" id="userPassword" name="password" placeholder="Password" required>
                         <!-- <div class="loginText" id="CPText">Confirm Password </div> -->
-                        <input class="loginInputBox" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
+                        <input class="loginInputBox confirm" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
                         <div class="loginText Sep"></div>
                         <button class="ACSubmitButton" type="submit" id="ACSubmit">Continue</button> 
                     </form>

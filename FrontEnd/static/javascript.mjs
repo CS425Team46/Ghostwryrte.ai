@@ -25,7 +25,7 @@ const accPageCheck = document.getElementById('accPage');
 const LOButton = document.getElementById('LOButton');
 /* Content Generation Page */
 const genButtonID = document.getElementById('genButtonID');
-const historyContentWindow = document.querySelector('.historyContentWindow');
+let historyContentWindow = document.querySelector('.historyContentWindow');
 const historyInstance = document.createElement('div');
 const contentWindow = document.querySelector('.contentGenWindow');
 const copyButton = document.querySelector('.copyButton');
@@ -40,12 +40,13 @@ auth.onAuthStateChanged((user) => {
             userIdField.value = user.uid;
         }
         if (contentWindow){
+            selectHistoryContentWindow();
             callUpload();
             loadHistoryButtons(); 
             checkForContent();
         }
         if(!accPageCheck){
-            setEmailOnPage();
+            /* setEmailOnPage(); */
         }
     } else {
         if(!accPageCheck){ // I don't think this will break anything. If no user is signed in, dont let them onto the page.
@@ -152,7 +153,26 @@ if (contentWindow) {
             console.error('No user is signed in to update history');
         }
     }
+   
+    const debouncedResizeHandler = debounce(selectHistoryContentWindow, 250);
+    window.addEventListener('resize', debouncedResizeHandler);
+}
+function selectHistoryContentWindow() {
 
+    const screenWidth = window.innerWidth;
+    const historyWrapperElements = document.querySelectorAll('.historyWrapper');
+
+    if (screenWidth <= 991) { 
+        historyContentWindow = historyWrapperElements[1].querySelector('.historyContentWindow');
+        historyWrapperElements[0].querySelector('.historyContentWindow').style.display = "none";
+        historyWrapperElements[1].querySelector('.historyContentWindow').style.display = "flex";
+        loadHistoryButtons();
+    } else {
+        historyContentWindow = historyWrapperElements[0].querySelector('.historyContentWindow');
+        historyWrapperElements[1].querySelector('.historyContentWindow').style.display = "none";
+        historyWrapperElements[0].querySelector('.historyContentWindow').style.display = "flex";
+        loadHistoryButtons();
+    }
 }
 
 function checkForContent() {
@@ -179,6 +199,18 @@ function checkForContent() {
     }
 }
 
+function debounce(func, delay) {
+    let timer;
+    return function() {
+        const context = this;
+        const args = arguments;
+        clearTimeout(timer);
+        timer = setTimeout(() => {
+            func.apply(context, args);
+        }, delay);
+    };
+}
+
 function callUpload() {
     if(contentWindow){
         var content = document.getElementsByTagName('pre')[0].innerHTML;
@@ -189,6 +221,7 @@ function callUpload() {
         } 
     }
 }
+
 async function uploadHistory(title, fileContent) {
 
     var user = auth.currentUser;
@@ -206,12 +239,15 @@ async function uploadHistory(title, fileContent) {
 }
 
 async function loadHistoryButtons() {
+    
     const user = auth.currentUser;
     if (user) {
         const historyRef = collection(db, `users/${user.uid}/history`);
         const q = query(historyRef, orderBy('time', 'desc'), limit(10));
         const querySnapshot = await getDocs(q);
-        
+        while (historyContentWindow.firstChild) {
+            historyContentWindow.removeChild(historyContentWindow.firstChild);
+        }
         querySnapshot.forEach(doc => {
             const title = doc.data().title;
             const content = doc.data().content;
@@ -224,6 +260,7 @@ async function loadHistoryButtons() {
 }
 
 function createHistoryButton(title, content) {
+
     const historyButton = document.createElement('button');
     const buttonText = document.createElement('span');
 
@@ -239,8 +276,12 @@ function createHistoryButton(title, content) {
         document.getElementsByTagName('pre')[0].innerHTML = content;
         checkForContent();
     });
+
     historyContentWindow.appendChild(historyButton);
 }
+
+
+
 
 
 /* AI Training Page */
@@ -529,28 +570,38 @@ if (accPageCheck) {
     });
 
     signInButton.addEventListener('click', function () {
+        
+        ACSubmit.classList.remove('removed');
         signInButton.style.color = 'var(--textColor)';
         signInButton.style.borderBottom = '5px solid var(--textColor)';
         signUpButton.style.color = 'var(--deselectedColor)';
         signUpButton.style.borderBottom = '5px solid var(--deselectedColor)';
-        confirmPass.style.display = 'none';
+        /* confirmPass.style.display = 'none'; */
+        confirmPass.classList.remove('active');
         CPText.style.display = 'none';
         signInAndUpWrapper.style.paddingBottom = '15%';
-/*      document.getElementById('userEmail').value = "";
+        /* document.getElementById('userEmail').value = "";
         document.getElementById('userPassword').value = ""; */
         ACUserOption = 1;
+        
     });
-
+    
     signUpButton.addEventListener('click', function () {
+        ACSubmit.classList.add('removed');
         signUpButton.style.color = 'var(--textColor)';
         signUpButton.style.borderBottom = '5px solid var(--textColor)';
         signInButton.style.color = 'var(--deselectedColor)';
         signInButton.style.borderBottom = '5px solid var(--deselectedColor)';
-        confirmPass.style.display = 'flex';
+        /* confirmPass.style.display = 'flex'; */
+        confirmPass.classList.add('active');
         CPText.style.display = 'flex';
         signInAndUpWrapper.style.paddingBottom = '8%';
         ACUserOption = 2;
+
+
     });
+    
+    
 }
 
 
