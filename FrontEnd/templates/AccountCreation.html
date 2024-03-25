@@ -5,9 +5,16 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 </head>
 <body class="accountCreationPg">
+    
+    <div class="blackness"></div>
+    <div class="custom-shape-divider-top-1711335761">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+        </svg>
+    </div>
     
     <div class="AccCP" id="accPage">
         <div class="accountCreationWrapper">
@@ -20,12 +27,12 @@
             <div class="outerSignInWrapper">
                 <div class="signInAndUpWrapper" id="SIAUW">
                     <form class="userInputAC" id="userSubmitForm">
-                        <div class="loginText">Email Address</div> 
-                        <input class="loginInputBox" type="email" id="userEmail" name="email" required>
-                        <div class="loginText">Password</div> 
-                        <input class="loginInputBox" type="password" id="userPassword" name="password" required>
-                        <div class="loginText" id="CPText">Confirm Password </div>
-                        <input class="loginInputBox" type="password" id="confirmPassword" name="confirmPassword">
+                        <!-- <div class="loginText">Email Address</div> -->
+                        <input class="loginInputBox" type="email" id="userEmail" name="email" placeholder="Email Address" required>
+                        <!-- <div class="loginText">Password</div> -->
+                        <input class="loginInputBox" type="password" id="userPassword" name="password" placeholder="Password" required>
+                        <!-- <div class="loginText" id="CPText">Confirm Password </div> -->
+                        <input class="loginInputBox" type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password">
                         <div class="loginText Sep"></div>
                         <button class="ACSubmitButton" type="submit" id="ACSubmit">Continue</button> 
                     </form>
@@ -37,5 +44,4 @@
     <div class="toast-overlay" id="toast-overlay"></div>
     <script type="module" src="{{ url_for('static', filename='javascript.mjs') }}" defer></script>
 </body>
-
 </html>

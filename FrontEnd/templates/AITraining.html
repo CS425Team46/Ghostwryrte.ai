@@ -5,21 +5,35 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="workspaceTab">
+
         <div class="navigationWrapper">
             <div class="userInformationWrapper">
                 <div class="profilePicture"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/emptyProfile.png') }}" class="profileImg"></div>
                 <div class="userEmail" id="emailContainer"></div>
             </div>
-            <a href="{{ url_for('content_generation') }}" class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/ContentGeneration.png') }}" class="barImg">Content Generation</a>
+            <div class="brandingBox nav">
+                <!-- <div class="ghostwryteBrandingWrapper"> -->
+                    <div class="logoHolder">
+                        <img src="{{ url_for('static', filename='images/ghostwryte_mascot.png') }}" class="logoImg">
+                    </div>
+                    <div class="logoTextHolder">
+                        <span class="logoText">Ghostwryte.ai</span>
+                    </div>
+                <!-- </div> -->
+            </div>
+
+            <a href="{{ url_for('content_generation') }}" class="navigationButton" ><img style="vertical-align:middle" src="{{ url_for('static', filename='images/ContentGeneration.png') }}" class="barImg">Content Generation</a>
             <a href="{{ url_for('styling_and_format') }}" class="navigationButton" id="styleAF"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/StyleAndFormatting.png') }}" class="barImg">Styling & Format</a>
             <a href="#" class="navigationButton" id=""><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AudienceInsights.png') }}" class="barImg">Audience Insights</a>
             <a href="#" class="navigationButton" id=""><img style="vertical-align:middle" src="{{ url_for('static', filename='images/Templates.png') }}" class="barImg">Templates</a>
-            <a href="{{ url_for('ai_training') }}" class="navigationButton" id="aiTrain"style="background: var(--mainColor); box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AITraining.png') }}" class="barImg">AI Training</a>
+            <a href="{{ url_for('ai_training') }}" class="navigationButton" id="aiTrain" style="background: var(--mainColor); box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AITraining.png') }}" class="barImg">AI Training</a>
+            
         </div>
+
         <div class="logOutWrapper">
             <button type="button" id="LOButton" class="logOut"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/doorIcon.png') }}" class="logOutImg">Log out</button>
         </div>

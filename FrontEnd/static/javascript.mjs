@@ -118,6 +118,9 @@ if (contentWindow) {
     function updateTitle() {
         const newTitle = titleInput.value.trim();
         const selectedHistoryButton = document.querySelector('.historyInstance.selected');
+        if(newTitle == ""){
+            return;
+        }
         if (selectedHistoryButton) {
             const oldTitle = selectedHistoryButton.textContent;
             selectedHistoryButton.querySelector('.innerHistorySpan').textContent = newTitle;
