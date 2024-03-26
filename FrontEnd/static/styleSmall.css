@@ -15,7 +15,7 @@ padding: 0;
   --mainColor: #ffffff;
   --secondaryColor: #F0F0F0;
   --secondaryAccent: #DEDEDE;
-  --mainAccentColor: #1077A5;
+  --mainAccentColor: #5784e8;
   --textColor: #030303;
 
 }
@@ -875,53 +875,28 @@ pre {
 
 /*Small screen account creation */
 
-.blackness{
-  height: 20%;
-  width: 100%;
-  background: var(--mainAccentColor);
-  margin: 0;
-}
-.custom-shape-divider-top-1711335761 {
-    position: absolute;
-    top: calc(20% - 4px);
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-} 
-
-.custom-shape-divider-top-1711335761 svg {
-    position: relative;
-    display: block;
-    width: calc(100% + 1.3px);
-    height: 197px;
-}
-
-.custom-shape-divider-top-1711335761 .shape-fill {
-    fill: var(--mainAccentColor);
-}
-
-
 .AccCP {
-
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  width: 100%;
-  height: 60%;
-  flex-grow: 1;
-}
-
-.accountCreationWrapper {
-
   display: flex;
   flex-direction: column;
-  width: 90%;
-  height: 80%;
-  gap: 10%;
-/*     background: var(--secondaryColor);
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); */
+  width: 100%;
+  height: 100%;
+  padding: 5rem;
+  background: var(--mainColor);
+}
+.topbarContainer{
+  display: flex;
+  height: 10%;
+  align-items: center;
+}
+.logoImgAcc{
+  width: 7rem;
+  margin: 0 2% 0 0;
+  height: auto;
+}
+.loginBrandText{
+  font-size: 4rem;
+  font-weight: 800  ;
+  font-family: "Montserrat", sans-serif;
 }
 
 .actionWrapper{
@@ -929,18 +904,32 @@ pre {
   justify-content: center;
   align-items: center;
   width: 100%;  
-  
+  margin: 10% 0 15% 0;
 }
 
-.actionSelector {
 
+.actionSelector {
   display: flex;
-  justify-content: center;
-  width: 90%;
-  font-size: 3rem;
-  background: none;
-  color: var(--textColor);
-  margin-bottom: 4%;
+  flex-direction: column; 
+  text-align: left;
+  margin: 10% 0 12% 0;
+}
+
+.innerTextGrouping{
+  display: flex;
+  align-items: center;
+  text-align: left;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  font-size: 4rem;
+}
+.innerTextGrouping.two{
+  margin: 5% 0 0 0;
+}
+
+.getStartedMessage {
+  display: inline-block;
+  white-space: nowrap; 
 }
 
 .signInButton {
@@ -949,15 +938,16 @@ pre {
   background: none;
   justify-content: center;
   border: none;
-  font-family: "Poppins", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 800;
-  font-size: 3rem;
-  width: 40%;
-  padding-bottom: 3%;
-  border-bottom: 8px solid var(--textColor);
+  font-size: 5rem;
+  border-bottom: 5px solid var(--textColor);
   color: var(--textColor  );
+  margin-bottom: -5px;
+  margin: 0 3.5% 0 0;
 
 }
+
 .signInButton:hover{
   cursor: pointer;
 }
@@ -968,12 +958,12 @@ pre {
   background: none;
   justify-content: center;
   border: none;
-  width: 40%;
-  font-family: "Poppins", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 800;
-  font-size: 3rem;
+  font-size: 5rem;
   color: var(--deselectedColor);
-  border-bottom: 8px solid var(--deselectedColor);
+  border-bottom: 5px solid var(--deselectedColor);
+  margin: 0 0 0 3.5%;
 
 }
 
@@ -981,45 +971,42 @@ pre {
   cursor: pointer;
 }
 
-.outerSignInWrapper{
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  height: 70%;
-}
-
 .signInAndUpWrapper {
 
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  width: 90%;
+  width: 100%;
   height: 100%;
   background: none;
-  gap: 8%;
 
 }
 #CPText{
   display: none;
 }
 .loginText{
-  font-family: "Poppins", sans-serif;
-  margin-top: 2%;
+  font-family: "Montserrat", sans-serif;
+  margin: 0;
 }
-.loginText.Sep{
-  margin-top: 4%;
+.loginText.conf{
+  opacity: 0;
+  transition: opacity 0.5s ease, transform 0.5s ease; 
+  transform: translateY(-20%); 
 }
+.loginText.conf.active {
+  opacity: 1;
+  transform: translateY(20%);
+}
+
 .userInputAC {
 
   display: flex;
-  height:50%;
+  height:100%;
   flex-direction: column;
   justify-content: flex-start;
   font-size: 2.5rem;
-  font-family: "Poppins", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 600;
-  gap:8%;
   color: var(--textColor);
 
 }
@@ -1028,17 +1015,18 @@ pre {
   display: flex;
   align-items: center;
   background: none;
-  font-family: "Poppins", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 600;
   font-size: 2.5rem;
-  padding-top: 2.5%;
-  padding-bottom: 2.5%;
+  padding: 5% 3.75% 5% 3.75%;
   margin-bottom: 7%;
-  height: 20%;
   width: 100%;
-  border-width: 0 0 2px;
+  border: 0;
+  border-radius: 10px;
+  box-shadow: inset 0 0 0 2px var(--deselectedColor);
   outline: none; 
 }
+
 .loginInputBox.confirm {
   display: flex;
   opacity: 0;
@@ -1050,9 +1038,7 @@ pre {
   opacity: 1;
   transform: translateY(20%);
 }
-/*   .loginInputBox::placeholder {
-  color: #33343e; 
-} */
+
 .loginInputBox:focus {
   outline: none;
 }
@@ -1062,26 +1048,30 @@ pre {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Poppins", sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 800;
-  color: var(--textColor);
-  background: var(--mainAccentColor );
+  color: var(--mainColor);
+  background: var(--mainAccentColor);
   width: 100%;
-  height: 40%;
-  font-size: 2.1rem;
-  padding: 3%;
-  transform: translateY(-140%);   
-  border-radius: 15px;
+  height: 10%;
+  font-size: 3rem;
+  padding: 2%;
+  border: 0;
+  transform: translateY(-200%);   
+  border-radius: 45px;
   transition: transform 0.5s ease, box-shadow 0.5s ease;
 
 }
 
 .ACSubmitButton.removed{
-  transform: translateY(10%); 
+  transform: translateY(60%); 
+}
+.ACSubmitButton.removed:hover{
+  transform: translateY(53%); 
 }
 
 .ACSubmitButton:hover {
-  transform: translateY(-7%);
+  transform: translateY(-207%);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 .ACSubmitButton:active{

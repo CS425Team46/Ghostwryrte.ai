@@ -544,7 +544,7 @@ if (accPageCheck) {
     const signUpButton = document.getElementById('signUpBtn');
     const ACSubmit = document.getElementById('ACSubmit');
     var confirmPass = document.getElementById('confirmPassword');
-    var CPText = document.getElementById('CPText');
+    var confirmPassText = document.getElementById('confText');
     const signInAndUpWrapper = document.getElementById('SIAUW');
 
     document.getElementById('userSubmitForm').addEventListener('submit', function (event) {
@@ -572,36 +572,32 @@ if (accPageCheck) {
     signInButton.addEventListener('click', function () {
         
         ACSubmit.classList.remove('removed');
+        ACSubmit.value = "Log In"
+
         signInButton.style.color = 'var(--textColor)';
         signInButton.style.borderBottom = '5px solid var(--textColor)';
         signUpButton.style.color = 'var(--deselectedColor)';
         signUpButton.style.borderBottom = '5px solid var(--deselectedColor)';
-        /* confirmPass.style.display = 'none'; */
+
         confirmPass.classList.remove('active');
-        CPText.style.display = 'none';
-        signInAndUpWrapper.style.paddingBottom = '15%';
-        /* document.getElementById('userEmail').value = "";
-        document.getElementById('userPassword').value = ""; */
+        confirmPassText.classList.remove('active');
         ACUserOption = 1;
         
     });
     
     signUpButton.addEventListener('click', function () {
+        ACSubmit.value = "Sign Up"
         ACSubmit.classList.add('removed');
+
         signUpButton.style.color = 'var(--textColor)';
         signUpButton.style.borderBottom = '5px solid var(--textColor)';
         signInButton.style.color = 'var(--deselectedColor)';
         signInButton.style.borderBottom = '5px solid var(--deselectedColor)';
-        /* confirmPass.style.display = 'flex'; */
+
         confirmPass.classList.add('active');
-        CPText.style.display = 'flex';
-        signInAndUpWrapper.style.paddingBottom = '8%';
+        confirmPassText.classList.add('active');
         ACUserOption = 2;
-
-
     });
-    
-    
 }
 
 

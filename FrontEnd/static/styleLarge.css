@@ -15,7 +15,7 @@ padding: 0;
     --mainColor: #ffffff;
     --secondaryColor: #F0F0F0;
     --secondaryAccent: #DEDEDE;
-    --mainAccentColor: #1077A5;
+    --mainAccentColor: #5784e8;
     --textColor: #030303;
 
 }
@@ -895,215 +895,212 @@ pre {
 
 /* Account Creation Page */
 
-.blackness{
-    height: 15%;
-    width: 100%;    
-    background: linear-gradient(180deg, rgb(82, 82, 90) 0%, var(--mainAccentColor) 85%);
-    margin: 0;
-}
-.custom-shape-divider-top-1711335761 {
-    position: absolute;
-    top: calc(15% - 4px);
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    line-height: 0;
-}
-
-.custom-shape-divider-top-1711335761 svg {
-    position: relative;
-    display: block;
-    width: calc(100% + 1.3px);
-    height: 197px;
-}
-
-.custom-shape-divider-top-1711335761 .shape-fill {
-    fill: var(--mainAccentColor);
-}
-
 .AccCP {
-
-    display: flex;
-    align-items: flex-start;
-    padding-top: 12%;
-    justify-content: center;
-    width: 100%;
-    height: 60%;
-    flex-grow: 1;
-}
-
-.accountCreationWrapper {
-
     display: flex;
     flex-direction: column;
-    width: 25%;
-    height: 50%;
-    gap: 10%;
-/*     background: var(--secondaryColor);
-    border-radius: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6); */
-}
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 1rem 1.5rem 1rem 1.5rem;
+    background: var(--mainColor);
+  }
+  .topbarContainer{
+    display: flex;
+    height: 10%;
+    width: 100%;
+    align-items: center;
 
-.actionWrapper{
+  }
+  .logoImgAcc{
+    width: 2.75rem;
+    margin: 0 .5% 0 0;
+    height: auto;
+  }
+  .loginBrandText{
+    font-size: 1.25rem;
+    font-weight: 800  ;
+    font-family: "Montserrat", sans-serif;
+  }
+  .actionSelector {
+    display: flex;
+    flex-direction: column; 
+    text-align: left;
+    width: 25%;
+    margin: 2% 0 3% 0;
+  }
+  .actionWrapper{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-}
+    width: 100%;  
+    margin: 2% 0 5% 0;
+  }
 
-.actionSelector {
-    display: flex;
-    justify-content: center;
-    width: 90%;
-    font-size: 3rem;
-    background: none;
-    color: var(--textColor);
-    margin-bottom: 8%;
-}
-
-.signInButton {
-
-    display: flex;
-    background: none;
-    justify-content: center;
-    border: none;
-    font-family: "Poppins", sans-serif;
-    font-weight: 800;
-    font-size: 1.5rem;
-    width: 40%;
-    padding-bottom: 3%;
-    border-bottom: 5px solid var(--textColor);
-    color: var(--textColor  );
-
-}
-.signInButton:hover{
-    cursor: pointer;
-}
-
-.signUpButton {
-
-    display: flex;
-    background: none;
-    justify-content: center;
-    border: none;
-    width: 40%;
-    font-family: "Poppins", sans-serif;
-    font-weight: 800;
-    font-size: 1.5rem;
-    color: var(--deselectedColor);
-    border-bottom: 5px solid var(--deselectedColor);
-
-}
-
-.signUpButton:hover{
-    cursor: pointer;
-}
-
-.outerSignInWrapper{
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 100%;
-    height: 70%;
-}
-
-.signInAndUpWrapper {
-
+  .signInAndUpWrapper {
+  
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 90%;
+    width: 25%;
     height: 100%;
     background: none;
-    gap: 8%;
-
-}
-
-
-
-
-#CPText{
-    display: none;
-}
-.loginText{
-    font-family: "Poppins", sans-serif;
-    margin-top: 2%;
-}
-.loginText.Sep{
-    margin-top: 4%;
-}
-.userInputAC {
+  
+  }
+  .innerTextGrouping{
     display: flex;
-    height:50%;
+    align-items: center;
+    text-align: left;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+  }
+  .innerTextGrouping.two{
+    margin: 5% 0 0 0;
+  }
+
+  .getStartedMessage {
+    display: inline-block;
+    white-space: nowrap; 
+  }
+  
+  .signInButton {
+  
+    display: flex;
+    background: none;
+    justify-content: center;
+    border: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 2.5rem;
+    border-bottom: 5px solid var(--textColor);
+    color: var(--textColor  );
+    margin-bottom: -5px;
+    margin: 0 2.5% 0 0;
+  
+  }
+  
+  .signInButton:hover{
+    cursor: pointer;
+  }
+  
+  .signUpButton {
+  
+    display: flex;
+    background: none;
+    justify-content: center;
+    border: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 2.5rem;
+    color: var(--deselectedColor);
+    border-bottom: 5px solid var(--deselectedColor);
+    margin: 0 0 0 2.5%;
+  
+  }
+  
+  .signUpButton:hover{
+    cursor: pointer;
+  }
+
+  #CPText{
+    display: none;
+  }
+  .loginText{
+    font-family: "Montserrat", sans-serif;
+    margin: 0;
+  }
+  .loginText.conf{
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease; 
+    transform: translateY(-20%); 
+  }
+  .loginText.conf.active {
+    opacity: 1;
+    transform: translateY(20%);
+  }
+  
+  .userInputAC {
+  
+    display: flex;
+    height: 100%;
     flex-direction: column;
     justify-content: flex-start;
-    gap:8%;
+    font-size: 1rem;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 600;
     color: var(--textColor);
-}
-
-.loginInputBox {
+  
+  }
+  
+  .loginInputBox {
     display: flex;
     align-items: center;
     background: none;
-    font-family: "Poppins", sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-weight: 600;
-    font-size: 1rem;
-    padding: 2.5% 0 2.5% 0;
+    font-size: 1.125rem;
+    padding: 4% 3% 4% 3%;
     margin-bottom: 7%;
-    height: 20%;
     width: 100%;
-    border-width: 0 0 2px;
+    border: 0;
+    border-radius: 5px;
+    box-shadow: inset 0 0 0 2px var(--deselectedColor);
     outline: none; 
-}
-
-.loginInputBox.confirm {
+  }
+  
+  .loginInputBox.confirm {
     display: flex;
     opacity: 0;
     transition: opacity 0.5s ease, transform 0.5s ease; 
     transform: translateY(-20%); 
-}
-
-.loginInputBox.confirm.active {
+  }
+  
+  .loginInputBox.confirm.active {
     opacity: 1;
     transform: translateY(20%);
-}
-
-.loginInputBox:focus {
+  }
+  
+  .loginInputBox:focus {
     outline: none;
-}
-
-.ACSubmitButton {
+  }
+  
+  .ACSubmitButton {
+  
     display: flex;
     justify-content: center;
     align-items: center;
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
-    color: var(--textColor);
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    color: var(--mainColor);
     background: var(--mainAccentColor);
     width: 100%;
-    height: 45%;
-    font-size: 1rem;
-    padding: 5%;
-    border-radius: 5px;
-    transform: translateY(-140%); 
+    height: 10%;
+    font-size: 1.5rem;
+    padding: 2%;
+    border: 0;
+    transform: translateY(-200%);   
+    border-radius: 20px;
     transition: transform 0.5s ease, box-shadow 0.5s ease;
-}
-.ACSubmitButton.removed{
-    transform: translateY(10%); 
-}
-.ACSubmitButton.removed:hover {
-    transform: translateY(-10%);
+  
+  }
+  
+  .ACSubmitButton.removed{
+    transform: translateY(60%); 
+  }
+  .ACSubmitButton.removed:hover{
+    transform: translateY(53%); 
+  }
+  
+  .ACSubmitButton:hover {
+    transform: translateY(-207%);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-.ACSubmitButton:hover {
-    transform: translateY(-150%);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-}
-
-.ACSubmitButton:active {    
+  }
+  .ACSubmitButton:active{
+    cursor: pointer;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-}
-
+    border: 3px solid black;
+  }
+  
 /* Toast */
 
 .toastImg {
