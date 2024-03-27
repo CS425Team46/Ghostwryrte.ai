@@ -24,7 +24,7 @@
                     <button class="shrinkButton" id="shrinkBtn"><img src="{{ url_for('static', filename='images/shrinkBox.png') }}" alt="Shrink" class="shrinkImg"></button>
                 </div>
 
-                <button class="navigationButton newChat"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/plus.png') }}" class="barImg">New Content</button>
+                <button id="newChat" class="navigationButton newChat"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/plus.png') }}" class="barImg">New Content</button>
                 <a href="{{ url_for('content_generation') }}" class="navigationButton" style="background: var(--mainColor); box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/ContentGeneration.png') }}" class="barImg">Content Generation</a>
                 <a href="{{ url_for('styling_and_format') }}" class="navigationButton" id="styleAF"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/StyleAndFormatting.png') }}" class="barImg">Styling & Format</a>
  <!--           <a href="#" class="navigationButton" id=""><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AudienceInsights.png') }}" class="barImg">Audience Insights</a>

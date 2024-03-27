@@ -18,20 +18,20 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 
 /* AI Training Page */
-const fileUploadWindow = document.querySelector('.innerUploadWrapper');
-const uploadedDocsList = document.querySelector('.uploadedFiles');
+const fileUploadWindow      = document.querySelector('.innerUploadWrapper');
+const uploadedDocsList      = document.querySelector('.uploadedFiles');
 /* Account Creation Page */
-const accPageCheck = document.getElementById('accPage');
-const LOButton = document.getElementById('LOButton');
+const accPageCheck          = document.getElementById('accPage');
+const LOButton              = document.getElementById('LOButton');
+var ACUserOption            = 1; // 1 = Sign In & 2 = Sign Up
 /* Content Generation Page */
-const genButtonID = document.getElementById('genButtonID');
-let historyContentWindow = document.querySelector('.historyContentWindow');
-const historyInstance = document.createElement('div');
-const contentWindow = document.querySelector('.contentGenWindow');
-const copyButton = document.querySelector('.copyButton');
-const titleInput = document.querySelector('.titleText');
-
-var ACUserOption = 1; // 1 = Sign In & 2 = Sign Up
+const genButtonID           = document.getElementById('genButtonID');
+const historyInstance       = document.createElement('div');
+const contentWindow         = document.querySelector('.contentGenWindow');
+const copyButton            = document.querySelector('.copyButton');
+const titleInput            = document.querySelector('.titleText');
+let newChatButton           = document.getElementById('newChat');
+let historyContentWindow    = document.querySelector('.historyContentWindow');
 
 auth.onAuthStateChanged((user) => {
     if (user) {
@@ -137,7 +137,6 @@ if (contentWindow) {
             const oldHistoryDoc = await getDoc(oldHistoryRef);
     
             if (oldHistoryDoc.exists()) {
-                console.log("got here");
                 console.log(oldHistoryDoc);
                 const oldHistoryData = oldHistoryDoc.data();
                 await setDoc(doc(db, 'users', user.uid, 'history', newTitle), {
@@ -279,10 +278,6 @@ function createHistoryButton(title, content) {
 
     historyContentWindow.appendChild(historyButton);
 }
-
-
-
-
 
 /* AI Training Page */
 
@@ -456,22 +451,6 @@ async function uploadToFirebase(title, fileContent, sessionId) {
     }
 }
 
-// async function uploadToFirebase(title, fileContent) {
-
-//     const app = initializeApp(firebaseConfig); 
-//     const db = getFirestore(app);
-
-//     const user = auth.currentUser;
-//     if (user) {
-//         await setDoc(doc(db, 'users', user.uid, 'files', title), {
-//             Title: title,
-//             Content: fileContent,
-//             });
-//     } else {
-//         console.error('No user is signed in to upload data');
-//     }
-// }
-
 const uploadDataButton = document.getElementById('UploadData');
 if (uploadDataButton) {
     uploadDataButton.addEventListener('click', () => {
@@ -558,6 +537,7 @@ if (accPageCheck) {
             if (confirmPass.value != password) { // If the password doesnt match the typed confirm password, report message
                 confirmPass.setCustomValidity("Passwords don't match"); 
                 confirmPass.reportValidity(); 
+                return;
             } else {
                 handleSignUp(email, password);
             }
@@ -571,22 +551,24 @@ if (accPageCheck) {
 
     signInButton.addEventListener('click', function () {
         
+        ACUserOption = 1;
         ACSubmit.classList.remove('removed');
-        ACSubmit.value = "Log In"
+        
 
         signInButton.style.color = 'var(--textColor)';
         signInButton.style.borderBottom = '5px solid var(--textColor)';
         signUpButton.style.color = 'var(--deselectedColor)';
         signUpButton.style.borderBottom = '5px solid var(--deselectedColor)';
 
+        confirmPass.setCustomValidity("");
         confirmPass.classList.remove('active');
-        confirmPassText.classList.remove('active');
-        ACUserOption = 1;
-        
+        confirmPass.value = "";
+        confirmPassText.classList.remove('active');   
+        ACSubmit.textContent = "Log In";
     });
     
     signUpButton.addEventListener('click', function () {
-        ACSubmit.value = "Sign Up"
+        
         ACSubmit.classList.add('removed');
 
         signUpButton.style.color = 'var(--textColor)';
@@ -596,10 +578,32 @@ if (accPageCheck) {
 
         confirmPass.classList.add('active');
         confirmPassText.classList.add('active');
+    
         ACUserOption = 2;
+        ACSubmit.textContent = "Sign Up";
     });
 }
 
+/* If NOT on the Account Creation Page */
+
+if (!accPageCheck){
+    newChatButton.addEventListener('click', function() {
+        if(contentWindow){
+            //Reset title and content window to blank
+            document.getElementsByTagName('pre')[0].innerHTML = "";
+            titleInput.value = "";
+
+            //If a history button is selected, deselect it.
+            var selectedButton = document.querySelector('.historyInstance.selected');
+            if(selectedButton){
+                document.querySelector('.historyInstance.selected')?.classList.remove('selected'); 
+            }
+        }
+        else{
+            window.location.href = '/content-generation';
+        }
+    })
+}
 
 if(LOButton){
     LOButton.addEventListener('click', function() {
@@ -636,8 +640,15 @@ function handleSignUp(email, password) {
                 });
         })
         .catch(error => {
-            showToast("Signup failed", "danger", 5000);
-            console.error('Signup failed', error.code, error.message);
+            if(error.message == "Firebase: Error (auth/email-already-in-use)."){
+                showToast("Signup Failed, Email already in use.", "danger", 5000); 
+            } else if(error.message == "Firebase: Password should be at least 6 characters (auth/weak-password)."){
+                showToast("Password too weak. Please try again.", "danger", 5000);
+            }
+            else{
+                showToast("Signup failed", "danger", 5000);
+                console.error(error.message);
+            }
         });
 }
 
@@ -656,9 +667,7 @@ function handleSignIn() {
                 showToast("Invalid login. Please check credentials.", "danger", 5000); 
             } else{
                 showToast("Sign In Failed", "danger", 5000);
-            }
-             
-            
+            }  
         });
 }
 

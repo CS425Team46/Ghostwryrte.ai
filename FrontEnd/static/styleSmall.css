@@ -944,7 +944,7 @@ pre {
   border-bottom: 5px solid var(--textColor);
   color: var(--textColor  );
   margin-bottom: -5px;
-  margin: 0 3.5% 0 0;
+  margin: 0 4% 0 0;
 
 }
 
@@ -963,7 +963,7 @@ pre {
   font-size: 5rem;
   color: var(--deselectedColor);
   border-bottom: 5px solid var(--deselectedColor);
-  margin: 0 0 0 3.5%;
+  margin: 0 0 0 4%;
 
 }
 
@@ -1073,6 +1073,7 @@ pre {
 .ACSubmitButton:hover {
   transform: translateY(-207%);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 .ACSubmitButton:active{
   cursor: pointer;
