@@ -1,67 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>GhostWryte.ai</title>
-    <link rel="stylesheet" type="text/css"  media='only screen and (max-width: 991px)' href="{{ url_for('static', filename='styleSmall.css') }}">
-    <link rel="stylesheet" type="text/css"  media='only screen and (min-width: 992px)' href="{{ url_for('static', filename='styleLarge.css') }}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-</head>
-<body>
-    <nav class="workspaceTab">
-
-        <div class="navigationWrapper">
-            <div class="brandingBoxWrapper">
-                <img src="{{ url_for('static', filename='images/newLogo.png') }}" alt="Ghostwryte.ai" class="logoImg">
-                <span class="brandingText">Ghostwrtye.Ai</span>
-                <button class="shrinkButton" id="shrinkBtn"><img src="{{ url_for('static', filename='images/shrinkBox.png') }}" alt="Shrink" class="shrinkImg"></button>
+    <head>
+        <title>GhostWryte.ai</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" type="text/css" media="only screen and (max-width: 991px)" href="{{ url_for('static', filename='styleSmall.css') }}" />
+        <link rel="stylesheet" type="text/css" media="only screen and (min-width: 992px)" href="{{ url_for('static', filename='styleLarge.css') }}" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
+    </head>
+    
+    <body>
+        <nav class="workspaceTab">
+            <section class="brandingBoxWrapper">
+                <img src="{{ url_for('static', filename='images/newLogo.png') }}" alt="Ghostwryte.ai" class="logoImg" />
+                <span class="brandingText" data-text=".AI">Ghostwrtye</span>
+                <button class="shrinkButton" id="shrinkBtn"><img src="{{ url_for('static', filename='images/shrinkBox.png') }}" alt="Shrink" class="shrinkImg" /></button>
+            </section>
+            <div class="navigationWrapper">
+                <button id="newChat" class="navigationButton newChat"><img style="vertical-align: middle;" src="{{ url_for('static', filename='images/plus.png') }}" class="barImg" />New Content</button>
+                <a href="{{ url_for('content_generation') }}" class="navigationButton"><img style="vertical-align: middle;" src="{{ url_for('static', filename='images/ContentGeneration.png') }}" class="barImg" />Content Generation</a>
+                <a href="{{ url_for('styling_and_format') }}" class="navigationButton" id="styleAF">
+                    <img style="vertical-align: middle;" src="{{ url_for('static', filename='images/StyleAndFormatting.png') }}" class="barImg" />Styling & Format
+                </a>
+                <a href="{{ url_for('ai_training') }}" class="navigationButton" id="aiTrain"><img style="vertical-align: middle;" src="{{ url_for('static', filename='images/AITraining.png') }}" class="barImg" />AI Training</a>
             </div>
+            <div class="logOutWrapper">
+                <button type="button" id="LOButton" class="logOut"><img style="vertical-align: middle;" src="{{ url_for('static', filename='images/doorIcon.png') }}" class="logOutImg" />Log out</button>
+            </div>
+        </nav>
 
-            <button id="newChat" class="navigationButton newChat"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/plus.png') }}" class="barImg">New Content</button>
-            <a href="{{ url_for('content_generation') }}" class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/ContentGeneration.png') }}" class="barImg">Content Generation</a>
-            <a href="{{ url_for('styling_and_format') }}" class="navigationButton" id="styleAF"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/StyleAndFormatting.png') }}" class="barImg">Styling & Format</a>
-<!--        <a href="#" class="navigationButton" id=""><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AudienceInsights.png') }}" class="barImg">Audience Insights</a>
-            <a href="#" class="navigationButton" id=""><img style="vertical-align:middle" src="{{ url_for('static', filename='images/Templates.png') }}" class="barImg">Templates</a> -->
-            <a href="{{ url_for('ai_training') }}" class="navigationButton" id="aiTrain" style="background: var(--mainColor); box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AITraining.png') }}" class="barImg">AI Training</a>
-            
-        </div>
-
-        <div class="logOutWrapper">
-            <button type="button" id="LOButton" class="logOut"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/doorIcon.png') }}" class="logOutImg">Log out</button>
-        </div>
-    </nav>
-
-    <main class="mainContentWrapper">
-
-		<div class="mainContentWindow">
-            <div class="aiTrainingWrapper">
-                <div class="fileUploadWrapper">
-                    <div class="innerUploadWrapper" tabindex="0">
-                        <img style="vertical-align: middle" src="{{ url_for('static', filename='images/CloudImg.jpg') }}" class="uploadImg">
-                        <h1 class="instructionText">Drop your files here</h1>
-                        <h1 class="instructionText Two">or</h1>
-                        <div class="browse">Browse</div>
-                    </div>
-                    <div class="uploadedFilesAndButtons">
-                        <div class="uploadedFiles"></div>
-                        <div class="uploadAndTrainButtons">
-                            <button id="UploadData">Upload Data</button>
-                            <button id="TrainModel">Train Model</button>
-                        </div>
+        <main class="mainContentWrapper">
+            <div class="mainContentWindow">
+                <div class="aiTrainingWrapper">
+                    <div class="fileUploadWrapper">
+                        <section class="innerUploadWrapper" tabindex="0">
+                            <img style="vertical-align: middle;" src="{{ url_for('static', filename='images/CloudImg.jpg') }}" class="uploadImg" />
+                            <h1 class="instructionText">Drop your files here</h1>
+                            <h1 class="instructionText Two">or</h1>
+                            <div class="browse">Browse</div>
+                        </section>
+                        <section class="uploadedFilesAndButtons">
+                            <div class="uploadedFiles"></div>
+                            <div class="uploadAndTrainButtons">
+                                <button id="UploadData">Upload Data</button>
+                                <button id="TrainModel">Train Model</button>
+                            </div>
+                        </section>
                     </div>
                 </div>
             </div>
-		</div>
-		</div>
-	</main>
-    <div class="toast-overlay" id="toast-overlay"></div>
-    <script type="module" src="{{ url_for('static', filename='javascript.mjs') }}" defer></script>
-</body>
-
+        </main>
+        <div class="toast-overlay" id="toast-overlay"></div>
+        <script type="module" src="{{ url_for('static', filename='javascript.mjs') }}" defer></script>
+    </body>
 </html>
-
 
 <!-- Example Instance 
     <div class="uploadedFileInstance">

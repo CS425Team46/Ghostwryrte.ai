@@ -252,6 +252,8 @@ async function loadHistoryButtons() {
             const content = doc.data().content;
             createHistoryButton(title, content);
         });
+        document.getElementById('hID').style.display = 'flex';
+        document.getElementById('hID').classList.add("fadeInClass");
     } else {
         showToast("No user is signed in to load history", "danger", 5000);
         console.error('No user is signed in to load history');
@@ -267,6 +269,8 @@ function createHistoryButton(title, content) {
     buttonText.classList.add('innerHistorySpan');
     historyButton.appendChild(buttonText);
     historyButton.classList.add('historyInstance');
+    historyButton.classList.add('fadeInClass');
+
 
     historyButton.addEventListener('click', () => {
         titleInput.value = buttonText.textContent; 
@@ -598,11 +602,23 @@ if (!accPageCheck){
             if(selectedButton){
                 document.querySelector('.historyInstance.selected')?.classList.remove('selected'); 
             }
+            checkForContent();
         }
         else{
             window.location.href = '/content-generation';
         }
     })
+
+    // Change button styling depending on which page the user is on
+    if(document.URL.includes('ai-training')){
+        document.getElementById('aiTrain').style="background: var(--mainColor); box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);";
+    }
+    if(document.URL.includes('content-generation')){
+        document.getElementById('contGen').style="background: var(--mainColor); box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);";
+    }
+    if(document.URL.includes('styling-and-format')){
+        document.getElementById('styleAF').style="background: var(--mainColor); box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);";
+    }
 }
 
 if(LOButton){
