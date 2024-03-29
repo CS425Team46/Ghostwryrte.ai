@@ -41,9 +41,13 @@ def content_generation():
 def ai_training():
     return render_template('AITraining.html')
 
-@app.route('/styling-and-format')
+@app.route('/generation-history')
+def generation_history():
+    return render_template('GenerationHistory.html')
+
+""" @app.route('/styling-and-format')
 def styling_and_format():
-    return render_template('StylingAndFormat.html')
+    return render_template('StylingAndFormat.html') """
 
 
 

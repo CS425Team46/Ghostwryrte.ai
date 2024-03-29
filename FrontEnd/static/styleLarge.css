@@ -267,10 +267,7 @@ pre {
     height: 100%;
     width: 85%;
 }
-
-
 .mainContentWindow {
-
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -278,32 +275,22 @@ pre {
     height: 99%;
     width: 100%;
     border-radius: 10px;
-
 }
-
 .mainWindowColumn {
-
     display: flex;
     flex-direction: column;
     height: 100%;
     width: 100%;
     border-radius: 10px;
-
 }
-
 .titleBar{
-
     display: flex;
     align-items: center;
     border-bottom: var(--secondaryColor);
     height: 10%;
     width: 100%;
     border-bottom: 3px solid var(--secondaryColor);
-    border-radius: 10px;
-
 }
-
-
 .titleText{
 
     width: 95%;
@@ -643,6 +630,132 @@ pre {
 
 }
 
+/* Small Screen Generation History Page */
+
+.mainWindowColumn.history{
+    align-items: center;
+}
+
+.historyPageLabel{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1% 3% 1% 3%;
+    border-bottom: var(--secondaryColor);
+    height: 13%;
+    width: 100%;
+    border-bottom: 3px solid var(--secondaryColor);
+}
+
+.historylabel{
+    font-size: 2.5rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+}
+
+.historylabel.two{
+    font-size: 1rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 550;
+}
+
+.historyPageContainer{
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+    overflow-y: scroll;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    padding: 3% 3% 3% 3%;
+    gap: 2%;
+}
+
+.historyPageInstance {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    background: var(--secondaryColor);
+    border-radius: 10px;
+    min-height: 20%;
+    max-height: 20%;
+    min-width: 15%;
+    max-width: 15%;
+    padding: 1% .5% 1% 1%;
+    font-size: .7rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: 450;
+    height: 100%;
+}
+.historyPageInstance:hover{
+    background: var(--mainAccentColor);
+}
+.columnWrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: 100%;
+}
+.historyPageInstanceTitle{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-align: left;
+}
+.historyInfoContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: .6rem;
+}
+.historyImg {
+    width: .6rem;
+    height: auto; 
+    margin: 0 1% 0 0;
+}
+.historyPageInstanceInfo{
+    display: flex;
+    align-items: center;
+}
+.deleteHistoryInstance{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    width: 15%;
+    height: 30%;
+}
+.deleteHistoryInstance:hover{
+    background: white;
+    filter: invert(1);
+}
+.deleteHistoryInstanceImg{
+    max-width: 90%;
+    height: auto;
+}
+
+.historyPageContainer::-webkit-scrollbar {
+    width: .5vw;
+}
+
+.historyPageContainer::-webkit-scrollbar-track {
+    margin: 3vh 0 3vh 0;
+    border-radius: 8px;
+    background-color: var(--secondaryColor);
+    border: 1px solid var(--offWhite);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+}
+        
+.historyPageContainer::-webkit-scrollbar-thumb {
+    border-radius: 8px;
+    background-color: var(--textColor);
+}
+  
+
 /* Includes Content related to AI Training Page */
 
 .aiTrainingWrapper {
@@ -669,7 +782,7 @@ pre {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
 }
-    .fileUploadWrapper {
+.fileUploadWrapper {
 
     display: flex;
     flex-direction: row;

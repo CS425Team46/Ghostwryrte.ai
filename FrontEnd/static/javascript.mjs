@@ -32,6 +32,9 @@ const copyButton            = document.querySelector('.copyButton');
 const titleInput            = document.querySelector('.titleText');
 let newChatButton           = document.getElementById('newChat');
 let historyContentWindow    = document.querySelector('.historyContentWindow');
+/* Generation History Page */
+const historyPageLabel      = document.getElementById('historyPageLabel');
+const historyPageContainer  = document.getElementById('historyPageContainer');
 
 auth.onAuthStateChanged((user) => {
     if (user) {
@@ -40,10 +43,12 @@ auth.onAuthStateChanged((user) => {
             userIdField.value = user.uid;
         }
         if (contentWindow){
-            selectHistoryContentWindow();
-            callUpload();
+            callUploadAfterGeneration();
             loadHistoryButtons(); 
             checkForContent();
+        }
+        if(historyPageLabel){
+            loadHistoryButtons();
         }
         if(!accPageCheck){
             /* setEmailOnPage(); */
@@ -67,8 +72,7 @@ function setEmailOnPage() {
 /* Content Generation Page */
 
 if (contentWindow) {
-    
-
+    // Copy Button Functionality
     document.querySelector('.copyButton').addEventListener('click', (event) => {
         event.preventDefault();
         var content = document.querySelector('pre'); 
@@ -89,12 +93,12 @@ if (contentWindow) {
             img.setAttribute('src', "./static/images/clipboard.png");
         }, 1000); 
     });
-
+    // Turns on and off the submit prompt button
     document.querySelector('.queryBox').addEventListener('input', handlePromptChange);
     function handlePromptChange() {
         checkForContent(); 
     }
-
+    // Adds loader to submit button on click
     genButtonID.addEventListener('click', function(event) {
         const arrowImg = document.getElementById('upArrowImg');
         const loader = document.getElementById('circleLoader');
@@ -103,19 +107,17 @@ if (contentWindow) {
         loader.style.display = 'block';
     });
 
+    /* Title Bar functionality */
     titleInput.addEventListener('blur', updateTitle);
-
     titleInput.addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
-            event.preventDefault();
-            updateTitle();
+            titleInput.blur();
         }
     });
-
     titleInput.addEventListener('focus', function(event) {
         titleInput.value = "";
     });
-    
+        // Functionality to update the title when a user changes it
     function updateTitle() {
         const newTitle = titleInput.value.trim();
         const selectedHistoryButton = document.querySelector('.historyInstance.selected');
@@ -129,7 +131,6 @@ if (contentWindow) {
         }
         titleInput.blur();
     }
-    
     async function updateHistoryInFirestore(oldTitle, newTitle) {
         const user = auth.currentUser;
         if (user) {
@@ -137,7 +138,6 @@ if (contentWindow) {
             const oldHistoryDoc = await getDoc(oldHistoryRef);
     
             if (oldHistoryDoc.exists()) {
-                console.log(oldHistoryDoc);
                 const oldHistoryData = oldHistoryDoc.data();
                 await setDoc(doc(db, 'users', user.uid, 'history', newTitle), {
                     title: newTitle,
@@ -152,28 +152,10 @@ if (contentWindow) {
             console.error('No user is signed in to update history');
         }
     }
-   
-    const debouncedResizeHandler = debounce(selectHistoryContentWindow, 250);
-    window.addEventListener('resize', debouncedResizeHandler);
-}
-function selectHistoryContentWindow() {
-
-    const screenWidth = window.innerWidth;
-    const historyWrapperElements = document.querySelectorAll('.historyWrapper');
-
-    if (screenWidth <= 991) { 
-        historyContentWindow = historyWrapperElements[1].querySelector('.historyContentWindow');
-        historyWrapperElements[0].querySelector('.historyContentWindow').style.display = "none";
-        historyWrapperElements[1].querySelector('.historyContentWindow').style.display = "flex";
-        loadHistoryButtons();
-    } else {
-        historyContentWindow = historyWrapperElements[0].querySelector('.historyContentWindow');
-        historyWrapperElements[1].querySelector('.historyContentWindow').style.display = "none";
-        historyWrapperElements[0].querySelector('.historyContentWindow').style.display = "flex";
-        loadHistoryButtons();
-    }
+    
 }
 
+/* Checks for content on page, to enable/disable button styling */
 function checkForContent() {
     if (contentWindow) {
         var generatedContent = document.getElementsByTagName('pre')[0].innerHTML;
@@ -198,19 +180,8 @@ function checkForContent() {
     }
 }
 
-function debounce(func, delay) {
-    let timer;
-    return function() {
-        const context = this;
-        const args = arguments;
-        clearTimeout(timer);
-        timer = setTimeout(() => {
-            func.apply(context, args);
-        }, delay);
-    };
-}
-
-function callUpload() {
+/* Functionality to upload newly generated prompt to user history */
+function callUploadAfterGeneration() {
     if(contentWindow){
         var content = document.getElementsByTagName('pre')[0].innerHTML;
         if(content){
@@ -220,9 +191,7 @@ function callUpload() {
         } 
     }
 }
-
 async function uploadHistory(title, fileContent) {
-
     var user = auth.currentUser;
     if (user) {
         await setDoc(doc(db, 'users', user.uid, 'history', title), {
@@ -234,33 +203,114 @@ async function uploadHistory(title, fileContent) {
         showToast("No user is signed in to generate history", "danger", 5000);
         console.error('No user is signed in to generate history');
     }
-
 }
-
+// Create history buttons and load the most recent 10 generated content into them **ON CONTENT GENERATION PAGE ONLY**
 async function loadHistoryButtons() {
     
     const user = auth.currentUser;
     if (user) {
         const historyRef = collection(db, `users/${user.uid}/history`);
-        const q = query(historyRef, orderBy('time', 'desc'), limit(10));
-        const querySnapshot = await getDocs(q);
-        while (historyContentWindow.firstChild) {
-            historyContentWindow.removeChild(historyContentWindow.firstChild);
+
+        if(historyContentWindow){
+            const q = query(historyRef, orderBy('time', 'desc'), limit(10));
+            const querySnapshot = await getDocs(q);
+            while (historyContentWindow.firstChild) {
+                historyContentWindow.removeChild(historyContentWindow.firstChild);
+            }
+            querySnapshot.forEach(doc => {
+                const title = doc.data().title;
+                const content = doc.data().content;
+                createHistoryButtonCG(title, content);
+            });
+            document.getElementById('hID').style.display = 'flex';
+            document.getElementById('hID').classList.add("fadeInClass");
+        } 
+        else if (historyPageLabel) {
+            const q = query(historyRef, orderBy('time', 'desc'), limit(100));
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach(doc => {
+                const title = doc.data().title;
+                const content = doc.data().content;
+                const timestamp = doc.data().time;
+                createHistoryButtonGH(title, content, timestamp);
+            });
         }
-        querySnapshot.forEach(doc => {
-            const title = doc.data().title;
-            const content = doc.data().content;
-            createHistoryButton(title, content);
-        });
-        document.getElementById('hID').style.display = 'flex';
-        document.getElementById('hID').classList.add("fadeInClass");
     } else {
         showToast("No user is signed in to load history", "danger", 5000);
         console.error('No user is signed in to load history');
     }
 }
 
-function createHistoryButton(title, content) {
+function createHistoryButtonGH(title, content, timestamp) {
+    const historyPageInstance = document.createElement('div');
+    historyPageInstance.classList.add('historyPageInstance');
+
+    const columnWrapper = document.createElement('div');
+    columnWrapper.classList.add('columnWrapper');
+
+    const titleSpan = document.createElement('span');
+    titleSpan.classList.add('historyPageInstanceTitle');
+    titleSpan.textContent = title;
+
+    columnWrapper.appendChild(titleSpan);
+
+    const historyInfoContainer = document.createElement('div');
+    historyInfoContainer.classList.add('historyInfoContainer');
+
+    const dateSpan = document.createElement('span');
+    dateSpan.classList.add('historyPageInstanceInfo');
+    const dateImg = document.createElement('img');
+    dateImg.src = "static/images/calendarIcon.svg"; 
+    dateImg.alt = "Date";
+    dateImg.classList.add('historyImg');
+    dateSpan.appendChild(dateImg);
+
+    const dateText = document.createTextNode(new Date(timestamp.toDate()).toLocaleDateString());
+    dateSpan.appendChild(dateText);
+    historyInfoContainer.appendChild(dateSpan);
+
+    const timeSpan = document.createElement('span');
+    timeSpan.classList.add('historyPageInstanceInfo');
+    const timeImg = document.createElement('img');
+    timeImg.src = "static/images/clockIcon.svg"
+    timeImg.alt = "Time";
+    timeImg.classList.add('historyImg');
+    timeSpan.appendChild(timeImg);
+
+    const timeText = document.createTextNode(new Date(timestamp.toDate()).toLocaleTimeString());
+    timeSpan.appendChild(timeText);
+    historyInfoContainer.appendChild(timeSpan);
+
+    columnWrapper.appendChild(historyInfoContainer);
+
+    historyPageInstance.appendChild(columnWrapper);
+
+    const deleteHistoryInstance = document.createElement('div');
+    deleteHistoryInstance.classList.add('deleteHistoryInstance');
+    const deleteHistoryInstanceImg = document.createElement('img');
+    deleteHistoryInstanceImg.src = "static/images/blackX.svg";
+    deleteHistoryInstanceImg.alt = "Delete Content";
+    deleteHistoryInstanceImg.classList.add('deleteHistoryInstanceImg');
+    deleteHistoryInstance.appendChild(deleteHistoryInstanceImg);
+
+    historyPageInstance.appendChild(deleteHistoryInstance);
+    historyPageInstance.classList.add('fadeInClass');
+    historyPageContainer.appendChild(historyPageInstance);
+
+    deleteHistoryInstance.addEventListener('click', () => {
+        /* Not implemented yet */
+    });
+
+
+}
+/* Not implemented yet */
+async function deleteHistoryInstance(title){
+    
+    const oldHistoryRef = doc(db, 'users', user.uid, 'history', title);
+    await deleteDoc(oldHistoryRef);
+}
+
+function createHistoryButtonCG(title, content) {
 
     const historyButton = document.createElement('button');
     const buttonText = document.createElement('span');
@@ -270,7 +320,6 @@ function createHistoryButton(title, content) {
     historyButton.appendChild(buttonText);
     historyButton.classList.add('historyInstance');
     historyButton.classList.add('fadeInClass');
-
 
     historyButton.addEventListener('click', () => {
         titleInput.value = buttonText.textContent; 
@@ -336,6 +385,7 @@ if (fileUploadWindow) {
 
 }
 
+// Functionality for users to uploaded data
 function fileProcessing(files) {
     for (const file of files) {
         if (file.type === 'text/plain') {
@@ -345,7 +395,6 @@ function fileProcessing(files) {
         }
     }
 }
-
 function readAndUploadFile(file) {
     const reader = new FileReader();
 
@@ -616,8 +665,8 @@ if (!accPageCheck){
     if(document.URL.includes('content-generation')){
         document.getElementById('contGen').style="background: var(--mainColor); box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);";
     }
-    if(document.URL.includes('styling-and-format')){
-        document.getElementById('styleAF').style="background: var(--mainColor); box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);";
+    if(document.URL.includes('generation-history')){
+        document.getElementById('historyTab').style="background: var(--mainColor); box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);";
     }
 }
 

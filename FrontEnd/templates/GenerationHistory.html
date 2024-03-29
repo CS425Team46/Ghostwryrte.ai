@@ -23,7 +23,7 @@
         <div class="navigationWrapper">
             <button id="newChat" class="navigationButton newChat"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/plus.png') }}" class="barImg">New Content</button>
             <a href="{{ url_for('content_generation') }}" class="navigationButton"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/ContentGeneration.png') }}" class="barImg">Content Generation</a>
-            <a href="{{ url_for('styling_and_format') }}" class="navigationButton" id="styleAF"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/StyleAndFormatting.png') }}" class="barImg">Styling & Format</a>
+            <a href="{{ url_for('generation_history') }}" class="navigationButton" id="historyTab"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/historyIcon.svg') }}" class="barImg">Generation History</a>
             <a href="{{ url_for('ai_training') }}" class="navigationButton" id="aiTrain"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/AITraining.png') }}" class="barImg">AI Training</a>
             
         </div>
@@ -33,11 +33,33 @@
     </nav>
 
     <main class="mainContentWrapper">
-
         <div class="mainContentWindow">
-
+            <div class="mainWindowColumn history">
+                <section class="historyPageLabel" id="historyPageLabel">
+                    <span class="historylabel">Generation History</span>
+                    <span class="historylabel two">View, edit, and download content.</span>
+                </section>
+                <section class="historyPageContainer" id="historyPageContainer">
+                </section>
+            </div>
+        </div>
     </main>
     <div class="toast-overlay" id="toast-overlay"></div>
     <script type="module" src="{{ url_for('static', filename='javascript.mjs') }}" defer></script>
 </body>
 </html>
+
+
+
+<!-- Example Instance
+    
+<div class="historyPageInstance">
+    <div class="columnWrapper">
+        <span class="historyPageInstanceTitle">Example Title That is much longer than what is allowed some other stuff here</span>
+        <div class="historyInfoContainer">
+            <span class="historyPageInstanceInfo"><img src="{{ url_for('static', filename='images/calendarIcon.svg') }}" alt="Date" class="historyImg">08/06/2023</span>
+            <span class="historyPageInstanceInfo"><img src="{{ url_for('static', filename='images/clockIcon.svg') }}" alt="Time" class="historyImg">14:52:14</span>
+        </div>
+    </div>
+    <div class="deleteHistoryInstance"><img src="{{ url_for('static', filename='images/blackX.svg') }}" class="deleteHistoryInstanceImg" alt="Delete Content"></div>
+</div> -->

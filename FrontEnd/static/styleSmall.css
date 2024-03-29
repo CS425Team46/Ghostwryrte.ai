@@ -162,7 +162,7 @@ pre {
   justify-content: center;
   align-items: center;
   width: 80%;
-  height: 10%;
+  height: 7%;
   border-radius: 5px;
   background: var(--secondaryColor);
   font-size: 0;
@@ -311,7 +311,7 @@ pre {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 75%;
+  width: 100%;
   height: 100%;
 }
 
@@ -615,6 +615,109 @@ pre {
   -webkit-box-orient: vertical;
   text-align: left;
 
+}
+
+/* Small Screen Generation History Page */
+
+.mainWindowColumn.history{
+  align-items: center;
+}
+
+.historyPageLabel{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: var(--secondaryColor);
+  height: 7%;
+  width: 100%;
+  border-bottom: 3px solid var(--secondaryColor);
+}
+
+.historylabel{
+  font-size: 1.65rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+.historylabel.two{
+  display: none;
+}
+
+.historyPageContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-y: scroll;
+  width: 90%;
+  padding: 5% 0 5% 0;
+  flex-grow: 1;
+  gap: 1%;
+}
+
+.historyPageInstance{
+  display: flex;
+  align-items: center;
+  background: var(--secondaryColor);
+  border-radius: 10px;
+  min-height: 10%;
+  max-height: 10%;
+  width: 97.5%;
+  padding: 0% 4% 0% 3%;
+  font-size: .8rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 450;
+}
+.columnWrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 95%;
+}
+.historyPageInstanceTitle{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-align: left;
+}
+.historyPageInstanceInfo{
+  display: none;
+}
+.deleteHistoryInstance{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5% 0 0 1%;
+  width: 5%;
+  height: 30%;
+}
+.deleteHistoryInstance:hover{
+
+  background: var(--secondaryAccent);
+}
+.deleteHistoryInstanceImg{
+  max-height: 100%;
+  width: auto;
+}
+
+.historyPageContainer::-webkit-scrollbar {
+  width: .5vw;
+}
+
+.historyPageContainer::-webkit-scrollbar-track {
+  margin: 3vh 0 3vh 0;
+  border-radius: 8px;
+  background-color: var(--secondaryColor);
+  border: 1px solid var(--offWhite);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+}
+        
+.historyPageContainer::-webkit-scrollbar-thumb {
+
+  border-radius: 8px;
+  background-color: var(--textColor);
 }
 
 /* Small screen AI Training Page */
