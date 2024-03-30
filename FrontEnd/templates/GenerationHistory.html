@@ -8,7 +8,7 @@
     <link rel="stylesheet" type="text/css"  media='only screen and (min-width: 992px)' href="{{ url_for('static', filename='styleLarge.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200..1000;1,200..1000&display=swap" rel="preload" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 
@@ -34,14 +34,31 @@
 
     <main class="mainContentWrapper">
         <div class="mainContentWindow">
-            <div class="mainWindowColumn history">
+            <section class="mainWindowColumn history" id="instanceView">
+
                 <section class="historyPageLabel" id="historyPageLabel">
                     <span class="historylabel">Generation History</span>
                     <span class="historylabel two">View, edit, and download content.</span>
                 </section>
-                <section class="historyPageContainer" id="historyPageContainer">
+
+                <div class="historyPageContainer" id="historyPageContainer"></div>
+            </section>
+            <section class="mainWindowColumn edit" style="display:none" id="editView">
+
+                <section class="titleBar">
+                    <input placeholder="Untitled Document" class="titleText"  id="historyPageTitleText"/>
                 </section>
-            </div>
+
+                <section class="textAndButtonsContainer">
+                    <textarea class="textHolder" id="editTextArea"></textarea>
+                    <div class="buttonHolder" class="fadeInClass">
+                        <div class="editButton" id="saveButton"><img src="{{ url_for('static', filename='images/saveIcon.svg') }}" alt="Save" class="editButtonImg"></div>
+                        <div class="editButton"><img src="{{ url_for('static', filename='images/clipboard.png') }}" alt="Copy" class="editButtonImg"></div>
+                        <div class="editButton"><img src="{{ url_for('static', filename='images/downloadIcon.svg') }}" alt="Download" class="editButtonImg"></div>
+                    </div>
+                </section>
+
+            </section>
         </div>
     </main>
     <div class="toast-overlay" id="toast-overlay"></div>

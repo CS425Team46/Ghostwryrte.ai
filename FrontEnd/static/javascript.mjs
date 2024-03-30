@@ -35,6 +35,11 @@ let historyContentWindow    = document.querySelector('.historyContentWindow');
 /* Generation History Page */
 const historyPageLabel      = document.getElementById('historyPageLabel');
 const historyPageContainer  = document.getElementById('historyPageContainer');
+const historyPageTitleText  = document.getElementById('historyPageTitleText');
+const instanceView          = document.getElementById('instanceView');
+const editView              = document.getElementById('editView');
+const editTextArea          = document.getElementById('editTextArea');
+const saveButton            = document.getElementById('saveButton');
 
 auth.onAuthStateChanged((user) => {
     if (user) {
@@ -72,6 +77,12 @@ function setEmailOnPage() {
 /* Content Generation Page */
 
 if (contentWindow) {
+/*     document.querySelector('.queryBox').addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            preventDefault();
+            document.querySelector('.queryBox').blur();
+        }
+    }); */
     // Copy Button Functionality
     document.querySelector('.copyButton').addEventListener('click', (event) => {
         event.preventDefault();
@@ -154,6 +165,7 @@ if (contentWindow) {
     }
     
 }
+
 
 /* Checks for content on page, to enable/disable button styling */
 function checkForContent() {
@@ -301,8 +313,24 @@ function createHistoryButtonGH(title, content, timestamp) {
         /* Not implemented yet */
     });
 
+    historyPageInstance.addEventListener('click', () => {
+        instanceView.style.display = 'none';
+        editView.style.display = 'flex';
+        
+        const title = historyPageInstance.querySelector('.historyPageInstanceTitle').textContent;
+        historyPageTitleText.value = title; 
+        
+        document.querySelector('.historyPageInstance.selected')?.classList.remove('selected');
+        historyPageInstance.classList.add('selected');
+        editTextArea.value = content;
+    });
+    
+
 
 }
+
+
+
 /* Not implemented yet */
 async function deleteHistoryInstance(title){
     
@@ -331,6 +359,55 @@ function createHistoryButtonCG(title, content) {
 
     historyContentWindow.appendChild(historyButton);
 }
+
+if(saveButton){
+
+    saveButton.addEventListener('click', function() {
+        const oldTitle = document.querySelector('.historyPageInstance.selected .historyPageInstanceTitle').textContent;
+        const newTitle = document.getElementById('historyPageTitleText').value.trim();
+        const newContent = document.getElementById('editTextArea').value.trim();
+        /* console.log(oldTitle + ", " + newTitle + ", " + newContent); */
+
+        updateEditedHistoryFirebase(oldTitle, newTitle, newContent);
+        var img = saveButton.querySelector('.editButtonImg');
+        img.setAttribute('src', "./static/images/checkmark.svg");
+
+        setTimeout(() => {
+            img.setAttribute('src', "./static/images/saveIcon.svg");
+        }, 1000); 
+        document.querySelector('.historyPageInstance.selected .historyPageInstanceTitle').textContent = newTitle;
+    });
+    
+}
+async function updateEditedHistoryFirebase(oldTitle, newTitle, newContent) {
+    const user = auth.currentUser;
+    if (user) {
+        const oldHistoryRef = doc(db, 'users', user.uid, 'history', oldTitle);
+        console.log(oldHistoryRef);
+
+            const oldHistoryDoc = await getDoc(oldHistoryRef);
+            
+            if (oldHistoryDoc.exists()) { 
+                const oldHistoryData = oldHistoryDoc.data();           
+                console.log(oldHistoryData);
+
+                await deleteDoc(oldHistoryRef);
+                await setDoc(doc(db, 'users', user.uid, 'history', newTitle), {
+                    title: newTitle,
+                    content: newContent,
+                    time: new Date()
+                });
+
+             } else {
+                console.error('Document does not exist:', oldTitle);
+            } 
+    } else {
+        console.error('No user is signed in to update history');
+    }
+}
+
+
+
 
 /* AI Training Page */
 

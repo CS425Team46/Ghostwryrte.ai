@@ -629,9 +629,10 @@ pre {
   justify-content: center;
   align-items: center;
   border-bottom: var(--secondaryColor);
-  height: 7%;
+  height: 10%;
   width: 100%;
   border-bottom: 3px solid var(--secondaryColor);
+  padding: 2.5% 0 2.5% 0;
 }
 
 .historylabel{
@@ -651,8 +652,7 @@ pre {
   overflow-y: scroll;
   width: 90%;
   padding: 5% 0 5% 0;
-  flex-grow: 1;
-  gap: 1%;
+  gap: 1.5%;
 }
 
 .historyPageInstance{
@@ -660,8 +660,8 @@ pre {
   align-items: center;
   background: var(--secondaryColor);
   border-radius: 10px;
-  min-height: 10%;
-  max-height: 10%;
+  min-height: 6%;
+  max-height: 6%;
   width: 97.5%;
   padding: 0% 4% 0% 3%;
   font-size: .8rem;
@@ -678,7 +678,7 @@ pre {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   text-align: left;
 }
@@ -689,7 +689,7 @@ pre {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 5% 0 0 1%;
+  margin: 0 0 0 3%;
   width: 5%;
   height: 30%;
 }

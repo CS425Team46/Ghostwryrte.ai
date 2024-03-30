@@ -687,6 +687,14 @@ pre {
     font-family: "Poppins", sans-serif;
     font-weight: 450;
     height: 100%;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    
+}
+.historyPageInstance:hover {
+    background: var(--mainAccentColor);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transform: translateY(-5%);
 }
 .historyPageInstance:hover{
     background: var(--mainAccentColor);
@@ -755,6 +763,80 @@ pre {
     background-color: var(--textColor);
 }
   
+.textAndButtonsContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    padding: 2% 0 2% 0;
+}
+
+.textHolder{
+    display: flex;
+    width: 90%;
+    height: 90%;
+    padding: 2% 0 2% 0;
+    outline: none;
+    border: none;
+    resize: none;
+    margin: auto; 
+    overflow: auto;
+    font-family: monospace;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: var(--textColor);
+}
+
+.textHolder::-webkit-scrollbar {
+    width: .3vw;
+}
+
+.textHolder::-webkit-scrollbar-track {
+    margin-top: 4vh;
+    border-radius: 8px;
+    background-color: var(--secondaryColor);
+    border: 1px solid var(--offWhite);
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+}
+        
+.textHolder::-webkit-scrollbar-thumb {
+
+    border-radius: 8px;
+    background-color: var(--textColor);
+}
+
+.buttonHolder{
+    display: flex;
+    height: 10%;
+    width: 20%;
+    border-radius: 10px;
+    background: var(--secondaryColor);
+    padding: 1% 1% 1% 1%;
+    margin: 5%;
+    gap: 10%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.editButton{
+    display: flex;
+    height: 90%;
+    width: 30%;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--mainColor);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.editButton:hover{
+    background: var(--mainAccentColor);
+    cursor: pointer;
+}
+.editButtonImg{
+    max-height: 80%;
+    width: auto;
+}
 
 /* Includes Content related to AI Training Page */
 
