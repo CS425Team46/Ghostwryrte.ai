@@ -201,11 +201,17 @@ function callUploadAfterGeneration() {
             const newContent = content;
             const title = extractTitle(content);
             const timestamp = new Date().getTime();
-            const historyData = { title, content, timestamp };
+            const seconds = Math.floor(timestamp / 1000); 
+            const nanoseconds = (timestamp % 1000) * 1000000;
+
+            const historyData = localStorage.getItem('historyData');
+            let existingData = historyData ? JSON.parse(historyData) : [];
+
+            existingData.unshift({ title, content, timestamp: { seconds, nanoseconds } });
 
             uploadHistory(title, newContent)
                 .then(() => {
-                    localStorage.setItem('historyData', JSON.stringify(historyData));
+                    localStorage.setItem('historyData', JSON.stringify(existingData));
                 })
                 .catch(error => {
                     showToast("Failed to upload history data: " + error.message, "danger", 5000);
