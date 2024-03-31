@@ -1,6 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
-import { getFirestore, collection, query, orderBy, limit, doc, setDoc, serverTimestamp, getDocs, getDoc, deleteDoc } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+import { getFirestore, collection, query, orderBy, limit, doc, setDoc, serverTimestamp, getDocs, getDoc, deleteDoc, Timestamp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+
 
 
 const firebaseConfig = {
@@ -197,12 +198,23 @@ function callUploadAfterGeneration() {
     if(contentWindow){
         var content = document.getElementsByTagName('pre')[0].innerHTML;
         if(content){
-            const newContent = content
+            const newContent = content;
             const title = extractTitle(content);
-            uploadHistory(title, newContent);
-        } 
+            const timestamp = new Date().getTime();
+            const historyData = { title, content, timestamp };
+
+            uploadHistory(title, newContent)
+                .then(() => {
+                    localStorage.setItem('historyData', JSON.stringify(historyData));
+                })
+                .catch(error => {
+                    showToast("Failed to upload history data: " + error.message, "danger", 5000);
+                    console.error('Failed to upload history data:', error);
+                });
+        }
     }
 }
+
 async function uploadHistory(title, fileContent) {
     var user = auth.currentUser;
     if (user) {
@@ -216,41 +228,72 @@ async function uploadHistory(title, fileContent) {
         console.error('No user is signed in to generate history');
     }
 }
-// Create history buttons and load the most recent 10 generated content into them **ON CONTENT GENERATION PAGE ONLY**
 async function loadHistoryButtons() {
-    
-    const user = auth.currentUser;
-    if (user) {
-        const historyRef = collection(db, `users/${user.uid}/history`);
+    const historyData = localStorage.getItem('historyData');
+    if (historyData) {
 
         if(historyContentWindow){
-            const q = query(historyRef, orderBy('time', 'desc'), limit(10));
+            renderHistoryButtons(JSON.parse(historyData));
+        }  else if (historyPageLabel) {
+            renderGenerationHistoryButtons(JSON.parse(historyData));
+        }
+
+    } else {
+        const user = auth.currentUser;
+        if (user) {
+            const historyRef = collection(db, `users/${user.uid}/history`);
+            const q = query(historyRef, orderBy('time', 'desc'));
             const querySnapshot = await getDocs(q);
-            while (historyContentWindow.firstChild) {
-                historyContentWindow.removeChild(historyContentWindow.firstChild);
-            }
-            querySnapshot.forEach(doc => {
-                const title = doc.data().title;
-                const content = doc.data().content;
-                createHistoryButtonCG(title, content);
-            });
-            document.getElementById('hID').style.display = 'flex';
-            document.getElementById('hID').classList.add("fadeInClass");
-        } 
-        else if (historyPageLabel) {
-            const q = query(historyRef, orderBy('time', 'desc'), limit(100));
-            const querySnapshot = await getDocs(q);
+
+            const historyButtonsData = [];
+
             querySnapshot.forEach(doc => {
                 const title = doc.data().title;
                 const content = doc.data().content;
                 const timestamp = doc.data().time;
-                createHistoryButtonGH(title, content, timestamp);
+                historyButtonsData.push({ title, content, timestamp });
             });
+
+            localStorage.setItem('historyData', JSON.stringify(historyButtonsData));
+
+            if(historyContentWindow){
+                renderHistoryButtons(historyButtonsData);
+            }  else if (historyPageLabel) {
+                renderGenerationHistoryButtons(historyButtonsData);
+            }
+        } else {
+            showToast("No user is signed in to load history", "danger", 5000);
+            console.error('No user is signed in to load history');
         }
-    } else {
-        showToast("No user is signed in to load history", "danger", 5000);
-        console.error('No user is signed in to load history');
     }
+}
+
+
+function renderHistoryButtons(historyButtonsData) {
+    while (historyContentWindow.firstChild) {
+        historyContentWindow.removeChild(historyContentWindow.firstChild);
+    }
+
+    historyButtonsData.slice(0, 10).forEach(data => {
+        const { title, content } = data;
+        createHistoryButtonCG(title, content);
+    });
+
+    document.getElementById('hID').style.display = 'flex';
+    document.getElementById('hID').classList.add("fadeInClass");
+}
+
+
+function renderGenerationHistoryButtons(historyButtonsData) {
+    while (historyPageContainer.firstChild) {
+        historyPageContainer.removeChild(historyPageContainer.firstChild);
+    }
+
+    historyButtonsData.forEach(data => {
+        const { title, content, timestamp } = data;
+        const firestoreTimestamp = new Timestamp(timestamp.seconds, timestamp.nanoseconds);
+        createHistoryButtonGH(title, content, firestoreTimestamp);
+    });
 }
 
 function createHistoryButtonGH(title, content, timestamp) {
@@ -325,8 +368,6 @@ function createHistoryButtonGH(title, content, timestamp) {
         editTextArea.value = content;
     });
     
-
-
 }
 
 
@@ -360,25 +401,39 @@ function createHistoryButtonCG(title, content) {
     historyContentWindow.appendChild(historyButton);
 }
 
-if(saveButton){
-
+if (saveButton) {
     saveButton.addEventListener('click', function() {
         const oldTitle = document.querySelector('.historyPageInstance.selected .historyPageInstanceTitle').textContent;
         const newTitle = document.getElementById('historyPageTitleText').value.trim();
         const newContent = document.getElementById('editTextArea').value.trim();
-        /* console.log(oldTitle + ", " + newTitle + ", " + newContent); */
 
+        updateLocalStorage(oldTitle, newTitle, newContent);
         updateEditedHistoryFirebase(oldTitle, newTitle, newContent);
+
         var img = saveButton.querySelector('.editButtonImg');
         img.setAttribute('src', "./static/images/checkmark.svg");
-
         setTimeout(() => {
             img.setAttribute('src', "./static/images/saveIcon.svg");
-        }, 1000); 
+        }, 1000);
         document.querySelector('.historyPageInstance.selected .historyPageInstanceTitle').textContent = newTitle;
     });
-    
 }
+
+function updateLocalStorage(oldTitle, newTitle, newContent) {
+
+    const historyData = JSON.parse(localStorage.getItem('historyData'));
+    const index = historyData.findIndex(item => item.title === oldTitle);
+
+    if (index !== -1) {
+        historyData[index].title = newTitle;
+        historyData[index].content = newContent;
+
+        localStorage.setItem('historyData', JSON.stringify(historyData));
+    } else {
+        console.error('Item not found in history data');
+    }
+}
+
 async function updateEditedHistoryFirebase(oldTitle, newTitle, newContent) {
     const user = auth.currentUser;
     if (user) {
@@ -751,6 +806,7 @@ if(LOButton){
     LOButton.addEventListener('click', function() {
         signOut(auth).then(() => {
             console.log('User signed out.');
+            localStorage.clear();
             window.location.href = '/'
         }).catch((error) => {
             showToast("Signout Error", "danger", 5000);
