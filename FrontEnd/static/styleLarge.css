@@ -935,10 +935,10 @@ pre {
     border-radius: 5px;
     font-family: "Poppins", sans-serif;
     font-weight: 600;
-    font-size: 2rem;
+    font-size: 2.2rem;
     border: 1px solid black;
     background: var(--mainAccentColor);
-    color: var(--textColor);
+    color: var(--mainColor);
 
 }
 

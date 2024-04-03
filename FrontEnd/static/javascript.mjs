@@ -1,6 +1,7 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
 import { getFirestore, collection, query, orderBy, limit, doc, setDoc, serverTimestamp, getDocs, getDoc, deleteDoc, Timestamp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+import jsPDF from 'https://cdn.skypack.dev/jspdf';
 
 
 
@@ -41,6 +42,9 @@ const instanceView          = document.getElementById('instanceView');
 const editView              = document.getElementById('editView');
 const editTextArea          = document.getElementById('editTextArea');
 const saveButton            = document.getElementById('saveButton');
+const copyButtonEditPage    = document.getElementById('copyButtonEditPage');
+const downloadButton        = document.getElementById('downloadButton');
+
 
 auth.onAuthStateChanged((user) => {
     if (user) {
@@ -85,7 +89,7 @@ if (contentWindow) {
         }
     }); */
     // Copy Button Functionality
-    document.querySelector('.copyButton').addEventListener('click', (event) => {
+    copyButton.addEventListener('click', (event) => {
         event.preventDefault();
         var content = document.querySelector('pre'); 
 
@@ -212,6 +216,7 @@ function callUploadAfterGeneration() {
             uploadHistory(title, newContent)
                 .then(() => {
                     localStorage.setItem('historyData', JSON.stringify(existingData));
+                    loadHistoryButtons();
                 })
                 .catch(error => {
                     showToast("Failed to upload history data: " + error.message, "danger", 5000);
@@ -349,7 +354,7 @@ function createHistoryButtonGH(title, content, timestamp) {
     const deleteHistoryInstance = document.createElement('div');
     deleteHistoryInstance.classList.add('deleteHistoryInstance');
     const deleteHistoryInstanceImg = document.createElement('img');
-    deleteHistoryInstanceImg.src = "static/images/blackX.svg";
+    deleteHistoryInstanceImg.src = "static/images/trashcanIcon.svg";
     deleteHistoryInstanceImg.alt = "Delete Content";
     deleteHistoryInstanceImg.classList.add('deleteHistoryInstanceImg');
     deleteHistoryInstance.appendChild(deleteHistoryInstanceImg);
@@ -407,6 +412,8 @@ function createHistoryButtonCG(title, content) {
     historyContentWindow.appendChild(historyButton);
 }
 
+/* Edit Page of Generation History */
+
 if (saveButton) {
     saveButton.addEventListener('click', function() {
         const oldTitle = document.querySelector('.historyPageInstance.selected .historyPageInstanceTitle').textContent;
@@ -423,6 +430,54 @@ if (saveButton) {
         }, 1000);
         document.querySelector('.historyPageInstance.selected .historyPageInstanceTitle').textContent = newTitle;
     });
+
+    copyButtonEditPage.addEventListener('click', (event) => {
+        event.preventDefault();
+    
+        var range = document.createRange();
+        range.selectNode(editTextArea); 
+
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        document.execCommand('copy');
+        selection.removeAllRanges();
+    
+        var img = document.getElementById('copyBtnImg');
+        img.style.height = '100%'
+        img.setAttribute('src', "./static/images/checkmark.svg");
+    
+        setTimeout(() => {
+            img.style.maxHeight = '80%'
+            img.setAttribute('src', "./static/images/clipboard.png");
+        }, 1000); 
+    });
+
+    downloadButton.addEventListener('click', function() {
+
+        var pdf = new jsPDF();
+        var textareaContent = document.getElementById('editTextArea').value;
+
+        var margin = {
+            top: 10,
+            right: 10,
+            bottom: 10,
+            left: 10
+        };
+
+        pdf.setFontSize(12);
+        pdf.setTextColor(0, 0, 0);
+        pdf.setFont("times", "regular");
+        
+        var availableWidth = pdf.internal.pageSize.getWidth() - margin.left - margin.right;
+        var textLines = pdf.splitTextToSize(textareaContent, availableWidth);
+        
+        pdf.text(textLines, margin.left, margin.top);
+        pdf.save('Ghostwryte_Content.pdf');
+        
+    });
+    
+
 }
 
 function updateLocalStorage(oldTitle, newTitle, newContent) {

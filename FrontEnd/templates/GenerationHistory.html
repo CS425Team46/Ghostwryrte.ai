@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css"  media='only screen and (max-width: 991px)' href="{{ url_for('static', filename='styleSmall.css') }}">
     <link rel="stylesheet" type="text/css"  media='only screen and (min-width: 992px)' href="{{ url_for('static', filename='styleLarge.css') }}">
+    <link rel="stylesheet" type="text/css" media="only screen and (min-width: 992px)" href="{{ url_for('static', filename='styleXLarge.css') }}" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
@@ -54,8 +55,8 @@
                     <textarea class="textHolder" id="editTextArea"></textarea>
                     <div class="buttonHolder" class="fadeInClass">
                         <div class="editButton" id="saveButton"><img src="{{ url_for('static', filename='images/saveIcon.svg') }}" alt="Save" class="editButtonImg"></div>
-                        <div class="editButton"><img src="{{ url_for('static', filename='images/clipboard.png') }}" alt="Copy" class="editButtonImg"></div>
-                        <div class="editButton"><img src="{{ url_for('static', filename='images/downloadIcon.svg') }}" alt="Download" class="editButtonImg"></div>
+                        <div class="editButton" id="copyButtonEditPage"><img src="{{ url_for('static', filename='images/clipboard.png') }}" alt="Copy" class="editButtonImg" id="copyBtnImg"></div>
+                        <div class="editButton" id="downloadButton"><img src="{{ url_for('static', filename='images/downloadIcon.svg') }}" alt="Download" class="editButtonImg"></div>
                     </div>
                 </section>
 
