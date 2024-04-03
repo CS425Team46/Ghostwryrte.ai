@@ -424,8 +424,10 @@ if (saveButton) {
         updateEditedHistoryFirebase(oldTitle, newTitle, newContent);
 
         var img = saveButton.querySelector('.editButtonImg');
+        img.style.height = '100%'
         img.setAttribute('src', "./static/images/checkmark.svg");
         setTimeout(() => {
+            img.style.maxHeight = '80%'
             img.setAttribute('src', "./static/images/saveIcon.svg");
         }, 1000);
         document.querySelector('.historyPageInstance.selected .historyPageInstanceTitle').textContent = newTitle;
@@ -799,7 +801,6 @@ if (accPageCheck) {
         
         ACUserOption = 1;
         ACSubmit.classList.remove('removed');
-        
 
         signInButton.style.color = 'var(--textColor)';
         signInButton.style.borderBottom = '5px solid var(--textColor)';
@@ -851,7 +852,7 @@ if (!accPageCheck){
         }
     })
 
-    // Change button styling depending on which page the user is on
+    // Change navigation button styling depending on which page the user is on
     if(document.URL.includes('ai-training')){
         document.getElementById('aiTrain').style="background: var(--mainColor); box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);";
     }
