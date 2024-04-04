@@ -23,8 +23,8 @@ const auth = getAuth(app);
 const fileUploadWindow      = document.querySelector('.innerUploadWrapper');
 const uploadedDocsList      = document.querySelector('.uploadedFiles');
 /* Account Creation Page */
-const accPageCheck          = document.getElementById('accPage');
-const LOButton              = document.getElementById('LOButton');
+const accCreationPageCheck  = document.getElementById('accPage');
+const logOutButton          = document.getElementById('LOButton');
 var ACUserOption            = 1; // 1 = Sign In & 2 = Sign Up
 /* Content Generation Page */
 const genButtonID           = document.getElementById('genButtonID');
@@ -53,42 +53,27 @@ auth.onAuthStateChanged((user) => {
             userIdField.value = user.uid;
         }
         if (contentWindow){
-            callUploadAfterGeneration();
+            callHistoryUploadAfterGeneration();
             loadHistoryButtons(); 
             checkForContent();
         }
         if(historyPageLabel){
             loadHistoryButtons();
         }
-        if(!accPageCheck){
-            /* setEmailOnPage(); */
-        }
     } else {
-        if(!accPageCheck){ // I don't think this will break anything. If no user is signed in, dont let them onto the page.
+        if(!accCreationPageCheck){
+            window.location.href = '/';
+            showToast("No user signed in", "danger", 5000);
             window.location.href = '/';
         }   
-        console.log("No user signed in");
+        
     }
 });
-
-function setEmailOnPage() {
-
-    const user = auth.currentUser;
-    var emailContainer = document.getElementById('emailContainer');
-    emailContainer.textContent = user.email;
-
-}
 
 /* Content Generation Page */
 
 if (contentWindow) {
-/*     document.querySelector('.queryBox').addEventListener('keydown', function(event) {
-        if (event.key === 'Enter') {
-            preventDefault();
-            document.querySelector('.queryBox').blur();
-        }
-    }); */
-    // Copy Button Functionality
+
     copyButton.addEventListener('click', (event) => {
         event.preventDefault();
         var content = document.querySelector('pre'); 
@@ -111,6 +96,7 @@ if (contentWindow) {
     });
     // Turns on and off the submit prompt button
     document.querySelector('.queryBox').addEventListener('input', handlePromptChange);
+
     function handlePromptChange() {
         checkForContent(); 
     }
@@ -198,7 +184,7 @@ function checkForContent() {
 }
 
 /* Functionality to upload newly generated prompt to user history */
-function callUploadAfterGeneration() {
+function callHistoryUploadAfterGeneration() {
     if(contentWindow){
         var content = document.getElementsByTagName('pre')[0].innerHTML;
         if(content){
@@ -766,36 +752,37 @@ if (trainModelButton) {
 
 /* Account Creation Page */
 
-if (accPageCheck) {
+if (accCreationPageCheck) {
     const signInButton = document.getElementById('signInBtn');
     const signUpButton = document.getElementById('signUpBtn');
     const ACSubmit = document.getElementById('ACSubmit');
     var confirmPass = document.getElementById('confirmPassword');
     var confirmPassText = document.getElementById('confText');
-    const signInAndUpWrapper = document.getElementById('SIAUW');
 
     document.getElementById('userSubmitForm').addEventListener('submit', function (event) {
+        event.preventDefault(); 
+
         const email = document.getElementById('userEmail').value;
         const password = document.getElementById('userPassword').value;
-        event.preventDefault(); 
-        confirmPass.setCustomValidity("");
+        setConfirmPassValidityMessage("Passwords don't match", false);
+
         if (ACUserOption == 1) {
             handleSignIn(email, password);
         } else {
-            if (confirmPass.value != password) { // If the password doesnt match the typed confirm password, report message
-                confirmPass.setCustomValidity("Passwords don't match"); 
-                confirmPass.reportValidity(); 
+            if (confirmPass.value != password) {
+                setConfirmPassValidityMessage("Passwords don't match", true);
                 return;
             } else {
                 handleSignUp(email, password);
+                return;
             }
         }
     });
 
     confirmPass.addEventListener('input', function() {
-        confirmPass.setCustomValidity("");
-        confirmPass.reportValidity(); 
+        setConfirmPassValidityMessage("", true);
     });
+
 
     signInButton.addEventListener('click', function () {
         
@@ -807,7 +794,7 @@ if (accPageCheck) {
         signUpButton.style.color = 'var(--deselectedColor)';
         signUpButton.style.borderBottom = '5px solid var(--deselectedColor)';
 
-        confirmPass.setCustomValidity("");
+        setConfirmPassValidityMessage("", false);
         confirmPass.classList.remove('active');
         confirmPass.value = "";
         confirmPassText.classList.remove('active');   
@@ -829,11 +816,19 @@ if (accPageCheck) {
         ACUserOption = 2;
         ACSubmit.textContent = "Sign Up";
     });
+
+    function setConfirmPassValidityMessage(string, reportValidityOrNot){
+        confirmPass.setCustomValidity(string);
+        if(reportValidityOrNot){
+            confirmPass.reportValidity();
+        }
+    }
+
 }
 
 /* If NOT on the Account Creation Page */
 
-if (!accPageCheck){
+if (!accCreationPageCheck){
     newChatButton.addEventListener('click', function() {
         if(contentWindow){
             //Reset title and content window to blank
@@ -864,8 +859,8 @@ if (!accPageCheck){
     }
 }
 
-if(LOButton){
-    LOButton.addEventListener('click', function() {
+if(logOutButton){
+    logOutButton.addEventListener('click', function() {
         signOut(auth).then(() => {
             console.log('User signed out.');
             localStorage.clear();
