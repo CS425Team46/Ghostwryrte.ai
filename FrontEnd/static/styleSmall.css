@@ -1406,7 +1406,80 @@ pre {
   background-color: var(--mainColor);
 }
 
+.clearBackground {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+}
 
+.popUpWindowContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--mainColor); 
+  width: 80%; 
+  height: auto;
+  border-radius: 20px; 
+  padding: 20px; 
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  padding: 3% 3% 3% 3%;
+}
+
+.spanContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  margin-bottom: 20px; 
+  text-align: center;
+}
+.innerText.one{
+  font-size: 1rem;
+  font-weight: bold;
+}
+.innerText.two{
+  font-size: .8rem;
+
+}
+.popUpImg {
+  max-width: 2rem;
+  height:  auto;
+  margin: 0 0 3% 0;
+}
+
+.closePopUpButton {
+  display: flex;
+  background: #00a878;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 40%;
+  font-family: "Poppins", sans-serif;
+  font-weight: bold; 
+  font-size: 1rem;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  cursor: pointer; 
+  transition: all ease .5s;
+  color: var(--mainColor);
+  padding: 1% 0 1% 0;
+}
+
+.closePopUpButton:hover {
+  background: var(--textColor); 
+  color: var(--mainColor);
+  transform: translateY(-5%);
+}
 /* Small devices (portrait tablets and large phones, 600px and up) */
 /* @media only screen and (min-width: 600px) {...} */
 /* Medium devices (landscape tablets, 768px and up) */

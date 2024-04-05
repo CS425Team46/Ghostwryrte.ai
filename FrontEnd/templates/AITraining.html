@@ -55,6 +55,18 @@
             </div>
         </main>
         <div class="toast-overlay" id="toast-overlay"></div>
+
+        <section class="clearBackground" id="popUpWindowContainer">
+            <div class="popUpWindowContainer">
+                <div class="spanContainer">
+                    <img src="{{ url_for('static', filename='images/greenCheckmark.svg') }}" alt="Ghostwryte.ai" class="popUpImg" />
+                    <span class="innerText one">We're training your model</span>
+                    <span class="innerText two">This may take a few minutes, we'll notify you when it's done!</span>
+                </div>
+                <button class="closePopUpButton" id="closePopUp">Got it!</button>
+            </div>
+        </section>
+
         <script type="module" src="{{ url_for('static', filename='javascript.mjs') }}" defer></script>
     </body>
 </html>

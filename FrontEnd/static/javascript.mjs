@@ -22,6 +22,7 @@ const auth = getAuth(app);
 /* AI Training Page */
 const fileUploadWindow      = document.querySelector('.innerUploadWrapper');
 const uploadedDocsList      = document.querySelector('.uploadedFiles');
+const closePopUpWindow      = document.getElementById('closePopUp');
 /* Account Creation Page */
 const accCreationPageCheck  = document.getElementById('accPage');
 const logOutButton          = document.getElementById('LOButton');
@@ -55,7 +56,7 @@ auth.onAuthStateChanged((user) => {
         if (contentWindow){
             callHistoryUploadAfterGeneration();
             loadHistoryButtons(); 
-            checkForContent();
+            checkForContentAndUpdateStyling();
         }
         if(historyPageLabel){
             loadHistoryButtons();
@@ -76,31 +77,19 @@ if (contentWindow) {
 
     copyButton.addEventListener('click', (event) => {
         event.preventDefault();
+
         var content = document.querySelector('pre'); 
-
-        var range = document.createRange();
-        range.selectNodeContents(content);
-
-        var selection = window.getSelection();
-        selection.removeAllRanges();
-        selection.addRange(range);
-        document.execCommand('copy');
-        selection.removeAllRanges();
-
-        var img = document.getElementById('copyImg');
-        img.setAttribute('src', "./static/images/checkmark.svg");
-
-        setTimeout(() => {
-            img.setAttribute('src', "./static/images/clipboard.png");
-        }, 1000); 
+        copyText(content);
+        checkmarkImageChangeConfirm('copyImg');
     });
+
     // Turns on and off the submit prompt button
     document.querySelector('.queryBox').addEventListener('input', handlePromptChange);
 
     function handlePromptChange() {
-        checkForContent(); 
+        checkForContentAndUpdateStyling(); 
     }
-    // Adds loader to submit button on click
+
     genButtonID.addEventListener('click', function(event) {
         const arrowImg = document.getElementById('upArrowImg');
         const loader = document.getElementById('circleLoader');
@@ -157,30 +146,58 @@ if (contentWindow) {
     
 }
 
+function copyText(textSelectionID){
+        
+    var range = document.createRange();
+    range.selectNode(textSelectionID);
 
-/* Checks for content on page, to enable/disable button styling */
-function checkForContent() {
+    var selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    document.execCommand('copy');
+    selection.removeAllRanges();
+
+}
+
+function checkmarkImageChangeConfirm(imageID){
+    var img = document.getElementById(imageID);
+    img.setAttribute('src', "./static/images/checkmark.svg");
+    
+    setTimeout(() => {
+        img.setAttribute('src', "./static/images/clipboard.png");
+    }, 1000); 
+}
+
+function checkForContentAndUpdateStyling() {
     if (contentWindow) {
         var generatedContent = document.getElementsByTagName('pre')[0].innerHTML;
         var promptContent = document.querySelector('.queryBox').value.trim(); 
 
-        if(generatedContent) {
-            copyButton.style.visibility = 'visible';
-            copyButton.style.pointerEvents = 'all';
-        } else {
-            copyButton.style.visibility = 'hidden';
-            copyButton.style.pointerEvents = 'none';
-        }
-        if(promptContent) { 
-            genButtonID.style.pointerEvents = 'all';
-            genButtonID.style.background = "var(--mainAccentColor)";
-            genButtonID.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.4)";
-        } else {
-            genButtonID.style.pointerEvents = 'none';
-            genButtonID.style.background = "var(--secondaryColor)";
-            genButtonID.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.2)";
-        }        
+        toggleCopyButtonByElementExistence(generatedContent);
+        enablePromptSubmitIfTextExists(promptContent);
     }
+}
+
+function toggleCopyButtonByElementExistence(element){
+    if(element) {
+        copyButton.style.visibility = 'visible';
+        copyButton.style.pointerEvents = 'all';
+    } else {
+        copyButton.style.visibility = 'hidden';
+        copyButton.style.pointerEvents = 'none';
+    }
+}
+
+function enablePromptSubmitIfTextExists(text){
+    if(text) { 
+        genButtonID.style.pointerEvents = 'all';
+        genButtonID.style.background = "var(--mainAccentColor)";
+        genButtonID.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.4)";
+    } else {
+        genButtonID.style.pointerEvents = 'none';
+        genButtonID.style.background = "var(--secondaryColor)";
+        genButtonID.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.2)";
+    }  
 }
 
 /* Functionality to upload newly generated prompt to user history */
@@ -230,8 +247,9 @@ async function loadHistoryButtons() {
     if (historyData) {
 
         if(historyContentWindow){
-            renderHistoryButtons(JSON.parse(historyData));
-        }  else if (historyPageLabel) {
+            renderRecentHistoryButtons(JSON.parse(historyData));
+        }  
+        else if (historyPageLabel) {
             renderGenerationHistoryButtons(JSON.parse(historyData));
         }
 
@@ -254,8 +272,9 @@ async function loadHistoryButtons() {
             localStorage.setItem('historyData', JSON.stringify(historyButtonsData));
 
             if(historyContentWindow){
-                renderHistoryButtons(historyButtonsData);
-            }  else if (historyPageLabel) {
+                renderRecentHistoryButtons(historyButtonsData);
+            }  
+            else if (historyPageLabel) {
                 renderGenerationHistoryButtons(historyButtonsData);
             }
         } else {
@@ -265,8 +284,7 @@ async function loadHistoryButtons() {
     }
 }
 
-
-function renderHistoryButtons(historyButtonsData) {
+function renderRecentHistoryButtons(historyButtonsData) {
     while (historyContentWindow.firstChild) {
         historyContentWindow.removeChild(historyContentWindow.firstChild);
     }
@@ -367,8 +385,6 @@ function createHistoryButtonGH(title, content, timestamp) {
     
 }
 
-
-
 /* Not implemented yet */
 async function deleteHistoryInstance(title){
     
@@ -392,7 +408,7 @@ function createHistoryButtonCG(title, content) {
         document.querySelector('.historyInstance.selected')?.classList.remove('selected'); 
         historyButton.classList.add('selected'); 
         document.getElementsByTagName('pre')[0].innerHTML = content;
-        checkForContent();
+        checkForContentAndUpdateStyling();
     });
 
     historyContentWindow.appendChild(historyButton);
@@ -421,24 +437,12 @@ if (saveButton) {
 
     copyButtonEditPage.addEventListener('click', (event) => {
         event.preventDefault();
-    
-        var range = document.createRange();
-        range.selectNode(editTextArea); 
 
-        var selection = window.getSelection();
-        selection.removeAllRanges();
-        selection.addRange(range);
-        document.execCommand('copy');
-        selection.removeAllRanges();
+        copyText(editTextArea);
     
-        var img = document.getElementById('copyBtnImg');
-        img.style.height = '100%'
-        img.setAttribute('src', "./static/images/checkmark.svg");
-    
-        setTimeout(() => {
-            img.style.maxHeight = '80%'
-            img.setAttribute('src', "./static/images/clipboard.png");
-        }, 1000); 
+        document.getElementById('copyBtnImg').style.height = '100%';
+        checkmarkImageChangeConfirm('copyBtnImg');
+        document.getElementById('copyBtnImg').style.maxHeight = '80%'
     });
 
     downloadButton.addEventListener('click', function() {
@@ -464,8 +468,6 @@ if (saveButton) {
         pdf.save('Ghostwryte_Content.pdf');
         
     });
-    
-
 }
 
 function updateLocalStorage(oldTitle, newTitle, newContent) {
@@ -509,9 +511,6 @@ async function updateEditedHistoryFirebase(oldTitle, newTitle, newContent) {
         console.error('No user is signed in to update history');
     }
 }
-
-
-
 
 /* AI Training Page */
 
@@ -564,6 +563,10 @@ if (fileUploadWindow) {
         });
     });
 
+    closePopUpWindow.addEventListener('click', function(){
+        document.getElementById('popUpWindowContainer').style.display = 'none';
+    });
+
 }
 
 // Functionality for users to uploaded data
@@ -596,6 +599,20 @@ function extractTitle(fileContent) {
 }
 
 function fileUpload(title, fileContent) {
+
+    const uploadedFileInstance = createUploadedFileInstance(title);
+    const deleteButton = createDeleteButtonOnUploadedFileInstance();
+
+    uploadedFileInstance.appendChild(deleteButton);
+    uploadedDocsList.appendChild(uploadedFileInstance);
+    uploadedFileInstance.setAttribute('fileContent', fileContent);
+
+    deleteButton.addEventListener('click', function() {
+        uploadedDocsList.removeChild(uploadedFileInstance);
+    });
+}
+
+function createUploadedFileInstance(title){
     const uploadedFileInstance = document.createElement('div');
     uploadedFileInstance.classList.add('uploadedFileInstance');
 
@@ -609,23 +626,19 @@ function fileUpload(title, fileContent) {
     fileNameSpan.classList.add('fileName');
     uploadedFileInstance.appendChild(fileNameSpan);
 
+    return uploadedFileInstance;
+}
+
+function createDeleteButtonOnUploadedFileInstance(){
     const deleteButton = document.createElement('button');
     deleteButton.classList.add('deleteFileButton');
-    deleteButton.addEventListener('click', function() {
-        uploadedDocsList.removeChild(uploadedFileInstance);
-    });
-    
+
     const deleteImg = document.createElement('img');
-    deleteImg.setAttribute('src', "./static/images/redx.png");
+    deleteImg.setAttribute('src', "./static/images/blackX.svg");
     deleteImg.classList.add('fileInstanceImgX');
     deleteButton.appendChild(deleteImg);
 
-    uploadedFileInstance.appendChild(deleteButton);
-
-    uploadedDocsList.appendChild(uploadedFileInstance);
-
-    uploadedFileInstance.setAttribute('fileContent', fileContent);
-
+    return deleteButton;
 }
 
 function generateSessionId() {
@@ -636,7 +649,6 @@ function extractFirstSentence(content) {
     const matches = content.match(/(.*?[.?!])(\s|$)/);
     return matches ? matches[1] : content;
 }
-
 
 function uploadAllFilesToFirebase(session_id) {
     return new Promise((resolve, reject) => {
@@ -731,17 +743,22 @@ if (trainModelButton) {
                 },
                 body: JSON.stringify({ user_id: user.uid })
             })
-            .then(response => response.json())
+            .then(response => {
+                document.getElementById('popUpWindowContainer').style.display = 'flex';
+                return response.json();
+            })
             .then(data => {
                 console.log(data.message);
-                if(data.message == "Model training script failed"){
+                if(data.message === "Model training script failed"){
                     showToast(data.message, "danger", 5000);
+                    document.getElementById('popUpWindowContainer').style.display = 'none';
                 } else{
                     showToast(data.message, "success", 5000);
                 }
             })
             .catch(error => {
                 console.error('Error starting model training:', error);
+                showToast("Error starting model training", "danger", 5000);
             });
         } else {
             console.log("No user signed in");
@@ -749,6 +766,7 @@ if (trainModelButton) {
         }
     });
 }
+
 
 /* Account Creation Page */
 
@@ -764,11 +782,12 @@ if (accCreationPageCheck) {
 
         const email = document.getElementById('userEmail').value;
         const password = document.getElementById('userPassword').value;
-        setConfirmPassValidityMessage("Passwords don't match", false);
+        setConfirmPassValidityMessage("", false);
 
         if (ACUserOption == 1) {
             handleSignIn(email, password);
-        } else {
+        } 
+        else {
             if (confirmPass.value != password) {
                 setConfirmPassValidityMessage("Passwords don't match", true);
                 return;
@@ -783,16 +802,12 @@ if (accCreationPageCheck) {
         setConfirmPassValidityMessage("", true);
     });
 
-
     signInButton.addEventListener('click', function () {
         
         ACUserOption = 1;
         ACSubmit.classList.remove('removed');
 
-        signInButton.style.color = 'var(--textColor)';
-        signInButton.style.borderBottom = '5px solid var(--textColor)';
-        signUpButton.style.color = 'var(--deselectedColor)';
-        signUpButton.style.borderBottom = '5px solid var(--deselectedColor)';
+        toggleOnSignInStyling();
 
         setConfirmPassValidityMessage("", false);
         confirmPass.classList.remove('active');
@@ -803,19 +818,29 @@ if (accCreationPageCheck) {
     
     signUpButton.addEventListener('click', function () {
         
+        ACUserOption = 2;
         ACSubmit.classList.add('removed');
 
+        toggleOnSignUpStyling();
+
+        confirmPass.classList.add('active');
+        confirmPassText.classList.add('active');
+        
+        ACSubmit.textContent = "Sign Up";
+    });
+
+    function toggleOnSignInStyling(){
+        signInButton.style.color = 'var(--textColor)';
+        signInButton.style.borderBottom = '5px solid var(--textColor)';
+        signUpButton.style.color = 'var(--deselectedColor)';
+        signUpButton.style.borderBottom = '5px solid var(--deselectedColor)';
+    }
+    function toggleOnSignUpStyling(){
         signUpButton.style.color = 'var(--textColor)';
         signUpButton.style.borderBottom = '5px solid var(--textColor)';
         signInButton.style.color = 'var(--deselectedColor)';
         signInButton.style.borderBottom = '5px solid var(--deselectedColor)';
-
-        confirmPass.classList.add('active');
-        confirmPassText.classList.add('active');
-    
-        ACUserOption = 2;
-        ACSubmit.textContent = "Sign Up";
-    });
+    }
 
     function setConfirmPassValidityMessage(string, reportValidityOrNot){
         confirmPass.setCustomValidity(string);
@@ -824,30 +849,86 @@ if (accCreationPageCheck) {
         }
     }
 
+    function handleSignUp(email, password) {
+        createUserWithEmailAndPassword(auth, email, password)
+            .then(userCredential => {
+                console.log('Signup successful', userCredential.user);
+
+                const userData = {
+                    email: userCredential.user.email,
+                    model_id: '',
+                    latest_training_file: '',
+                    job_id: '',
+                    created_at: serverTimestamp()
+                };
+
+                setDoc(doc(db, 'users', userCredential.user.uid), userData)
+                    .then(() => {
+                        showToast("Signup successful!", "success", 5000);
+                        console.log('User data saved successfully');
+                    })
+                    .catch(error => {
+                        console.error('Error saving user data', error);
+                    });
+            })
+            .catch(error => {
+                if(error.message == "Firebase: Error (auth/email-already-in-use)."){
+                    showToast("Signup Failed, Email already in use.", "danger", 5000); 
+                } else if(error.message == "Firebase: Password should be at least 6 characters (auth/weak-password)."){
+                    showToast("Password too weak. Please try again.", "danger", 5000);
+                }
+                else{
+                    showToast("Signup failed", "danger", 5000);
+                    console.error(error.message);
+                }
+            });
+    }
+
+    function handleSignIn() {
+        const email = document.getElementById('userEmail').value;
+        const password = document.getElementById('userPassword').value;
+        signInWithEmailAndPassword(auth, email, password)
+            .then(userCredential => {
+                console.log('Signin successful', userCredential.user);
+                window.location.href = '/content-generation';
+            })
+            .catch(error => {
+                console.error('Signin failed', error.code, error.message);
+                console.log(error.message);
+                if(error.message == "Firebase: Error (auth/invalid-credential)."){
+                    showToast("Invalid login. Please check credentials.", "danger", 5000); 
+                } else{
+                    showToast("Sign In Failed", "danger", 5000);
+                }  
+            });
+    }
+
 }
 
 /* If NOT on the Account Creation Page */
 
 if (!accCreationPageCheck){
+
     newChatButton.addEventListener('click', function() {
         if(contentWindow){
-            //Reset title and content window to blank
-            document.getElementsByTagName('pre')[0].innerHTML = "";
-            titleInput.value = "";
+            clearTextAndTitle();
 
-            //If a history button is selected, deselect it.
             var selectedButton = document.querySelector('.historyInstance.selected');
             if(selectedButton){
                 document.querySelector('.historyInstance.selected')?.classList.remove('selected'); 
             }
-            checkForContent();
+            checkForContentAndUpdateStyling();
         }
         else{
             window.location.href = '/content-generation';
         }
     })
 
-    // Change navigation button styling depending on which page the user is on
+    function clearTextAndTitle(){
+        document.getElementsByTagName('pre')[0].innerHTML = "";
+        titleInput.value = "";
+    }
+
     if(document.URL.includes('ai-training')){
         document.getElementById('aiTrain').style="background: var(--mainColor); box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);";
     }
@@ -862,7 +943,6 @@ if (!accCreationPageCheck){
 if(logOutButton){
     logOutButton.addEventListener('click', function() {
         signOut(auth).then(() => {
-            console.log('User signed out.');
             localStorage.clear();
             window.location.href = '/'
         }).catch((error) => {
@@ -871,62 +951,6 @@ if(logOutButton){
         });
     }, false);
 }
-
-function handleSignUp(email, password) {
-    createUserWithEmailAndPassword(auth, email, password)
-        .then(userCredential => {
-            console.log('Signup successful', userCredential.user);
-
-            const userData = {
-                email: userCredential.user.email,
-                model_id: '',
-                latest_training_file: '',
-                job_id: '',
-                created_at: serverTimestamp()
-            };
-
-            setDoc(doc(db, 'users', userCredential.user.uid), userData)
-                .then(() => {
-                    showToast("Signup successful!", "success", 5000);
-                    console.log('User data saved successfully');
-                })
-                .catch(error => {
-                    console.error('Error saving user data', error);
-                });
-        })
-        .catch(error => {
-            if(error.message == "Firebase: Error (auth/email-already-in-use)."){
-                showToast("Signup Failed, Email already in use.", "danger", 5000); 
-            } else if(error.message == "Firebase: Password should be at least 6 characters (auth/weak-password)."){
-                showToast("Password too weak. Please try again.", "danger", 5000);
-            }
-            else{
-                showToast("Signup failed", "danger", 5000);
-                console.error(error.message);
-            }
-        });
-}
-
-function handleSignIn() {
-    const email = document.getElementById('userEmail').value;
-    const password = document.getElementById('userPassword').value;
-    signInWithEmailAndPassword(auth, email, password)
-        .then(userCredential => {
-            console.log('Signin successful', userCredential.user);
-            window.location.href = '/content-generation';
-        })
-        .catch(error => {
-            console.error('Signin failed', error.code, error.message);
-            console.log(error.message);
-            if(error.message == "Firebase: Error (auth/invalid-credential)."){
-                showToast("Invalid login. Please check credentials.", "danger", 5000); 
-            } else{
-                showToast("Sign In Failed", "danger", 5000);
-            }  
-        });
-}
-
-/* Toast Stuff */
 
 let icon = { 
 	success: 

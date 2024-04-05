@@ -342,11 +342,10 @@ pre {
 }
 
 .contentGenWindow {
-
     display: flex;
     height: 75%;
     width: 90%;
-    font-size: 2.4vh;
+    font-size: 2vh;
     font-family: "Poppins", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -356,7 +355,6 @@ pre {
     margin: auto; 
     overflow: auto;
     color: var(--textColor);
-
 }
 
 .contentGenWindow > pre {
@@ -376,19 +374,16 @@ pre {
 }
         
 .contentGenWindow::-webkit-scrollbar-thumb {
-
     border-radius: 8px;
     background-color: var(--textColor);
 }
 
 .queryWrapper{
-
     display: flex;
     align-items: center;
     justify-content: center;
     height: 20%;
     width: 100%;
-
 }
 
 .bottomRowInnerWrapper {
@@ -1465,4 +1460,82 @@ pre {
 .accountCreationPg{
     background-color: var(--mainColor);
 }
+
+.clearBackground {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.popUpWindowContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--mainColor); 
+    width: 30%; 
+    height: auto;
+    border-radius: 20px; 
+    padding: 20px; 
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    padding: 3% 3% 3% 3%;
+}
+
+.spanContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    margin-bottom: 20px; 
+    text-align: center;
+}
+.innerText.one{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.innerText.two{
+    font-size: 1.2rem;
+
+}
+.popUpImg {
+    max-width: 4rem;
+    height:  auto;
+    margin: 0 0 3% 0;
+}
+
+.closePopUpButton {
+    display: flex;
+    background: #00a878;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    width: 40%;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold; 
+    font-size: 1.5rem;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    cursor: pointer; 
+    transition: all ease .5s;
+    color: var(--mainColor);
+    padding: 1.7% 0 1.7% 0;
+    margin: 1.3% 0 0 0;
+}
+
+.closePopUpButton:hover {
+    background: var(--textColor); 
+    color: var(--mainColor);
+    transform: translateY(-5%);
+}
+
+
 }
