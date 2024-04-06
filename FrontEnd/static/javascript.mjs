@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
-import { getFirestore, collection, query, orderBy, limit, doc, setDoc, serverTimestamp, getDocs, getDoc, deleteDoc, Timestamp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+import { getFirestore, collection, query, orderBy, doc, setDoc, serverTimestamp, getDocs, getDoc, deleteDoc, Timestamp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
 import jsPDF from 'https://cdn.skypack.dev/jspdf';
 
@@ -45,6 +45,7 @@ const editTextArea          = document.getElementById('editTextArea');
 const saveButton            = document.getElementById('saveButton');
 const copyButtonEditPage    = document.getElementById('copyButtonEditPage');
 const downloadButton        = document.getElementById('downloadButton');
+const genHistBackButton     = document.getElementById('histGenBack');
 
 
 auth.onAuthStateChanged((user) => {
@@ -98,7 +99,6 @@ if (contentWindow) {
         loader.style.display = 'block';
     });
 
-    /* Title Bar functionality */
     titleInput.addEventListener('blur', updateTitle);
     titleInput.addEventListener('keydown', function(event) {
         if (event.key === 'Enter') {
@@ -108,7 +108,7 @@ if (contentWindow) {
     titleInput.addEventListener('focus', function(event) {
         titleInput.value = "";
     });
-        // Functionality to update the title when a user changes it
+
     function updateTitle() {
         const newTitle = titleInput.value.trim();
         const selectedHistoryButton = document.querySelector('.historyInstance.selected');
@@ -329,11 +329,6 @@ function createHistoryButtonGH(title, content, timestamp) {
 
     const dateSpan = document.createElement('span');
     dateSpan.classList.add('historyPageInstanceInfo');
-    const dateImg = document.createElement('img');
-    dateImg.src = "static/images/calendarIcon.svg"; 
-    dateImg.alt = "Date";
-    dateImg.classList.add('historyImg');
-    dateSpan.appendChild(dateImg);
 
     const dateText = document.createTextNode(new Date(timestamp.toDate()).toLocaleDateString());
     dateSpan.appendChild(dateText);
@@ -341,11 +336,7 @@ function createHistoryButtonGH(title, content, timestamp) {
 
     const timeSpan = document.createElement('span');
     timeSpan.classList.add('historyPageInstanceInfo');
-    const timeImg = document.createElement('img');
-    timeImg.src = "static/images/clockIcon.svg"
-    timeImg.alt = "Time";
-    timeImg.classList.add('historyImg');
-    timeSpan.appendChild(timeImg);
+
 
     const timeText = document.createTextNode(new Date(timestamp.toDate()).toLocaleTimeString());
     timeSpan.appendChild(timeText);
@@ -374,6 +365,8 @@ function createHistoryButtonGH(title, content, timestamp) {
     historyPageInstance.addEventListener('click', () => {
         instanceView.style.display = 'none';
         editView.style.display = 'flex';
+        histGenBack.style.display = 'flex';
+        document.querySelector('.logOutWrapper').classList.add('genHist');
         
         const title = historyPageInstance.querySelector('.historyPageInstanceTitle').textContent;
         historyPageTitleText.value = title; 
@@ -382,6 +375,12 @@ function createHistoryButtonGH(title, content, timestamp) {
         historyPageInstance.classList.add('selected');
         editTextArea.value = content;
     });
+    histGenBack.addEventListener('click', () => {
+        instanceView.style.display = 'flex';
+        editView.style.display = 'none';
+        histGenBack.style.display = 'none';
+        document.querySelector('.logOutWrapper').classList.remove('genHist');
+});
     
 }
 
@@ -569,7 +568,6 @@ if (fileUploadWindow) {
 
 }
 
-// Functionality for users to uploaded data
 function fileProcessing(files) {
     for (const file of files) {
         if (file.type === 'text/plain') {
@@ -587,6 +585,7 @@ function readAndUploadFile(file) {
         let title = file.name;
         const dotIndex = title.lastIndexOf('.');
         title = title.substring(0, dotIndex) + title.substring(dotIndex).toLowerCase();
+
         fileUpload(title, fileContent);
     };
 
@@ -595,7 +594,10 @@ function readAndUploadFile(file) {
 
 function extractTitle(fileContent) {
     const sentences = fileContent.split('.');
-    return sentences[0].trim();
+    let titleSentence = sentences[0].trim();
+    titleSentence = titleSentence.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
+    console.log(titleSentence);
+    return titleSentence;
 }
 
 function fileUpload(title, fileContent) {
@@ -617,7 +619,7 @@ function createUploadedFileInstance(title){
     uploadedFileInstance.classList.add('uploadedFileInstance');
 
     const img = document.createElement('img');
-    img.setAttribute('src', "./static/images/textFile.png");
+    img.setAttribute('src', "./static/images/textFile.svg");
     img.classList.add('fileInstanceImgTxt');
     uploadedFileInstance.appendChild(img);
 
@@ -645,11 +647,6 @@ function generateSessionId() {
     return new Date().getTime().toString();  // Convert time to string to use as a session ID
 }
 
-function extractFirstSentence(content) {
-    const matches = content.match(/(.*?[.?!])(\s|$)/);
-    return matches ? matches[1] : content;
-}
-
 function uploadAllFilesToFirebase(session_id) {
     return new Promise((resolve, reject) => {
         const uploadedFileInstances = document.querySelectorAll('.uploadedFileInstance');
@@ -665,7 +662,7 @@ function uploadAllFilesToFirebase(session_id) {
 
         uploadedFileInstances.forEach(fileInstance => {
             const fileContent = fileInstance.getAttribute('fileContent');
-            const title = extractFirstSentence(fileContent);  // Extract the first sentence to use as the title
+            const title = extractTitle(fileContent); 
 
             // Collect all upload promises
             uploadPromises.push(
@@ -752,7 +749,8 @@ if (trainModelButton) {
                 if(data.message === "Model training script failed"){
                     showToast(data.message, "danger", 5000);
                     document.getElementById('popUpWindowContainer').style.display = 'none';
-                } else{
+                } 
+                else {
                     showToast(data.message, "success", 5000);
                 }
             })

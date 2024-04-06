@@ -15,7 +15,7 @@ padding: 0;
   --mainColor: #ffffff;
   --secondaryColor: #F0F0F0;
   --secondaryAccent: #DEDEDE;
-  --mainAccentColor: #5784e8;
+  --mainAccentColor: #00a878;
   --textColor: #030303;
 
 }
@@ -197,6 +197,46 @@ pre {
   filter: invert(0);
 }
 
+
+.backButtonGenHistory{
+    
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  min-height: 5.25%;
+  max-height: 5.25%;
+  border-radius: 10px;
+  background: var(--textColor);
+  font-size: 0;
+  resize: none;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  overflow: hidden;
+  border: none;
+  color: var(--mainColor);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  margin-top: auto;
+
+}
+.backButtonGenHistory img{
+  filter: invert(1);
+}
+.backButtonGenHistory:hover{
+  color: var(--textColor);
+}
+.backButtonGenHistory:hover img{
+  filter: invert(0);
+}
+
+.backButtonGenHistory:hover {
+  background: var(--mainAccentColor);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transform: translateY(-5%);
+}
+
 .logOutWrapper {
 
   display: flex;
@@ -209,6 +249,10 @@ pre {
   border-top: 2px solid var(--secondaryAccent);
   margin-top: auto;
 
+}
+
+.logOutWrapper.genHist {
+  margin-top: 5%;
 }
 
 .logOut {
@@ -694,11 +738,10 @@ pre {
   height: 30%;
 }
 .deleteHistoryInstance:hover{
-
   background: var(--secondaryAccent);
 }
 .deleteHistoryInstanceImg{
-  max-height: 100%;
+  max-height: 150%;
   width: auto;
 }
 
@@ -1261,7 +1304,7 @@ pre {
   display: block;
   max-height: 100%;
   max-width: 100%;
-  height: 2.5vh;
+  height: 1rem;
   width: auto;
 }
 
@@ -1272,7 +1315,7 @@ pre {
   max-width: 70%; 
   min-width: 40%;
   background: #fff; 
-  padding: 0.5rem; 
+  padding: 0.1rem; 
   border-radius: 4px; 
   box-shadow: -1px 1px 10px
     rgba(0, 0, 0, 0.3); 
@@ -1315,17 +1358,17 @@ pre {
   font-size: 2rem; 
 } 
 
-.toast-message { 
-  flex: 1; 
+.toast-message {
+  flex: 1;
   font-family: "Poppins", sans-serif;
   font-weight: 500;
-  font-size: 1.7rem; 
-  color: #000000; 
-  padding: 0.5rem; 
+  font-size: 0.7rem;
+  color: #000000;
+  padding: 0.5rem;
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis; 
-} 
+  word-break: break-all; 
+}
+
 
 .toast.toast-success { 
   background: #95eab8; 

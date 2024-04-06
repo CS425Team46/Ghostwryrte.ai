@@ -15,7 +15,7 @@ padding: 0;
     --mainColor: #ffffff;
     --secondaryColor: #F0F0F0;
     --secondaryAccent: #DEDEDE;
-    --mainAccentColor: #5784e8;
+    --mainAccentColor: #00a878;
     --textColor: #030303;
 
 }
@@ -128,34 +128,6 @@ pre {
     border: none;
 }
 
-.profilePicture{
-    height: 80%;
-    width: 22%;
-    border-radius: 20px;
-    margin-left: 3%;
-}
-
-.profileImg{
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 40px;
-}
-
-.userEmail{
-    width: 60%;
-    font-size: .8vw;
-    flex-grow: 1;
-    padding-top: 1%;
-    color: var(--textColor);
-    font-family: "Poppins", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis; 
-}
-
 .barImg {
     width: auto;
     height: 100%;
@@ -212,6 +184,45 @@ pre {
     transform: translateY(-5%);
 }
 
+.backButtonGenHistory{
+    
+    display: none;
+    justify-content: flex-start;
+    align-items: center;
+    width: 90%;
+    min-height: 5.25%;
+    max-height: 5.25%;
+    padding-left: 4%;
+    border-radius: 10px;
+    background: var(--textColor);
+    font-size: 1rem;
+    resize: none;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    overflow: hidden;
+    border: none;
+    color: var(--mainColor);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+    margin-top: auto;
+
+}
+.backButtonGenHistory img{
+    filter: invert(1);
+}
+.backButtonGenHistory:hover{
+    color: var(--textColor);
+}
+.backButtonGenHistory:hover img{
+    filter: invert(0);
+}
+
+.backButtonGenHistory:hover {
+    background: var(--mainAccentColor);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transform: translateY(-5%);
+}
 
 .logOutWrapper {
     display: flex;
@@ -222,7 +233,10 @@ pre {
     height: 8%;
     background: var(--secondaryColor);
     border-top: 3px solid var(--secondaryAccent);
-    margin-top: auto;
+    margin-top:auto;
+}
+.logOutWrapper.genHist {
+    margin-top: 3%;
 }
 
 .logOut {
@@ -299,7 +313,7 @@ pre {
     height: 100%;
     overflow: hidden;
     color: var(--textColor);
-    font-size: 3vw;
+    font-size: 2rem;
     font-family: "Poppins", sans-serif;
     font-optical-sizing: auto;
     font-weight: 600;
@@ -345,7 +359,7 @@ pre {
     display: flex;
     height: 75%;
     width: 90%;
-    font-size: 2vh;
+    font-size: 1.2rem;
     font-family: "Poppins", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
@@ -732,7 +746,7 @@ pre {
     align-items: center;
     border-radius: 5px;
     width: 15%;
-    height: 30%;
+    height: 17%;
 }
 .deleteHistoryInstance:hover{
     background: white;
@@ -1060,14 +1074,15 @@ pre {
     border-radius: 10px;
     background: var(--mainColor);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
 
 }
 
 #UploadData:hover{
     background: var(--mainAccentColor);
-    border: 1px solid black;
     cursor: pointer;
-    transition: all .25s ease;
+    transform: translateY(-7%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 #UploadData:active {
@@ -1088,14 +1103,15 @@ pre {
     border-radius: 10px;
     background: var(--mainColor);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
 
 }
 
 #TrainModel:hover{
     background: var(--mainAccentColor);
-    border: 1px solid black;
     cursor: pointer;
-    transition: all .25s ease;
+    transform: translateY(-7%);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 #TrainModel:active {
@@ -1329,7 +1345,7 @@ pre {
     min-width: 10%;
     background: #fff; 
     padding: 0.5rem; 
-    border-radius: 4px; 
+    border-radius: 10px 10px 0 0; 
     box-shadow: -1px 1px 10px
     rgba(0, 0, 0, 0.3); 
     z-index: 1023; 
@@ -1351,7 +1367,7 @@ pre {
     bottom: 0; 
     left: 0; 
     height: 4px; 
-    width: 100%; 
+    width: 95%; 
     background: #b7b7b7; 
     animation: toastProgress 3s 
     ease-in-out forwards; 
@@ -1379,8 +1395,7 @@ pre {
     color: #000000; 
     padding: 0.5rem; 
     overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis; 
+    word-break: break-all; 
 } 
 
 .toast.toast-success { 

@@ -16,12 +16,12 @@
     <body>
         <nav class="workspaceTab">
             <section class="brandingBoxWrapper">
-                <img src="{{ url_for('static', filename='images/newLogo.png') }}" alt="Ghostwryte.ai" class="logoImg" />
+                <img src="{{ url_for('static', filename='images/newLogoAlternate.png') }}" alt="Ghostwryte.ai" class="logoImg">
                 <span class="brandingText" data-text="AI">Ghostwrtye.</span>
                 <button class="shrinkButton" id="shrinkBtn"><img src="{{ url_for('static', filename='images/shrinkBox.png') }}" alt="Shrink" class="shrinkImg" /></button>
             </section>
             <div class="navigationWrapper">
-                <button id="newChat" class="navigationButton newChat"><img style="vertical-align: middle;" src="{{ url_for('static', filename='images/plus.png') }}" class="barImg" />New Content</button>
+                <button id="newChat" class="navigationButton newChat"><img style="vertical-align:middle" src="{{ url_for('static', filename='images/plus.svg') }}" class="barImg">New Content</button>
                 <a href="{{ url_for('content_generation') }}" class="navigationButton" id="contGen">
                     <img style="vertical-align: middle;" src="{{ url_for('static', filename='images/ContentGeneration.png') }}" class="barImg" />Content Generation
                 </a>
