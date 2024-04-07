@@ -360,3 +360,17 @@
 2024-04-07 10:32:20,550 - INFO - Checking status of job ftjob-Gi9eCYN8cwFGebaPZiFqQros: cancelled
 2024-04-07 10:32:22,104 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-vmUBa9qmd9v6jHeWzPNYamAH "HTTP/1.1 200 OK"
 2024-04-07 10:32:22,108 - INFO - Checking status of job ftjob-vmUBa9qmd9v6jHeWzPNYamAH: running
+2024-04-07 10:32:25,678 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Gi9eCYN8cwFGebaPZiFqQros "HTTP/1.1 200 OK"
+2024-04-07 10:32:25,683 - INFO - Checking status of job ftjob-Gi9eCYN8cwFGebaPZiFqQros: cancelled
+2024-04-07 10:32:27,249 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-vmUBa9qmd9v6jHeWzPNYamAH "HTTP/1.1 200 OK"
+2024-04-07 10:32:27,252 - INFO - Checking status of job ftjob-vmUBa9qmd9v6jHeWzPNYamAH: running
+2024-04-07 10:32:30,876 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Gi9eCYN8cwFGebaPZiFqQros "HTTP/1.1 200 OK"
+2024-04-07 10:32:30,882 - INFO - Checking status of job ftjob-Gi9eCYN8cwFGebaPZiFqQros: cancelled
+2024-04-07 10:32:32,395 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-vmUBa9qmd9v6jHeWzPNYamAH "HTTP/1.1 200 OK"
+2024-04-07 10:32:32,399 - INFO - Checking status of job ftjob-vmUBa9qmd9v6jHeWzPNYamAH: running
+2024-04-07 10:32:36,058 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Gi9eCYN8cwFGebaPZiFqQros "HTTP/1.1 200 OK"
+2024-04-07 10:32:36,062 - INFO - Checking status of job ftjob-Gi9eCYN8cwFGebaPZiFqQros: cancelled
+2024-04-07 10:32:37,541 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-vmUBa9qmd9v6jHeWzPNYamAH "HTTP/1.1 200 OK"
+2024-04-07 10:32:37,544 - INFO - Checking status of job ftjob-vmUBa9qmd9v6jHeWzPNYamAH: running
+2024-04-07 10:32:41,240 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Gi9eCYN8cwFGebaPZiFqQros "HTTP/1.1 200 OK"
+2024-04-07 10:32:41,244 - INFO - Checking status of job ftjob-Gi9eCYN8cwFGebaPZiFqQros: cancelled
