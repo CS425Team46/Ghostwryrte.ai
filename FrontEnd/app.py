@@ -29,6 +29,33 @@ client = OpenAI()
 
 app = Flask(__name__)
 
+
+import stripe
+
+# Replace this with your Stripe secret key
+stripe.api_key = 'sk_test_51P2luTK9QOcf8ycFCDzhWdKsuOcX9LIE5XokquZMxMEGKb6HX57m02VMauGOaIziE7d3ezMYjFtcCoclD0P0r42q00RtdtnTxQ'
+
+@app.route('/create-checkout-session', methods=['POST'])
+def create_checkout_session():
+    try:
+        checkout_session = stripe.checkout.sessions.create(
+            payment_method_types=['card'],
+            line_items=[
+                {
+                    'price': 'price_1P2m0HK9QOcf8ycFEdCqu3ZA', # Replace with the price ID for your subscription
+                    'quantity': 1,
+                },
+            ],
+            mode='subscription',
+            success_url='http://yourdomain.com/success?session_id={CHECKOUT_SESSION_ID}', # Replace with your success URL
+            cancel_url='http://yourdomain.com/cancel', # Replace with your cancel URL
+        )
+        return jsonify({'id': checkout_session.id})
+    except Exception as e:
+        return jsonify(error=str(e)), 403
+
+
+
 @app.route('/')
 def home():
     return render_template('AccountCreation.html')
