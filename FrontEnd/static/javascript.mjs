@@ -45,7 +45,7 @@ const editTextArea          = document.getElementById('editTextArea');
 const saveButton            = document.getElementById('saveButton');
 const copyButtonEditPage    = document.getElementById('copyButtonEditPage');
 const downloadButton        = document.getElementById('downloadButton');
-const genHistBackButton     = document.getElementById('histGenBack');
+const histGenBack           = document.getElementById('histGenBack');
 
 
 auth.onAuthStateChanged((user) => {
@@ -247,6 +247,7 @@ async function loadHistoryButtons() {
     if (historyData) {
 
         if(historyContentWindow){
+            
             renderRecentHistoryButtons(JSON.parse(historyData));
         }  
         else if (historyPageLabel) {
@@ -269,6 +270,7 @@ async function loadHistoryButtons() {
                 historyButtonsData.push({ title, content, timestamp });
             });
 
+            
             localStorage.setItem('historyData', JSON.stringify(historyButtonsData));
 
             if(historyContentWindow){
@@ -303,7 +305,6 @@ function renderGenerationHistoryButtons(historyButtonsData) {
     while (historyPageContainer.firstChild) {
         historyPageContainer.removeChild(historyPageContainer.firstChild);
     }
-
     historyButtonsData.forEach(data => {
         const { title, content, timestamp } = data;
         const firestoreTimestamp = new Timestamp(timestamp.seconds, timestamp.nanoseconds);
@@ -358,8 +359,10 @@ function createHistoryButtonGH(title, content, timestamp) {
     historyPageInstance.classList.add('fadeInClass');
     historyPageContainer.appendChild(historyPageInstance);
 
-    deleteHistoryInstance.addEventListener('click', () => {
-        /* Not implemented yet */
+    deleteHistoryInstance.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const historyPageInstanceToDelete = historyPageInstance;
+        deleteHistoryInstanceFunc(historyPageInstanceToDelete);
     });
 
     historyPageInstance.addEventListener('click', () => {
@@ -375,20 +378,35 @@ function createHistoryButtonGH(title, content, timestamp) {
         historyPageInstance.classList.add('selected');
         editTextArea.value = content;
     });
-    histGenBack.addEventListener('click', () => {
-        instanceView.style.display = 'flex';
-        editView.style.display = 'none';
-        histGenBack.style.display = 'none';
-        document.querySelector('.logOutWrapper').classList.remove('genHist');
-});
-    
 }
 
-/* Not implemented yet */
-async function deleteHistoryInstance(title){
-    
-    const oldHistoryRef = doc(db, 'users', user.uid, 'history', title);
-    await deleteDoc(oldHistoryRef);
+async function deleteHistoryInstanceFunc(historyPageInstanceToDelete) {
+    const title = historyPageInstanceToDelete.querySelector('.historyPageInstanceTitle').textContent;
+    console.log(title);
+
+    const user = auth.currentUser;
+    if (user) {
+        const oldHistoryRef = doc(db, 'users', user.uid, 'history', title);
+        console.log(oldHistoryRef);
+        await deleteDoc(oldHistoryRef);
+    } else {
+        console.error('No user is signed in to delete history');
+    }
+    historyPageInstanceToDelete.remove();
+    removeFromLocalStorageByTitle(title);
+
+}
+
+function removeFromLocalStorageByTitle(title) {
+    const historyData = JSON.parse(localStorage.getItem('historyData'));
+    const index = historyData.findIndex(item => item.title === title);
+
+    if (index !== -1) {
+        historyData.splice(index, 1);
+        localStorage.setItem('historyData', JSON.stringify(historyData));
+    } else {
+        console.error('Item not found in local storage');
+    }
 }
 
 function createHistoryButtonCG(title, content) {
@@ -488,13 +506,11 @@ async function updateEditedHistoryFirebase(oldTitle, newTitle, newContent) {
     const user = auth.currentUser;
     if (user) {
         const oldHistoryRef = doc(db, 'users', user.uid, 'history', oldTitle);
-        console.log(oldHistoryRef);
 
             const oldHistoryDoc = await getDoc(oldHistoryRef);
             
             if (oldHistoryDoc.exists()) { 
                 const oldHistoryData = oldHistoryDoc.data();           
-                console.log(oldHistoryData);
 
                 await deleteDoc(oldHistoryRef);
                 await setDoc(doc(db, 'users', user.uid, 'history', newTitle), {
@@ -509,6 +525,16 @@ async function updateEditedHistoryFirebase(oldTitle, newTitle, newContent) {
     } else {
         console.error('No user is signed in to update history');
     }
+}
+
+if(instanceView){
+    histGenBack.addEventListener('click', () => {
+        instanceView.style.display = 'flex';
+        editView.style.display = 'none';
+        histGenBack.style.display = 'none';
+        document.querySelector('.logOutWrapper').classList.remove('genHist');
+        loadHistoryButtons();
+    });
 }
 
 /* AI Training Page */
@@ -596,7 +622,6 @@ function extractTitle(fileContent) {
     const sentences = fileContent.split('.');
     let titleSentence = sentences[0].trim();
     titleSentence = titleSentence.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '');
-    console.log(titleSentence);
     return titleSentence;
 }
 
