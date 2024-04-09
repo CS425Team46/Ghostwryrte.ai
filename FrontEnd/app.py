@@ -113,7 +113,7 @@ def cancel():
 
 @app.route('/')
 def home():
-    return render_template('AccountCreation.html')
+    return render_template('LandingPage.html')
 
 @app.route('/content-generation')
 def content_generation():
