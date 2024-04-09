@@ -424,3 +424,601 @@
 2024-04-07 10:33:43,702 - INFO - Checking status of job ftjob-Gi9eCYN8cwFGebaPZiFqQros: cancelled
 2024-04-07 10:33:44,856 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-vmUBa9qmd9v6jHeWzPNYamAH "HTTP/1.1 200 OK"
 2024-04-07 10:33:44,859 - INFO - Checking status of job ftjob-vmUBa9qmd9v6jHeWzPNYamAH: cancelled
+2024-04-09 02:51:02,641 - INFO - HTTP Request: POST https://api.openai.com/v1/fine_tuning/jobs "HTTP/1.1 200 OK"
+2024-04-09 02:51:02,960 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:51:02,965 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: validating_files
+2024-04-09 02:51:08,110 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:51:08,114 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: validating_files
+2024-04-09 02:51:13,259 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:51:13,265 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: validating_files
+2024-04-09 02:51:18,415 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:51:18,429 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: validating_files
+2024-04-09 02:51:23,563 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:51:23,582 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: validating_files
+2024-04-09 02:51:28,724 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:51:28,732 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: queued
+2024-04-09 02:51:33,910 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:51:33,915 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: queued
+2024-04-09 02:51:39,115 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:51:39,118 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: queued
+2024-04-09 02:51:44,301 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:51:44,306 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: queued
+2024-04-09 02:51:49,459 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:51:49,463 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: queued
+2024-04-09 02:51:54,618 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:51:54,622 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: queued
+2024-04-09 02:51:59,759 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:51:59,764 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: queued
+2024-04-09 02:52:04,982 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:52:04,986 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: queued
+2024-04-09 02:52:10,183 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:52:10,186 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:52:15,371 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:52:15,374 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:52:20,520 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:52:20,527 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:52:25,666 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:52:25,672 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:52:30,812 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:52:30,815 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:52:35,946 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:52:35,951 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:52:41,094 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:52:41,101 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:52:46,288 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:52:46,293 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:52:51,452 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:52:51,456 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:52:56,616 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:52:56,618 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:53:01,771 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:53:01,773 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:53:06,921 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:53:06,926 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:53:12,056 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:53:12,060 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:53:17,282 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:53:17,287 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:53:22,479 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:53:22,484 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:53:27,620 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:53:27,623 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:53:32,773 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:53:32,777 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:53:37,911 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:53:37,913 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:53:43,095 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:53:43,097 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:53:48,266 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:53:48,270 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:53:53,400 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:53:53,403 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:53:58,597 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:53:58,601 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:54:03,776 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:54:03,781 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:54:08,912 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:54:08,916 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:54:14,119 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:54:14,124 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:54:19,309 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:54:19,314 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:54:25,382 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:54:25,387 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:54:30,529 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:54:30,532 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:54:35,726 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:54:35,731 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:54:40,867 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:54:40,872 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:54:46,054 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:54:46,057 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:54:51,249 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:54:51,254 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:54:56,401 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:54:56,407 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:55:01,532 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:55:01,539 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:55:06,673 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:55:06,677 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:55:11,813 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:55:11,825 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:55:17,003 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:55:17,010 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:55:22,207 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:55:22,212 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:55:27,388 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:55:27,390 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:55:32,573 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:55:32,578 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:55:37,763 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:55:37,766 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:55:43,052 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:55:43,058 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:55:48,195 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:55:48,200 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:55:53,382 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:55:53,386 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:55:58,521 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:55:58,525 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:56:03,658 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:56:03,663 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:56:08,835 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:56:08,839 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:56:14,018 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:56:14,020 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:56:19,198 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:56:19,202 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:56:24,373 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:56:24,377 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:56:29,561 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:56:29,566 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: running
+2024-04-09 02:56:34,747 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-kZz5c0crEQBihLjf5BbhcwIK "HTTP/1.1 200 OK"
+2024-04-09 02:56:34,754 - INFO - Checking status of job ftjob-kZz5c0crEQBihLjf5BbhcwIK: succeeded
+2024-04-09 02:56:34,754 - INFO - Job ftjob-kZz5c0crEQBihLjf5BbhcwIK completed successfully. Model ID: ft:gpt-3.5-turbo-0125:personal::9C2VIawd
+2024-04-09 02:56:35,211 - INFO - Updated Firestore with model ID ft:gpt-3.5-turbo-0125:personal::9C2VIawd for user XtAIQTKZnEhboLQZR5jgRuu6kK52
+2024-04-09 03:20:18,638 - INFO - HTTP Request: POST https://api.openai.com/v1/fine_tuning/jobs "HTTP/1.1 200 OK"
+2024-04-09 03:20:18,940 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:20:18,945 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: validating_files
+2024-04-09 03:20:24,112 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:20:24,116 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: validating_files
+2024-04-09 03:20:29,315 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:20:29,319 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: validating_files
+2024-04-09 03:20:34,450 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:20:34,455 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: validating_files
+2024-04-09 03:20:39,881 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:20:39,884 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: validating_files
+2024-04-09 03:20:45,224 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:20:45,229 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: queued
+2024-04-09 03:20:50,433 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:20:50,437 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: queued
+2024-04-09 03:20:55,594 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:20:55,597 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: queued
+2024-04-09 03:21:00,796 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:21:00,799 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:21:05,942 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:21:05,946 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:21:11,085 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:21:11,090 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:21:16,271 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:21:16,275 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:21:21,484 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:21:21,488 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:21:26,753 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:21:26,758 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:21:31,940 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:21:31,942 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:21:37,130 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:21:37,134 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:21:42,265 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:21:42,268 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:21:47,409 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:21:47,412 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:21:52,541 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:21:52,546 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:21:57,742 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:21:57,746 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:22:02,967 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:22:02,970 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:22:08,157 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:22:08,160 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:22:13,294 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:22:13,299 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:22:18,425 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:22:18,429 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:22:23,554 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:22:23,558 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:22:28,757 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:22:28,761 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:22:33,893 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:22:33,896 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:22:39,081 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:22:39,086 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:22:44,222 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:22:44,227 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:22:49,421 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:22:49,424 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:22:54,570 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:22:54,575 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:22:59,756 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:22:59,760 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:23:04,957 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:23:04,961 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:23:10,093 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:23:10,095 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:23:15,238 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:23:15,243 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:23:20,456 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:23:20,460 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:23:25,598 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:23:25,603 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:23:30,806 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:23:30,808 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:23:35,988 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:23:35,992 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:23:41,245 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:23:41,250 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:23:46,376 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:23:46,378 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:23:51,632 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:23:51,636 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:23:56,770 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:23:56,772 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:24:01,953 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:24:01,957 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:24:07,091 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:24:07,096 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:24:12,243 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:24:12,248 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:24:17,495 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:24:17,499 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:24:22,625 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:24:22,629 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:24:27,816 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:24:27,819 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:24:33,001 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:24:33,004 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:24:38,166 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:24:38,171 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:24:43,356 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:24:43,360 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:24:48,564 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:24:48,567 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:24:53,697 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:24:53,701 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:24:58,902 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:24:58,907 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:25:04,121 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:25:04,123 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:25:09,272 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:25:09,276 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:25:14,464 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:25:14,468 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:25:19,598 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:25:19,600 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:25:24,738 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:25:24,742 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:25:29,903 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:25:29,908 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:25:35,047 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:25:35,052 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: running
+2024-04-09 03:25:40,296 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-R3E9S4Il185DA7dHUuTkSAUN "HTTP/1.1 200 OK"
+2024-04-09 03:25:40,303 - INFO - Checking status of job ftjob-R3E9S4Il185DA7dHUuTkSAUN: succeeded
+2024-04-09 03:25:40,303 - INFO - Job ftjob-R3E9S4Il185DA7dHUuTkSAUN completed successfully. Model ID: ft:gpt-3.5-turbo-0125:personal::9C2xRdo9
+2024-04-09 03:25:40,910 - INFO - Updated Firestore with model ID ft:gpt-3.5-turbo-0125:personal::9C2xRdo9 for user DKsH7qKvgzWjUNGUW9TSaGxWFFC3
+2024-04-09 03:45:07,977 - INFO - HTTP Request: POST https://api.openai.com/v1/fine_tuning/jobs "HTTP/1.1 200 OK"
+2024-04-09 03:45:08,309 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:45:08,316 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: validating_files
+2024-04-09 03:45:11,708 - INFO - HTTP Request: POST https://api.openai.com/v1/fine_tuning/jobs "HTTP/1.1 200 OK"
+2024-04-09 03:45:12,011 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:45:12,014 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: validating_files
+2024-04-09 03:45:13,461 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:45:13,465 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: running
+2024-04-09 03:45:17,165 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:45:17,168 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: running
+2024-04-09 03:45:18,679 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:45:18,683 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: running
+2024-04-09 03:45:22,365 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:45:22,368 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: running
+2024-04-09 03:45:23,881 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:45:23,885 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:45:27,553 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:45:27,556 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:45:29,103 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:45:29,106 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:45:32,732 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:45:32,737 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:45:34,288 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:45:34,294 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:45:37,954 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:45:37,960 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:45:39,445 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:45:39,449 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:45:43,141 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:45:43,144 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:45:44,597 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:45:44,601 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:45:48,341 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:45:48,347 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:45:49,820 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:45:49,824 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:45:53,557 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:45:53,560 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:45:55,011 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:45:55,016 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:45:58,687 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:45:58,691 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:46:00,166 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:46:00,168 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:46:03,885 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:46:03,889 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:46:05,345 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:46:05,350 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:46:09,071 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:46:09,075 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:46:10,558 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:46:10,561 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:46:14,263 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:46:14,268 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:46:15,709 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:46:15,713 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:46:19,415 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:46:19,418 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:46:20,851 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:46:20,856 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:46:24,598 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:46:24,603 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:46:26,003 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:46:26,011 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:46:29,797 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:46:29,802 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:46:31,203 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:46:31,208 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:46:34,992 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:46:34,997 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:46:36,342 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:46:36,347 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:46:40,125 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:46:40,130 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:46:41,590 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:46:41,594 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:46:45,954 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:46:45,966 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:46:47,438 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:46:47,442 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:46:51,165 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:46:51,172 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:46:52,679 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:46:52,684 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:46:56,302 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:46:56,306 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:46:57,870 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:46:57,874 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:47:01,568 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:47:01,571 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:47:03,077 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:47:03,082 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:47:06,822 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:47:06,826 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:47:08,401 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:47:08,404 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:47:12,025 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:47:12,029 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:47:13,588 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:47:13,590 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:47:17,250 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:47:17,258 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:47:18,947 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:47:18,976 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:47:22,539 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:47:22,544 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:47:24,110 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:47:24,115 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:47:27,788 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-qimyp3ZmzSXUbqZynU2mfMbI "HTTP/1.1 200 OK"
+2024-04-09 03:47:27,793 - INFO - Checking status of job ftjob-qimyp3ZmzSXUbqZynU2mfMbI: cancelled
+2024-04-09 03:47:29,361 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf "HTTP/1.1 200 OK"
+2024-04-09 03:47:29,368 - INFO - Checking status of job ftjob-sMnc5VkAiMCw0rrJ0BGtsqQf: cancelled
+2024-04-09 03:48:48,144 - INFO - HTTP Request: POST https://api.openai.com/v1/fine_tuning/jobs "HTTP/1.1 200 OK"
+2024-04-09 03:48:48,462 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:48:48,466 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: validating_files
+2024-04-09 03:48:53,658 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:48:53,666 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: running
+2024-04-09 03:48:58,869 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:48:58,871 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: running
+2024-04-09 03:49:04,098 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:49:04,102 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: running
+2024-04-09 03:49:09,288 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:49:09,292 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: running
+2024-04-09 03:49:14,445 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:49:14,452 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: running
+2024-04-09 03:49:19,643 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:49:19,648 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:49:24,803 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:49:24,807 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:49:30,005 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:49:30,010 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:49:35,202 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:49:35,208 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:49:40,356 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:49:40,364 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:49:45,559 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:49:45,563 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:49:50,758 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:49:50,762 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:49:55,913 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:49:55,915 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:50:01,108 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:50:01,111 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:50:06,266 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:50:06,270 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:50:11,467 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:50:11,472 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:50:16,601 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:50:16,605 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:50:21,742 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:50:21,747 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:50:26,960 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:50:26,963 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:50:32,215 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:50:32,219 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:50:37,419 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:50:37,422 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:50:38,943 - INFO - HTTP Request: POST https://api.openai.com/v1/fine_tuning/jobs "HTTP/1.1 200 OK"
+2024-04-09 03:50:39,303 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:50:39,309 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: validating_files
+2024-04-09 03:50:42,618 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:50:42,621 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:50:44,514 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:50:44,518 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:50:47,799 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:50:47,804 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:50:49,662 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:50:49,666 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:50:52,956 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:50:52,959 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:50:54,805 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:50:54,808 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:50:58,104 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:50:58,107 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:50:59,942 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:50:59,947 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:51:03,301 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:51:03,307 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:51:05,097 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:51:05,102 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:51:08,486 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:51:08,489 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:51:10,309 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:51:10,312 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:51:13,676 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:51:13,680 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:51:15,493 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:51:15,497 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:51:18,890 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:51:18,895 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:51:20,682 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:51:20,686 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:51:24,072 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:51:24,076 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:51:25,827 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:51:25,831 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:51:29,245 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:51:29,250 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:51:31,013 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:51:31,015 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:51:34,431 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:51:34,436 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:51:36,265 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:51:36,270 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:51:39,619 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:51:39,622 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:51:41,422 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:51:41,424 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:51:44,831 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:51:44,835 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:51:46,628 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:51:46,633 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:51:50,012 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:51:50,015 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:51:51,794 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:51:51,799 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:51:55,153 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:51:55,156 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:51:56,983 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:51:56,987 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:52:00,339 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:52:00,342 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:52:02,118 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:52:02,121 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:52:05,484 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:52:05,488 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:52:07,387 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:52:07,391 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:52:10,620 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:52:10,623 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:52:12,548 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:52:12,553 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:52:15,778 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:52:15,782 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:52:17,767 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:52:17,770 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:52:21,042 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:52:21,046 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:52:22,947 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:52:22,952 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:52:26,176 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:52:26,180 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:52:28,136 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:52:28,140 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:52:31,363 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:52:31,368 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:52:33,290 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:52:33,295 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:52:36,507 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:52:36,512 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:52:38,477 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:52:38,482 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:52:42,044 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:52:42,048 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:52:43,623 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:52:43,627 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:52:47,256 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:52:47,259 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:52:48,762 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:52:48,765 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:52:52,443 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:52:52,447 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:52:53,912 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:52:53,914 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:52:57,585 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:52:57,589 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:52:59,042 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:52:59,046 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:53:02,768 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:53:02,771 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:53:04,189 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:53:04,193 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:53:07,958 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:53:07,963 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:53:09,385 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:53:09,389 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:53:13,100 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:53:13,105 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:53:14,520 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:53:14,522 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:53:18,256 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:53:18,260 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:53:19,662 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:53:19,666 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:53:23,440 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:53:23,444 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:53:24,843 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:53:24,847 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:53:28,578 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:53:28,582 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:53:29,990 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:53:29,993 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:53:33,774 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:53:33,777 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:53:35,125 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:53:35,127 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:53:38,963 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:53:38,966 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:53:40,332 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:53:40,335 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:53:44,147 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:53:44,151 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:53:45,618 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:53:45,623 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: running
+2024-04-09 03:53:49,411 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:53:49,414 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:53:50,750 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-uhOPd92SSOYIt62ZWyWimGda "HTTP/1.1 200 OK"
+2024-04-09 03:53:50,756 - INFO - Checking status of job ftjob-uhOPd92SSOYIt62ZWyWimGda: succeeded
+2024-04-09 03:53:50,756 - INFO - Job ftjob-uhOPd92SSOYIt62ZWyWimGda completed successfully. Model ID: ft:gpt-3.5-turbo-0125:personal::9C3OgMgu
+2024-04-09 03:53:50,903 - INFO - Updated Firestore with model ID ft:gpt-3.5-turbo-0125:personal::9C3OgMgu for user XtAIQTKZnEhboLQZR5jgRuu6kK52
+2024-04-09 03:53:54,583 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:53:54,587 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:53:59,724 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:53:59,730 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:54:04,909 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:54:04,924 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:54:10,053 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:54:10,062 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:54:15,198 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:54:15,203 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:54:20,388 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:54:20,392 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:54:25,587 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:54:25,592 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:54:30,727 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:54:30,747 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:54:35,928 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:54:35,931 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:54:41,071 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:54:41,074 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:54:46,256 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:54:46,263 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:54:51,450 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:54:51,453 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
+2024-04-09 03:54:56,671 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-Fi0lKO03NfUgC8N60CcfqTxw "HTTP/1.1 200 OK"
+2024-04-09 03:54:56,678 - INFO - Checking status of job ftjob-Fi0lKO03NfUgC8N60CcfqTxw: cancelled
