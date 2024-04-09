@@ -59,6 +59,7 @@ auth.onAuthStateChanged((user) => {
             callHistoryUploadAfterGeneration();
             loadHistoryButtons(); 
             checkForContentAndUpdateStyling();
+            hideHistoryID();
         }
         if(historyPageLabel){
             loadHistoryButtons();
@@ -165,6 +166,14 @@ if (contentWindow) {
         } else {
             console.error('No user is signed in to update history');
         }
+    }
+
+
+}
+
+function hideHistoryID(){
+    if(!historyContentWindow.firstChild) {
+        document.getElementById('hID').style.display = 'none';
     }
 }
 
@@ -280,8 +289,7 @@ async function loadHistoryButtons() {
     const historyData = localStorage.getItem('historyData');
     if (historyData) {
 
-        if(historyContentWindow){
-            
+        if(historyContentWindow){       
             renderRecentHistoryButtons(JSON.parse(historyData));
         }  
         else if (historyPageLabel) {

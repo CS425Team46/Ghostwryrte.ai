@@ -1054,7 +1054,6 @@ pre {
 }
 
 #UploadData{
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1066,8 +1065,8 @@ pre {
   border: none;
   border-radius: 10px;
   background: var(--mainColor);
+  color: var(--textColor);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
 }
 
 #UploadData:hover{
@@ -1082,7 +1081,6 @@ pre {
 }
 
 #TrainModel{
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1094,8 +1092,8 @@ pre {
   border: none;
   border-radius: 10px;
   background: var(--mainColor);
+  color: var(--textColor);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
 }
 
 #TrainModel:hover{

@@ -44,47 +44,9 @@
     
     @media only screen and (min-width: 1921px) {
     
-    .workspaceTab{
     
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        background: var(--secondaryColor);
-        width: 15%;
-        height: 100%;
-        float: left;
-    
-    }
-    
-    .navigationWrapper {
-    
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        margin: 0 0 0 10%;
-        gap: 3%;
-        width: 100%;
-        height: 25%;
-        background: var(--secondaryColor);
-    
-    }
-    
-    .userInformationWrapper{
-    
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 90%;
-        height: 7%;
-        border-radius: 10px;
-        background: var(--mainColor);
-        margin-top: 8%;
-        margin-bottom: 13%;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-    
-    }
+
+
     
     .brandingBoxWrapper{
         display: flex;
@@ -135,7 +97,6 @@
     }
     
     .navigationButton {
-    
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -154,7 +115,6 @@
         border: none;
         color: var(--textColor);
         transition: transform 0.5s ease, box-shadow 0.5s ease;
-    
     }
     
     .navigationButton.newChat {
@@ -183,9 +143,7 @@
         transform: translateY(-5%);
     }
     
-    
     .backButtonGenHistory{
-        
         display: none;
         justify-content: flex-start;
         align-items: center;
@@ -204,7 +162,6 @@
         color: var(--mainColor);
         transition: transform 0.5s ease, box-shadow 0.5s ease;
         margin-top: auto;
-    
     }
 
     .logOutWrapper {
@@ -254,31 +211,6 @@
     }
     
     /* Includes Main Content (AKA content to the right of the toolbox section). */
-    
-    .mainContentWrapper {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        background: none;
-        height: 100%;
-        width: 85%;
-    }
-    .mainContentWindow {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        background: var(--mainColor);
-        height: 99%;
-        width: 100%;
-        border-radius: 10px;
-    }
-    .mainWindowColumn {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-        width: 100%;
-        border-radius: 10px;
-    }
     .titleBar{
         display: flex;
         align-items: center;
@@ -288,7 +220,6 @@
         border-bottom: 3px solid var(--secondaryColor);
     }
     .titleText{
-    
         width: 95%;
         height: 100%;
         overflow: hidden;
@@ -305,16 +236,6 @@
         white-space: nowrap;
         text-overflow: ellipsis; 
         background: none;
-    
-    }
-    
-    .generationAndHistoryWrapper{
-    
-        display: flex;
-        height: 50%;
-        width: 100%;
-        flex-grow: 1;
-        
     }
     
     .fadeInClass {
@@ -326,17 +247,7 @@
         100% { opacity: 1; }
     }
     
-    .contentGenerationWrapper{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-    }
-    
     .contentGenWindow {
-    
         display: flex;
         height: 75%;
         width: 90%;
@@ -350,7 +261,6 @@
         margin: auto; 
         overflow: auto;
         color: var(--textColor);
-    
     }
     
     .contentGenWindow > pre {
@@ -370,33 +280,9 @@
     }
             
     .contentGenWindow::-webkit-scrollbar-thumb {
-    
         border-radius: 8px;
         background-color: var(--textColor);
     }
-    
-    .queryWrapper{
-    
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 20%;
-        width: 100%;
-    
-    }
-    
-    .bottomRowInnerWrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;    
-        height: 75%;
-        width: 90%;
-        background-color: var(--mainColor);
-        border-radius: 25px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
-        padding: 0 1.2vw 0 0;
-    }
-    
     
     .queryBox {
         display: flex;
@@ -412,21 +298,7 @@
         outline: none;
     }
     
-    .queryBox::-webkit-scrollbar {
-        display: none;
-    }
-    
-    .queryButtonWrapper{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-evenly;
-        height: 100%;
-        margin: 0 0 0 1%;
-    }
-    
     .genButton {
-    
         display: flex;
         align-self: flex-end;
         background-color: var(--secondaryColor);
@@ -438,7 +310,6 @@
         border: none;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         transition: transform 0.5s ease, box-shadow 0.5s ease;
-    
     }
     
     .genButton:hover {
@@ -455,7 +326,6 @@
     }
 
     .copyButton {
-    
         display: flex;
         align-self: flex-end;
         justify-self: flex-end;
@@ -480,48 +350,7 @@
     }
     .copyButton:active {
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-    }
-    
-    .loader {
-        width: 75%;
-        height: 75%;
-        border:solid 5px var(--textColor);
-        border-radius: 50%;
-        border-right-color: transparent;
-        border-bottom-color: transparent;
-        -webkit-transition: all 0.5s ease-in;
-        -webkit-animation-name: rotate; 
-        -webkit-animation-duration: 1.0s; 
-        -webkit-animation-iteration-count: infinite;
-        -webkit-animation-timing-function: linear;
-            transition: all 0.5s ease-in;
-        animation-name: rotate; 
-        animation-duration: 1.0s; 
-        animation-iteration-count: infinite;
-        animation-timing-function: linear; 
-        display: none;
-        pointer-events: none;
-    }
-    
-    @keyframes rotate {
-        from {
-            transform: rotate(0deg);
-        }
-        to { 
-            transform: rotate(360deg);
-        }
-    }
-    
-    @-webkit-keyframes rotate {
-        from {
-            -webkit-transform: rotate(0deg);
-        }
-        to { 
-            -webkit-transform: rotate(360deg);
-        }
-    }
-    
-    
+    }    
     
     .genImg {
     
@@ -533,7 +362,6 @@
     }
     
     .historyWrapper{
-    
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -542,12 +370,9 @@
         height: 50%;
         border-left: 3px solid var(--secondaryColor);
         flex-grow: 0;
-        margin: 3% 0 0 0;
-        
-    
+        margin: 3% 0 0 0; 
     }
     .historyWrapper.content{
-    
         display: none;
         flex-direction: column;
         justify-content: flex-start;
@@ -556,11 +381,9 @@
         height: 100%;
         border-left: 3px solid var(--secondaryColor);
         flex-grow: 0;
-    
     }
     
     .historyID{
-    
         display: none;
         justify-content: flex-start;
         height: 5%;
@@ -576,11 +399,9 @@
         font-weight: 600;
         font-style: normal;
         background: none;
-    
     }
     
     .historyContentWindow{
-    
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -589,11 +410,9 @@
         border-radius: 10px;
         margin-top: 0;
         gap: 2.5%;
-    
     }
     
     .historyInstance {
-        
         display: flex;
         align-items: center;
         padding: 5%;
@@ -610,7 +429,6 @@
         background: var(--mainColor);
         border: none;
         transition: transform 0.5s ease, box-shadow 0.5s ease;
-    
     }
     
     .historyInstance:hover {
@@ -768,7 +586,7 @@
         justify-content: center;
         align-items: center;
         width: 100%;
-        height: 100%;
+        height: 90%;
         padding: 2% 0 2% 0;
     }
     
