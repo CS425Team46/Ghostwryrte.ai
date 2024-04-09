@@ -48,6 +48,10 @@
                             <div class="contentGenWindow">
                                 <pre>{{ ai_response }}</pre>
                             </div>
+                            <div class="feedbackContainer" id="feedbackDisplay">
+                                <button class="feedbackButton"><img src="{{ url_for('static', filename='images/likeIcon.svg') }}" alt="Like" id="likeBtn" class="feedBackImg" onmouseover="this.src='../static/images/likeIconHover.png';" onmouseout="this.src='../static/images/likeIcon.svg';"></button>
+                                <button class="feedbackButton"><img src="{{ url_for('static', filename='images/dislikeIcon.svg') }}" alt="Dislike" id="dislikeBtn" class="feedBackImg" onmouseover="this.src='../static/images/dislikeIconHover.png';" onmouseout="this.src='../static/images/dislikeIcon.svg';"></button>
+                            </div>
                             <div class="queryWrapper">
                                 <form id="generateForm" method="post" action="{{ url_for('generate_content') }}" class="bottomRowInnerWrapper">
                                     <input type="hidden" name="user_id" id="formUserId" />

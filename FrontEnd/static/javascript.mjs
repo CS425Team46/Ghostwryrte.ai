@@ -35,6 +35,7 @@ const copyButton            = document.querySelector('.copyButton');
 const titleInput            = document.querySelector('.titleText');
 let newChatButton           = document.getElementById('newChat');
 let historyContentWindow    = document.querySelector('.historyContentWindow');
+let feedbackDisplay         = document.getElementById('feedbackDisplay');
 /* Generation History Page */
 const historyPageLabel      = document.getElementById('historyPageLabel');
 const historyPageContainer  = document.getElementById('historyPageContainer');
@@ -65,10 +66,7 @@ auth.onAuthStateChanged((user) => {
     } else {
         if(!accCreationPageCheck){
             window.location.href = '/';
-            showToast("No user signed in", "danger", 5000);
-            window.location.href = '/';
         }   
-        
     }
 });
 
@@ -143,7 +141,39 @@ if (contentWindow) {
             console.error('No user is signed in to update history');
         }
     }
+
+    document.getElementById('likeBtn').addEventListener('click', function(){
+        handleFeedback("Positive Feedback");
+    });
+    document.getElementById('dislikeBtn').addEventListener('click', function(){
+        handleFeedback("Negative Feedback");
+    });
     
+    async function handleFeedback(feedbackType){
+
+        const user = auth.currentUser;
+
+        if (user) {
+            const newTitle = feedbackType + " on document: " + titleInput.value.trim();
+            await setDoc(doc(db, 'users', user.uid, 'feedback', newTitle), {
+                feedbackType: feedbackType,
+                title: titleInput.value.trim(),
+                content: document.getElementsByTagName('pre')[0].innerHTML,
+            });
+            showToast("Feedback Submitted!", "success", 5000);
+            toggleFeedbackDisplay("off");
+        } else {
+            console.error('No user is signed in to update history');
+        }
+    }
+}
+
+function toggleFeedbackDisplay(turnOnorOff){
+    if(turnOnorOff == "on"){
+        feedbackDisplay.style.display = 'flex';
+    } else{
+        feedbackDisplay.style.display = 'none';
+    }
 }
 
 function copyText(textSelectionID){
@@ -204,6 +234,7 @@ function enablePromptSubmitIfTextExists(text){
 function callHistoryUploadAfterGeneration() {
     if(contentWindow){
         var content = document.getElementsByTagName('pre')[0].innerHTML;
+        
         if(content){
             const newContent = content;
             const title = extractTitle(content);
@@ -216,6 +247,9 @@ function callHistoryUploadAfterGeneration() {
 
             existingData.unshift({ title, content, timestamp: { seconds, nanoseconds } });
 
+            titleInput.value = title; 
+            toggleFeedbackDisplay("on");
+
             uploadHistory(title, newContent)
                 .then(() => {
                     localStorage.setItem('historyData', JSON.stringify(existingData));
@@ -225,7 +259,7 @@ function callHistoryUploadAfterGeneration() {
                     showToast("Failed to upload history data: " + error.message, "danger", 5000);
                     console.error('Failed to upload history data:', error);
                 });
-        }
+        } 
     }
 }
 
@@ -296,10 +330,11 @@ function renderRecentHistoryButtons(historyButtonsData) {
         createHistoryButtonCG(title, content);
     });
 
-    document.getElementById('hID').style.display = 'flex';
-    document.getElementById('hID').classList.add("fadeInClass");
+    if(!historyButtonsData == ""){
+        document.getElementById('hID').style.display = 'flex';
+        document.getElementById('hID').classList.add("fadeInClass");
+    }
 }
-
 
 function renderGenerationHistoryButtons(historyButtonsData) {
     while (historyPageContainer.firstChild) {
@@ -426,6 +461,7 @@ function createHistoryButtonCG(title, content) {
         historyButton.classList.add('selected'); 
         document.getElementsByTagName('pre')[0].innerHTML = content;
         checkForContentAndUpdateStyling();
+        toggleFeedbackDisplay("off");
     });
 
     historyContentWindow.appendChild(historyButton);

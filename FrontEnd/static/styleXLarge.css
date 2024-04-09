@@ -1003,25 +1003,25 @@
         color: var(--mainColor);
         background: var(--mainAccentColor);
         width: 100%;
-        height: 8%;
+        height: 7%;
         font-size: 2rem;
         padding: 2%;
         border: 0;
-        transform: translateY(-180%);   
+        transform: translateY(-187%);   
         border-radius: 20px;
         transition: transform 0.5s ease, box-shadow 0.5s ease;
       }
       
       .ACSubmitButton.removed{
-        transform: translateY(50%); 
+        transform: translateY(57%); 
       }
       .ACSubmitButton.removed:hover{
-        transform: translateY(43%); 
+        transform: translateY(50%); 
       }
       
       .ACSubmitButton:hover {
         cursor: pointer;
-        transform: translateY(-187%);
+        transform: translateY(-194%);
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
       }
       .ACSubmitButton:active{
