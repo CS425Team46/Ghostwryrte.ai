@@ -791,6 +791,10 @@ if (uploadDataButton) {
 const trainModelButton = document.getElementById('TrainModel');
 if (trainModelButton) {
     trainModelButton.addEventListener('click', () => {
+        console.log("Pressed here");
+        // Show the popUpWindowContainer immediately when the button is clicked
+        document.getElementById('popUpWindowContainer').style.display = 'flex';
+
         const user = auth.currentUser;
         if (user) {
             console.log("Train Model button clicked");
@@ -801,12 +805,10 @@ if (trainModelButton) {
                 },
                 body: JSON.stringify({ user_id: user.uid })
             })
-            .then(response => {
-                document.getElementById('popUpWindowContainer').style.display = 'flex';
-                return response.json();
-            })
+            .then(response => response.json()) // Move the response.json() up here
             .then(data => {
                 console.log(data.message);
+                // Conditionally hide the popUpWindowContainer based on the response
                 if(data.message === "Model training script failed"){
                     showToast(data.message, "danger", 5000);
                     document.getElementById('popUpWindowContainer').style.display = 'none';
@@ -818,13 +820,18 @@ if (trainModelButton) {
             .catch(error => {
                 console.error('Error starting model training:', error);
                 showToast("Error starting model training", "danger", 5000);
+                // Make sure to hide the popup in case of fetch error as well
+                document.getElementById('popUpWindowContainer').style.display = 'none';
             });
         } else {
             console.log("No user signed in");
             showToast("Please sign in to start model training", "danger", 5000);
+            // Hide the popUpWindowContainer if no user is signed in
+            document.getElementById('popUpWindowContainer').style.display = 'none';
         }
     });
 }
+
 
 
 /* Account Creation Page */

@@ -103,7 +103,7 @@ def start_model_training(user_id):
 
         user_ref.update({"job_id": response.id})
 
-        return {'message': 'Model training started successfully', 'job_id': response.id}
+        return {'message': 'Model training finished successfully', 'job_id': response.id}
     except Exception as e:
         return {'message': f'Failed to start model training: {str(e)}', 'error': True}
 
