@@ -170,7 +170,7 @@
         align-items: center;
         justify-content: center;
         width: 90%;
-        height: 8%;
+        height: 12%;
         background: var(--secondaryColor);
         border-top: 3px solid var(--secondaryAccent);
         margin-top: auto;
@@ -181,15 +181,15 @@
         justify-content: flex-start;
         align-items: center;
         gap: 5%;
-        padding-left: 8%;
-        height: 60%;
+        padding-left: 4%;
+        height: 42.45%;
         width: 100%;
         color: var(--textColor);
         font-family: "Poppins", sans-serif;
         font-optical-sizing: auto;
         font-weight: 600;
-        font-style: normal;
-        font-size: 1.1vw;
+        font-size: 1.2rem;
+        font-weight: 600;
         border: none;
         background: none;
         border-radius: 10px;

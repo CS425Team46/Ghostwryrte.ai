@@ -54,7 +54,7 @@ def create_checkout_session():
     try:
         session = stripe.checkout.Session.create(
             success_url="http://127.0.0.1:5000/success",
-            cancel_url="http://127.0.0.1:5000/cancel",
+            cancel_url="http://127.0.0.1:5000/content-generation",
             payment_method_types=['card'],
             line_items=[
                 {
@@ -109,11 +109,13 @@ def cancel():
     return render_template('SubscriptionCancel.html')
 
 
-
+""" @app.route('/')
+def home():
+    return render_template('LandingPage.html') """
 
 @app.route('/')
-def home():
-    return render_template('LandingPage.html')
+def account_creation():
+    return render_template('AccountCreation.html')
 
 @app.route('/content-generation')
 def content_generation():
@@ -126,11 +128,6 @@ def ai_training():
 @app.route('/generation-history')
 def generation_history():
     return render_template('GenerationHistory.html')
-
-""" @app.route('/styling-and-format')
-def styling_and_format():
-    return render_template('StylingAndFormat.html') """
-
 
 
 @app.route('/generate-content', methods=['POST'])
@@ -163,10 +160,6 @@ def generate_content():
     message_content = response.choices[0].message.content.strip()
     return render_template('ContentGeneration.html', ai_response=message_content)
 
-
-@app.route('/account-creation')
-def account_creation():
-    return render_template('AccountCreation.html')
 
 @app.route('/run-data-conversion', methods=['POST'])
 def run_data_conversion():

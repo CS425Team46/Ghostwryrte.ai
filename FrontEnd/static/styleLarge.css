@@ -230,7 +230,7 @@ pre {
     align-items: center;
     justify-content: center;
     width: 90%;
-    height: 8%;
+    height: 12%;
     background: var(--secondaryColor);
     border-top: 3px solid var(--secondaryAccent);
     margin-top:auto;
@@ -244,15 +244,15 @@ pre {
     justify-content: flex-start;
     align-items: center;
     gap: 5%;
-    padding-left: 8%;
-    height: 60%;
+    padding-left: 4%;
+    height: 45%;
     width: 100%;
     color: var(--textColor);
     font-family: "Poppins", sans-serif;
     font-optical-sizing: auto;
     font-weight: 600;
-    font-style: normal;
-    font-size: 1.1vw;
+    font-size: .8rem;
+    font-weight: 600;
     border: none;
     background: none;
     border-radius: 10px;
@@ -270,7 +270,7 @@ pre {
 .logOutImg{
     width: auto;
     height: 100%;
-    max-height: 2.7vh;
+    max-height: 3vh;
 }
 
 /* Includes Main Content (AKA content to the right of the toolbox section). */
@@ -630,8 +630,8 @@ pre {
     display: flex;
     align-items: center;
     padding: 5%;
-    max-height: 10%;
-    min-height: 10%;
+    max-height: 9.2%;
+    min-height: 9.2%;
     width: 90%;
     border-radius: 5px;
     font-size: .7rem;
@@ -886,20 +886,6 @@ pre {
 .fileUploadWrapper {
 
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 55%;
-    width: 70%;
-    background: var(--secondaryColor);
-    border-radius: 15px;
-    margin-bottom: 10%;
-    gap: 2%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-
-}
-.fileUploadWrapper {
-
-    display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -907,13 +893,12 @@ pre {
     width: 85%;
     background: var(--secondaryColor);
     border-radius: 15px;
-    margin-bottom: 10%;
     gap: 2%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    outline: none;
 
 }
 .innerUploadWrapper{
-
     display: flex;
     margin-top: 0;
     flex-direction: column;
@@ -926,18 +911,24 @@ pre {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     -webkit-user-select: none;
-
 }
 
 .innerUploadWrapper:hover{
-    border: 1px solid black;
     cursor: pointer;
-    transition: all .25s ease;
+    border: 2px dashed black;
+}
+.innerUploadWrapper:hover > div{
+    transform: scale(1.05);
+}
+.innerUploadWrapper:hover > img{
+    transform: scale(1.05);
+    
 }
 
 .uploadImg{
-    max-height: 30%;
+    max-height: 25%;
     width: auto;
+    transition: all .2s ease;
 }
 
 .instructionText{
@@ -972,7 +963,7 @@ pre {
     border: 1px solid black;
     background: var(--mainAccentColor);
     color: var(--mainColor);
-
+    transition: .2s ease all;
 }
 
 .uploadedFilesAndButtons{

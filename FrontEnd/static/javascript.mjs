@@ -4,7 +4,6 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, si
 import jsPDF from 'https://cdn.skypack.dev/jspdf';
 
 
-
 const firebaseConfig = {
     apiKey: "AIzaSyDW-idC8yzOs7HlFZ21sB5-H7UjRZ6N6hs",
     authDomain: "ghostwryte-ai.firebaseapp.com",
@@ -18,6 +17,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
+
+var stripe = Stripe('pk_test_51P2luTK9QOcf8ycFt3tqWFxAlpyYGv4EcAM8JOfDlV0cqJgdStCGejJ3sSAz7HxRGJS0OOM7B69gPeIKkQDFPjkv00bY9amb8J'); // publishable key
 
 /* AI Training Page */
 const fileUploadWindow      = document.querySelector('.innerUploadWrapper');
@@ -924,6 +925,12 @@ if (accCreationPageCheck) {
     }
 
     function handleSignUp(email, password) {
+
+        if (password.length < 6){
+            showToast("Password too weak. Please try again.", "danger", 5000);
+            return;
+        }
+
         createUserWithEmailAndPassword(auth, email, password)
             .then(userCredential => {
                 console.log('Signup successful', userCredential.user);
@@ -938,19 +945,22 @@ if (accCreationPageCheck) {
 
                 setDoc(doc(db, 'users', userCredential.user.uid), userData)
                     .then(() => {
-                        showToast("Signup successful!", "success", 5000);
-                        console.log('User data saved successfully');
+                        showToast("Please check your email for verification.", "success", 5000);
+                       /*  console.log('User data saved successfully'); */
                     })
                     .catch(error => {
                         console.error('Error saving user data', error);
-                    });
+                });
+
+                
+                
             })
             .catch(error => {
                 if(error.message == "Firebase: Error (auth/email-already-in-use)."){
                     showToast("Signup Failed, Email already in use.", "danger", 5000); 
-                } else if(error.message == "Firebase: Password should be at least 6 characters (auth/weak-password)."){
-                    showToast("Password too weak. Please try again.", "danger", 5000);
-                }
+/*                 } else if(error.message == "Firebase: Password should be at least 6 characters (auth/weak-password)."){
+                    showToast("Password too weak. Please try again.", "danger", 5000);*/
+                } 
                 else{
                     showToast("Signup failed", "danger", 5000);
                     console.error(error.message);
@@ -1012,6 +1022,27 @@ if (!accCreationPageCheck){
     if(document.URL.includes('generation-history')){
         document.getElementById('historyTab').style="background: var(--mainColor); box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);";
     }
+
+    document.getElementById('subscribe-button').addEventListener('click', function() {
+        fetch('/create-checkout-session', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+        .then(function(response) {
+            if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+        }
+            return response.json();
+        })
+        .then(function(session) {
+            return stripe.redirectToCheckout({ sessionId: session.id });
+        })
+        .catch(function(error) {
+            console.error('Error:', error);
+        });
+    });
 }
 
 if(logOutButton){
@@ -1059,3 +1090,6 @@ const showToast = ( message = "", toastType = "info", duration = 5000) => {
 	} 
 	document.body.appendChild(box)
 }; 
+
+
+
