@@ -1,14 +1,16 @@
 import json
-from flask import Flask, jsonify, render_template, request, redirect
+from flask import Flask, jsonify, render_template, request, redirect, url_for
 import openai
 from openai import OpenAI
 import os
 import subprocess
 # from model_training import start_model_training
-
+from urllib.parse import urljoin
 
 import firebase_admin
 from firebase_admin import credentials, firestore, auth
+
+import stripe
 
 # firebase_creds = json.loads(os.environ.get('FIREBASE_CREDENTIALS'))
 # cred = credentials.Certificate("firebase_creds")
@@ -30,29 +32,82 @@ client = OpenAI()
 app = Flask(__name__)
 
 
-import stripe
+stripe_keys = {
+    "secret_key": os.environ["STRIPE_SECRET_KEY"],
+    "publishable_key": os.environ["STRIPE_PUBLISHABLE_KEY"],
+}
 
-# Replace this with your Stripe secret key
-stripe.api_key = 'sk_test_51P2luTK9QOcf8ycFCDzhWdKsuOcX9LIE5XokquZMxMEGKb6HX57m02VMauGOaIziE7d3ezMYjFtcCoclD0P0r42q00RtdtnTxQ'
+stripe.api_key = stripe_keys["secret_key"]
 
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
+
+    base_url = request.host_url
+
+    success_url = urljoin(base_url, url_for('success'))
+    cancel_url = urljoin(base_url, url_for('cancel'))
+    print(success_url)
+    print(cancel_url)
+
+    print("Received request to create a checkout session")
+
     try:
-        checkout_session = stripe.checkout.sessions.create(
+        session = stripe.checkout.Session.create(
+            success_url="http://127.0.0.1:5000/success",
+            cancel_url="http://127.0.0.1:5000/cancel",
             payment_method_types=['card'],
             line_items=[
                 {
-                    'price': 'price_1P2m0HK9QOcf8ycFEdCqu3ZA', # Replace with the price ID for your subscription
+                    'price': 'price_1P2m0HK9QOcf8ycFEdCqu3ZA', 
                     'quantity': 1,
                 },
             ],
             mode='subscription',
-            success_url='http://yourdomain.com/success?session_id={CHECKOUT_SESSION_ID}', # Replace with your success URL
-            cancel_url='http://yourdomain.com/cancel', # Replace with your cancel URL
         )
-        return jsonify({'id': checkout_session.id})
+        return jsonify({'id': session.id})
     except Exception as e:
-        return jsonify(error=str(e)), 403
+        print(e)  # Log the error to your Flask app's console
+        return jsonify({'error': str(e)}), 403
+    # try:
+
+    #     print("Attempting to create a Stripe checkout session")
+
+    #     checkout_session = stripe.checkout.sessions.create(
+    #         payment_method_types=['card'],
+    #         line_items=[
+    #             {
+    #                 'price': 'price_1P2m0HK9QOcf8ycFEdCqu3ZA', 
+    #                 'quantity': 1,
+    #             },
+    #         ],
+    #         mode='subscription',
+    #         success_url=success_url + '?session_id={CHECKOUT_SESSION_ID}',
+    #         cancel_url=cancel_url,
+    #     )
+
+    #     print("Checkout Session ID:", checkout_session.id)
+    #     return jsonify({'id': checkout_session.id})
+
+    # except Exception as e:
+    #     print("Error creating checkout session:", e)
+    #     if hasattr(e, 'json_body'):
+    #         print(e.json_body)
+    #     return jsonify(error=str(e)), 403
+
+
+@app.route('/subscribe')
+def subscribe():
+    return render_template('subscribe.html')
+
+    
+@app.route('/success')
+def success():
+    return render_template('SubscriptionSuccess.html')
+
+@app.route('/cancel')
+def cancel():
+    return render_template('SubscriptionCancel.html')
+
 
 
 

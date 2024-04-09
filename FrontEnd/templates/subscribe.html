@@ -1,0 +1,38 @@
+<!-- templates/subscribe.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Subscribe to Our Service</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <h2>Subscribe Now</h2>
+    <button id="subscribe-button">Subscribe</button>
+
+    <script>
+        var stripe = Stripe('pk_test_51P2luTK9QOcf8ycFt3tqWFxAlpyYGv4EcAM8JOfDlV0cqJgdStCGejJ3sSAz7HxRGJS0OOM7B69gPeIKkQDFPjkv00bY9amb8J'); // publishable key
+
+        document.getElementById('subscribe-button').addEventListener('click', function() {
+            fetch('/create-checkout-session', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(function(response) {
+                if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
+                return response.json();
+            })
+            .then(function(session) {
+                return stripe.redirectToCheckout({ sessionId: session.id });
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
