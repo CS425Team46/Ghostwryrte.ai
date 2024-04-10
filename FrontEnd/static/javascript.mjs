@@ -800,7 +800,6 @@ if (uploadDataButton) {
 const trainModelButton = document.getElementById('TrainModel');
 if (trainModelButton) {
     trainModelButton.addEventListener('click', () => {
-        console.log("Pressed here");
         // Show the popUpWindowContainer immediately when the button is clicked
         document.getElementById('popUpWindowContainer').style.display = 'flex';
 
