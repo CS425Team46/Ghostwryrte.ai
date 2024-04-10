@@ -87,9 +87,12 @@ def start_model_training(user_id):
     if not latest_file_id:
         return {'message': 'Latest file ID not found for user', 'error': True}
     
+    print("Base model: ", base_model)
+    
     # Determine the base model for training
     base_model = existing_model_id if existing_model_id else "gpt-3.5-turbo"
 
+    ("Attempting to create finetune job")
     try:
         response = client.fine_tuning.jobs.create(
             training_file=latest_file_id, 
@@ -100,6 +103,8 @@ def start_model_training(user_id):
                 "learning_rate_multiplier": 0.1
             }
         )
+
+        print("Response: ", response)
 
         user_ref.update({"job_id": response.id})
 
