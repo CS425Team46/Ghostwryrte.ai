@@ -87,10 +87,10 @@ def start_model_training(user_id):
     if not latest_file_id:
         return {'message': 'Latest file ID not found for user', 'error': True}
     
-    print("Base model: ", base_model)
-    
     # Determine the base model for training
     base_model = existing_model_id if existing_model_id else "gpt-3.5-turbo"
+
+    print("Base model: ", base_model)
 
     ("Attempting to create finetune job")
     try:

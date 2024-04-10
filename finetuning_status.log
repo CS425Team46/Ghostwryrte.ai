@@ -1539,3 +1539,12 @@
 2024-04-10 02:44:42,395 - INFO - Checking status of job ftjob-CRG4femoehjENyQTqkPzECLy: cancelled
 2024-04-10 02:44:47,548 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-CRG4femoehjENyQTqkPzECLy "HTTP/1.1 200 OK"
 2024-04-10 02:44:47,554 - INFO - Checking status of job ftjob-CRG4femoehjENyQTqkPzECLy: cancelled
+2024-04-10 11:37:11,077 - INFO - HTTP Request: POST https://api.openai.com/v1/fine_tuning/jobs "HTTP/1.1 200 OK"
+2024-04-10 11:37:11,399 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-M9iablULXV70VusGakp1UIKk "HTTP/1.1 200 OK"
+2024-04-10 11:37:11,402 - INFO - Checking status of job ftjob-M9iablULXV70VusGakp1UIKk: validating_files
+2024-04-10 11:37:16,539 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-M9iablULXV70VusGakp1UIKk "HTTP/1.1 200 OK"
+2024-04-10 11:37:16,544 - INFO - Checking status of job ftjob-M9iablULXV70VusGakp1UIKk: validating_files
+2024-04-10 11:37:21,765 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-M9iablULXV70VusGakp1UIKk "HTTP/1.1 200 OK"
+2024-04-10 11:37:21,773 - INFO - Checking status of job ftjob-M9iablULXV70VusGakp1UIKk: validating_files
+2024-04-10 11:37:26,897 - INFO - HTTP Request: GET https://api.openai.com/v1/fine_tuning/jobs/ftjob-M9iablULXV70VusGakp1UIKk "HTTP/1.1 200 OK"
+2024-04-10 11:37:26,910 - INFO - Checking status of job ftjob-M9iablULXV70VusGakp1UIKk: validating_files
