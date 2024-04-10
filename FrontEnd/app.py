@@ -194,6 +194,7 @@ def start_model_training():
         try:
             # Attempt to parse the stdout as JSON
             output = json.loads(result.stdout)
+            print("Output: ", output)
             return jsonify(output), 200
         except json.JSONDecodeError:
             # If stdout is not valid JSON, return the raw output for debugging

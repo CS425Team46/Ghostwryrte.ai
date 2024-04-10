@@ -90,9 +90,6 @@ def start_model_training(user_id):
     # Determine the base model for training
     base_model = existing_model_id if existing_model_id else "gpt-3.5-turbo"
 
-    print("Base model: ", base_model)
-
-    ("Attempting to create finetune job")
     try:
         response = client.fine_tuning.jobs.create(
             training_file=latest_file_id, 
@@ -103,8 +100,6 @@ def start_model_training(user_id):
                 "learning_rate_multiplier": 0.1
             }
         )
-
-        print("Response: ", response)
 
         user_ref.update({"job_id": response.id})
 
@@ -143,13 +138,9 @@ if __name__ == '__main__':
 
     user_id = args.user_id
     result = start_model_training(user_id)
-    # print(json.dumps(result))  # this must be the last output
 
     if 'job_id' in result:
-        print("About to check fine-tuning job status", file=sys.stderr)  
         status = check_finetuning_job_status(result['job_id'], user_id)  
-        print("Status:", status, file=sys.stderr)
         print(json.dumps(result))  
     else:
-        print("No job ID found to check status.", file=sys.stderr)
         print(json.dumps({'message': 'No job ID found to check status.'}))

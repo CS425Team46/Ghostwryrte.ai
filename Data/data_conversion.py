@@ -85,7 +85,6 @@ def format_training_data_for_fine_tuning(user_id, session_id):
             ]
         }
         training_data.append(formatted_data)
-        print("Success format_training_data_for_fine_tuning")
 
     return training_data
 
@@ -169,11 +168,8 @@ if __name__ == '__main__':
 
     training_data_file = f'training_data_{session_id}.jsonl'  # Correct formatting
 
-    output_file_path = f'cleaned_training_data_{session_id}.jsonl'
-    clean_unicode_characters(training_data_file, output_file_path)
-
     # upload_to_openai_if_enough_entries(training_data_file)
-    file_id = upload_to_openai_if_enough_entries(output_file_path)
+    file_id = upload_to_openai_if_enough_entries(training_data_file)
 
     if file_id:
         store_file_id_in_firebase(user_id, file_id)
