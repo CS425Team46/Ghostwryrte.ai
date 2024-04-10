@@ -722,7 +722,7 @@ function uploadAllFilesToFirebase(session_id) {
         const uploadedFileInstances = document.querySelectorAll('.uploadedFileInstance');
         
         // Check if there are fewer than minimum number of entries files
-        if (uploadedFileInstances.length < 10) {
+        if (uploadedFileInstances.length < 1) {
             console.error('Error: Less than 10 files. Aborting upload.');
             reject('Please submit at least 10 files before uploading.');  
             return;  // Stop execution of the function
