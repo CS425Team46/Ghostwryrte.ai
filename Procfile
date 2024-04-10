@@ -1,2 +1,2 @@
 web: gunicorn FrontEnd.app:app
-web: gunicorn FrontEnd.app:app --timeout 120
+worker: python3 Data.model_training.py
