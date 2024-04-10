@@ -1,6 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
 import { getFirestore, collection, query, orderBy, doc, setDoc, serverTimestamp, getDocs, getDoc, deleteDoc, Timestamp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendEmailVerification  } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
 import jsPDF from 'https://cdn.skypack.dev/jspdf';
 
 
@@ -919,6 +919,7 @@ if (accCreationPageCheck) {
 
     function setConfirmPassValidityMessage(string, reportValidityOrNot){
         confirmPass.setCustomValidity(string);
+        73
         if(reportValidityOrNot){
             confirmPass.reportValidity();
         }
@@ -926,14 +927,27 @@ if (accCreationPageCheck) {
 
     function handleSignUp(email, password) {
 
-        if (password.length < 6){
-            showToast("Password too weak. Please try again.", "danger", 5000);
+        if (!checkIfPasswordMeetsRequirements(password)) {
+            showToast("Password must meet the following requirements:<br>" +
+                "&nbsp;&nbsp;&nbsp;&nbsp;- At least 8 characters long<br>" +
+                "&nbsp;&nbsp;&nbsp;&nbsp;- Contains at least one uppercase letter<br>" +
+                "&nbsp;&nbsp;&nbsp;&nbsp;- Contains at least one lowercase letter<br>" +
+                "&nbsp;&nbsp;&nbsp;&nbsp;- Contains at least one number<br>" +
+                "&nbsp;&nbsp;&nbsp;&nbsp;- Contains at least one special character", "danger", 5000);
             return;
         }
 
         createUserWithEmailAndPassword(auth, email, password)
             .then(userCredential => {
                 console.log('Signup successful', userCredential.user);
+
+               sendEmailVerification(auth.currentUser)
+                .then(() => {
+                    showToast("Please check your email for verification.", "success", 5000);
+                })
+                .catch(error => {
+                    showToast("Error sending verification email: " + error, "danger", 5000);
+                });
 
                 const userData = {
                     email: userCredential.user.email,
@@ -945,21 +959,15 @@ if (accCreationPageCheck) {
 
                 setDoc(doc(db, 'users', userCredential.user.uid), userData)
                     .then(() => {
-                        showToast("Please check your email for verification.", "success", 5000);
-                       /*  console.log('User data saved successfully'); */
+                       console.log('User data saved successfully');
                     })
                     .catch(error => {
                         console.error('Error saving user data', error);
-                });
-
-                
-                
+                })   
             })
             .catch(error => {
                 if(error.message == "Firebase: Error (auth/email-already-in-use)."){
                     showToast("Signup Failed, Email already in use.", "danger", 5000); 
-/*                 } else if(error.message == "Firebase: Password should be at least 6 characters (auth/weak-password)."){
-                    showToast("Password too weak. Please try again.", "danger", 5000);*/
                 } 
                 else{
                     showToast("Signup failed", "danger", 5000);
@@ -968,13 +976,34 @@ if (accCreationPageCheck) {
             });
     }
 
+    function checkIfPasswordMeetsRequirements(password){
+        const minLength = 6;
+        const containsNumber = /\d/.test(password);
+        const containsSpecialChar = /[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]/.test(password);
+        const containsUppercase = /[A-Z]/.test(password);
+        const containsLowercase = /[a-z]/.test(password);
+
+        const doesPassMeetReqs = minLength && containsNumber && containsSpecialChar && containsUppercase && containsLowercase;
+        return doesPassMeetReqs;
+    }
+
     function handleSignIn() {
         const email = document.getElementById('userEmail').value;
         const password = document.getElementById('userPassword').value;
         signInWithEmailAndPassword(auth, email, password)
             .then(userCredential => {
-                console.log('Signin successful', userCredential.user);
-                window.location.href = '/content-generation';
+                /* REMVOE THIS PART LATER */
+                if(email == "test@test.com" || email =="testing220@test.com" || email == "12@test.com"){
+                    console.log('Signin successful', userCredential.user);
+                    window.location.href = '/content-generation';
+                }
+                if(userCredential.user.emailVerified){
+                    console.log('Signin successful', userCredential.user);
+                    window.location.href = '/content-generation';
+                } else{
+                    showToast('Email has not been verified.', "danger", 5000);
+                }
+
             })
             .catch(error => {
                 console.error('Signin failed', error.code, error.message);
