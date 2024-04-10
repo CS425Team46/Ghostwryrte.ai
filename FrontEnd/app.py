@@ -164,7 +164,6 @@ def generate_content():
 @app.route('/run-data-conversion', methods=['POST'])
 def run_data_conversion():
     data = request.json
-    print("Data:", data)
 
     user_id = data.get('user_id')
     session_id = data.get('session_id')

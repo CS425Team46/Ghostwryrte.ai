@@ -95,7 +95,6 @@ def save_training_data_to_file(user_id, session_id):
     file_name = f'training_data_{session_id}.jsonl'
     with open(file_name, 'w', encoding='utf-8') as outfile:
         for item in formatted_data:
-            print("Item: ", item)
             json.dump(item, outfile, ensure_ascii=False)  # ensure_ascii=False to allow UTF-8 characters
             outfile.write('\n')  # Write a new line for each JSON object
     print("Success save_training_data_to_file")
@@ -107,17 +106,13 @@ def upload_to_openai_if_enough_entries(file_path, min_entries=10):
     with open(file_path, 'r', encoding='utf-8') as file:
         entries = file.readlines()
 
-    print("Entries:", entries)
-
     # Check if there are at least min_entries
     if len(entries) >= min_entries:
         # Upload the file to OpenAI for fine-tuning
-        print(len(entries))
         response = client.files.create(
             file=open(file_path, "rb"),
             purpose="fine-tune"
         )
-        print(response)
         file_id = response.id
         print("File ID: ", file_id)
         print(f'File uploaded successfully.')
