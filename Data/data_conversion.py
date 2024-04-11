@@ -99,7 +99,7 @@ def save_training_data_to_file(user_id, session_id):
     print("Success save_training_data_to_file")
 
 
-def upload_to_openai_if_enough_entries(file_path, min_entries=1):
+def upload_to_openai_if_enough_entries(file_path, min_entries=10):
     # Count the number of entries in the JSONL file
     print("Starting upload_to_openai_if_enough_entries")
     with open(file_path, 'r', encoding='utf-8') as file:
