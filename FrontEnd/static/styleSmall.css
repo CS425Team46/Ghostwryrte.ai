@@ -855,6 +855,7 @@ pre {
   background: var(--mainAccentColor);
   cursor: pointer;
 }
+
 .editButtonImg{
   max-height: 80%;
   width: auto;
@@ -1019,10 +1020,10 @@ pre {
 .fileName{
 
   display: flex;
+  align-items: center;
   width: 75%;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
-  padding-top: 1%;
   font-size: .7rem;
   pointer-events: none;
 
@@ -1341,7 +1342,7 @@ pre {
   animation: slideInRight 0.3s 
       ease-in-out forwards, 
     fadeOut 0.5s ease-in-out 
-      forwards 5s; 
+      forwards; 
   transform: translateX(110%); 
 } 
 

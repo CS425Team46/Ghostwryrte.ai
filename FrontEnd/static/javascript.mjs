@@ -421,6 +421,7 @@ function createHistoryButtonGH(title, content, timestamp) {
         document.querySelector('.historyPageInstance.selected')?.classList.remove('selected');
         historyPageInstance.classList.add('selected');
         editTextArea.value = content;
+        localStorage.setItem('openedText', content);
     });
 }
 
@@ -479,6 +480,16 @@ function createHistoryButtonCG(title, content) {
 /* Edit Page of Generation History */
 
 if (saveButton) {
+    deactivateSaveButton();
+    editTextArea.addEventListener('input', function(){
+        
+        if (editTextArea.value === localStorage.getItem('openedText')){
+            deactivateSaveButton();
+        } else{
+            saveButton.style.pointerEvents = '';
+            saveButton.style.background = ''
+        }
+    });
     saveButton.addEventListener('click', function() {
         const oldTitle = document.querySelector('.historyPageInstance.selected .historyPageInstanceTitle').textContent;
         const newTitle = document.getElementById('historyPageTitleText').value.trim();
@@ -530,8 +541,13 @@ if (saveButton) {
         pdf.save('Ghostwryte_Content.pdf');
         
     });
-}
 
+
+}
+function deactivateSaveButton(){
+    saveButton.style.background = "var(--deselectedColor)";
+    saveButton.style.pointerEvents = 'none';
+}
 function updateLocalStorage(oldTitle, newTitle, newContent) {
 
     const historyData = JSON.parse(localStorage.getItem('historyData'));
@@ -578,6 +594,8 @@ if(instanceView){
         editView.style.display = 'none';
         histGenBack.style.display = 'none';
         document.querySelector('.logOutWrapper').classList.remove('genHist');
+        localStorage.removeItem('openedText');
+        deactivateSaveButton();
         loadHistoryButtons();
     });
 }
@@ -933,7 +951,7 @@ if (accCreationPageCheck) {
                 "&nbsp;&nbsp;&nbsp;&nbsp;- Contains at least one uppercase letter<br>" +
                 "&nbsp;&nbsp;&nbsp;&nbsp;- Contains at least one lowercase letter<br>" +
                 "&nbsp;&nbsp;&nbsp;&nbsp;- Contains at least one number<br>" +
-                "&nbsp;&nbsp;&nbsp;&nbsp;- Contains at least one special character", "danger", 5000);
+                "&nbsp;&nbsp;&nbsp;&nbsp;- Contains at least one special character", "danger", 10000);
             return;
         }
 
@@ -1097,28 +1115,31 @@ let icon = {
 	'<img src="static/images/infoIcon.svg" class="toastImg"', 
 }; 
 
-const showToast = ( message = "", toastType = "info", duration = 5000) => { 
-	if (!Object.keys(icon).includes(toastType)){
-        toastType = "info"; 
+const showToast = (message = "", toastType = "info", duration) => {
+    if (!Object.keys(icon).includes(toastType)) {
+        toastType = "info";
     }
-	let box = document.createElement("div"); 
-	box.classList.add("toast", `toast-${toastType}`); 
-	box.innerHTML = ` <div class="toast-content-wrapper"> 
-					<div class="toast-icon"> 
-					${icon[toastType]} 
-					</div> 
-					<div class="toast-message">${message}</div> 
-					<div class="toast-progress"></div> 
-					</div>`; 
-	duration = duration || 5000; 
-	box.querySelector(".toast-progress").style.animationDuration = `${duration / 1000}s`; 
 
-	let toastAlready = document.body.querySelector(".toast"); 
-	if (toastAlready) { 
-		toastAlready.remove(); 
-	} 
-	document.body.appendChild(box)
-}; 
+    let box = document.createElement("div");
+    box.classList.add("toast", `toast-${toastType}`);
+    box.innerHTML = ` <div class="toast-content-wrapper"> 
+                    <div class="toast-icon"> 
+                    ${icon[toastType]} 
+                    </div> 
+                    <div class="toast-message">${message}</div> 
+                    <div class="toast-progress"></div> 
+                    </div>`;
+    box.querySelector(".toast-progress").style.animationDuration = `${duration / 1000}s`;
+
+    box.style.animationDelay = `0s, ${duration / 1000}s`;
+
+    let toastAlready = document.body.querySelector(".toast");
+    if (toastAlready) {
+        toastAlready.remove();
+    }
+    document.body.appendChild(box);
+};
+
 
 
 
