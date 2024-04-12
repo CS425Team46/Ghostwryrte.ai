@@ -11,18 +11,18 @@ client = OpenAI()
 
 # ## STEP 1: UPLOAD TRAINING DATA
 # Training data needs to be uploaded using the Files API in order to be used with fine-tuning jobs
-client.files.create(
-    file=open("/Users/jessicanam/Desktop/GW49/Ghostwryrte.ai/Model/training_data.jsonl", "rb"),
-    purpose="fine-tune"
-)
+# client.files.create(
+#     file=open("/Users/jessicanam/Desktop/GW410/Ghostwryrte.ai/Model/skylar_training_data.jsonl", "rb"),
+#     purpose="fine-tune"
+# )
 
 ### STEP 2: TRAIN MODEL - NO HYPERPARAM VS HYPERPARA,
 ### NO HYPERPARAMS
 # # Using the OpenAI SDK and the training file ID from above, start a fine-tuning job
-# client.fine_tuning.jobs.create(
-#     training_file="file-ISCwByIiBChXBDPYFkSFwvXJ", # Can find in OpenAI API interface
-#     model="gpt-3.5-turbo" # chat/completeion format
-# )
+client.fine_tuning.jobs.create(
+    training_file="file-GcJ58GoGXtb5pq0EnnPWr7ap", # Can find in OpenAI API interface
+    model="gpt-3.5-turbo" # chat/completeion format
+)
 
 ### YES HYPERPARAMS
 # Create the fine-tuning job

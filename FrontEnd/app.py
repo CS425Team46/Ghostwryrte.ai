@@ -6,6 +6,7 @@ import os
 import subprocess
 # from model_training import start_model_training
 from urllib.parse import urljoin
+from threading import Thread
 
 import firebase_admin
 from firebase_admin import credentials, firestore, auth
@@ -68,31 +69,21 @@ def create_checkout_session():
     except Exception as e:
         print(e)  # Log the error to your Flask app's console
         return jsonify({'error': str(e)}), 403
-    # try:
+    
+def run_model_training_in_background(user_id):
+    """Run the model training script in a background thread."""
+    result = subprocess.run(['python3', 'Data/model_training.py', user_id], capture_output=True, text=True)
+    
+    # Handling the script result
+    if result.returncode == 0:
+        try:
+            output = json.loads(result.stdout)
+            print("Model training successful. Output:", output)
+        except json.JSONDecodeError:
+            print("Non-JSON output received from model training script:", result.stdout)
+    else:
+        print("Model training script failed:", result.stderr)
 
-    #     print("Attempting to create a Stripe checkout session")
-
-    #     checkout_session = stripe.checkout.sessions.create(
-    #         payment_method_types=['card'],
-    #         line_items=[
-    #             {
-    #                 'price': 'price_1P2m0HK9QOcf8ycFEdCqu3ZA', 
-    #                 'quantity': 1,
-    #             },
-    #         ],
-    #         mode='subscription',
-    #         success_url=success_url + '?session_id={CHECKOUT_SESSION_ID}',
-    #         cancel_url=cancel_url,
-    #     )
-
-    #     print("Checkout Session ID:", checkout_session.id)
-    #     return jsonify({'id': checkout_session.id})
-
-    # except Exception as e:
-    #     print("Error creating checkout session:", e)
-    #     if hasattr(e, 'json_body'):
-    #         print(e.json_body)
-    #     return jsonify(error=str(e)), 403
 
 
 @app.route('/subscribe')
@@ -164,7 +155,6 @@ def generate_content():
 @app.route('/run-data-conversion', methods=['POST'])
 def run_data_conversion():
     data = request.json
-    print("Data:", data)
 
     user_id = data.get('user_id')
     session_id = data.get('session_id')
@@ -181,26 +171,41 @@ def run_data_conversion():
     else:
         return jsonify({'message': f'Data conversion script failed: {result.stderr}'}), 500
     
-    
 @app.route('/start-model-training', methods=['POST'])
 def start_model_training():
     user_id = request.json.get('user_id')
     if not user_id:
         return jsonify({'message': 'No user ID provided'}), 400
-    
-    result = subprocess.run(['python3', 'Data/model_training.py', user_id], capture_output=True, text=True)
-    print("STDERR from model training:", result.stderr)
 
-    if result.returncode == 0:
-        try:
-            # Attempt to parse the stdout as JSON
-            output = json.loads(result.stdout)
-            return jsonify(output), 200
-        except json.JSONDecodeError:
-            # If stdout is not valid JSON, return the raw output for debugging
-            return jsonify({'message': 'Non-JSON output received', 'output': result.stdout}), 500
-    else:
-        return jsonify({'message': 'Model training script failed', 'output': result.stderr}), 500
+    # Start the model training in a background thread
+    thread = Thread(target=run_model_training_in_background, args=(user_id,))
+    thread.daemon = True  # Optionally, make the thread a daemon
+    thread.start()
+
+    # Return a response immediately
+    return jsonify({'message': 'Model training has been started. Please check back later for results.'}), 202
+    
+
+# @app.route('/start-model-training', methods=['POST'])
+# def start_model_training():
+#     user_id = request.json.get('user_id')
+#     if not user_id:
+#         return jsonify({'message': 'No user ID provided'}), 400
+    
+#     result = subprocess.run(['python3', 'Data/model_training.py', user_id], capture_output=True, text=True)
+#     print("STDERR from model training:", result.stderr)
+
+#     if result.returncode == 0:
+#         try:
+#             # Attempt to parse the stdout as JSON
+#             output = json.loads(result.stdout)
+#             print("Output: ", output)
+#             return jsonify(output), 200
+#         except json.JSONDecodeError:
+#             # If stdout is not valid JSON, return the raw output for debugging
+#             return jsonify({'message': 'Non-JSON output received', 'output': result.stdout}), 500
+#     else:
+#         return jsonify({'message': 'Model training script failed', 'output': result.stderr}), 500
 
 
 

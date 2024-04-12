@@ -12,6 +12,8 @@ import openai
 from openai import OpenAI
 import argparse
 import json
+
+
 import os
 
 client = OpenAI()
@@ -138,13 +140,9 @@ if __name__ == '__main__':
 
     user_id = args.user_id
     result = start_model_training(user_id)
-    # print(json.dumps(result))  # this must be the last output
 
     if 'job_id' in result:
-        print("About to check fine-tuning job status", file=sys.stderr)  
         status = check_finetuning_job_status(result['job_id'], user_id)  
-        print("Status:", status, file=sys.stderr)
         print(json.dumps(result))  
     else:
-        print("No job ID found to check status.", file=sys.stderr)
         print(json.dumps({'message': 'No job ID found to check status.'}))
