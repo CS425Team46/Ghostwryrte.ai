@@ -422,6 +422,7 @@ function createHistoryButtonGH(title, content, timestamp) {
         historyPageInstance.classList.add('selected');
         editTextArea.value = content;
         localStorage.setItem('openedText', content);
+        localStorage.setItem('openedTitle', title);
     });
 }
 
@@ -480,16 +481,25 @@ function createHistoryButtonCG(title, content) {
 /* Edit Page of Generation History */
 
 if (saveButton) {
+
     deactivateSaveButton();
+
     editTextArea.addEventListener('input', function(){
-        
-        if (editTextArea.value === localStorage.getItem('openedText')){
+        checkIfEditsWereMade();
+    });
+    historyPageTitleText.addEventListener('input', function(){
+        checkIfEditsWereMade();
+    });
+
+    function checkIfEditsWereMade(){
+        if ( (editTextArea.value === localStorage.getItem('openedText')) && (historyPageTitleText.value === localStorage.getItem('openedTitle'))){
             deactivateSaveButton();
         } else{
             saveButton.style.pointerEvents = '';
             saveButton.style.background = ''
         }
-    });
+    }
+
     saveButton.addEventListener('click', function() {
         const oldTitle = document.querySelector('.historyPageInstance.selected .historyPageInstanceTitle').textContent;
         const newTitle = document.getElementById('historyPageTitleText').value.trim();
@@ -595,6 +605,7 @@ if(instanceView){
         histGenBack.style.display = 'none';
         document.querySelector('.logOutWrapper').classList.remove('genHist');
         localStorage.removeItem('openedText');
+        localStorage.removeItem('openedTitle');
         deactivateSaveButton();
         loadHistoryButtons();
     });
