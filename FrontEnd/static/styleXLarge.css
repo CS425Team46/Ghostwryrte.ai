@@ -1064,4 +1064,37 @@
         color: var(--mainColor);
         transform: translateY(-5%);
     }
+
+    .logoAndNameLanding{
+        width: 18%;
+    }
+    .topBarContainer{
+        gap: 6%;
+    }
+    .landingPageBrandingText{
+        font-size: 2.7rem;
+    }
+    .landingNavButton{
+        font-size: 2rem;
+    }
+    .loginAccessButton{
+        height: 35%;
+        font-size: 2rem;
+    }
+    .tagline{
+        font-size: 5rem;
+    }
+    .taglineTwo{
+        font-size: 2.3rem;
+    }
+    .waitListCTA{
+        font-size: 1.5rem;
+    }
+    .waitListInput{
+        font-size: 1.8rem;
+    }
+    .joinButton{
+        font-size: 1.8rem;
+    }
+
     }

@@ -1542,11 +1542,203 @@ pre {
   color: var(--mainColor);
   transform: translateY(-5%);
 }
-/* Small devices (portrait tablets and large phones, 600px and up) */
-/* @media only screen and (min-width: 600px) {...} */
-/* Medium devices (landscape tablets, 768px and up) */
-/* @media only screen and (min-width: 768px) {...}
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-/* @media only screen and (min-width: 1200px) {...} */
 
-/* Large devices (laptops/desktops, 992px and up) */
+
+
+.landingPageContainer{
+  height: 100vh;
+  width: 100vw;
+  background: var(--offWhite);
+}
+
+.topBarContainer{
+  display: flex;
+  align-items: center;
+  height: 15%;
+  width: 100%;
+  padding: 0 4% 0 4%;
+  gap: 4.5%;
+}
+
+.logoAndNameLanding{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  width: 65%;
+}
+
+.landingPageLogoImg{
+  height: 50%;
+  width: auto;
+}
+
+.landingPageBrandingText{
+  font-family: "Manrope", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.navButtonsContainer{
+  display: none;
+  width: 22%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.landingNavButton{
+  font-family: "Manrope", sans-serif;
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+
+.landingAccountAccessContainer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 9%;
+  height: 100%;
+  margin-left: auto;
+}
+.loginAccessButton{
+  display: none;
+}
+.loginAccessButton:hover{
+  background-position: left;
+  color: var(--offWhite);
+  border: 2px solid black;
+}
+
+.landingBottomContent{
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: 85%;
+}
+
+.landingLeftContent{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+.leftSideContentContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 80%;
+  height: 80%;
+  gap: 6%;
+}
+
+.tagline{
+  width: 100%;
+  font-family: "Manrope", sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  animation: landingPageLoad ease 2s;
+}
+.taglineTwo{
+  width: 70%;
+  opacity: 0;
+  font-family: "Manrope", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  animation: landingPageLoad ease 2s;
+  animation-delay: .5s;
+  animation-fill-mode: forwards;
+}
+
+.tagline::after{
+  content: attr(data-end);
+  color: var(--mainAccentColor);
+}
+
+.waitListContainer{
+  display: flex;
+  opacity: 0;
+  flex-direction: column;
+  height: 10%;
+  width: 90%;
+  gap: 10%;
+  animation: landingPageLoad ease 2s;
+  animation-delay: .75s;
+  animation-fill-mode: forwards;
+}
+
+.waitListCTA{
+  font-family: "Manrope", sans-serif;
+  font-size: .8rem;
+  font-weight: 600;
+}
+
+.waitListInteract{
+  display: flex;
+  width: 100%;
+  height: 56%;
+  border-radius: 15px;
+}
+
+.waitListInput{
+  border: none;
+  width: 73%;
+  border-radius: 10px 0 0 10px;
+  padding: 6% 3% 6% 3%;
+  font-family: "Manrope", sans-serif;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--textColor);
+  background: none;
+  border: 2.5px solid #B3B3B3;
+}
+.joinButton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 27%;
+  border-radius: 0 10px 10px 0;
+  background: linear-gradient(to left, var(--mainAccentColor) 51%, black 50%) right;
+  background-size: 200%;
+  color:var(--offWhite);
+  font-family: "Manrope", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  padding: 6% 3% 6% 3%;
+  border: 2.5px solid #B3B3B3;
+  border-left: 0;
+  transition: .5s ease-out;
+}
+
+.joinButton:hover{
+  background-position: left;
+  cursor: pointer;
+}
+
+.landingRightContent{
+  display: none;
+  justify-content: flex-end;
+  align-items: center;
+  width: 43%;
+  height: 90%;
+  animation: landingPageLoad ease 3s;
+}
+
+.landingSnapshotImg{
+  height: 100%;
+  width: auto;
+}
+
+@keyframes landingPageLoad {
+  0% {
+      opacity: 0;
+      transform: translateY(10%);
+  }
+  100%{
+      opacity: 1;
+      transform: translateY(0);
+  }
+}

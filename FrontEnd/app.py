@@ -99,10 +99,9 @@ def success():
 def cancel():
     return render_template('SubscriptionCancel.html')
 
-
-""" @app.route('/')
+@app.route('/landing')
 def home():
-    return render_template('LandingPage.html') """
+    return render_template('LandingPage.html')
 
 @app.route('/')
 def account_creation():
