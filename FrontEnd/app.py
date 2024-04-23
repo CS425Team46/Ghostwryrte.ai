@@ -99,13 +99,17 @@ def success():
 def cancel():
     return render_template('SubscriptionCancel.html')
 
-@app.route('/landing')
+@app.route('/')
 def home():
     return render_template('LandingPage.html')
 
-@app.route('/')
+@app.route('/accountCreation')
 def account_creation():
     return render_template('AccountCreation.html')
+
+@app.route('/password-reset')
+def password_reset():
+    return render_template('passwordReset.html')
 
 @app.route('/content-generation')
 def content_generation():

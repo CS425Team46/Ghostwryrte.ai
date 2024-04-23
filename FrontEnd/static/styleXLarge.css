@@ -747,34 +747,15 @@
         text-align: left;
         font-family: "Montserrat", sans-serif;
         font-weight: 800;
-        font-size: 2rem;
+        font-size: 3rem;
       }
       
       .signInButton {
-        display: flex;
-        background: none;
-        justify-content: center;
-        border: none;
-        font-family: "Montserrat", sans-serif;
-        font-weight: 800;
-        font-size: 2.5rem;
-        border-bottom: 5px solid var(--textColor);
-        color: var(--textColor  );
-        margin-bottom: -5px;
-        margin: 0 4% 0 0;
+        font-size: 4rem;
       }
     
       .signUpButton {
-        display: flex;
-        background: none;
-        justify-content: center;
-        border: none;
-        font-family: "Montserrat", sans-serif;
-        font-weight: 800;
-        font-size: 2.5rem;
-        color: var(--deselectedColor);
-        border-bottom: 5px solid var(--deselectedColor);
-        margin: 0 0 0 4%;
+        font-size:4rem;
       }
       
       .userInputAC {
@@ -782,7 +763,7 @@
         height: 100%;
         flex-direction: column;
         justify-content: flex-start;
-        font-size: 1rem;
+        font-size:1rem;
         font-family: "Montserrat", sans-serif;
         font-weight: 600;
         color: var(--textColor);
@@ -804,43 +785,45 @@
         outline: none; 
       }
     
-      
+    .passResetButton{
+    transform: translateY(-850%);
+    }
+    .resetContainer{
+        gap: 3%;
+    }
+    .resetText{
+        font-size: 2.9rem;
+    }
+    .resetInstructions{
+        font-size: 1.5rem;
+    }
+    .resetPasswordBoxText{
+        transform: translateY(100%);
+    }
+    .submitPassReset{
+        font-size: 1.5rem;
+    }
       .ACSubmitButton {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: "Montserrat", sans-serif;
         font-weight: 800;
-        color: var(--mainColor);
-        background: var(--mainAccentColor);
         width: 100%;
         height: 7%;
         font-size: 2rem;
         padding: 2%;
-        border: 0;
         transform: translateY(-187%);   
         border-radius: 20px;
         transition: transform 0.5s ease, box-shadow 0.5s ease;
       }
       
       .ACSubmitButton.removed{
-        transform: translateY(57%); 
+        transform: translateY(0%); 
       }
       .ACSubmitButton.removed:hover{
-        transform: translateY(50%); 
+        transform: translateY(-7%); 
       }
       
       .ACSubmitButton:hover {
-        cursor: pointer;
         transform: translateY(-194%);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
       }
-      .ACSubmitButton:active{
-        cursor: pointer;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-        border: 3px solid black;
-      }
-      
     /* Toast */
     
     .toastImg {

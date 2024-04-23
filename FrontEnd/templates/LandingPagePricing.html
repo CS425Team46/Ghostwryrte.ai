@@ -14,7 +14,7 @@
         <script src="https://js.stripe.com/v3/"></script>
     </head>
     <body>
-        <section class="landingPageContainer" id="landingCheck">
+        <section class="landingPageContainer">
             <nav class="topBarContainer">
                 <section class="logoAndNameLanding">
                     <img src="{{ url_for('static', filename='images/newLogoBlack.png') }}" class="landingPageLogoImg">
@@ -26,30 +26,14 @@
                     <a href=""><div class="landingNavButton">Contact Us</div></a>
                 </section>
                 <section class="landingAccountAccessContainer">
-                    <button class="loginAccessButton" id="landingLogin">Login</button>
+                    <button class="loginAccessButton">Login</button>
                     <!-- <button></button> -->
                 </section>
             </nav>
 
             <main class="landingBottomContent">
-                <section class="landingLeftContent">
-                    <div class="leftSideContentContainer">
-                        <span class="tagline" data-end="you">The AI ghostwriter that sounds just like </span>
-                    <span class="taglineTwo">Craft tailored content in your unique voice with unparalleled efficiency.</span>
-                    <section class="waitListContainer">
-                        <span class="waitListCTA">Join the wait list today</span>
-                        <section class="waitListInteract">
-                            <input type="text" placeholder="name@domain.com" class="waitListInput">
-                            <button class="joinButton">Join</button>
-                        </section>
-                    </section>
-                    </div>    
-                </section>
-                <section class="landingRightContent">
-                    <img src="{{ url_for('static', filename='images/landingSnapshot.png') }}" class="landingSnapshotImg">
-                </section>
+               
             </main>
         </section>
-        <script type="module" src="{{ url_for('static', filename='javascript.mjs') }}" defer></script>
     </body>
 </html>
