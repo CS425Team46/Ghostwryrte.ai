@@ -18,11 +18,11 @@
             <nav class="topBarContainer">
                 <section class="logoAndNameLanding">
                     <img src="{{ url_for('static', filename='images/newLogoBlack.png') }}" class="landingPageLogoImg">
-                    <span class="landingPageBrandingText">Ghostwrtye.AI</span>
+                    <span class="landingPageBrandingText">Ghostwryte.AI</span>
                 </section>
                 <section class="navButtonsContainer">
-                    <a href=""><div class="landingNavButton">Home</div></a>
-                    <a href=""><div class="landingNavButton">Pricing</div></a>
+                    <a href="{{ url_for('home') }}"><div class="landingNavButton">Home</div></a>
+                    <a href="{{ url_for('pricing') }}"><div class="landingNavButton">Pricing</div></a>
                     <a href=""><div class="landingNavButton">Contact Us</div></a>
                 </section>
                 <section class="landingAccountAccessContainer">

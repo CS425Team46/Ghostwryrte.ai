@@ -18,11 +18,11 @@
             <nav class="topBarContainer">
                 <section class="logoAndNameLanding">
                     <img src="{{ url_for('static', filename='images/newLogoBlack.png') }}" class="landingPageLogoImg">
-                    <span class="landingPageBrandingText">Ghostwrtye.AI</span>
+                    <span class="landingPageBrandingText">Ghostwryte.AI</span>
                 </section>
                 <section class="navButtonsContainer">
-                    <a href=""><div class="landingNavButton">Home</div></a>
-                    <a href=""><div class="landingNavButton">Pricing</div></a>
+                    <a href="{{ url_for('home') }}"><div class="landingNavButton">Home</div></a>
+                    <a href="{{ url_for('pricing') }}"><div class="landingNavButton">Pricing</div></a>
                     <a href=""><div class="landingNavButton">Contact Us</div></a>
                 </section>
                 <section class="landingAccountAccessContainer">
@@ -31,8 +31,90 @@
                 </section>
             </nav>
 
-            <main class="landingBottomContent">
+            <main class="landingBottomContent pricing">
+                <section class="pricingBoxInstance">
+                    <div class="pricingInfo">
+                        <span class="tierText">Basic</span>
+                        <div class="priceAndMonth">
+                            <span class="priceText">$19</span>
+                            <span class="perMonthText">per month</span>
+                        </div>
+                    </div>
+                    <div class="whatsIncludedContainer">
+                        <span class="whatsLabel">What's Included</span>
+                        <ul class="whatsIncludedItems">
+                            <li>One Individual Model (1 Persona/Voice)</li>
+                            <li>20,000 words per month</li>
+                        </ul>
+                    </div>
+                    <button class="getStartedButton">
+                        <span class="getStartedText">Get Started</span>
+                        <img src="{{ url_for('static', filename='images/rightArrow.svg') }}" class="getStartedArrow">
+                    </button>
+                </section>
+                <section class="pricingBoxInstance">
+                    <div class="pricingInfo">
+                        <span class="tierText">Tier 1</span>
+                        <div class="priceAndMonth">
+                            <span class="priceText">$59</span>
+                            <span class="perMonthText">per month</span>
+                        </div>
+                    </div>
+                    <div class="whatsIncludedContainer">
+                        <span class="whatsLabel">What's Included</span>
+                        <ul class="whatsIncludedItems">
+                            <li>Three Individual Models (3 Personas/Voice)</li>
+                            <li>30,000 words per month</li>
+                        </ul>
+                    </div>
+                    <button class="getStartedButton">
+                        <span class="getStartedText">Get Started</span>
+                        <img src="{{ url_for('static', filename='images/rightArrow.svg') }}" class="getStartedArrow">
+                    </button>
+                </section>
+                <section class="pricingBoxInstance">
+                    <div class="pricingInfo">
+                        <span class="tierText">Tier 2</span>
+                        <div class="priceAndMonth">
+                            <span class="priceText">$99</span>
+                            <span class="perMonthText">per month</span>
+                        </div>
+                    </div>
+                    <div class="whatsIncludedContainer">
+                        <span class="whatsLabel">What's Included</span>
+                        <ul class="whatsIncludedItems">
+                            <li>Six Individual Models (6 Persona/Voice)</li>
+                            <li>60,000 words per month</li>
+                        </ul>
+                    </div>
+                    <button class="getStartedButton">
+                        <span class="getStartedText">Get Started</span>
+                        <img src="{{ url_for('static', filename='images/rightArrow.svg') }}" class="getStartedArrow">
+                    </button>
+                </section>
+                <section class="pricingBoxInstance">
+                    <div class="pricingInfo">
+                        <span class="tierText">Tier 4</span>
+                        <div class="priceAndMonth">
+                            <span class="priceText">$149</span>
+                            <span class="perMonthText">per month</span>
+                        </div>
+                    </div>
+                    <div class="whatsIncludedContainer">
+                        <span class="whatsLabel">What's Included</span>
+                        <ul class="whatsIncludedItems">
+                            <li>Ten Individual Models (10 Persona/Voice)</li>
+                            <li>100,000 words per month</li>
+                        </ul>
+                    </div>
+                    <button class="getStartedButton">
+                        <span class="getStartedText">Get Started</span>
+                        <img src="{{ url_for('static', filename='images/rightArrow.svg') }}" class="getStartedArrow">
+                    </button>
+                </section>
+                
                
+                
             </main>
         </section>
     </body>

@@ -103,6 +103,10 @@ def cancel():
 def home():
     return render_template('LandingPage.html')
 
+@app.route('/pricing')
+def pricing():
+    return render_template('LandingPagePricing.html')
+
 @app.route('/accountCreation')
 def account_creation():
     return render_template('AccountCreation.html')

@@ -1721,7 +1721,87 @@ pre {
     width: 100%;
     height: 85%;
 }
-
+.landingBottomContent.pricing{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 85%;
+    gap: 2%;
+}
+.pricingBoxInstance:nth-child(1){
+    opacity: 0;
+    animation: landingPageLoad ease 2s;
+    animation-delay: 0;
+    animation-fill-mode: forwards;
+}
+.pricingBoxInstance:nth-child(2){
+    opacity: 0;
+    animation: landingPageLoad ease 2s;
+    animation-delay: .5s;
+    animation-fill-mode: forwards;
+}
+.pricingBoxInstance:nth-child(3){
+    opacity: 0;
+    animation: landingPageLoad ease 2s;
+    animation-delay: .75s;
+    animation-fill-mode: forwards;
+}
+.pricingBoxInstance:nth-child(4){
+    opacity: 0;
+    animation: landingPageLoad ease 2s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+}
+.pricingBoxInstance{
+    display: flex;
+    flex-direction: column;
+    height: 52%;
+    width: 20%;
+    background: var(--mainColor);
+    border-radius: 15px;
+    padding: 1% 1.5% 1% 1.5%;
+    justify-content: space-between;
+    filter: drop-shadow(0 -1.1rem var(--mainAccentColor));
+    margin: 0 0 5% 0;
+}
+.pricingInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+.tierText{
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+}
+.priceAndMonth{
+    display:flex;
+    align-items: center;
+    gap: 10%;
+}
+.priceText{
+    font-family: "Manrope", sans-serif;
+    font-size: 3rem;
+}
+.perMonthText{
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+}
+.whatsIncludedContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 40%;
+}
+.whatsLabel{
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+}
+.whatsIncludedItems{
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+    margin-left: 6%;
+}
 .landingLeftContent{
     display: flex;
     justify-content: center;
@@ -1729,7 +1809,40 @@ pre {
     width: 57%;
     height: 100%;
 }
+.getStartedButton{
+    display: flex;
+    width: 45%;
+    height: 11%;
+    border: 2px solid var(--mainAccentColor);
+    background: none;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    gap: 5%;
+    background: linear-gradient(to left, var(--mainColor) 50%, black 50%) right;
+    background-size: 200%;
+    transition: .25s all ease-out;
+}
+.getStartedButton >img{
+    transition: .4s all ease-out;
+}
+.getStartedButton:hover{
+    background-position: left;
+    cursor: pointer;
+    color: var(--mainColor)
+}
+.getStartedButton:hover > img{
+    filter: invert(1);
+}
 
+.getStartedArrow{
+    display: flex;
+    height: 50%;
+    width: auto;
+}
 .leftSideContentContainer{
     display: flex;
     flex-direction: column;
