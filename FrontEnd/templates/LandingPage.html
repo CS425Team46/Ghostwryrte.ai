@@ -1,15 +1,55 @@
 <!-- landing_page.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://js.stripe.com/v3/"></script>
-    <title>Welcome to Ghostwryte AI</title>
-</head>
-<body>
-    <h1>Welcome to Ghostwryte AI</h1>
-    <p>Learn more about our app and its features.</p>
-    <a href="/account-creation">Sign Up / Sign In</a>
-</body>
+    <head>
+        <title>GhostWryte.ai</title>
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favIcon.ico') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" type="text/css" media="only screen and (max-width: 991px)" href="{{ url_for('static', filename='styleSmall.css') }}" />
+        <link rel="stylesheet" type="text/css" media="only screen and (min-width: 992px)" href="{{ url_for('static', filename='styleLarge.css') }}" />
+        <link rel="stylesheet" type="text/css" media="only screen and (min-width: 992px)" href="{{ url_for('static', filename='styleXLarge.css') }}" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+        <script src="https://js.stripe.com/v3/"></script>
+    </head>
+    <body>
+        <section class="landingPageContainer" id="landingCheck">
+            <nav class="topBarContainer">
+                <section class="logoAndNameLanding">
+                    <img src="{{ url_for('static', filename='images/newLogoBlack.png') }}" class="landingPageLogoImg">
+                    <span class="landingPageBrandingText">Ghostwryte.AI</span>
+                </section>
+                <section class="navButtonsContainer">
+                    <a href="{{ url_for('home') }}"><div class="landingNavButton">Home</div></a>
+                    <a href="{{ url_for('pricing') }}"><div class="landingNavButton">Pricing</div></a>
+                    <a href=""><div class="landingNavButton">Contact Us</div></a>
+                </section>
+                <section class="landingAccountAccessContainer">
+                    <button class="loginAccessButton" id="landingLogin">Login</button>
+                    <!-- <button></button> -->
+                </section>
+            </nav>
+
+            <main class="landingBottomContent">
+                <section class="landingLeftContent">
+                    <div class="leftSideContentContainer">
+                        <span class="tagline" data-end="you">The AI ghostwriter that sounds just like </span>
+                    <span class="taglineTwo">Craft tailored content in your unique voice with unparalleled efficiency.</span>
+                    <section class="waitListContainer">
+                        <span class="waitListCTA">Join the wait list today</span>
+                        <section class="waitListInteract">
+                            <input type="text" placeholder="name@domain.com" class="waitListInput">
+                            <button class="joinButton">Join</button>
+                        </section>
+                    </section>
+                    </div>    
+                </section>
+                <section class="landingRightContent">
+                    <img src="{{ url_for('static', filename='images/landingSnapshot.png') }}" class="landingSnapshotImg">
+                </section>
+            </main>
+        </section>
+        <script type="module" src="{{ url_for('static', filename='javascript.mjs') }}" defer></script>
+    </body>
 </html>

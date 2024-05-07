@@ -189,7 +189,6 @@
         font-optical-sizing: auto;
         font-weight: 600;
         font-size: 1.2rem;
-        font-weight: 600;
         border: none;
         background: none;
         border-radius: 10px;
@@ -254,7 +253,7 @@
         font-size: 1.6rem;
         font-family: "Poppins", sans-serif;
         font-optical-sizing: auto;
-        font-weight: 400;
+        font-weight: 500;
         font-style: normal;
         padding: 2vw 0 0 0;
         resize: none;
@@ -474,7 +473,7 @@
     .historylabel.two{
         font-size: 1rem;
         font-family: "Poppins", sans-serif;
-        font-weight: 550;
+        font-weight: 500;
     }
     
     .historyPageContainer{
@@ -502,7 +501,7 @@
         padding: 1% .5% 1% 1%;
         font-size: .9rem;
         font-family: "Poppins", sans-serif;
-        font-weight: 450;
+        font-weight: 500;
         height: 100%;
         transition: transform 0.5s ease, box-shadow 0.5s ease;
         
@@ -658,19 +657,14 @@
     
     /* Includes Content related to AI Training Page */
     
-   
-    
     .instructionText{
-    
         font-size: 2vh;
         font-family: "Poppins", sans-serif;
         font-weight: 600;
         color: var(--textColor);
-    
     }
     
     .instructionText.Two{
-    
         font-size: 1.7vh;
         font-family: "Poppins", sans-serif;
         font-weight: 800;
@@ -685,7 +679,7 @@
         height: 12%;
         border-radius: 5px;
         font-family: "Poppins", sans-serif;
-        font-weight: 700;
+        font-weight: 600;
         font-size: 2.4rem;
         border: 1px solid black;
         background: var(--mainAccentColor);
@@ -697,7 +691,6 @@
         width: 75%;
         font-family: "Poppins", sans-serif;
         font-weight: 600;
-        padding-top: 1%;
         font-size: 1.3rem;
         pointer-events: none;
     }
@@ -754,34 +747,15 @@
         text-align: left;
         font-family: "Montserrat", sans-serif;
         font-weight: 800;
-        font-size: 2rem;
+        font-size: 3rem;
       }
       
       .signInButton {
-        display: flex;
-        background: none;
-        justify-content: center;
-        border: none;
-        font-family: "Montserrat", sans-serif;
-        font-weight: 800;
-        font-size: 2.5rem;
-        border-bottom: 5px solid var(--textColor);
-        color: var(--textColor  );
-        margin-bottom: -5px;
-        margin: 0 4% 0 0;
+        font-size: 4rem;
       }
     
       .signUpButton {
-        display: flex;
-        background: none;
-        justify-content: center;
-        border: none;
-        font-family: "Montserrat", sans-serif;
-        font-weight: 800;
-        font-size: 2.5rem;
-        color: var(--deselectedColor);
-        border-bottom: 5px solid var(--deselectedColor);
-        margin: 0 0 0 4%;
+        font-size:4rem;
       }
       
       .userInputAC {
@@ -789,7 +763,7 @@
         height: 100%;
         flex-direction: column;
         justify-content: flex-start;
-        font-size: 1rem;
+        font-size:1rem;
         font-family: "Montserrat", sans-serif;
         font-weight: 600;
         color: var(--textColor);
@@ -811,43 +785,45 @@
         outline: none; 
       }
     
-      
+    .passResetButton{
+    transform: translateY(-850%);
+    }
+    .resetContainer{
+        gap: 3%;
+    }
+    .resetText{
+        font-size: 2.9rem;
+    }
+    .resetInstructions{
+        font-size: 1.5rem;
+    }
+    .resetPasswordBoxText{
+        transform: translateY(100%);
+    }
+    .submitPassReset{
+        font-size: 1.5rem;
+    }
       .ACSubmitButton {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-family: "Montserrat", sans-serif;
         font-weight: 800;
-        color: var(--mainColor);
-        background: var(--mainAccentColor);
         width: 100%;
         height: 7%;
         font-size: 2rem;
         padding: 2%;
-        border: 0;
         transform: translateY(-187%);   
         border-radius: 20px;
         transition: transform 0.5s ease, box-shadow 0.5s ease;
       }
       
       .ACSubmitButton.removed{
-        transform: translateY(57%); 
+        transform: translateY(0%); 
       }
       .ACSubmitButton.removed:hover{
-        transform: translateY(50%); 
+        transform: translateY(-7%); 
       }
       
       .ACSubmitButton:hover {
-        cursor: pointer;
         transform: translateY(-194%);
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
       }
-      .ACSubmitButton:active{
-        cursor: pointer;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-        border: 3px solid black;
-      }
-      
     /* Toast */
     
     .toastImg {
@@ -873,7 +849,7 @@
         animation: slideInRight 0.3s 
             ease-in-out forwards, 
         fadeOut 0.5s ease-in-out 
-            forwards 5s; 
+            forwards; 
         transform: translateX(110%); 
     } 
     
@@ -1071,4 +1047,37 @@
         color: var(--mainColor);
         transform: translateY(-5%);
     }
+
+    .logoAndNameLanding{
+        width: 18%;
+    }
+    .topBarContainer{
+        gap: 6%;
+    }
+    .landingPageBrandingText{
+        font-size: 2.7rem;
+    }
+    .landingNavButton{
+        font-size: 2rem;
+    }
+    .loginAccessButton{
+        height: 35%;
+        font-size: 2rem;
+    }
+    .tagline{
+        font-size: 5rem;
+    }
+    .taglineTwo{
+        font-size: 2.3rem;
+    }
+    .waitListCTA{
+        font-size: 1.5rem;
+    }
+    .waitListInput{
+        font-size: 1.8rem;
+    }
+    .joinButton{
+        font-size: 1.8rem;
+    }
+
     }

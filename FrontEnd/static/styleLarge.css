@@ -11,11 +11,12 @@ padding: 0;
     --deselectedColor: #a8a6a6;
     --loginInputBox: #c5c5c5;
 
-    --offWhite: #f1f1f1;
+    --offWhite: #f3f3f3;
     --mainColor: #ffffff;
     --secondaryColor: #F0F0F0;
     --secondaryAccent: #DEDEDE;
     --mainAccentColor: #00a878;
+    --mainAccentColorClear: rgb(0, 168, 120, .5);
     --textColor: #030303;
 
 }
@@ -250,7 +251,6 @@ pre {
     color: var(--textColor);
     font-family: "Poppins", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 600;
     font-size: .8rem;
     font-weight: 600;
     border: none;
@@ -303,7 +303,7 @@ pre {
     display: flex;
     align-items: center;
     border-bottom: var(--secondaryColor);
-    height: 10%;
+    height: 7.5%;
     width: 100%;
     border-bottom: 3px solid var(--secondaryColor);
 }
@@ -362,7 +362,7 @@ pre {
     font-size: 1.2rem;
     font-family: "Poppins", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 400;
+    font-weight: 500;
     font-style: normal;
     padding: 2vw 0 0 0;
     resize: none;
@@ -662,7 +662,7 @@ pre {
 
 }
 
-/* Small Screen Generation History Page */
+/* Generation History Page */
 
 .mainWindowColumn.history{
     align-items: center;
@@ -689,7 +689,7 @@ pre {
 .historylabel.two{
     font-size: 1rem;
     font-family: "Poppins", sans-serif;
-    font-weight: 550;
+    font-weight: 500;
 }
 
 .historyPageContainer{
@@ -717,7 +717,7 @@ pre {
     padding: 1% .5% 1% 1%;
     font-size: .7rem;
     font-family: "Poppins", sans-serif;
-    font-weight: 450;
+    font-weight: 500;
     height: 100%;
     transition: transform 0.5s ease, box-shadow 0.5s ease;
     
@@ -861,6 +861,7 @@ pre {
     background-color: var(--mainColor);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    pointer-events: auto;
 }
 .editButton:hover{
     background: var(--mainAccentColor);
@@ -1029,51 +1030,50 @@ pre {
 
 .fileInstanceImgX {
     max-height: 100%;
-    max-width: 35%;
+    max-width: 100%;
     width: auto;
     padding-top: 5%;
     margin-left: 3%;
 }
 
 .fileName{
-
     display: flex;
     width: 75%;
     font-family: "Poppins", sans-serif;
     font-weight: 600;
-    padding-top: 1%;
     font-size: 1rem;
     pointer-events: none;
-
 }
 
 .deleteFileButton{
-
-    max-height: 100%;
-    max-width: 15%;
+    height: 50%;
+    max-width: 10%;
     border: none;
     outline: none;
     background: none;
-
+    border-radius: 5px;
+    margin: 0 3% 0 auto;
 }
 
 .deleteFileButton:hover{
     cursor: pointer;
+    background: var(--textColor);
+    
+}
+.deleteFileButton:hover > img{
+    filter: invert(1);
 }
 
 .uploadAndTrainButtons{
-
     display: flex;
     justify-content: center;
     align-items: flex-end;
     gap: 5%;
     height: 15%;
     width: 100%;
-
 }
 
 #UploadData{
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1087,7 +1087,6 @@ pre {
     background: var(--mainColor);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.5s ease, box-shadow 0.5s ease;
-
 }
 
 #UploadData:hover{
@@ -1102,7 +1101,6 @@ pre {
 }
 
 #TrainModel{
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1116,7 +1114,6 @@ pre {
     background: var(--mainColor);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.5s ease, box-shadow 0.5s ease;
-
 }
 
 #TrainModel:hover{
@@ -1155,7 +1152,7 @@ pre {
   }
   .loginBrandText{
     font-size: 1.25rem;
-    font-weight: 800  ;
+    font-weight: 800;
     font-family: "Montserrat", sans-serif;
   }
   .actionSelector {
@@ -1300,7 +1297,76 @@ pre {
   .loginInputBox:focus {
     outline: none;
   }
-  
+
+  .passResetButton{
+    display: flex;
+    opacity: 1;
+    width: fit-content;
+    justify-content: flex-start;
+    background: none;
+    outline: none;
+    border: none;
+    transform: translateY(-700%);
+    transition: all .2s ease;
+  }
+  .passResetButton.removed{
+    opacity: 0;
+  }
+  .passResetButton{
+    cursor: pointer;
+  }
+
+.passResetText{
+    color: blue;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+}
+
+.resetContainer{
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 100%;
+    font-family: "Montserrat", sans-serif;
+    gap: 2%;
+    flex-grow: 1;
+    margin-top: 0;
+}
+
+.resetText{
+    font-weight: 600;
+    font-size: 2rem;
+}
+.resetInstructions{
+    width: 75%;
+    font-size: 1rem;
+}
+.resetPasswordBoxText{
+    font-weight: 600;
+    transform: translateY(40%);
+}
+.submitPassReset{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    color: var(--mainColor);
+    background: var(--mainAccentColor);
+    width: 100%;
+    height: 5%;
+    font-size: 1.3rem;
+    padding: 2%;
+    border: 0; 
+    border-radius: 18px;
+    transform: translateY(-50%);   
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+.submitPassReset:hover{
+    transform: translateY(-57%); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
   .ACSubmitButton {
       
     display: flex;
@@ -1322,10 +1388,10 @@ pre {
   }
   
   .ACSubmitButton.removed{
-    transform: translateY(40%); 
+    transform: translateY(0%); 
   }
   .ACSubmitButton.removed:hover{
-    transform: translateY(33%); 
+    transform: translateY(-7%); 
   }
   
   .ACSubmitButton:hover {
@@ -1361,9 +1427,8 @@ pre {
     box-shadow: -1px 1px 10px
     rgba(0, 0, 0, 0.3); 
     z-index: 1023; 
-    animation: slideInRight 0.3s 
-        ease-in-out forwards, 
-    fadeOut 0.5s ease-in-out 
+    animation: slideInRight 0.3s ease-in-out forwards, 
+        fadeOut 0.5s ease-in-out 
         forwards 5s; 
     transform: translateX(110%); 
 } 
@@ -1564,5 +1629,343 @@ pre {
     transform: translateY(-5%);
 }
 
+/* Landing Page */
+
+.landingPageContainer{
+    height: 100vh;
+    width: 100vw;
+    background: var(--offWhite);
+}
+
+.topBarContainer{
+    display: flex;
+    align-items: center;
+    height: 15%;
+    width: 100%;
+    padding: 0 4% 0 4%;
+    gap: 6%;
+}
+
+.logoAndNameLanding{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    width: 20%;
+    user-select: none;
+}
+
+.landingPageLogoImg{
+    height: 50%;
+    width: auto;
+}
+
+.landingPageBrandingText{
+    font-family: "Manrope", sans-serif;
+    font-size: 2.3rem;
+    font-weight: 500;
+}
+
+.navButtonsContainer{
+    display: flex;
+    width: 22%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.landingNavButton{
+    font-family: "Manrope", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 500;
+}
+
+.landingNavButton:hover{
+    cursor:pointer;
+}
+
+.landingAccountAccessContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 9%;
+    height: 100%;
+    margin-left: auto;
+}
+.loginAccessButton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 32%;
+    background: linear-gradient(to left, var(--mainAccentColorClear) 50%, black 50%) right;
+    background-size: 200%;
+    border: 2px solid var(--mainAccentColor);
+    border-radius: 10px;
+    font-family: "Manrope", sans-serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--mainAccentColor);
+    transition: .25s ease-out;
+    user-select: none;
+}
+.loginAccessButton:hover{
+    background-position: left;
+    color: var(--offWhite);
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.landingBottomContent{
+    display: flex;
+    align-items: flex-end;
+    width: 100%;
+    height: 85%;
+}
+.landingBottomContent.pricing{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 85%;
+    gap: 2%;
+}
+.pricingBoxInstance:nth-child(1){
+    opacity: 0;
+    animation: landingPageLoad ease 2s;
+    animation-delay: 0;
+    animation-fill-mode: forwards;
+}
+.pricingBoxInstance:nth-child(2){
+    opacity: 0;
+    animation: landingPageLoad ease 2s;
+    animation-delay: .5s;
+    animation-fill-mode: forwards;
+}
+.pricingBoxInstance:nth-child(3){
+    opacity: 0;
+    animation: landingPageLoad ease 2s;
+    animation-delay: .75s;
+    animation-fill-mode: forwards;
+}
+.pricingBoxInstance:nth-child(4){
+    opacity: 0;
+    animation: landingPageLoad ease 2s;
+    animation-delay: 1s;
+    animation-fill-mode: forwards;
+}
+.pricingBoxInstance{
+    display: flex;
+    flex-direction: column;
+    height: 52%;
+    width: 20%;
+    background: var(--mainColor);
+    border-radius: 15px;
+    padding: 1% 1.5% 1% 1.5%;
+    justify-content: space-between;
+    filter: drop-shadow(0 -1.1rem var(--mainAccentColor));
+    margin: 0 0 5% 0;
+}
+.pricingInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 10%;
+}
+.tierText{
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+}
+.priceAndMonth{
+    display:flex;
+    align-items: center;
+    gap: 10%;
+}
+.priceText{
+    font-family: "Manrope", sans-serif;
+    font-size: 3rem;
+}
+.perMonthText{
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+}
+.whatsIncludedContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 40%;
+}
+.whatsLabel{
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+}
+.whatsIncludedItems{
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+    margin-left: 6%;
+}
+.landingLeftContent{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 57%;
+    height: 100%;
+}
+.getStartedButton{
+    display: flex;
+    width: 45%;
+    height: 11%;
+    border: 2px solid var(--mainAccentColor);
+    background: none;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    font-family: "Manrope", sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    gap: 5%;
+    background: linear-gradient(to left, var(--mainColor) 50%, black 50%) right;
+    background-size: 200%;
+    transition: .25s all ease-out;
+}
+.getStartedButton >img{
+    transition: .4s all ease-out;
+}
+.getStartedButton:hover{
+    background-position: left;
+    cursor: pointer;
+    color: var(--mainColor)
+}
+.getStartedButton:hover > img{
+    filter: invert(1);
+}
+
+.getStartedArrow{
+    display: flex;
+    height: 50%;
+    width: auto;
+}
+.leftSideContentContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 80%;
+    height: 80%;
+    gap: 6%;
+}
+
+.tagline{
+    width: 100%;
+    font-family: "Manrope", sans-serif;
+    font-size: 4rem;
+    font-weight: 600;
+    animation: landingPageLoad ease 2s;
+    user-select: none;
+}
+.taglineTwo{
+    width: 50%;
+    opacity: 0;
+    font-family: "Manrope", sans-serif;
+    font-size: 1.7rem;
+    font-weight: 500;
+    animation: landingPageLoad ease 2s;
+    animation-delay: .5s;
+    animation-fill-mode: forwards;
+    user-select: none;
+}
+
+.tagline::after{
+    content: attr(data-end);
+    color: var(--mainAccentColor);
+}
+
+.waitListContainer{
+    display: flex;
+    opacity: 0;
+    flex-direction: column;
+    height: 10%;
+    width: 50%;
+    gap: 10%;
+    animation: landingPageLoad ease 2s;
+    animation-delay: .75s;
+    animation-fill-mode: forwards;
+}
+
+.waitListCTA{
+    font-family: "Manrope", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 600;
+    user-select: none;
+}
+
+.waitListInteract{
+    display: flex;
+    width: 100%;
+    height: 56%;
+    border-radius: 15px;
+}
+
+.waitListInput{
+    border: none;
+    width: 73%;
+    border-radius: 15px 0 0 15px;
+    padding: 6% 3% 6% 3%;
+    font-family: "Manrope", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--textColor);
+    background: none;
+    border: 2.5px solid #B3B3B3;
+}
+.joinButton{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 27%;
+    border-radius: 0 15px 15px 0;
+    background: linear-gradient(to left, var(--mainAccentColor) 50%, black 50%) right;
+    background-size: 200%;
+    color:var(--offWhite);
+    font-family: "Manrope", sans-serif;
+    font-size: 1.7rem;
+    font-weight: 700;
+    border: none;
+    padding: 6% 3% 6% 3%;
+    border: 2.5px solid #B3B3B3;
+    border-left: 0;
+    transition: .25s ease-out;
+    user-select: none;
+}
+
+.joinButton:hover{
+    background-position: left;
+    cursor: pointer;
+}
+
+.landingRightContent{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 43%;
+    height: 90%;
+    animation: landingPageLoad ease 2.5s;
+    user-select: none;
+}
+
+.landingSnapshotImg{
+    height: 100%;
+    width: auto;
+    user-select: none;
+}
+
+@keyframes landingPageLoad {
+    0% {
+        opacity: 0;
+        transform: translateY(10%);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 }

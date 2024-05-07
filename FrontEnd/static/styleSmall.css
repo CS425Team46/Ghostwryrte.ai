@@ -855,6 +855,7 @@ pre {
   background: var(--mainAccentColor);
   cursor: pointer;
 }
+
 .editButtonImg{
   max-height: 80%;
   width: auto;
@@ -1019,10 +1020,10 @@ pre {
 .fileName{
 
   display: flex;
+  align-items: center;
   width: 75%;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
-  padding-top: 1%;
   font-size: .7rem;
   pointer-events: none;
 
@@ -1276,7 +1277,77 @@ pre {
 .loginInputBox:focus {
   outline: none;
 }
+.passResetButton{
+  display: flex;
+  opacity: 1;
+  width: fit-content;
+  justify-content: flex-start;
+  background: none;
+  outline: none;
+  border: none;
+  transform: translateY(-700%);
+  transition: all .2s ease;
+}
+.passResetButton.removed{
+  opacity: 0;
+}
+.passResetButton{
+  cursor: pointer;
+}
 
+.passResetText{
+  color: blue;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.resetContainer{
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 100%;
+  font-family: "Montserrat", sans-serif;
+  gap: 5%;
+  flex-grow: 1;
+  margin-top: 10%;
+}
+
+.resetText{
+  font-weight: 600;
+  font-size: 5rem;
+}
+.resetInstructions{
+  width: 75%;
+  font-size: 2.5rem;
+}
+.resetPasswordBoxText{
+  font-weight: 600;
+  transform: translateY(100%);
+  font-size: 2rem
+}
+.submitPassReset{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800;
+  color: var(--mainColor);
+  background: var(--mainAccentColor);
+  width: 100%;
+  height: 7%;
+  font-size: 2rem;
+  padding: 2%;
+  border: 0; 
+  border-radius: 18px;
+  transform: translateY(-50%);   
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+.submitPassReset:hover{
+  transform: translateY(-57%); 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
 .ACSubmitButton {
 
   display: flex;
@@ -1341,7 +1412,7 @@ pre {
   animation: slideInRight 0.3s 
       ease-in-out forwards, 
     fadeOut 0.5s ease-in-out 
-      forwards 5s; 
+      forwards; 
   transform: translateX(110%); 
 } 
 
@@ -1541,11 +1612,332 @@ pre {
   color: var(--mainColor);
   transform: translateY(-5%);
 }
-/* Small devices (portrait tablets and large phones, 600px and up) */
-/* @media only screen and (min-width: 600px) {...} */
-/* Medium devices (landscape tablets, 768px and up) */
-/* @media only screen and (min-width: 768px) {...}
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-/* @media only screen and (min-width: 1200px) {...} */
 
-/* Large devices (laptops/desktops, 992px and up) */
+
+
+.landingPageContainer{
+  height: 100vh;
+  width: 100vw;
+  background: var(--offWhite);
+}
+
+.topBarContainer{
+  display: flex;
+  align-items: center;
+  height: 15%;
+  width: 100%;
+  padding: 0 4% 0 4%;
+  gap: 4.5%;
+}
+
+.logoAndNameLanding{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  width: 65%;
+}
+
+.landingPageLogoImg{
+  height: 50%;
+  width: auto;
+}
+
+.landingPageBrandingText{
+  font-family: "Manrope", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.navButtonsContainer{
+  display: none;
+  width: 22%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.landingNavButton{
+  font-family: "Manrope", sans-serif;
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+
+.landingAccountAccessContainer{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 9%;
+  height: 100%;
+  margin-left: auto;
+}
+.loginAccessButton{
+  display: none;
+}
+.loginAccessButton:hover{
+  background-position: left;
+  color: var(--offWhite);
+  border: 2px solid black;
+}
+
+.landingBottomContent{
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  height: 85%;
+}
+.landingBottomContent.pricing{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: calc(100vh - 20%);
+  flex-grow: 1;
+  gap: 2%;
+  overflow-y: auto;
+}
+.pricingBoxInstance:nth-child(1){
+  opacity: 0;
+  animation: landingPageLoad ease 2s;
+  animation-delay: 0;
+  animation-fill-mode: forwards;
+}
+.pricingBoxInstance:nth-child(2){
+  opacity: 0;
+  animation: landingPageLoad ease 2s;
+  animation-delay: .5s;
+  animation-fill-mode: forwards;
+}
+.pricingBoxInstance:nth-child(3){
+  opacity: 0;
+  animation: landingPageLoad ease 2s;
+  animation-delay: .75s;
+  animation-fill-mode: forwards;
+}
+.pricingBoxInstance:nth-child(4){
+  opacity: 0;
+  animation: landingPageLoad ease 2s;
+  animation-delay: 1s;
+  animation-fill-mode: forwards;
+}
+.pricingBoxInstance{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-height: 170px;
+  width: 65%;
+  background: var(--mainColor);
+  border-radius: 15px;
+  padding: 1% 3% 1% 3%;
+  justify-content: space-between;
+  filter: drop-shadow(0 -.5rem var(--mainAccentColor));
+  margin: 5% 0 0 0;
+}
+.pricingInfo{
+  display: flex;
+  flex-direction: column;
+  gap: 10%;
+  width: 100%;
+}
+.tierText{
+  font-family: "Manrope", sans-serif;
+  font-size: 1rem;
+}
+.priceAndMonth{
+  display:flex;
+  align-items: center;
+  gap: 10%;
+  width: 100%;
+}
+.priceText{
+  font-family: "Manrope", sans-serif;
+  font-size: 2rem;
+}
+.perMonthText{
+  font-family: "Manrope", sans-serif;
+  font-size: 1rem;
+  width: fit-content;
+}
+.whatsIncludedContainer{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 40%;
+}
+.whatsLabel{
+  font-family: "Manrope", sans-serif;
+  font-size: .6rem;
+}
+.whatsIncludedItems{
+  font-family: "Manrope", sans-serif;
+  font-size: .6rem;
+  margin-left: 6%;
+}
+.landingLeftContent{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 57%;
+  height: 100%;
+}
+.getStartedButton{
+  display: flex;
+  width: 100%;
+  height: 20%;
+  border: 2px solid var(--mainAccentColor);
+  background: none;
+  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
+  font-family: "Manrope", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  gap: 5%;
+  background: linear-gradient(to left, var(--mainColor) 50%, black 50%) right;
+  background-size: 200%;
+  transition: .25s all ease-out;
+}
+.getStartedButton >img{
+  transition: .4s all ease-out;
+}
+.getStartedButton:hover{
+  background-position: left;
+  cursor: pointer;
+  color: var(--mainColor)
+}
+.getStartedButton:hover > img{
+  filter: invert(1);
+}
+
+.getStartedArrow{
+  display: flex;
+  height: 50%;
+  width: auto;
+}
+
+.landingLeftContent{
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  height: 100%;
+}
+
+.leftSideContentContainer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: 80%;
+  height: 80%;
+  gap: 6%;
+}
+
+.tagline{
+  width: 100%;
+  font-family: "Manrope", sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  animation: landingPageLoad ease 2s;
+}
+.taglineTwo{
+  width: 70%;
+  opacity: 0;
+  font-family: "Manrope", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  animation: landingPageLoad ease 2s;
+  animation-delay: .5s;
+  animation-fill-mode: forwards;
+}
+
+.tagline::after{
+  content: attr(data-end);
+  color: var(--mainAccentColor);
+}
+
+.waitListContainer{
+  display: flex;
+  opacity: 0;
+  flex-direction: column;
+  height: 10%;
+  width: 90%;
+  gap: 10%;
+  animation: landingPageLoad ease 2s;
+  animation-delay: .75s;
+  animation-fill-mode: forwards;
+}
+
+.waitListCTA{
+  font-family: "Manrope", sans-serif;
+  font-size: .8rem;
+  font-weight: 600;
+}
+
+.waitListInteract{
+  display: flex;
+  width: 100%;
+  height: 56%;
+  border-radius: 15px;
+}
+
+.waitListInput{
+  border: none;
+  width: 73%;
+  border-radius: 10px 0 0 10px;
+  padding: 6% 3% 6% 3%;
+  font-family: "Manrope", sans-serif;
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--textColor);
+  background: none;
+  border: 2.5px solid #B3B3B3;
+}
+.joinButton{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 27%;
+  border-radius: 0 10px 10px 0;
+  background: linear-gradient(to left, var(--mainAccentColor) 51%, black 50%) right;
+  background-size: 200%;
+  color:var(--offWhite);
+  font-family: "Manrope", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  border: none;
+  padding: 6% 3% 6% 3%;
+  border: 2.5px solid #B3B3B3;
+  border-left: 0;
+  transition: .5s ease-out;
+}
+
+.joinButton:hover{
+  background-position: left;
+  cursor: pointer;
+}
+
+.landingRightContent{
+  display: none;
+  justify-content: flex-end;
+  align-items: center;
+  width: 43%;
+  height: 90%;
+  animation: landingPageLoad ease 3s;
+}
+
+.landingSnapshotImg{
+  height: 100%;
+  width: auto;
+}
+
+@keyframes landingPageLoad {
+  0% {
+      opacity: 0;
+      transform: translateY(10%);
+  }
+  100%{
+      opacity: 1;
+      transform: translateY(0);
+  }
+}

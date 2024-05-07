@@ -1,6 +1,6 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
 import { getFirestore, collection, query, orderBy, doc, setDoc, serverTimestamp, getDocs, getDoc, deleteDoc, Timestamp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendEmailVerification  } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+import { getAuth, sendPasswordResetEmail, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendEmailVerification  } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
 import jsPDF from 'https://cdn.skypack.dev/jspdf';
 
 
@@ -27,7 +27,12 @@ const closePopUpWindow      = document.getElementById('closePopUp');
 /* Account Creation Page */
 const accCreationPageCheck  = document.getElementById('accPage');
 const logOutButton          = document.getElementById('LOButton');
+const forgotPass            = document.getElementById('forgotPass');
 var ACUserOption            = 1; // 1 = Sign In & 2 = Sign Up
+/*Password Reset Page */
+const passResetPage         = document.getElementById('passResetPage');
+const resetPassInputBox     = document.getElementById('resetPassword');
+const submitPassReset       = document.getElementById('submitPassReset');
 /* Content Generation Page */
 const genButtonID           = document.getElementById('genButtonID');
 const historyInstance       = document.createElement('div');
@@ -48,7 +53,9 @@ const saveButton            = document.getElementById('saveButton');
 const copyButtonEditPage    = document.getElementById('copyButtonEditPage');
 const downloadButton        = document.getElementById('downloadButton');
 const histGenBack           = document.getElementById('histGenBack');
-
+/* Landing Page */
+const landingPageCheck      = document.getElementById('landingCheck');
+const landingLoginButton    = document.getElementById('landingLogin');
 
 auth.onAuthStateChanged((user) => {
     if (user) {
@@ -58,7 +65,7 @@ auth.onAuthStateChanged((user) => {
         }
         if (contentWindow){
             callHistoryUploadAfterGeneration();
-            loadHistoryButtons(); 
+            loadHistoryButtons();
             checkForContentAndUpdateStyling();
             hideHistoryID();
         }
@@ -66,14 +73,18 @@ auth.onAuthStateChanged((user) => {
             loadHistoryButtons();
         }
     } else {
-        if(!accCreationPageCheck){
-            window.location.href = '/';
+        if(!accCreationPageCheck && !passResetPage && !landingPageCheck){
+            window.location.href = '/accountCreation';
         }   
     }
 });
 
 /* Content Generation Page */
-
+if(landingPageCheck){
+    landingLoginButton.addEventListener('click', function(){
+        window.location.href = '/accountCreation';
+    });
+}
 if (contentWindow) {
 
     copyButton.addEventListener('click', (event) => {
@@ -421,6 +432,8 @@ function createHistoryButtonGH(title, content, timestamp) {
         document.querySelector('.historyPageInstance.selected')?.classList.remove('selected');
         historyPageInstance.classList.add('selected');
         editTextArea.value = content;
+        localStorage.setItem('openedText', content);
+        localStorage.setItem('openedTitle', title);
     });
 }
 
@@ -479,6 +492,25 @@ function createHistoryButtonCG(title, content) {
 /* Edit Page of Generation History */
 
 if (saveButton) {
+
+    deactivateSaveButton();
+
+    editTextArea.addEventListener('input', function(){
+        checkIfEditsWereMade();
+    });
+    historyPageTitleText.addEventListener('input', function(){
+        checkIfEditsWereMade();
+    });
+
+    function checkIfEditsWereMade(){
+        if ( (editTextArea.value === localStorage.getItem('openedText')) && (historyPageTitleText.value === localStorage.getItem('openedTitle'))){
+            deactivateSaveButton();
+        } else{
+            saveButton.style.pointerEvents = '';
+            saveButton.style.background = ''
+        }
+    }
+
     saveButton.addEventListener('click', function() {
         const oldTitle = document.querySelector('.historyPageInstance.selected .historyPageInstanceTitle').textContent;
         const newTitle = document.getElementById('historyPageTitleText').value.trim();
@@ -530,8 +562,13 @@ if (saveButton) {
         pdf.save('Ghostwryte_Content.pdf');
         
     });
-}
 
+
+}
+function deactivateSaveButton(){
+    saveButton.style.background = "var(--deselectedColor)";
+    saveButton.style.pointerEvents = 'none';
+}
 function updateLocalStorage(oldTitle, newTitle, newContent) {
 
     const historyData = JSON.parse(localStorage.getItem('historyData'));
@@ -578,6 +615,9 @@ if(instanceView){
         editView.style.display = 'none';
         histGenBack.style.display = 'none';
         document.querySelector('.logOutWrapper').classList.remove('genHist');
+        localStorage.removeItem('openedText');
+        localStorage.removeItem('openedTitle');
+        deactivateSaveButton();
         loadHistoryButtons();
     });
 }
@@ -850,6 +890,7 @@ if (accCreationPageCheck) {
     const ACSubmit = document.getElementById('ACSubmit');
     var confirmPass = document.getElementById('confirmPassword');
     var confirmPassText = document.getElementById('confText');
+    
 
     document.getElementById('userSubmitForm').addEventListener('submit', function (event) {
         event.preventDefault(); 
@@ -877,9 +918,10 @@ if (accCreationPageCheck) {
     });
 
     signInButton.addEventListener('click', function () {
-        
+
         ACUserOption = 1;
         ACSubmit.classList.remove('removed');
+        forgotPass.classList.remove('removed');
 
         toggleOnSignInStyling();
 
@@ -891,9 +933,10 @@ if (accCreationPageCheck) {
     });
     
     signUpButton.addEventListener('click', function () {
-        
+
         ACUserOption = 2;
         ACSubmit.classList.add('removed');
+        forgotPass.classList.add('removed');
 
         toggleOnSignUpStyling();
 
@@ -901,6 +944,10 @@ if (accCreationPageCheck) {
         confirmPassText.classList.add('active');
         
         ACSubmit.textContent = "Sign Up";
+    });
+
+    forgotPass.addEventListener('click', function (){
+        window.location.href = '/password-reset';
     });
 
     function toggleOnSignInStyling(){
@@ -918,7 +965,6 @@ if (accCreationPageCheck) {
 
     function setConfirmPassValidityMessage(string, reportValidityOrNot){
         confirmPass.setCustomValidity(string);
-        73
         if(reportValidityOrNot){
             confirmPass.reportValidity();
         }
@@ -932,7 +978,7 @@ if (accCreationPageCheck) {
                 "&nbsp;&nbsp;&nbsp;&nbsp;- Contains at least one uppercase letter<br>" +
                 "&nbsp;&nbsp;&nbsp;&nbsp;- Contains at least one lowercase letter<br>" +
                 "&nbsp;&nbsp;&nbsp;&nbsp;- Contains at least one number<br>" +
-                "&nbsp;&nbsp;&nbsp;&nbsp;- Contains at least one special character", "danger", 5000);
+                "&nbsp;&nbsp;&nbsp;&nbsp;- Contains at least one special character", "danger", 10000);
             return;
         }
 
@@ -1016,10 +1062,22 @@ if (accCreationPageCheck) {
     }
 
 }
+if (passResetPage){
+    submitPassReset.addEventListener('click', function(){
+        const email = resetPassInputBox.value;
+        sendPasswordResetEmail(auth, email)
+        .then(() => {
+            showToast("Password reset email sent!", "success", 5000);
+        })
+        .catch((error) => {
+            showToast("Password reset email failed.", "danger", 5000);
+            const errorMessage = error.message;
+        });
+    });
+}
 
 /* If NOT on the Account Creation Page */
-
-if (!accCreationPageCheck){
+if (!accCreationPageCheck && !passResetPage && !landingPageCheck){
 
     newChatButton.addEventListener('click', function() {
         if(contentWindow){
@@ -1077,7 +1135,7 @@ if(logOutButton){
     logOutButton.addEventListener('click', function() {
         signOut(auth).then(() => {
             localStorage.clear();
-            window.location.href = '/'
+            window.location.href = '/accountCreation'
         }).catch((error) => {
             showToast("Signout Error", "danger", 5000);
             console.error('Signout Error', error.code, error.message);
@@ -1096,28 +1154,31 @@ let icon = {
 	'<img src="static/images/infoIcon.svg" class="toastImg"', 
 }; 
 
-const showToast = ( message = "", toastType = "info", duration = 5000) => { 
-	if (!Object.keys(icon).includes(toastType)){
-        toastType = "info"; 
+const showToast = (message = "", toastType = "info", duration) => {
+    if (!Object.keys(icon).includes(toastType)) {
+        toastType = "info";
     }
-	let box = document.createElement("div"); 
-	box.classList.add("toast", `toast-${toastType}`); 
-	box.innerHTML = ` <div class="toast-content-wrapper"> 
-					<div class="toast-icon"> 
-					${icon[toastType]} 
-					</div> 
-					<div class="toast-message">${message}</div> 
-					<div class="toast-progress"></div> 
-					</div>`; 
-	duration = duration || 5000; 
-	box.querySelector(".toast-progress").style.animationDuration = `${duration / 1000}s`; 
 
-	let toastAlready = document.body.querySelector(".toast"); 
-	if (toastAlready) { 
-		toastAlready.remove(); 
-	} 
-	document.body.appendChild(box)
-}; 
+    let box = document.createElement("div");
+    box.classList.add("toast", `toast-${toastType}`);
+    box.innerHTML = ` <div class="toast-content-wrapper"> 
+                    <div class="toast-icon"> 
+                    ${icon[toastType]} 
+                    </div> 
+                    <div class="toast-message">${message}</div> 
+                    <div class="toast-progress"></div> 
+                    </div>`;
+    box.querySelector(".toast-progress").style.animationDuration = `${duration / 1000}s`;
+
+    box.style.animationDelay = `0s, ${duration / 1000}s`;
+
+    let toastAlready = document.body.querySelector(".toast");
+    if (toastAlready) {
+        toastAlready.remove();
+    }
+    document.body.appendChild(box);
+};
+
 
 
 
