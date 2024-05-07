@@ -13,10 +13,22 @@ from openai import OpenAI
 import argparse
 import json
 
+
+import os
+
 client = OpenAI()
 # Initialize Firebase Admin
-cred = credentials.Certificate("ghostwryte-ai-firebase-adminsdk-uxybq-20881dd0dd.json")
-firebase_admin.initialize_app(cred)
+# firebase_creds = json.loads(os.environ.get('FIREBASE_CREDENTIALS'))
+# cred = credentials.Certificate("firebase_creds")
+# firebase_admin.initialize_app(cred)
+
+firebase_creds = os.environ.get('FIREBASE_CREDENTIALS')
+if firebase_creds:
+    cred_dict = json.loads(firebase_creds)
+    cred = credentials.Certificate(cred_dict)
+    firebase_admin.initialize_app(cred)
+else:
+    raise ValueError('The FIREBASE_CREDENTIALS environment variable is not set.')
 
 db = firestore.client()
 
@@ -31,8 +43,38 @@ logging.basicConfig(filename='finetuning_status.log', level=logging.INFO, format
 
 
 
-def start_model_training(user_id):
+# def start_model_training(user_id):
 
+#     db = firestore.client()
+#     user_ref = db.collection('users').document(user_id)
+#     user_doc = user_ref.get()
+
+#     if not user_doc.exists:
+#         return {'message': 'User not found', 'error': True}
+    
+#     latest_file_id = user_doc.to_dict().get('latest_file_id')
+#     if not latest_file_id:
+#         return {'message': 'Latest file ID not found for user', 'error': True}
+    
+#     try:
+#         response = client.fine_tuning.jobs.create(
+#         training_file=latest_file_id, 
+#         model="gpt-3.5-turbo", 
+#         hyperparameters={
+#             "n_epochs": 15,
+#             "batch_size": 5,
+#             "learning_rate_multiplier": 0.1
+#         }
+#         )
+
+#         user_ref = db.collection('users').document(user_id)
+#         user_ref.update({"job_id": response.id})
+
+#         return {'message': 'Model training started successfully', 'job_id': response.id}
+#     except Exception as e:
+#         return {'message': f'Failed to start model training: {str(e)}', 'error': True}
+
+def start_model_training(user_id):
     db = firestore.client()
     user_ref = db.collection('users').document(user_id)
     user_doc = user_ref.get()
@@ -40,27 +82,33 @@ def start_model_training(user_id):
     if not user_doc.exists:
         return {'message': 'User not found', 'error': True}
     
-    latest_file_id = user_doc.to_dict().get('latest_file_id')
+    user_data = user_doc.to_dict()
+    latest_file_id = user_data.get('latest_file_id')
+    existing_model_id = user_data.get('model_id')  # Get existing model_id if available
+
     if not latest_file_id:
         return {'message': 'Latest file ID not found for user', 'error': True}
     
+    # Determine the base model for training
+    base_model = existing_model_id if existing_model_id else "gpt-3.5-turbo"
+
     try:
         response = client.fine_tuning.jobs.create(
-        training_file=latest_file_id, 
-        model="gpt-3.5-turbo", 
-        hyperparameters={
-            "n_epochs": 15,
-            "batch_size": 5,
-            "learning_rate_multiplier": 0.1
-        }
+            training_file=latest_file_id, 
+            model=base_model,  # Use existing model_id as base model if available
+            hyperparameters={
+                "n_epochs": 15,
+                "batch_size": 5,
+                "learning_rate_multiplier": 0.1
+            }
         )
 
-        user_ref = db.collection('users').document(user_id)
         user_ref.update({"job_id": response.id})
 
-        return {'message': 'Model training started successfully', 'job_id': response.id}
+        return {'message': 'Model training finished successfully', 'job_id': response.id}
     except Exception as e:
         return {'message': f'Failed to start model training: {str(e)}', 'error': True}
+
 
 
 def check_finetuning_job_status(job_id, user_id):  # Add user_id parameter
@@ -92,13 +140,9 @@ if __name__ == '__main__':
 
     user_id = args.user_id
     result = start_model_training(user_id)
-    # print(json.dumps(result))  # this must be the last output
 
     if 'job_id' in result:
-        print("About to check fine-tuning job status", file=sys.stderr)  
         status = check_finetuning_job_status(result['job_id'], user_id)  
-        print("Status:", status, file=sys.stderr)
         print(json.dumps(result))  
     else:
-        print("No job ID found to check status.", file=sys.stderr)
         print(json.dumps({'message': 'No job ID found to check status.'}))

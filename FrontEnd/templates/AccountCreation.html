@@ -1,45 +1,47 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <style>
-        @font-face {
-            font-family: "Moon";
-            src: url("/static/fonts/MoonLight.otf");
-        }
-        @font-face {
-            font-family: "FranieLight";
-            src: url("/static/fonts/FranieLight.otf");
-        }
-        @font-face {
-            font-family: "FranieRegular";
-            src: url("/static/fonts/FranieRegular.otf");
-        }
-    </style>
-    <title>GhostWryte.ai</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-    
-</head>
-<body class="accountCreationPg">
-    
-    <div class="AccCP" id="accPage">
-        <div class="accountCreationWrapper">
-            <div class="actionSelector">
-                <button class="signInButton" id="signInBtn">Sign In</button>
-                <button class="signUpButton" id="signUpBtn">Sign Up</button>
-            </div>
+    <head>
+        <title>GhostWryte.ai</title>
+        <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='images/favIcon.ico') }}">
+        <link rel="stylesheet" type="text/css" media="only screen and (max-width: 991px)" href="{{ url_for('static', filename='styleSmall.css') }}" />
+        <link rel="stylesheet" type="text/css" media="only screen and (min-width: 992px)" href="{{ url_for('static', filename='styleLarge.css') }}" />
+        <link rel="stylesheet" type="text/css" media="only screen and (min-width: 992px)" href="{{ url_for('static', filename='styleXLarge.css') }}" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+        <script src="https://js.stripe.com/v3/"></script>
+    </head>
 
-            <div class="signInAndUpWrapper">
+    <body class="accountCreationPg">
+        <div class="AccCP" id="accPage">
+            <header class="topbarContainer">
+                <img src="{{ url_for('static', filename='images/newLogoBlack.png') }}" alt="Ghostwryte.ai" class="logoImgAcc" />
+                <span class="loginBrandText">Ghostwrtye.AI</span>
+            </header>
+            <section class="actionSelector">
+                <div class="innerTextGrouping">
+                    <button class="signInButton" id="signInBtn">Log In</button> or
+                    <button class="signUpButton" id="signUpBtn">Sign Up</button>
+                </div>
+                <span class="innerTextGrouping two">To get started</span>
+            </section>
+
+            <section class="signInAndUpWrapper" id="SIAUW">
                 <form class="userInputAC" id="userSubmitForm">
-                    <div>Email Address</div> 
-                    <input class="loginInputBox" type="email" id="userEmail" name="email" required><br>
-                    Password 
-                    <input class="loginInputBox" type="password" id="userPassword" name="password" required><br>
-                    <button class="ACSubmitButton" type="submit" id="ACSubmit">Continue</button> 
-                </form>
-            </div>
-        </div>
-    </div>
-    <script type="module" src="{{ url_for('static', filename='javascript.mjs') }}" defer></script>
-</body>
+                    <label for="username" class="loginText">Email Address</label>
+                    <input class="loginInputBox" type="email" id="userEmail" name="email" placeholder="name@domain.com" required />
 
+                    <label for="password" class="loginText">Password</label>
+                    <input class="loginInputBox" type="password" id="userPassword" name="password" placeholder="" required />
+
+                    <label for="confirmPassword" id="confText" class="loginText conf">Confirm Password</label>
+                    <input class="loginInputBox confirm" type="password" id="confirmPassword" name="confirmPassword" placeholder="" />
+                    <div class="loginText Sep"></div>
+                    <button class="ACSubmitButton" type="submit" id="ACSubmit">Log In</button>
+                </form>
+            </section>
+        </div>
+        <div class="toast-overlay" id="toast-overlay"></div>
+        <script type="module" src="{{ url_for('static', filename='javascript.mjs') }}" defer></script>
+    </body>
 </html>
