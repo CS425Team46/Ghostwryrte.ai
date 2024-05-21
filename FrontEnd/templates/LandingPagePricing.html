@@ -14,7 +14,7 @@
         <script src="https://js.stripe.com/v3/"></script>
     </head>
     <body>
-        <section class="landingPageContainer">
+        <section class="landingPageContainer" id="landingCheck">
             <nav class="topBarContainer">
                 <section class="logoAndNameLanding">
                     <img src="{{ url_for('static', filename='images/newLogoBlack.png') }}" class="landingPageLogoImg">
@@ -26,7 +26,7 @@
                     <a href=""><div class="landingNavButton">Contact Us</div></a>
                 </section>
                 <section class="landingAccountAccessContainer">
-                    <button class="loginAccessButton">Login</button>
+                    <button class="loginAccessButton" id="landingLogin">Login</button>
                     <!-- <button></button> -->
                 </section>
             </nav>
@@ -112,10 +112,8 @@
                         <img src="{{ url_for('static', filename='images/rightArrow.svg') }}" class="getStartedArrow">
                     </button>
                 </section>
-                
-               
-                
             </main>
         </section>
+        <script type="module" src="{{ url_for('static', filename='javascript.mjs') }}" defer></script>
     </body>
 </html>

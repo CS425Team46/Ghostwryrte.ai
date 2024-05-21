@@ -156,7 +156,8 @@ def generate_content():
         messages=[{"role": "user", "content": user_prompt}]
     )
     message_content = response.choices[0].message.content.strip()
-    return render_template('ContentGeneration.html', ai_response=message_content)
+    return jsonify({'ai_response': message_content})
+    ## return render_template('ContentGeneration.html', ai_response=message_content)
 
 
 @app.route('/run-data-conversion', methods=['POST'])

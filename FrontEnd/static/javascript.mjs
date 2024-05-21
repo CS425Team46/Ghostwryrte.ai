@@ -42,6 +42,7 @@ const titleInput            = document.querySelector('.titleText');
 let newChatButton           = document.getElementById('newChat');
 let historyContentWindow    = document.querySelector('.historyContentWindow');
 let feedbackDisplay         = document.getElementById('feedbackDisplay');
+let queryWrapper            = document.getElementById('queryWrapper');
 /* Generation History Page */
 const historyPageLabel      = document.getElementById('historyPageLabel');
 const historyPageContainer  = document.getElementById('historyPageContainer');
@@ -54,8 +55,8 @@ const copyButtonEditPage    = document.getElementById('copyButtonEditPage');
 const downloadButton        = document.getElementById('downloadButton');
 const histGenBack           = document.getElementById('histGenBack');
 /* Landing Page */
-const landingPageCheck      = document.getElementById('landingCheck');
-const landingLoginButton    = document.getElementById('landingLogin');
+let landingPageCheck        = document.getElementById('landingCheck');
+let landingLoginButton      = document.getElementById('landingLogin');
 
 auth.onAuthStateChanged((user) => {
     if (user) {
@@ -86,7 +87,70 @@ if(landingPageCheck){
     });
 }
 if (contentWindow) {
+    const generateForm = document.getElementById('generateForm');
+    generateForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const userId = document.getElementById('formUserId').value;
+        const userPrompt = document.getElementById('userPrompt').value;
 
+        if (!userId || !userPrompt) {
+            alert('Please enter both user ID and prompt');
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('user_id', userId);
+        formData.append('user_prompt', userPrompt);
+
+        fetch('/generate-content', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.ai_response) {
+                displayResponseOneLetterAtATime(data.ai_response);
+            } else {
+                alert('Error: ' + (data.message || 'Unknown error'));
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error: ' + error.message);
+        });
+    });
+
+    function displayResponseOneLetterAtATime(text) {
+        const aiResponseElem = document.querySelector('.contentGenWindow pre');
+        aiResponseElem.textContent = '';
+        let index = 0;
+
+        function typeLetter() {
+            if (index < text.length) {
+                aiResponseElem.textContent += text[index];
+                index++;
+                setTimeout(typeLetter, 10);
+            } else {
+                callHistoryUploadAfterGeneration();
+                loadHistoryButtons();
+                toggleQueryBox("off");
+                genButtonToggle("on");
+            }
+        }
+        typeLetter();
+    }
+
+    copyButton.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        var content = document.querySelector('.contentGenWindow pre'); 
+        navigator.clipboard.writeText(content.textContent).then(() => {
+            console.log('Text copied to clipboard');
+        }).catch(err => {
+            console.error('Could not copy text: ', err);
+        });
+    });
+    
     copyButton.addEventListener('click', (event) => {
         event.preventDefault();
 
@@ -103,12 +167,24 @@ if (contentWindow) {
     }
 
     genButtonID.addEventListener('click', function(event) {
-        const arrowImg = document.getElementById('upArrowImg');
-        const loader = document.getElementById('circleLoader');
-        genButtonID.style.pointerEvents = 'none';
-        arrowImg.style.display = 'none';
-        loader.style.display = 'block';
+        genButtonToggle("off");
     });
+
+    function genButtonToggle(toggleOnOrOff){
+        if(toggleOnOrOff === "on"){
+            const arrowImg = document.getElementById('upArrowImg');
+            const loader = document.getElementById('circleLoader');
+            arrowImg.style.display = 'block';
+            loader.style.display = 'none';
+            genButtonID.style.pointerEvents = 'all';
+        } else{
+            const arrowImg = document.getElementById('upArrowImg');
+            const loader = document.getElementById('circleLoader');
+            genButtonID.style.pointerEvents = 'none';
+            arrowImg.style.display = 'none';
+            loader.style.display = 'block';
+        }
+    }
 
     titleInput.addEventListener('blur', updateTitle);
     titleInput.addEventListener('keydown', function(event) {
@@ -255,10 +331,14 @@ function enablePromptSubmitIfTextExists(text){
 function callHistoryUploadAfterGeneration() {
     if(contentWindow){
         var content = document.getElementsByTagName('pre')[0].innerHTML;
-        
+        let title = "";
         if(content){
             const newContent = content;
-            const title = extractTitle(content);
+            if (titleInput.value.trim() === ""){
+                title = extractTitle(content);
+            } else{
+                title = titleInput.value.trim();
+            }
             const timestamp = new Date().getTime();
             const seconds = Math.floor(timestamp / 1000); 
             const nanoseconds = (timestamp % 1000) * 1000000;
@@ -484,6 +564,7 @@ function createHistoryButtonCG(title, content) {
         document.getElementsByTagName('pre')[0].innerHTML = content;
         checkForContentAndUpdateStyling();
         toggleFeedbackDisplay("off");
+        toggleQueryBox("off");
     });
 
     historyContentWindow.appendChild(historyButton);
@@ -1044,6 +1125,7 @@ if (accCreationPageCheck) {
                 }
                 if(userCredential.user.emailVerified){
                     console.log('Signin successful', userCredential.user);
+                    localStorage.clear();
                     window.location.href = '/content-generation';
                 } else{
                     showToast('Email has not been verified.', "danger", 5000);
@@ -1080,9 +1162,10 @@ if (passResetPage){
 if (!accCreationPageCheck && !passResetPage && !landingPageCheck){
 
     newChatButton.addEventListener('click', function() {
+        toggleQueryBox("on");
         if(contentWindow){
             clearTextAndTitle();
-
+            genButtonToggle("on");
             var selectedButton = document.querySelector('.historyInstance.selected');
             if(selectedButton){
                 document.querySelector('.historyInstance.selected')?.classList.remove('selected'); 
@@ -1129,6 +1212,33 @@ if (!accCreationPageCheck && !passResetPage && !landingPageCheck){
             console.error('Error:', error);
         });
     });
+}
+
+function switchToDarkMode(){
+    /*  document.documentElement.style.setProperty('--mainColor', '#15151b');
+        document.documentElement.style.setProperty('--secondaryColor', '#101015');
+        document.documentElement.style.setProperty('--textColor', '#FCFCFC');
+        document.documentElement.style.setProperty('--boxColor', '#19191e');
+        var navigationButtons = document.querySelectorAll('.navigationButton');
+        var navigationButton = document.querySelectorAll('.navigationButton newChat');
+        document.getElementById('generateForm').style.border = '1px solid #F0F0F0';
+        
+        navigationButtons.forEach(function(button) {
+            var imgElement = button.querySelector('img');
+            if (imgElement) {
+                imgElement.style.filter = 'invert(1)';
+            }
+        }); */
+}
+
+function toggleQueryBox(toggleOnOrOff){
+    if (toggleOnOrOff === "on"){
+        queryWrapper.style.display = 'flex';
+        contentWindow.style.height = '75%';
+    } else{
+        queryWrapper.style.display = 'none';
+        contentWindow.style.height = '100%';
+    }
 }
 
 if(logOutButton){

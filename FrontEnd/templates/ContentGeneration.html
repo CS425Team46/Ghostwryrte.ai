@@ -62,10 +62,10 @@
                                 <button class="feedbackButton"><img src="{{ url_for('static', filename='images/likeIcon.svg') }}" alt="Like" id="likeBtn" class="feedBackImg" onmouseover="this.src='../static/images/likeIconHover.png';" onmouseout="this.src='../static/images/likeIcon.svg';"></button>
                                 <button class="feedbackButton"><img src="{{ url_for('static', filename='images/dislikeIcon.svg') }}" alt="Dislike" id="dislikeBtn" class="feedBackImg" onmouseover="this.src='../static/images/dislikeIconHover.png';" onmouseout="this.src='../static/images/dislikeIcon.svg';"></button>
                             </div>
-                            <div class="queryWrapper">
+                            <div class="queryWrapper" id="queryWrapper">
                                 <form id="generateForm" method="post" action="{{ url_for('generate_content') }}" class="bottomRowInnerWrapper">
                                     <input type="hidden" name="user_id" id="formUserId" />
-                                    <textarea name="user_prompt" class="queryBox" placeholder="Enter prompt..."></textarea>
+                                    <textarea name="user_prompt" id="userPrompt" class="queryBox" placeholder="Enter prompt..."></textarea>
                                     <div class="queryButtonWrapper">
                                         <button class="copyButton"><img src="{{ url_for('static', filename='images/clipboard.png') }}" class="genImg" id="copyImg" /></button>
                                         <button type="submit" class="genButton" id="genButtonID">
@@ -75,6 +75,7 @@
                                     </div>
                                 </form>
                             </div>
+                            
                         </div>
                     </section>
                 </div>
