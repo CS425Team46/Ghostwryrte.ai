@@ -44,11 +44,7 @@
     }
     
     @media only screen and (min-width: 1921px) {
-    
-    
-
-
-    
+   
     .brandingBoxWrapper{
         display: flex;
         justify-content: flex-start;
@@ -686,7 +682,7 @@
         border-radius: 5px;
         font-family: "Poppins", sans-serif;
         font-weight: 600;
-        font-size: 2.4rem;
+        font-size: 2.6rem;
         border: 1px solid black;
         background: var(--mainAccentColor);
         color: var(--mainColor);
@@ -737,12 +733,12 @@
     
 
       .logoImgAcc{
-        width: 2.75rem;
+        width: clamp(4rem, 5rem, 6rem);
         margin: 0 .5% 0 0;
         height: auto;
       }
       .loginBrandText{
-        font-size: 1.25rem;
+        font-size: clamp(1.75rem, 2rem, 3.2rem);
         font-weight: 800  ;
         font-family: "Montserrat", sans-serif;
       }
@@ -792,7 +788,7 @@
       }
     
     .passResetButton{
-    transform: translateY(-850%);
+        transform: translateY(-920%);
     }
     .resetContainer{
         gap: 3%;
@@ -809,27 +805,27 @@
     .submitPassReset{
         font-size: 1.5rem;
     }
-      .ACSubmitButton {
+    .ACSubmitButton {
         font-weight: 800;
         width: 100%;
         height: 7%;
         font-size: 2rem;
         padding: 2%;
-        transform: translateY(-187%);   
+        transform: translateY(-227%);   
         border-radius: 20px;
         transition: transform 0.5s ease, box-shadow 0.5s ease;
-      }
-      
-      .ACSubmitButton.removed{
+    }
+    
+    .ACSubmitButton.removed{
         transform: translateY(0%); 
-      }
-      .ACSubmitButton.removed:hover{
+    }
+    .ACSubmitButton.removed:hover{
         transform: translateY(-7%); 
-      }
-      
-      .ACSubmitButton:hover {
-        transform: translateY(-194%);
-      }
+    }
+    
+    .ACSubmitButton:hover {
+        transform: translateY(-234%);
+    }
     /* Toast */
     
     .toastImg {

@@ -97,7 +97,7 @@ pre {
 
 }
 .logoImg {
-    max-width: 3.1rem;
+    max-width: clamp(2rem, 2.7rem, 3.5rem);
     height:  auto;
 }
 .shrinkImg{
@@ -114,7 +114,8 @@ pre {
     display: flex;
     font-family: "Poppins", sans-serif;
     font-weight: 800;
-    font-size: 1.65rem;
+    font-size: clamp(.1rem, 1.2vw, 2rem);
+    
 }
 .brandingText::after {
     content: attr(data-text);
@@ -956,7 +957,7 @@ pre {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 35%;
+    width: 12rem;
     height: 12%;
     border-radius: 5px;
     font-family: "Poppins", sans-serif;
@@ -1152,7 +1153,7 @@ pre {
     height: auto;
   }
   .loginBrandText{
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 1.25rem, 1.6rem);
     font-weight: 800;
     font-family: "Montserrat", sans-serif;
   }
@@ -1187,7 +1188,7 @@ pre {
     text-align: left;
     font-family: "Montserrat", sans-serif;
     font-weight: 800;
-    font-size: 2rem;
+    font-size: clamp(1.6rem, 2vw, 2rem);
   }
   .innerTextGrouping.two{
     margin: 5% 0 0 0;
@@ -1206,7 +1207,7 @@ pre {
     border: none;
     font-family: "Montserrat", sans-serif;
     font-weight: 800;
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 2.1vw, 2.3rem);
     border-bottom: 5px solid var(--textColor);
     color: var(--textColor  );
     margin-bottom: -5px;
@@ -1226,7 +1227,7 @@ pre {
     border: none;
     font-family: "Montserrat", sans-serif;
     font-weight: 800;
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 2.1vw, 2.3rem);
     color: var(--deselectedColor);
     border-bottom: 5px solid var(--deselectedColor);
     margin: 0 0 0 4%;
@@ -1239,10 +1240,11 @@ pre {
 
   #CPText{
     display: none;
-  }
+  } 
   .loginText{
     font-family: "Montserrat", sans-serif;
-    margin: 0;
+    font-size: clamp(1rem, 1.3rem, 5rem);
+    margin-bottom:clamp(.1%, .3%, .4%);
   }
   .loginText.conf{
     opacity: 0;
@@ -1307,9 +1309,9 @@ pre {
     background: none;
     outline: none;
     border: none;
-    transform: translateY(-700%);
+    transform: translateY(clamp(-10rem, -6.5vw, -6.5rem));
     transition: all .2s ease;
-  }
+}
   .passResetButton.removed{
     opacity: 0;
   }
@@ -1321,6 +1323,7 @@ pre {
     color: blue;
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
+    font-size: clamp(.7rem, 1rem, 1.2rem);
 }
 
 .resetContainer{
@@ -1383,7 +1386,7 @@ pre {
     padding: 2%;
     border: 0;
     transform: translateY(-207%);   
-    border-radius: 18px;
+    border-radius: clamp(10px, 15px, 18px);
     transition: transform 0.5s ease, box-shadow 0.5s ease;
   
   }

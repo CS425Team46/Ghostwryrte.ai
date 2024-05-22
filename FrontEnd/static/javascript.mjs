@@ -108,6 +108,7 @@ if (contentWindow) {
         })
         .then(response => response.json())
         .then(data => {
+            toggleQueryBox("off");
             if (data.ai_response) {
                 displayResponseOneLetterAtATime(data.ai_response);
             } else {
@@ -133,7 +134,7 @@ if (contentWindow) {
             } else {
                 callHistoryUploadAfterGeneration();
                 loadHistoryButtons();
-                toggleQueryBox("off");
+                
                 genButtonToggle("on");
             }
         }
@@ -169,22 +170,6 @@ if (contentWindow) {
     genButtonID.addEventListener('click', function(event) {
         genButtonToggle("off");
     });
-
-    function genButtonToggle(toggleOnOrOff){
-        if(toggleOnOrOff === "on"){
-            const arrowImg = document.getElementById('upArrowImg');
-            const loader = document.getElementById('circleLoader');
-            arrowImg.style.display = 'block';
-            loader.style.display = 'none';
-            genButtonID.style.pointerEvents = 'all';
-        } else{
-            const arrowImg = document.getElementById('upArrowImg');
-            const loader = document.getElementById('circleLoader');
-            genButtonID.style.pointerEvents = 'none';
-            arrowImg.style.display = 'none';
-            loader.style.display = 'block';
-        }
-    }
 
     titleInput.addEventListener('blur', updateTitle);
     titleInput.addEventListener('keydown', function(event) {
@@ -266,11 +251,14 @@ function hideHistoryID(){
 }
 
 function toggleFeedbackDisplay(turnOnorOff){
-    if(turnOnorOff == "on"){
-        feedbackDisplay.style.display = 'flex';
-    } else{
-        feedbackDisplay.style.display = 'none';
+    if(feedbackDisplay){
+        if(turnOnorOff == "on"){
+            feedbackDisplay.style.display = 'flex';
+        } else{
+            feedbackDisplay.style.display = 'none';
+        }
     }
+    
 }
 
 function copyText(textSelectionID){
@@ -519,12 +507,10 @@ function createHistoryButtonGH(title, content, timestamp) {
 
 async function deleteHistoryInstanceFunc(historyPageInstanceToDelete) {
     const title = historyPageInstanceToDelete.querySelector('.historyPageInstanceTitle').textContent;
-    console.log(title);
 
     const user = auth.currentUser;
     if (user) {
         const oldHistoryRef = doc(db, 'users', user.uid, 'history', title);
-        console.log(oldHistoryRef);
         await deleteDoc(oldHistoryRef);
     } else {
         console.error('No user is signed in to delete history');
@@ -961,7 +947,21 @@ if (trainModelButton) {
     });
 }
 
-
+function genButtonToggle(toggleOnOrOff){
+    if(toggleOnOrOff === "on"){
+        const arrowImg = document.getElementById('upArrowImg');
+        const loader = document.getElementById('circleLoader');
+        arrowImg.style.display = 'block';
+        loader.style.display = 'none';
+        genButtonID.style.pointerEvents = 'all';
+    } else{
+        const arrowImg = document.getElementById('upArrowImg');
+        const loader = document.getElementById('circleLoader');
+        genButtonID.style.pointerEvents = 'none';
+        arrowImg.style.display = 'none';
+        loader.style.display = 'block';
+    }
+}
 
 /* Account Creation Page */
 
@@ -1162,6 +1162,7 @@ if (passResetPage){
 if (!accCreationPageCheck && !passResetPage && !landingPageCheck){
 
     newChatButton.addEventListener('click', function() {
+        toggleFeedbackDisplay("off");
         toggleQueryBox("on");
         if(contentWindow){
             clearTextAndTitle();
