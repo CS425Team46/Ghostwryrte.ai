@@ -1,5 +1,5 @@
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
-import { getFirestore, collection, query, orderBy, doc, setDoc, serverTimestamp, getDocs, getDoc, deleteDoc, Timestamp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+import { getFirestore, collection, query, orderBy, doc, setDoc, serverTimestamp, getDocs, getDoc, deleteDoc, Timestamp, where } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
 import { getAuth, sendPasswordResetEmail, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendEmailVerification  } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
 import jsPDF from 'https://cdn.skypack.dev/jspdf';
 
@@ -824,47 +824,109 @@ function generateSessionId() {
     return new Date().getTime().toString();  // Convert time to string to use as a session ID
 }
 
-function uploadAllFilesToFirebase(session_id) {
-    return new Promise((resolve, reject) => {
-        const uploadedFileInstances = document.querySelectorAll('.uploadedFileInstance');
-        
-        // Check if there are fewer than minimum number of entries files
-        if (uploadedFileInstances.length < 10) {
-            console.error('Error: Less than 10 files. Aborting upload.');
-            reject('Please submit at least 10 files before uploading.');  
-            return;  // Stop execution of the function
-        }
-
-        let uploadPromises = [];
-
-        uploadedFileInstances.forEach(fileInstance => {
-            const fileContent = fileInstance.getAttribute('fileContent');
-            const title = extractTitle(fileContent); 
-
-            // Collect all upload promises
-            uploadPromises.push(
-                uploadToFirebase(title, fileContent, session_id)
-                .then(() => {
-                    fileInstance.remove(); // Remove the file instance from the UI after successful upload
-                })
-            );
-        });
-
-        // Wait for all uploads to complete
-        Promise.all(uploadPromises).then(resolve).catch(reject);
-    });
+async function generateHash(content) {
+    const msgUint8 = new TextEncoder().encode(content);                           
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8);           
+    const hashArray = Array.from(new Uint8Array(hashBuffer));                     
+    const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');  
+    return hashHex;
 }
 
-async function uploadToFirebase(title, fileContent, sessionId) {
+async function fileExistsInMetadata(title, contentHash) {
     const app = initializeApp(firebaseConfig); 
     const db = getFirestore(app);
     const user = auth.currentUser;
 
     if (user) {
-        // Use the session ID to create a unique directory for the user's current session
+        const q = query(
+            collection(db, 'users', user.uid, 'fileMetadata'),
+            where('Title', '==', title),
+            where('ContentHash', '==', contentHash)
+        );
+        const querySnapshot = await getDocs(q);
+        if (!querySnapshot.empty) {
+            return title;
+        }
+    } else {
+        console.error('No user is signed in to check file existence');
+    }
+    return null; 
+}
+
+function uploadAllFilesToFirebase(session_id) {
+    return new Promise(async (resolve, reject) => {
+        const uploadedFileInstances = document.querySelectorAll('.uploadedFileInstance');
+        
+        if (uploadedFileInstances.length < 10) {
+            console.error('Error: Less than 10 files. Aborting upload.');
+            reject('Please submit at least 10 files before uploading.');  
+            return;
+        }
+
+        let fileExistenceChecks = [];
+
+        for (let fileInstance of uploadedFileInstances) {
+            const fileContent = fileInstance.getAttribute('fileContent');
+            const title = fileInstance.querySelector('span').textContent;
+            const contentHash = await generateHash(fileContent);  // Generate hash of the content
+
+            fileExistenceChecks.push(fileExistsInMetadata(title, contentHash));
+        }
+
+        const existenceResults = await Promise.all(fileExistenceChecks);
+
+        const duplicates = existenceResults.filter(result => result !== null);
+        if (duplicates.length > 0) {
+            markDuplicateUploads(duplicates);
+            reject(`One or more files has already been uploaded.<br>Please remove the duplicates and try again.`);
+            return;
+        }
+        let uploadPromises = [];
+
+        for (let fileInstance of uploadedFileInstances) {
+            const fileContent = fileInstance.getAttribute('fileContent');
+            const title = fileInstance.querySelector('span').textContent;
+            const contentHash = await generateHash(fileContent);
+
+            uploadPromises.push(
+                uploadToFirebase(title, fileContent, contentHash, session_id)
+                .then(() => {
+                    fileInstance.remove();
+                })
+            );
+        }
+
+        Promise.all(uploadPromises).then(resolve).catch(reject);
+    });
+}
+
+function markDuplicateUploads(duplicates){
+    const uploadedFileInstances = document.querySelectorAll('.uploadedFileInstance');
+
+    for (let fileInstance of uploadedFileInstances) {
+        const title = fileInstance.querySelector('span').textContent;
+
+        if(duplicates.includes(title)){
+            fileInstance.style.background = '#ead994';
+        }
+    }
+}
+
+async function uploadToFirebase(title, fileContent, contentHash, sessionId) {
+    const app = initializeApp(firebaseConfig); 
+    const db = getFirestore(app);
+    const user = auth.currentUser;
+
+    if (user) {
         await setDoc(doc(db, 'users', user.uid, `files_${sessionId}`, title), {
             Title: title,
             Content: fileContent,
+        });
+
+        await setDoc(doc(db, 'users', user.uid, 'fileMetadata', title), {
+            Title: title,
+            ContentHash: contentHash,
+            SessionId: sessionId,
         });
     } else {
         console.error('No user is signed in to upload data');
