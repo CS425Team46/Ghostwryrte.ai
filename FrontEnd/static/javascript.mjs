@@ -853,6 +853,7 @@ async function fileExistsInMetadata(title, contentHash) {
     return null; 
 }
 
+
 function uploadAllFilesToFirebase(session_id) {
     return new Promise(async (resolve, reject) => {
         const uploadedFileInstances = document.querySelectorAll('.uploadedFileInstance');
@@ -1026,14 +1027,22 @@ function genButtonToggle(toggleOnOrOff){
 }
 
 /* Account Creation Page */
+if(submitPassReset){
+    var topbarContainer = document.getElementById('topbarContainer');
+        
+    topbarContainer.addEventListener('click', function () {
+        window.location.href = '/';
+    });
 
+}
 if (accCreationPageCheck) {
     const signInButton = document.getElementById('signInBtn');
     const signUpButton = document.getElementById('signUpBtn');
     const ACSubmit = document.getElementById('ACSubmit');
     var confirmPass = document.getElementById('confirmPassword');
     var confirmPassText = document.getElementById('confText');
-    
+    var topbarContainer = document.getElementById('topbarContainer');
+
 
     document.getElementById('userSubmitForm').addEventListener('submit', function (event) {
         event.preventDefault(); 
@@ -1073,6 +1082,11 @@ if (accCreationPageCheck) {
         confirmPass.value = "";
         confirmPassText.classList.remove('active');   
         ACSubmit.textContent = "Log In";
+    });
+
+    
+    topbarContainer.addEventListener('click', function () {
+        window.location.href = '/';
     });
     
     signUpButton.addEventListener('click', function () {

@@ -1135,6 +1135,7 @@ pre {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
     width: 100%;
     height: 100%;
     padding: 1rem 1.5rem 1rem 1.5rem;
@@ -1142,20 +1143,26 @@ pre {
   }
   .topbarContainer{
     display: flex;
-    height: 10%;
-    width: 100%;
+    height: fit-content;
+    width: fit-content;
     align-items: center;
+    margin-right: auto;
 
   }
+  .topbarContainer:hover{
+    cursor: pointer;
+  }
   .logoImgAcc{
-    width: 2.75rem;
+    width: 4.25rem;
     margin: 0 .5% 0 0;
     height: auto;
   }
   .loginBrandText{
-    font-size: clamp(1rem, 1.25rem, 1.6rem);
+    font-size: clamp(1rem, 1.7rem, 2.1rem);
     font-weight: 800;
     font-family: "Montserrat", sans-serif;
+    margin: 0 0 0 3%;
+    user-select: none;
   }
   .actionSelector {
     display: flex;
@@ -1641,7 +1648,7 @@ pre {
     background: var(--offWhite);
 }
 
-.topBarContainer{
+.topBarContainerLanding{
     display: flex;
     align-items: center;
     height: 15%;
