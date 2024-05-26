@@ -1607,13 +1607,28 @@ pre {
 }
 .innerText.two{
     font-size: 1.2rem;
-
 }
 .popUpImg {
     max-width: 4rem;
     height:  auto;
     margin: 0 0 3% 0;
 }
+.deleteHistoryButtonHolder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7.5%;
+    width: 60%;
+  }
+  
+  .closePopUpButton.delete{
+    background: #FF1640;
+    width: 50%
+  }
+  .closePopUpButton.cancel{
+    background: black;
+    width: 50%
+  }
 
 .closePopUpButton {
     display: flex;
@@ -1637,7 +1652,7 @@ pre {
 .closePopUpButton:hover {
     background: var(--textColor); 
     color: var(--mainColor);
-    transform: translateY(-5%);
+    transform: scale(1.1);
 }
 
 /* Landing Page */

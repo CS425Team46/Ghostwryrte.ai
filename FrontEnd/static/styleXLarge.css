@@ -1012,15 +1012,15 @@
         text-align: center;
     }
     .innerText.one{
-        font-size: 1.7rem;
+        font-size: 1.9rem;
         font-weight: bold;
     }
     .innerText.two{
-        font-size: 1.3rem;
+        font-size: 1.5rem;
     
     }
     .popUpImg {
-        max-width: 4rem;
+        max-width: 5rem;
         height:  auto;
         margin: 0 0 3% 0;
     }
@@ -1047,7 +1047,6 @@
     .closePopUpButton:hover {
         background: var(--textColor); 
         color: var(--mainColor);
-        transform: translateY(-5%);
     }
 
     .logoAndNameLanding{

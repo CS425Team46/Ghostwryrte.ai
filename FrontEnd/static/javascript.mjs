@@ -54,6 +54,8 @@ const saveButton            = document.getElementById('saveButton');
 const copyButtonEditPage    = document.getElementById('copyButtonEditPage');
 const downloadButton        = document.getElementById('downloadButton');
 const histGenBack           = document.getElementById('histGenBack');
+const closePopUpCancel      = document.getElementById('closePopUpCancel');
+const closePopUpDelete      = document.getElementById('closePopUpDelete');
 /* Landing Page */
 let landingPageCheck        = document.getElementById('landingCheck');
 let landingLoginButton      = document.getElementById('landingLogin');
@@ -508,16 +510,24 @@ function createHistoryButtonGH(title, content, timestamp) {
 async function deleteHistoryInstanceFunc(historyPageInstanceToDelete) {
     const title = historyPageInstanceToDelete.querySelector('.historyPageInstanceTitle').textContent;
 
-    const user = auth.currentUser;
-    if (user) {
-        const oldHistoryRef = doc(db, 'users', user.uid, 'history', title);
-        await deleteDoc(oldHistoryRef);
-    } else {
-        console.error('No user is signed in to delete history');
-    }
-    historyPageInstanceToDelete.remove();
-    removeFromLocalStorageByTitle(title);
+    document.getElementById('popUpWindowContainer').style.display = 'flex';
 
+    closePopUpCancel.addEventListener('click', function(){
+        document.getElementById('popUpWindowContainer').style.display = 'none';
+    })
+
+    closePopUpDelete.addEventListener('click', async function(){
+        const user = auth.currentUser;
+        if (user) {
+            const oldHistoryRef = doc(db, 'users', user.uid, 'history', title);
+            await deleteDoc(oldHistoryRef);
+        } else {
+            console.error('No user is signed in to delete history');
+        }
+        historyPageInstanceToDelete.remove();
+        removeFromLocalStorageByTitle(title);
+        document.getElementById('popUpWindowContainer').style.display = 'none';
+    })
 }
 
 function removeFromLocalStorageByTitle(title) {

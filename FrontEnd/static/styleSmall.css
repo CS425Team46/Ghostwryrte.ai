@@ -1589,6 +1589,14 @@ pre {
   margin: 0 0 3% 0;
 }
 
+.deleteHistoryButtonHolder{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5%;
+  width: 60%;
+}
+
 .closePopUpButton {
   display: flex;
   background: #00a878;
@@ -1605,6 +1613,15 @@ pre {
   transition: all ease .5s;
   color: var(--mainColor);
   padding: 1% 0 1% 0;
+}
+
+.closePopUpButton.delete{
+  background: #FF1640;
+  width: 50%
+}
+.closePopUpButton.cancel{
+  background: black;
+  width: 50%
 }
 
 .closePopUpButton:hover {

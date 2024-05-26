@@ -71,6 +71,20 @@
         </div>
     </main>
     <div class="toast-overlay" id="toast-overlay"></div>
+    <section class="clearBackground" id="popUpWindowContainer">
+        <div class="popUpWindowContainer">
+            <div class="spanContainer">
+                <img src="{{ url_for('static', filename='images/deleteWarning.svg') }}" alt="Ghostwryte.ai" class="popUpImg" />
+                <span class="innerText one">Are you sure?</span>
+                <span class="innerText two">This action cannot be undone. This content will be lost.</span>
+            </div>
+            <section class="deleteHistoryButtonHolder">
+                <button class="closePopUpButton cancel" id="closePopUpCancel">Cancel</button>
+                <button class="closePopUpButton delete" id="closePopUpDelete">Delete</button>
+            </section>
+            
+        </div>
+    </section>
     <script type="module" src="{{ url_for('static', filename='javascript.mjs') }}" defer></script>
 </body>
 </html>
