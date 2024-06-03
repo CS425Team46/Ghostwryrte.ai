@@ -2,6 +2,8 @@ import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebas
 import { getFirestore, collection, query, orderBy, doc, setDoc, serverTimestamp, getDocs, getDoc, deleteDoc, Timestamp, where } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
 import { getAuth, sendPasswordResetEmail, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, sendEmailVerification  } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
 import jsPDF from 'https://cdn.skypack.dev/jspdf';
+import pdfjsDist from 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.3.136/+esm'
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@4.3.136/build/pdf.worker.mjs';
 
 
 const firebaseConfig = {
@@ -707,7 +709,7 @@ if (fileUploadWindow) {
         if (event.key === 'Enter' || event.keyCode === 13) {
             const fileInput = document.createElement('input');
             fileInput.type = 'file';
-            fileInput.accept = '.txt';
+            fileInput.accept = '.txt,.pdf';
             fileInput.multiple = true;
 
             fileInput.click();
@@ -739,7 +741,7 @@ if (fileUploadWindow) {
     fileUploadWindow.addEventListener('click', () => {
         const fileInput = document.createElement('input');
         fileInput.type = 'file';
-        fileInput.accept = '.txt';
+        fileInput.accept = '.txt,.pdf';
         fileInput.multiple = true;
 
         fileInput.click();
@@ -760,11 +762,14 @@ function fileProcessing(files) {
     for (const file of files) {
         if (file.type === 'text/plain') {
             readAndUploadFile(file);
+        } else if (file.type === 'application/pdf') {
+            readAndUploadPDF(file);
         } else {
-            showToast("Only .txt files are accepted", "warning", 5000);
+            showToast("Only .txt and .pdf files are accepted", "warning", 5000);
         }
     }
 }
+
 function readAndUploadFile(file) {
     const reader = new FileReader();
 
@@ -778,6 +783,39 @@ function readAndUploadFile(file) {
     };
 
     reader.readAsText(file);
+}
+
+function readAndUploadPDF(file) {
+    const reader = new FileReader();
+
+    reader.onload = function (e) {
+        const typedarray = new Uint8Array(e.target.result);
+
+        pdfjsLib.getDocument(typedarray).promise.then((pdf) => {
+            let fileContent = '';
+            const numPages = pdf.numPages;
+            let pagePromises = [];
+
+            for (let i = 1; i <= numPages; i++) {
+                pagePromises.push(pdf.getPage(i).then((page) => {
+                    return page.getTextContent().then((textContent) => {
+                        let pageText = textContent.items.map(item => item.str).join(' ');
+                        fileContent += pageText + '\n';
+                    });
+                }));
+            }
+
+            Promise.all(pagePromises).then(() => {
+                let title = file.name;
+                const dotIndex = title.lastIndexOf('.');
+                title = title.substring(0, dotIndex) + title.substring(dotIndex).toLowerCase();
+
+                fileUpload(title, fileContent);
+            });
+        });
+    };
+
+    reader.readAsArrayBuffer(file);
 }
 
 function extractTitle(fileContent) {
@@ -870,18 +908,29 @@ function uploadAllFilesToFirebase(session_id) {
         
         if (uploadedFileInstances.length < 10) {
             console.error('Error: Less than 10 files. Aborting upload.');
-            reject('Please submit at least 10 files before uploading.');  
+            reject('Please submit at least 10 files before uploading.');
             return;
         }
 
         let fileExistenceChecks = [];
+        let emptyFileInstances = [];
 
         for (let fileInstance of uploadedFileInstances) {
             const fileContent = fileInstance.getAttribute('fileContent');
             const title = fileInstance.querySelector('span').textContent;
-            const contentHash = await generateHash(fileContent);  // Generate hash of the content
 
-            fileExistenceChecks.push(fileExistsInMetadata(title, contentHash));
+            if (fileContent.trim() === "") {
+                emptyFileInstances.push(title);
+            } else {
+                const contentHash = await generateHash(fileContent);  // Generate hash of the content
+                fileExistenceChecks.push(fileExistsInMetadata(title, contentHash));
+            }
+        }
+
+        if (emptyFileInstances.length > 0) {
+            markEmptyUploads(emptyFileInstances);
+            reject(`One or more files have no content.<br>Please remove or add content to the empty files and try again.`);
+            return;
         }
 
         const existenceResults = await Promise.all(fileExistenceChecks);
@@ -892,6 +941,7 @@ function uploadAllFilesToFirebase(session_id) {
             reject(`One or more files has already been uploaded.<br>Please remove the duplicates and try again.`);
             return;
         }
+
         let uploadPromises = [];
 
         for (let fileInstance of uploadedFileInstances) {
@@ -911,14 +961,26 @@ function uploadAllFilesToFirebase(session_id) {
     });
 }
 
-function markDuplicateUploads(duplicates){
+function markDuplicateUploads(duplicates) {
     const uploadedFileInstances = document.querySelectorAll('.uploadedFileInstance');
 
     for (let fileInstance of uploadedFileInstances) {
         const title = fileInstance.querySelector('span').textContent;
 
-        if(duplicates.includes(title)){
+        if (duplicates.includes(title)) {
             fileInstance.style.background = '#ead994';
+        }
+    }
+}
+
+function markEmptyUploads(emptyFiles) {
+    const uploadedFileInstances = document.querySelectorAll('.uploadedFileInstance');
+
+    for (let fileInstance of uploadedFileInstances) {
+        const title = fileInstance.querySelector('span').textContent;
+
+        if (emptyFiles.includes(title)) {
+            fileInstance.style.background = '#ffcccc'; // Red background for empty files
         }
     }
 }
