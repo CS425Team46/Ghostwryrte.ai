@@ -90,6 +90,21 @@ def run_model_training_in_background(user_id):
 
 
 
+#TODO: real values in this function
+# this is just a framework, it accpets what specific prompt the user wants as a string (this can be changed)
+# and returns a string that will be assigned as the system before the prompt we can change this to our specific
+# use-case but this is what it should look like. 
+def get_specific_platform_prompt_tuning(promptID: str) :
+    match promptID:
+        case "facebook":
+            return "Write this prompt for facebook audience"
+        case "linkedin":
+            return "write a professional response for linkedin"
+        case "instagram":
+            return "write a casual and fun response for instagram"
+        case _:
+            return ""
+
 @app.route('/subscribe')
 def subscribe():
     return render_template('subscribe.html')
@@ -159,12 +174,16 @@ def generate_content():
     frontend_word_limit = 100 #TODO: somehow communicate the user input for the character limit here, 100 is a placeholder
     frontend_word_limit*= 3 # average of 3-4 tokens per word so multiply the word limit by 3 to get token limit
 
+    # count the tokens in the prompt
     prompt_token_count = len(token_encoder.encode(user_prompt))
 
     response = client.chat.completions.create(
         model=model_id,  # Use the fetched model_id
         max_tokens=frontend_word_limit + prompt_token_count,
-        messages=[{"role": "user", "content": user_prompt}]
+        messages=[
+            {"role": "system", "content": get_specific_platform_prompt_tuning("")}, # the input to this function will be a value from the dropdown on the frontend
+            {"role": "user", "content": user_prompt}
+        ]
     )
     message_content = response.choices[0].message.content.strip()
     return jsonify({'ai_response': message_content})
