@@ -2,6 +2,7 @@ import json
 from flask import Flask, jsonify, render_template, request, redirect, url_for
 import openai
 from openai import OpenAI
+import tiktoken
 import os
 import subprocess
 # from model_training import start_model_training
@@ -29,6 +30,9 @@ else:
 db = firestore.client()
 
 client = OpenAI()
+
+# define a token encoder to get the token count for strings
+token_encoder = tiktoken.encoding_for_model("gpt-3.5-turbo")
 
 app = Flask(__name__)
 
@@ -151,8 +155,15 @@ def generate_content():
     
     print(model_id)
 
+
+    frontend_word_limit = 100 #TODO: somehow communicate the user input for the character limit here, 100 is a placeholder
+    frontend_word_limit*= 3 # average of 3-4 tokens per word so multiply the word limit by 3 to get token limit
+
+    prompt_token_count = len(token_encoder.encode(user_prompt))
+
     response = client.chat.completions.create(
         model=model_id,  # Use the fetched model_id
+        max_tokens=frontend_word_limit + prompt_token_count,
         messages=[{"role": "user", "content": user_prompt}]
     )
     message_content = response.choices[0].message.content.strip()
