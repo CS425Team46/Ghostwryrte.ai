@@ -91,7 +91,7 @@ def run_model_training_in_background(user_id):
 
 
 #TODO: real values in this function
-# this is just a framework, it accpets what specific prompt the user wants as a string (this can be changed)
+# this is just scaffolding, it accpets what specific prompt the user wants as a string (this can be changed)
 # and returns a string that will be assigned as the system before the prompt we can change this to our specific
 # use-case but this is what it should look like. 
 def get_specific_platform_prompt_tuning(promptID: str) :
@@ -146,6 +146,44 @@ def ai_training():
 def generation_history():
     return render_template('GenerationHistory.html')
 
+
+# TODO: there is a lot of repeated code here, OOP might be a valid consideration
+@app.route('/refresh-model', methods=['POST'])
+def refresh_model():
+
+    #gets the user id
+    user_id = request.form.get('user_id') # note: I'm not actually sure if this will work in the same way as in generate_content, idk how frontend works
+    
+
+    # Handle cases where data is missing
+    if not user_id:
+        return jsonify({'message': 'Missing user ID'}), 400
+
+    # Proceed as previously described
+    user_ref = db.collection('users').document(user_id)
+    user_doc = user_ref.get()
+    if user_doc.exists:
+        user_data = user_doc.to_dict()
+        model_id = user_data.get('model_id')
+        if not model_id:
+            return jsonify({'message': 'Model ID not found for user'}), 400
+    else:
+        return jsonify({'message': 'User not found'}), 404
+
+    # proceed with deletion if the model and user exists
+
+    # deletes the current model assigned to the user
+    client.models.delete(model_id)
+
+    # this should start a new model and assign it to the current user if I understand the code correctly?
+    subprocess.run(['python3', 'Data/model_training.py', user_id])
+
+
+    # return a success message
+    return jsonify({'message': 'Started model refresh1'}), 200 
+    
+
+    
 
 @app.route('/generate-content', methods=['POST'])
 def generate_content():
