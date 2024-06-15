@@ -1,2 +1,10 @@
 ghostwryte-ai-firebase-adminsdk-uxybq-20881dd0dd.json
 Data/ghostwryte-ai-firebase-adminsdk-uxybq-20881dd0dd.json
+
+# ignore macos directory configurations
+*/.DS_Store
+
+# ignore .pyc files
+*/__pycache__/
+
+.vscode/
