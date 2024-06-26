@@ -175,12 +175,8 @@ def refresh_model():
     # deletes the current model assigned to the user
     client.models.delete(model_id)
 
-    # this should start a new model and assign it to the current user if I understand the code correctly?
-    subprocess.run(['python3', 'Data/model_training.py', user_id])
-
-
-    # return a success message
-    return jsonify({'message': 'Started model refresh1'}), 200 
+    # this should start a new model and assign it to the current user
+    return start_model_training()
     
 
     
