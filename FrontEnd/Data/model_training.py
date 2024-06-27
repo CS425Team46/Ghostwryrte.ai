@@ -15,7 +15,7 @@ import json
 
 client = OpenAI()
 # Initialize Firebase Admin
-cred = credentials.Certificate("ghostwryte-ai-firebase-adminsdk-uxybq-20881dd0dd.json")
+cred = credentials.Certificate("ghostwryte-ai-firebase-adminsdk-uxybq-20881dd0dd.json") # TODO: this doesn't actually do anything, right?
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
