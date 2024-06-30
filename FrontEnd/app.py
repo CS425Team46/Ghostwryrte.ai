@@ -95,15 +95,14 @@ def run_model_training_in_background(user_id):
 # and returns a string that will be assigned as the system before the prompt we can change this to our specific
 # use-case but this is what it should look like. 
 def get_specific_platform_prompt_tuning(promptID: str) :
-    match promptID:
-        case "facebook":
-            return "Write this prompt for facebook audience"
-        case "linkedin":
-            return "write a professional response for linkedin"
-        case "instagram":
-            return "write a casual and fun response for instagram"
-        case _:
-            return ""
+    if promptID == "instagram":
+        return "instagram prompt"
+    elif promptID == "facebook":
+        return "facebook prompt"
+    elif promptID == "linkedin":
+        return "linkedin prompt"
+    else:
+        return ""
 
 @app.route('/subscribe')
 def subscribe():
