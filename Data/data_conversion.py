@@ -1,7 +1,7 @@
 import json
 
-from database import DataBase
-from ai_client import AI_Client
+from Data.database import DataBase
+from Data.ai_client import AI_Client
 
 
 class Data_Conversion:
@@ -19,7 +19,7 @@ class Data_Conversion:
          
 
     # this should be called externally, nothing else
-    def main(self, user_id: str, session_id: str) -> None:
+    def main(self, user_id: str, session_id: str) -> bool:
         print(f"UID: {user_id}")
         print(f'session_id: {session_id}')
 
@@ -31,8 +31,10 @@ class Data_Conversion:
 
         if file_id:
             self.db.update_data(user_id, "latest_file_id", file_id)
+            return True
         else:
             print("Failed to add")
+            return False
         
 
     # formats training data optimally for fine-tuning
@@ -88,7 +90,7 @@ class Data_Conversion:
         return string.replace('\\n', '').replace('\n', '').replace('\\', '')
 
     # recursively cleans values in json
-    def clean_json_values(self, data: dict | list | str) -> dict | list | str:
+    def clean_json_values(self, data):
         if isinstance(data, dict):
             return {k: self.clean_json_values(v) for k, v in data.items()}
         elif isinstance(data, list):

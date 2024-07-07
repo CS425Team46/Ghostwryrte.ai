@@ -19,12 +19,12 @@ class DataBase:
         return self.get_user_ref(user_id).collection(f"files_{session_id}").stream()
 
     # returns the given data from the user doc
-    def get_from_user_doc(self, user_id: str, data: str, default=None) -> str | None:
+    def get_from_user_doc(self, user_id: str, data: str, default=None) -> str:
         user_doc = self.get_user_ref(user_id).get()
         if user_doc.exists:
             return user_doc.to_dict().get(data)  # type: ignore
         else:
-            return default
+            return default # type: ignore
 
     # updates a datapoint for the given user
     def update_data(self, user_id: str, data_name: str, data: str) -> None:

@@ -11,4 +11,8 @@ Data/ghostwryte-ai-firebase-adminsdk-uxybq-20881dd0dd.json
 .vscode/
 
 # ignore authentication tokens
-FrontEnd/Data/auth_keys.json
+auth_keys.json
+
+# ignore logs and training data
+*/finetuning_status.log
+*/training_data.jsonl

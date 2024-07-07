@@ -3,7 +3,7 @@ import sys
 import time
 import logging
 
-from database import DataBase
+from Data.database import DataBase
 from openai import OpenAI
 
 
@@ -30,20 +30,24 @@ class AI_Client:
 
 
 
+    def delete_model(self, model_id: str):
+        self.client.models.delete(model_id) # TODO: figure out how to check that this succeeded
+
 # taken from model_training.py
 ########################################################################
-    def model_training(self, user_id):
+    def model_training(self, user_id) -> bool:
 
         result = self.start_model_training(user_id)
 
         if 'job_id' in result:
-            print("About to check fine-tuning job status", file=sys.stderr)  
+            print("About to check fine-tuning job status")  
             status = self.check_finetuning_status(result['job_id'], user_id)  
-            print("Status:", status, file=sys.stderr)
-            print(json.dumps(result))  
+            print("Status:", status)
+            print(json.dumps(result)) 
+            return True
         else:
-            print("No job ID found to check status.", file=sys.stderr)
-            print(json.dumps({'message': 'No job ID found to check status.'}))
+            print("No job ID found to check status.")
+            return False
 
 
 
@@ -161,7 +165,7 @@ class AI_Client:
                 json.dump(item, outfile)
                 outfile.write("\n")
 
-    def upload_to_openai(self, file_path, min_entries=10) -> str | None:
+    def upload_to_openai(self, file_path, min_entries=10) -> str:
         # count entries in json file
         entries = open(file_path, "r").readlines()
 
@@ -178,4 +182,4 @@ class AI_Client:
 
         else:
             print(f"Not enough entries for fine-tuning. Found {len(entries)}, required {min_entries}.")
-            return None
+            return None # type: ignore

@@ -1,56 +1,49 @@
 import json
-from flask import Flask, jsonify, render_template, request, redirect, url_for
-import openai
-from openai import OpenAI
-import tiktoken
-import os
 import subprocess
-# from model_training import start_model_training
-from urllib.parse import urljoin
 from threading import Thread
-
-import firebase_admin
-from firebase_admin import credentials, firestore, auth
+from urllib.parse import urljoin
 
 import stripe
+import tiktoken
+from flask import Flask, jsonify, render_template, request, url_for
 
-# firebase_creds = json.loads(os.environ.get('FIREBASE_CREDENTIALS'))
-# cred = credentials.Certificate("firebase_creds")
-# firebase_admin.initialize_app(cred)
+from Data.ai_client import AI_Client
+from Data.database import DataBase
+from Data.authentication import Authentication
+from Data.data_conversion import Data_Conversion
 
-firebase_creds = os.environ.get('FIREBASE_CREDENTIALS')
-if firebase_creds:
-    cred_dict = json.loads(firebase_creds)
-    cred = credentials.Certificate(cred_dict)
-    firebase_admin.initialize_app(cred)
-else:
-    raise ValueError('The FIREBASE_CREDENTIALS environment variable is not set.')
+# initialize the flask app
+app = Flask(__name__)
 
-# Initialize Firestore
-db = firestore.client()
+# initialize variable that stores all of our authentication values
+keyring = Authentication()
 
-client = OpenAI()
+# initialize the database wrapper interface
+database = DataBase()
+
+# initialize the OpenAI API wrapper interface
+ai_client = AI_Client(api_key=keyring.OPENAI_API_KEY, db=database)
+
+# initialize the data_conversion class to be used later in the file
+data_conversion = Data_Conversion(db=database, client=ai_client)
+
+# set the stripe API key
+stripe.api_key = keyring.STRIPE_SECRET_KEY
+
+
 
 # define a token encoder to get the token count for strings
 token_encoder = tiktoken.encoding_for_model("gpt-3.5-turbo")
 
-app = Flask(__name__)
 
 
-stripe_keys = {
-    "secret_key": os.environ["STRIPE_SECRET_KEY"],
-    "publishable_key": os.environ["STRIPE_PUBLISHABLE_KEY"],
-}
-
-stripe.api_key = stripe_keys["secret_key"]
-
-@app.route('/create-checkout-session', methods=['POST'])
+@app.route("/create-checkout-session", methods=["POST"])
 def create_checkout_session():
 
     base_url = request.host_url
 
-    success_url = urljoin(base_url, url_for('success'))
-    cancel_url = urljoin(base_url, url_for('cancel'))
+    success_url = urljoin(base_url, url_for("success"))
+    cancel_url = urljoin(base_url, url_for("cancel"))
     print(success_url)
     print(cancel_url)
 
@@ -60,41 +53,38 @@ def create_checkout_session():
         session = stripe.checkout.Session.create(
             success_url="http://127.0.0.1:5000/success",
             cancel_url="http://127.0.0.1:5000/content-generation",
-            payment_method_types=['card'],
+            payment_method_types=["card"],
             line_items=[
                 {
-                    'price': 'price_1P2m0HK9QOcf8ycFEdCqu3ZA', 
-                    'quantity': 1,
+                    "price": "price_1P2m0HK9QOcf8ycFEdCqu3ZA",
+                    "quantity": 1,
                 },
             ],
-            mode='subscription',
+            mode="subscription",
         )
-        return jsonify({'id': session.id})
+        return jsonify({"id": session.id})
     except Exception as e:
         print(e)  # Log the error to your Flask app's console
-        return jsonify({'error': str(e)}), 403
-    
+        return jsonify({"error": str(e)}), 403
+
+
 def run_model_training_in_background(user_id):
     """Run the model training script in a background thread."""
-    result = subprocess.run(['python3', 'Data/model_training.py', user_id], capture_output=True, text=True)
-    
+   
+    result = ai_client.model_training(user_id)
+
     # Handling the script result
-    if result.returncode == 0:
-        try:
-            output = json.loads(result.stdout)
-            print("Model training successful. Output:", output)
-        except json.JSONDecodeError:
-            print("Non-JSON output received from model training script:", result.stdout)
+    if result:
+        print("Model training successful")
     else:
-        print("Model training script failed:", result.stderr)
+        print("Model training script failed")
 
 
-
-#TODO: real values in this function
+# TODO: real values in this function
 # this is just scaffolding, it accpets what specific prompt the user wants as a string (this can be changed)
 # and returns a string that will be assigned as the system before the prompt we can change this to our specific
-# use-case but this is what it should look like. 
-def get_specific_platform_prompt_tuning(promptID: str) :
+# use-case but this is what it should look like.
+def get_specific_platform_prompt_tuning(promptID: str):
     if promptID == "instagram":
         return "instagram prompt"
     elif promptID == "facebook":
@@ -104,149 +94,147 @@ def get_specific_platform_prompt_tuning(promptID: str) :
     else:
         return ""
 
-@app.route('/subscribe')
+
+@app.route("/subscribe")
 def subscribe():
-    return render_template('subscribe.html')
+    return render_template("subscribe.html")
 
-    
-@app.route('/success')
+
+@app.route("/success")
 def success():
-    return render_template('SubscriptionSuccess.html')
+    return render_template("SubscriptionSuccess.html")
 
-@app.route('/cancel')
+
+@app.route("/cancel")
 def cancel():
-    return render_template('SubscriptionCancel.html')
+    return render_template("SubscriptionCancel.html")
 
-@app.route('/')
+
+@app.route("/")
 def home():
-    return render_template('LandingPage.html')
+    return render_template("LandingPage.html")
 
-@app.route('/pricing')
+
+@app.route("/pricing")
 def pricing():
-    return render_template('LandingPagePricing.html')
+    return render_template("LandingPagePricing.html")
 
-@app.route('/accountCreation')
+
+@app.route("/accountCreation")
 def account_creation():
-    return render_template('AccountCreation.html')
+    return render_template("AccountCreation.html")
 
-@app.route('/password-reset')
+
+@app.route("/password-reset")
 def password_reset():
-    return render_template('passwordReset.html')
+    return render_template("passwordReset.html")
 
-@app.route('/content-generation')
+
+@app.route("/content-generation")
 def content_generation():
-    return render_template('ContentGeneration.html')
+    return render_template("ContentGeneration.html")
 
-@app.route('/ai-training')
+
+@app.route("/ai-training")
 def ai_training():
-    return render_template('AITraining.html')
+    return render_template("AITraining.html")
 
-@app.route('/generation-history')
+
+@app.route("/generation-history")
 def generation_history():
-    return render_template('GenerationHistory.html')
+    return render_template("GenerationHistory.html")
 
 
 # TODO: there is a lot of repeated code here, OOP might be a valid consideration
-@app.route('/refresh-model', methods=['POST'])
+@app.route("/refresh-model", methods=["POST"])
 def refresh_model():
 
-    #gets the user id
-    user_id = request.form.get('user_id') # note: I'm not actually sure if this will work in the same way as in generate_content, idk how frontend works
-    
+    # gets the user id
+    user_id = request.form.get("user_id")  # TODO: let frontend pass this data 
 
     # Handle cases where data is missing
     if not user_id:
-        return jsonify({'message': 'Missing user ID'}), 400
+        return jsonify({"message": "Missing user ID"}), 400
+    
+    # gets the model id from user docs
+    model_id = database.get_from_user_doc(user_id, 'model_id')
 
-    # Proceed as previously described
-    user_ref = db.collection('users').document(user_id)
-    user_doc = user_ref.get()
-    if user_doc.exists:
-        user_data = user_doc.to_dict()
-        model_id = user_data.get('model_id')
-        if not model_id:
-            return jsonify({'message': 'Model ID not found for user'}), 400
-    else:
-        return jsonify({'message': 'User not found'}), 404
+    if not model_id:
+        return jsonify({"message": "Model ID not found for user"}), 400
 
     # proceed with deletion if the model and user exists
 
     # deletes the current model assigned to the user
-    client.models.delete(model_id)
+    ai_client.delete_model(model_id)
 
     # this should start a new model and assign it to the current user
     return start_model_training()
-    
 
-    
 
-@app.route('/generate-content', methods=['POST'])
+@app.route("/generate-content", methods=["POST"])
 def generate_content():
     # Fetch the data from form fields
-    user_id = request.form.get('user_id')  # Adjust according to how you plan to send user_id
-    user_prompt = request.form.get('user_prompt')
+    user_id = request.form.get("user_id")
+    user_prompt = request.form.get("user_prompt")
 
     # Handle cases where data is missing
     if not user_id or not user_prompt:
-        return jsonify({'message': 'Missing user ID or prompt'}), 400
+        return jsonify({"message": "Missing user ID or prompt"}), 400
 
-    # Proceed as previously described
-    user_ref = db.collection('users').document(user_id)
-    user_doc = user_ref.get()
-    if user_doc.exists:
-        user_data = user_doc.to_dict()
-        model_id = user_data.get('model_id')
-        if not model_id:
-            return jsonify({'message': 'Model ID not found for user'}), 400
-    else:
-        return jsonify({'message': 'User not found'}), 404
-    
+    # gets the model id from user docs
+    model_id = database.get_from_user_doc(user_id, 'model_id')
+
+    if not model_id:
+            return jsonify({"message": "Model ID not found for user"}), 400
+
     print(model_id)
 
-
-    frontend_word_limit = 100 #TODO: somehow communicate the user input for the character limit here, 100 is a placeholder
-    frontend_word_limit*= 3 # average of 3-4 tokens per word so multiply the word limit by 3 to get token limit
+    frontend_word_limit = 100  # TODO: somehow communicate the user input for the character limit here, 100 is a placeholder
+    frontend_word_limit *= 3  # average of 3-4 tokens per word so multiply the word limit by 3 to get token limit
 
     # count the tokens in the prompt
     prompt_token_count = len(token_encoder.encode(user_prompt))
 
-    response = client.chat.completions.create(
+    response = ai_client.client.chat.completions.create(
         model=model_id,  # Use the fetched model_id
         max_tokens=frontend_word_limit + prompt_token_count,
         messages=[
-            {"role": "system", "content": get_specific_platform_prompt_tuning("")}, # the input to this function will be a value from the dropdown on the frontend
-            {"role": "user", "content": user_prompt}
-        ]
+            {
+                "role": "system",
+                "content": get_specific_platform_prompt_tuning(""),
+            },  # the input to this function will be a value from the dropdown on the frontend
+            {"role": "user", "content": user_prompt},
+        ],
     )
-    message_content = response.choices[0].message.content.strip()
-    return jsonify({'ai_response': message_content})
+    message_content = response.choices[0].message.content.strip() # type: ignore
+    return jsonify({"ai_response": message_content})
     ## return render_template('ContentGeneration.html', ai_response=message_content)
 
 
-@app.route('/run-data-conversion', methods=['POST'])
+@app.route("/run-data-conversion", methods=["POST"])
 def run_data_conversion():
     data = request.json
 
-    user_id = data.get('user_id')
-    session_id = data.get('session_id')
+    user_id = data.get("user_id") # type: ignore
+    session_id = data.get("session_id") # type: ignore
 
     if not user_id or not session_id:
-        return jsonify({'message': 'No user ID or session ID provided'}), 400
+        return jsonify({"message": "No user ID or session ID provided"}), 400
 
-    result = subprocess.run(['python3', 'Data/data_conversion.py', user_id, session_id], capture_output=True, text=True)
-    print("STDOUT:", result.stdout)
-    print("STDERR:", result.stderr)
+    result = data_conversion.main(user_id, session_id)
 
-    if result.returncode == 0:
-        return jsonify({'message': 'Data conversion script executed successfully'})
+    if result:
+        return jsonify({"message": "Data conversion script executed successfully"})
     else:
-        return jsonify({'message': f'Data conversion script failed: {result.stderr}'}), 500
-    
-@app.route('/start-model-training', methods=['POST'])
+        return (
+            jsonify({"message": "Data conversion script failed"}), 500)
+
+
+@app.route("/start-model-training", methods=["POST"])
 def start_model_training():
-    user_id = request.json.get('user_id')
+    user_id = request.json.get("user_id") # type: ignore
     if not user_id:
-        return jsonify({'message': 'No user ID provided'}), 400
+        return jsonify({"message": "No user ID provided"}), 400
 
     # Start the model training in a background thread
     thread = Thread(target=run_model_training_in_background, args=(user_id,))
@@ -254,32 +242,7 @@ def start_model_training():
     thread.start()
 
     # Return a response immediately
-    return jsonify({'message': 'Model training has been started. Please check back later for results.'}), 202
-    
+    return (jsonify({"message": "Model training has been started. Please check back later for results."}), 202)
 
-# @app.route('/start-model-training', methods=['POST'])
-# def start_model_training():
-#     user_id = request.json.get('user_id')
-#     if not user_id:
-#         return jsonify({'message': 'No user ID provided'}), 400
-    
-#     result = subprocess.run(['python3', 'Data/model_training.py', user_id], capture_output=True, text=True)
-#     print("STDERR from model training:", result.stderr)
-
-#     if result.returncode == 0:
-#         try:
-#             # Attempt to parse the stdout as JSON
-#             output = json.loads(result.stdout)
-#             print("Output: ", output)
-#             return jsonify(output), 200
-#         except json.JSONDecodeError:
-#             # If stdout is not valid JSON, return the raw output for debugging
-#             return jsonify({'message': 'Non-JSON output received', 'output': result.stdout}), 500
-#     else:
-#         return jsonify({'message': 'Model training script failed', 'output': result.stderr}), 500
-
-
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)
