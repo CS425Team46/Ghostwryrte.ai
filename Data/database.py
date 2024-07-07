@@ -1,13 +1,15 @@
-from firebase_admin import firestore
+import firebase_admin
+from firebase_admin import firestore, credentials 
 from google.cloud.firestore import DocumentReference
 
 
 # simple object to clean up usage of the database
 class DataBase:
 
-    def __init__(self):
+    def __init__(self, cred: dict):
 
         # initialize one instance of the database
+        firebase_admin.initialize_app(credentials.Certificate(cred))
         self.db = firestore.client()
 
     # returns user documents

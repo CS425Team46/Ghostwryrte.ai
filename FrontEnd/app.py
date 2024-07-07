@@ -1,5 +1,3 @@
-import json
-import subprocess
 from threading import Thread
 from urllib.parse import urljoin
 
@@ -19,7 +17,7 @@ app = Flask(__name__)
 keyring = Authentication()
 
 # initialize the database wrapper interface
-database = DataBase()
+database = DataBase(keyring.FIREBASE_CREDENTIALS)
 
 # initialize the OpenAI API wrapper interface
 ai_client = AI_Client(api_key=keyring.OPENAI_API_KEY, db=database)
@@ -244,5 +242,5 @@ def start_model_training():
     # Return a response immediately
     return (jsonify({"message": "Model training has been started. Please check back later for results."}), 202)
 
-if __name__ == "__main__":
+def main():
     app.run(debug=True)

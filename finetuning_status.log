@@ -193,3 +193,9 @@
 2024-04-10 18:22:06,815 - INFO - Checking status of job ftjob-K5xGljA76cCLiyZq0bZnfOW3: succeeded
 2024-04-10 18:22:06,816 - INFO - Job ftjob-K5xGljA76cCLiyZq0bZnfOW3 completed successfully. Model ID: ft:gpt-3.5-turbo-0125:personal::9CdQYwom
 2024-04-10 18:22:06,971 - INFO - Updated Firestore with model ID ft:gpt-3.5-turbo-0125:personal::9CdQYwom for user QIYiojiPTsV8ogGJ6yQB3JHaL7s2
+2024-07-06 20:13:57,084 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2024-07-06 20:13:57,084 - INFO - [33mPress CTRL+C to quit[0m
+2024-07-06 20:13:57,085 - INFO -  * Restarting with stat
+2024-07-06 20:13:57,932 - WARNING -  * Debugger is active!
+2024-07-06 20:13:57,932 - INFO -  * Debugger PIN: 875-112-971

@@ -6,14 +6,14 @@ class Authentication:
 
 
     OPENAI_API_KEY: str
-    FIREBASE_CREDENTIALS: str
+    FIREBASE_CREDENTIALS: dict
     STRIPE_PUBLISHABLE_KEY: str
     STRIPE_SECRET_KEY: str
 
     # will try to grab data from the auth_keys file on startup
     def __init__(self):
         directory = os.path.dirname(__file__)
-        self.auth_file = directory + "/auth_keys.json" # we should switch to absolute file finding in the future
+        self.auth_file = directory + "/../auth_keys.json" # we should switch to absolute file finding in the future
 
         try:
             with open(self.auth_file, "r") as file:
