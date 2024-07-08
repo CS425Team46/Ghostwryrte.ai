@@ -1,5 +1,4 @@
 import json
-import sys
 import time
 import logging
 
@@ -30,8 +29,10 @@ class AI_Client:
 
 
 
-    def delete_model(self, model_id: str):
-        self.client.models.delete(model_id) # TODO: figure out how to check that this succeeded
+    # deletes a fine-tuning model with the given id
+    def delete_model(self, model_id: str) -> bool:
+        return self.client.models.delete(model_id).deleted
+
 
 # taken from model_training.py
 ########################################################################
@@ -129,7 +130,7 @@ class AI_Client:
         training_data = []
         
         # function to sanitize text by removing non-ASCII characters
-        def sanitize_text(input_text):
+        def sanitize_text(input_text: str) -> str:
             # Specifically target the \u2028 character along with general ASCII sanitization
             sanitized_text = input_text.replace('\u2028', ' ')  # Targeting \u2028 specifically
             sanitized_text = sanitized_text.encode('ascii', 'ignore').decode('ascii')  # Removing any non-ASCII characters

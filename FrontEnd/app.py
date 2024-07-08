@@ -241,6 +241,3 @@ def start_model_training():
 
     # Return a response immediately
     return (jsonify({"message": "Model training has been started. Please check back later for results."}), 202)
-
-def main():
-    app.run(debug=True)

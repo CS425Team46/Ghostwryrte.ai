@@ -1,3 +1,6 @@
 import FrontEnd.app
 
-FrontEnd.app.main()
+# runs the app
+FrontEnd.app.app.run()
+
+# running the app from root directory is nessecary for package detection in the Data/ directory
