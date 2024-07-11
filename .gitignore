@@ -7,4 +7,12 @@ Data/ghostwryte-ai-firebase-adminsdk-uxybq-20881dd0dd.json
 # ignore .pyc files
 */__pycache__/
 
+# ignore vscode configuration files
 .vscode/
+
+# ignore authentication tokens
+auth_keys.json
+
+# ignore logs and training data
+*/finetuning_status.log
+*/training_data.jsonl
