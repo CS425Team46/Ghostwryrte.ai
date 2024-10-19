@@ -1630,12 +1630,14 @@ pre {
   transform: translateY(-5%);
 }
 
-
-
 .landingPageContainer{
+  display: flex;
+  flex-direction: column;
   height: 100vh;
   width: 100vw;
   background: var(--offWhite);
+  align-items: center;
+  padding: 2rem 0 0 0;
 }
 
 .topBarContainer{
@@ -1647,16 +1649,22 @@ pre {
   gap: 4.5%;
 }
 
+.topBarContainerLanding{
+  display: flex;
+  width: 80%;
+
+}
 .logoAndNameLanding{
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 100%;
   width: 65%;
+  gap: 1rem;
 }
 
 .landingPageLogoImg{
-  height: 50%;
+  height: 4rem;
   width: auto;
 }
 
